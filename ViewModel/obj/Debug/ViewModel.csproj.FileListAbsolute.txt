@@ -1,0 +1,5 @@
+E:\苏州交通\Project\MonitorPlatform\ViewModel\bin\Debug\ViewModel.dll
+E:\苏州交通\Project\MonitorPlatform\ViewModel\bin\Debug\ViewModel.pdb
+E:\苏州交通\Project\MonitorPlatform\ViewModel\obj\Debug\ResolveAssemblyReference.cache
+E:\苏州交通\Project\MonitorPlatform\ViewModel\obj\Debug\ViewModel.dll
+E:\苏州交通\Project\MonitorPlatform\ViewModel\obj\Debug\ViewModel.pdb

@@ -1,0 +1,30 @@
+﻿<Window x:Class="MonitorPlatform.CenterWindow"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
+        Title="中间窗口"         
+        Height="768"  
+        Width="1280" xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+         xmlns:local="clr-namespace:MonitorPlatform.Convert" 
+        xmlns:control="clr-namespace:MonitorPlatform.Controls" 
+>
+
+    <Grid x:Name="maingrid" Background="{Binding Path=MainBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0">
+            <control:TabSelectControl></control:TabSelectControl>
+        </Border>
+        <Border Grid.Row="1" VerticalAlignment="Top">
+            <Frame Source="Pages/BossCenter.xaml"></Frame>
+        </Border>
+
+        <Grid.LayoutTransform>
+            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" />
+        </Grid.LayoutTransform>
+    </Grid>
+
+</Window>

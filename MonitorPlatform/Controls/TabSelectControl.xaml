@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="MonitorPlatform.Controls.TabSelectControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             Loaded="TabSelectControl_Loaded">
+    
+    <ListBox DockPanel.Dock ="Top" HorizontalAlignment="Center"
+                    Foreground="{Binding Path=MainForeground}"
+                    ItemsSource="{Binding Path=ChartTypes}" 
+                    ItemContainerStyle="{StaticResource SelectableListBoxItem}"                     
+                    Background="Transparent" 
+                    SelectedItem="{Binding Path=SelectedChartType, Mode=TwoWay}">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding}" Style="{StaticResource SectionHeaderTextStyle}" />
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        <ListBox.Template>
+            <ControlTemplate>
+                <Border x:Name="LayoutRoot" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                    <ScrollViewer Foreground="{Binding Path=MainForeground}" x:Name="ScrollViewer" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" Padding="{TemplateBinding Padding}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" BorderThickness="0" BorderBrush="Transparent">
+                        <ItemsPresenter/>
+                    </ScrollViewer>
+                </Border>
+            </ControlTemplate>
+        </ListBox.Template>
+    </ListBox>
+</UserControl>
