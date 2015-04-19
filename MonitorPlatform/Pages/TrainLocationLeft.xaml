@@ -1,0 +1,81 @@
+﻿<Page x:Class="MonitorPlatform.Pages.TrainLocationLeft"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+           xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+      xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+       dx:ThemeManager.ThemeName="Office2007Silver"
+	Title="TrainLocationLeft">
+
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" HorizontalAlignment="Center">
+            <Label Content="即时列车位置"></Label>
+        </Border>
+        <Border Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Name="line1"  Grid.Row ="0" Stretch="Fill" Source="/MonitorPlatform;component/Resource/trainposition.bmp" MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave" >
+                    
+                </Image>
+                <Image Name="line2"  Grid.Row ="1" Stretch="Fill" Source="/MonitorPlatform;component/Resource/trainposition.bmp" >
+
+                </Image>
+            </Grid>
+        </Border>
+        <Popup Name="pointTooltip" Width="400" Height="200"   >
+        
+            <Border BorderBrush="White" BorderThickness="1" Background="White">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <TextBlock TextAlignment="Center">
+                        <Run>1号线</Run>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Run>木渎－钟南街</Run>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Run>广济南路</Run>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Run>第一班：03:30</Run>
+                         <LineBreak></LineBreak>
+                        <Run>第二班：08:30</Run>
+                         <LineBreak></LineBreak>
+                        <Run>第三班：13:30</Run>
+                    </TextBlock>
+                </Border>
+                <Border Grid.Column="1">
+                    <dxg:GridControl x:Name="grid"   ItemsSource="{Binding Path=SubWayLines[0].Stations}">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn  FieldName="Name"  Header="到站时间" />
+                            <dxg:GridColumn FieldName="InNumber"  Header="发车时间" />
+                            <dxg:GridColumn FieldName="OutNumber"  Header="列车编号" />
+                            <dxg:GridColumn FieldName="TrafficJam"  Header="圈次" />
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView AutoWidth="True" NavigationStyle="Row" Background="Black"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" />
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+
+                </Border>
+            </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+    
+</Page>

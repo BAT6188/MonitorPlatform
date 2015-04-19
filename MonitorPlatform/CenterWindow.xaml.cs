@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MonitorPlatform.ViewModel;
 
 namespace MonitorPlatform
 {
@@ -21,6 +22,11 @@ namespace MonitorPlatform
         public CenterWindow()
         {
             InitializeComponent();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            this.DataContext = new MonitorDataModel();
         }
     }
 }

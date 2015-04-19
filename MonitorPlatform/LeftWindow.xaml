@@ -18,8 +18,8 @@
         <Border Grid.Row="0">
             <control:TabSelectControl></control:TabSelectControl>
         </Border>
-        <Border Grid.Row="1" VerticalAlignment="Top">
-            <Frame Source="Pages/BossLeft.xaml"></Frame>
+        <Border Grid.Row="1" >
+            <Frame Source="Pages/TrainLocationLeft.xaml"></Frame>
         </Border>
 
         <Grid.LayoutTransform>

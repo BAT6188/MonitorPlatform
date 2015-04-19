@@ -3,15 +3,96 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ctr="clr-namespace:MonitorPlatform.Controls" 
+      xmlns:localdata="clr-namespace:MonitorPlatform.ViewModel" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="BossRight">
+            xmlns:local="clr-namespace:MonitorPlatform.Convert" 
+       xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
+	Title="BossRight" >
+    <Page.Resources>
+        <local:StringToBrushConverter x:Key="StringToBrushConverter" />
+       
+    </Page.Resources>
 
-    <Grid>
-
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="0"  Style="{StaticResource BossContainer}" >
+            <TreeView Name="tvProperties"    Padding="0" Margin="0" BorderThickness="0" ItemsSource="{Binding Path=Camera}">
+
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type localdata:PropertyNodeItem}" ItemsSource="{Binding Path=Children}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Source="{Binding Icon}" Width="16" Height="16" Margin="0,0,2,2"></Image>
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding DisplayName}"></TextBlock>
+
+                            <Image VerticalAlignment="Center" Source="{Binding EditIcon}" Margin="2,0,0,0"></Image>
+
+                            <StackPanel.ToolTip>
+
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Name}" TextWrapping="Wrap" MaxWidth="200" ></TextBlock>
+
+                            </StackPanel.ToolTip>
+
+                        </StackPanel>
+
+                    </HierarchicalDataTemplate>
+
+                </TreeView.ItemTemplate>
+
+            </TreeView>
+        </Border>
+        <Border Grid.Row="1"  Grid.Column="0"  Style="{StaticResource BossContainer}" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0"  Grid.Column="0" >
+                    <TextBlock  TextWrapping="Wrap"  VerticalAlignment="Center"  Width="15"  TextAlignment="Center">摄像头分布信息</TextBlock>
+                </Border>
+                <Border Grid.Row="0"  Grid.Column="1" >
+                    <chart:PieChart  
+                ChartTitle="Pie Chart"
+                ChartSubTitle="Chart with fixed width and height"
+                Palette="{Binding Path=SelectedPalette.Value}"
+                FontSize="{Binding Path=SelectedFontSize}"
+                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                ChartTitleVisibility="Hidden"
+                ChartLegendVisibility="Hidden"
+                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                
+                Foreground="{Binding Path=Foreground}" 
+                Background="{Binding Path=Background}"                 
+                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
+                        <chart:PieChart.Series>
+                            <chart:ChartSeries
+                        SeriesTitle="摄像头分布"
+                        DisplayMember="Name"
+                        ValueMember="CameraTotalNumber"
+                        ItemsSource="{Binding Path=SubWayLines}" />
+                        </chart:PieChart.Series>
+                    </chart:PieChart>
+
+
+                </Border>
+             </Grid>
+
+        </Border>
+        <Border Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2"  Style="{StaticResource BossContainer}">
+
+
+        </Border>
     </Grid>
 </Page>

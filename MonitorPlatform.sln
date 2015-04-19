@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcess", "DataProcess\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{E80B20B8-17A2-424E-B384-9A75461CD4DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "De.TorstenMandelkow.MetroChart.WPF", "..\..\SourceAndTestApplications\MetroChart\De.TorstenMandelkow.MetroChart.WPF\De.TorstenMandelkow.MetroChart.WPF.csproj", "{4AB4B0DB-780C-48B9-A642-8E527353D957}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "De.TorstenMandelkow.MetroChart.WPF", "..\苏州交通\SourceAndTestApplications\MetroChart\De.TorstenMandelkow.MetroChart.WPF\De.TorstenMandelkow.MetroChart.WPF.csproj", "{4AB4B0DB-780C-48B9-A642-8E527353D957}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

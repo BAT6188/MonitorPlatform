@@ -36,6 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v11.1.Core, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Charts.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Core.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Grid.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v11.1.Core, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -59,6 +65,9 @@
     <Compile Include="CenterWindow.xaml.cs">
       <DependentUpon>CenterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomTree.xaml.cs">
+      <DependentUpon>CustomTree.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TabSelectControl.xaml.cs">
       <DependentUpon>TabSelectControl.xaml</DependentUpon>
     </Compile>
@@ -75,12 +84,30 @@
     <Compile Include="Pages\BossRight.xaml.cs">
       <DependentUpon>BossRight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TrafficCenter.xaml.cs">
+      <DependentUpon>TrafficCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TrafficLeft.xaml.cs">
+      <DependentUpon>TrafficLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TrafficRight.xaml.cs">
+      <DependentUpon>TrafficRight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TrainLocationLeft.xaml.cs">
+      <DependentUpon>TrainLocationLeft.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RightWindows.xaml.cs">
       <DependentUpon>RightWindows.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MonitorDataModel.cs" />
+    <Compile Include="ViewModel\Station.cs" />
+    <Compile Include="ViewModel\SubLine.cs" />
     <Compile Include="ViewModel\TestClass.cs" />
     <Page Include="CenterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,6 +132,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\BossRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrafficCenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrafficLeft.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrafficRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrainLocationLeft.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,15 +190,26 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Theme\line.bmp" />
+    <Resource Include="Resource\line.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SourceAndTestApplications\MetroChart\De.TorstenMandelkow.MetroChart.WPF\De.TorstenMandelkow.MetroChart.WPF.csproj">
+    <ProjectReference Include="..\..\苏州交通\SourceAndTestApplications\MetroChart\De.TorstenMandelkow.MetroChart.WPF\De.TorstenMandelkow.MetroChart.WPF.csproj">
       <Project>{4AB4B0DB-780C-48B9-A642-8E527353D957}</Project>
       <Name>De.TorstenMandelkow.MetroChart.WPF</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Template\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\TrafficLine.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\trainposition.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

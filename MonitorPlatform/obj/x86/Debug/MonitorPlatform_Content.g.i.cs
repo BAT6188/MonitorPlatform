@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/line.bmp")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/trainposition.bmp")]
 
 

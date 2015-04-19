@@ -23,10 +23,10 @@ namespace MonitorPlatform
         public LeftWindow()
         {
             InitializeComponent();
-            RightWindows right = new RightWindows();
-            CenterWindow center = new CenterWindow();
-            right.Show();
-            center.Show();
+            //RightWindows right = new RightWindows();
+            //CenterWindow center = new CenterWindow();
+            //right.Show();
+            //center.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

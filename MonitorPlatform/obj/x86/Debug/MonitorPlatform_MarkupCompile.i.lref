@@ -1,7 +1,12 @@
 ﻿
 
-FE:\苏州交通\Project\MonitorPlatform\MonitorPlatform\CenterWindow.xaml
-FE:\苏州交通\Project\MonitorPlatform\MonitorPlatform\LeftWindow.xaml
-FE:\苏州交通\Project\MonitorPlatform\MonitorPlatform\Pages\BossLeft.xaml
-FE:\苏州交通\Project\MonitorPlatform\MonitorPlatform\RightWindows.xaml
+FE:\MonitorPlatform\MonitorPlatform\CenterWindow.xaml
+FE:\MonitorPlatform\MonitorPlatform\Controls\CustomTree.xaml
+FE:\MonitorPlatform\MonitorPlatform\LeftWindow.xaml
+FE:\MonitorPlatform\MonitorPlatform\Pages\BossLeft.xaml
+FE:\MonitorPlatform\MonitorPlatform\Pages\BossRight.xaml
+FE:\MonitorPlatform\MonitorPlatform\Pages\TrafficCenter.xaml
+FE:\MonitorPlatform\MonitorPlatform\Pages\TrafficLeft.xaml
+FE:\MonitorPlatform\MonitorPlatform\RightWindows.xaml
+FE:\MonitorPlatform\MonitorPlatform\Theme\Skin.xaml
 

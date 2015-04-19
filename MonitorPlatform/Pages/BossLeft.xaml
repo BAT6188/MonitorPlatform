@@ -6,7 +6,7 @@
       mc:Ignorable="d" 
       xmlns:local="clr-namespace:MonitorPlatform.Convert" 
        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
-	Title="BossLeft">
+	Title="BossLeft"  >
     <Page.Resources>
         <local:StringToBrushConverter x:Key="StringToBrushConverter" />
     </Page.Resources>
@@ -60,7 +60,7 @@
                     </StackPanel>
                 </Border>
                 <Border Style="{StaticResource BossContainer}" >
-                    <Image Height="255" Name="image1" Stretch="Fill"   Source="/MonitorPlatform;component/Theme/line.bmp" />
+                    <Image Height="255" Name="image1" Stretch="Fill"   Source="/MonitorPlatform;component/Resource/line.bmp" />
                 </Border>
             </DockPanel>
         </Border>

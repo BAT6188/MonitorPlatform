@@ -6,7 +6,7 @@
         Height="768"  
         Width="1280" xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
          xmlns:local="clr-namespace:MonitorPlatform.Convert" 
-        xmlns:control="clr-namespace:MonitorPlatform.Controls" 
+        xmlns:control="clr-namespace:MonitorPlatform.Controls"  Loaded="Window_Loaded"
 >
 
     <Grid x:Name="maingrid" Background="{Binding Path=MainBackground}">
@@ -18,8 +18,8 @@
         <Border Grid.Row="0">
             <control:TabSelectControl></control:TabSelectControl>
         </Border>
-        <Border Grid.Row="1" VerticalAlignment="Top">
-            <Frame Source="Pages/BossCenter.xaml"></Frame>
+        <Border Grid.Row="1" >
+            <Frame Source="Pages/TrafficCenter.xaml"></Frame>
         </Border>
 
         <Grid.LayoutTransform>

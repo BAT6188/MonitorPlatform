@@ -23,5 +23,15 @@ namespace MonitorPlatform.Pages
         {
             InitializeComponent();
         }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

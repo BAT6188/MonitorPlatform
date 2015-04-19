@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\苏州交通\Project\MonitorPlatform\MonitorPlatform\obj\x86\Debug\
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\
 MonitorPlatform
 none
 false
 DEBUG;TRACE
-E:\苏州交通\Project\MonitorPlatform\MonitorPlatform\App.xaml
-91835848623
+E:\MonitorPlatform\MonitorPlatform\App.xaml
+14-978234723
 
-14-1844086177
-141445833927
-CenterWindow.xaml;Controls\TabSelectControl.xaml;LeftWindow.xaml;Pages\BossCenter.xaml;Pages\BossLeft.xaml;Pages\BossRight.xaml;RightWindows.xaml;Theme\Language.xaml;Theme\Skin.xaml;
+21353459075
+20-977413274
+CenterWindow.xaml;Controls\CustomTree.xaml;Controls\TabSelectControl.xaml;LeftWindow.xaml;Pages\BossCenter.xaml;Pages\BossLeft.xaml;Pages\BossRight.xaml;Pages\TrafficCenter.xaml;Pages\TrafficLeft.xaml;Pages\TrafficRight.xaml;Pages\TrainLocationLeft.xaml;RightWindows.xaml;Theme\Language.xaml;Theme\Skin.xaml;
 
 False
 

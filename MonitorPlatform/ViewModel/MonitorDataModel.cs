@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MonitorPlatform.Controls;
 
 #if NETFX_CORE
 using Windows.UI.Xaml;
@@ -57,8 +58,33 @@ namespace MonitorPlatform.ViewModel
 
     }
 
+    public class PropertyNodeItem
+    {
+
+        public string Icon { get; set; }
+        public string EditIcon { get; set; }
+
+        public string DisplayName { get; set; }
+
+        public string Name { get; set; }
+
+
+
+        public List<PropertyNodeItem> Children { get; set; }
+        public PropertyNodeItem()
+        {
+
+            Children = new List<PropertyNodeItem>();
+
+        }
+
+    }
+
     public class MonitorDataModel : INotifyPropertyChanged
     {
+
+        private const string cameraimg = "/Resource/camera.png";
+        public Dictionary<string, string[]> subway = new Dictionary<string, string[]>();
         public DelegateCommand AddSeriesCommand { get; set; }
        
         public List<double> FontSizes { get; set; }
@@ -182,23 +208,40 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+
+        private void InitSubWayData()
+        {
+            SubWayLines = new ObservableCollection<SubLine>();
+            SubLine line1 = new SubLine() { Name = "1号线", CameraTotalNumber = 25 };
+            SubLine line2 = new SubLine() { Name = "2号线", CameraTotalNumber = 30 };
+
+            string[] line1str =  { "木渎站", "金枫路", "汾湖路", "玉山路", "苏州乐园","塔园路","滨河路","西环路",
+                                       "桐泾北路 ","广济南路","养育巷","乐桥站","临顿路","相门","东环路",
+                                       "中央公园","星海广场","东方之门","文化博览中心","时代广场","星湖街",
+                                       "南施街","星塘街","钟南街"};
+            string[] line2str = { "苏州北站", "大湾", "富元路", "蠡口", "徐图港", "阳澄湖中路", "陆慕", "平泷路东", "平河路", "苏州火车站", "山塘街", "石路", "广济南路", "三香广场", "劳动路", "胥江路", "桐泾公园", "友联", "盘蠡路", "新家桥", "石湖东路", "宝带桥南" };
+            foreach (string stationname in line1str)
+            {
+                line1.Stations.Add(new Station() { Name = stationname, CameraNumber = 3 });
+            }
+
+            foreach (string stationname in line2str)
+            {
+                line2.Stations.Add(new Station() { Name = stationname, CameraNumber = 3 });
+            }
+            SubWayLines.Add(line1);
+            SubWayLines.Add(line2);
+
+        }
+
         public MonitorDataModel()
         {
             LoadPalettes();
 
             AddSeriesCommand = new DelegateCommand(x => AddSeries());
-            
 
+            InitSubWayData();
 
-            //ChartTypes = new ObservableCollection<string>();
-            //ChartTypes.Add("总裁界面");
-            //ChartTypes.Add("客流信息");
-            //ChartTypes.Add("列车位置");
-            //ChartTypes.Add("设施设备");
-            //ChartTypes.Add("视频监控");
-            //ChartTypes.Add("地理信息");
-         
-            //SelectedChartType = ChartTypes.FirstOrDefault();
 
             FontSizes = new List<double>();
             FontSizes.Add(9.0);
@@ -254,7 +297,25 @@ namespace MonitorPlatform.ViewModel
 
             FirstLine.Add(new TestClass() { Category = "1号线", Number = 8 });
             SecondLine.Add(new TestClass() { Category = "2号线", Number = 78 });
-            
+
+            Camera = new List<PropertyNodeItem>();
+
+
+            foreach (SubLine subline in SubWayLines)
+            {
+                PropertyNodeItem line = new PropertyNodeItem() { DisplayName = subline.Name };
+                foreach (Station val in subline.Stations)
+                {
+                    PropertyNodeItem station = new PropertyNodeItem() { DisplayName = val.Name};
+                    for (int i = 1; i < val.CameraNumber;i++ )
+                    {
+                        station.Children.Add(new PropertyNodeItem() { DisplayName = "摄像头"+i.ToString(), Icon = cameraimg });
+                    }
+                    line.Children.Add(station);
+                }
+                Camera.Add(line);
+            }
+
             
 
             Series.Add(new SeriesData() { SeriesDisplayName = "Errors", Items = Errors });
@@ -312,6 +373,15 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("IsRowColumnSwitched");
             }
         }
+
+        public List<PropertyNodeItem> Camera
+        {
+            get;
+            set;
+        }
+    
+    
+
 
         private bool isLegendVisible = true;
         public bool IsLegendVisible
@@ -406,6 +476,14 @@ namespace MonitorPlatform.ViewModel
             get;
             set;
         }
+
+
+        public ObservableCollection<SubLine> SubWayLines
+        {
+            get;
+            set;
+        }
+
 
         private void NotifyPropertyChanged(string property)
         {
