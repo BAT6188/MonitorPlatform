@@ -16,10 +16,10 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0">
-            <control:TabSelectControl></control:TabSelectControl>
+            <control:TabSelectControl control:TabSelectControl.TabSelectChanged="TabSelectControl_TabSelectChanged"></control:TabSelectControl>
         </Border>
         <Border Grid.Row="1" >
-            <Frame Source="Pages/TrainLocationLeft.xaml"></Frame>
+            <Frame Name="frame"  NavigationUIVisibility ="Hidden"  Source="Pages/BossLeft.xaml"></Frame>
         </Border>
 
         <Grid.LayoutTransform>

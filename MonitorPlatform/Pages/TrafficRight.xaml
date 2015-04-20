@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
       xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+      ShowsNavigationUI="False"
           xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"        
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"

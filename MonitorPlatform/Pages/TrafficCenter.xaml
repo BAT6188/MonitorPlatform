@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       xmlns:local="clr-namespace:MonitorPlatform.Convert" 
-    
+    ShowsNavigationUI="False"
        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
  
 	Title="TrafficCenter" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" Loaded="Page_Loaded">

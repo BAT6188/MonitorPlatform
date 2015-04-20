@@ -6,6 +6,7 @@
       xmlns:ctr="clr-namespace:MonitorPlatform.Controls" 
       xmlns:localdata="clr-namespace:MonitorPlatform.ViewModel" 
       mc:Ignorable="d" 
+      ShowsNavigationUI="False"
       d:DesignHeight="300" d:DesignWidth="300"
             xmlns:local="clr-namespace:MonitorPlatform.Convert" 
        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 

@@ -7,6 +7,7 @@
            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
       xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
       mc:Ignorable="d" 
+      ShowsNavigationUI="False"
       d:DesignHeight="300" d:DesignWidth="300"
        dx:ThemeManager.ThemeName="Office2007Silver"
 	Title="TrainLocationLeft">

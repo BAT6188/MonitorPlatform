@@ -29,5 +29,43 @@ namespace MonitorPlatform.Controls
         {
             this.DataContext = new MenuItems();
         }
+
+        public static readonly RoutedEvent TabSelectChangedEvent =
+           EventManager.RegisterRoutedEvent("TabSelectChanged", RoutingStrategy.Tunnel,
+           typeof(EventHandler<TabSelectChangeEventArgs>), typeof(TabSelectControl));
+
+        /// <summary>
+        /// 事件添加和删除
+        /// </summary>
+        public event RoutedEventHandler TabSelectChanged
+        {
+            add { this.AddHandler(TabSelectChangedEvent, value); }
+            remove { this.RemoveHandler(TabSelectChangedEvent, value); }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabSelectChangeEventArgs args = new TabSelectChangeEventArgs(TabSelectChangedEvent,this);
+            args.ChoosedTab = (this.DataContext as MenuItems).SelectedChartType;
+            this.RaiseEvent(args);
+        }
+    }
+
+    /// <summary>
+    /// 自定义路由事件
+    /// </summary>
+    public class TabSelectChangeEventArgs : RoutedEventArgs
+    {
+        /// <summary>
+        /// 调用父类的构造
+        /// </summary>
+        /// <param name="routedEvent"></param>
+        /// <param name="sender"></param>
+        public TabSelectChangeEventArgs(RoutedEvent routedEvent, Object sender) : base(routedEvent, sender) { }
+
+        /// <summary>
+        /// 定义自己的属性
+        /// </summary>
+        public String ChoosedTab { get; set; }
     }
 }

@@ -11,6 +11,7 @@
                     ItemsSource="{Binding Path=ChartTypes}" 
                     ItemContainerStyle="{StaticResource SelectableListBoxItem}"                     
                     Background="Transparent" 
+                    SelectionChanged ="ListBox_SelectionChanged"
                     SelectedItem="{Binding Path=SelectedChartType, Mode=TwoWay}">
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>

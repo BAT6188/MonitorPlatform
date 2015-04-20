@@ -11,15 +11,15 @@
 
     <Grid x:Name="maingrid2" Background="{Binding Path=MainBackground}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0">
-            <control:TabSelectControl></control:TabSelectControl>
+            <!--<control:TabSelectControl></control:TabSelectControl>-->
         </Border>
         <Border Grid.Row="1" >
-            <Frame  Source="Pages/TrafficRight.xaml"></Frame>
+            <Frame Name="frame"   NavigationUIVisibility ="Hidden" Source="Pages/BossRight.xaml"></Frame>
         </Border>
 
         <Grid.LayoutTransform>

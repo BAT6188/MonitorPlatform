@@ -12,27 +12,69 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
+using MonitorPlatform.Controls;
 
 namespace MonitorPlatform
 {
+   
     /// <summary>
     /// LeftWindow.xaml 的交互逻辑
     /// </summary>
     public partial class LeftWindow : Window
     {
+        RightWindows right;
+        CenterWindow center;
         public LeftWindow()
         {
             InitializeComponent();
-            //RightWindows right = new RightWindows();
-            //CenterWindow center = new CenterWindow();
-            //right.Show();
-            //center.Show();
+            right = new RightWindows();
+            center = new CenterWindow();
+            right.Show();
+            center.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             this.DataContext = new MonitorDataModel();
+        }
+
+        private void TabSelectControl_TabSelectChanged(object sender, TabSelectChangeEventArgs e)
+        {
+            switch (e.ChoosedTab)
+            {
+                case "总裁界面":
+                    this.frame.Source = new Uri("Pages/BossLeft.xaml", UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/BossCenter.xaml", UriKind.Relative);
+                    right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);
+                    break;
+                case "客流信息":
+                    this.frame.Source = new Uri("Pages/TrafficLeft.xaml", UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/TrafficCenter.xaml", UriKind.Relative);
+                    right.frame.Source = new Uri("Pages/TrafficRight.xaml", UriKind.Relative);
+                    break;
+                case "列车位置":
+                    this.frame.Source = new Uri("Pages/TrainLocationLeft.xaml", UriKind.Relative);
+                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    break;
+                case "设施设备":
+                    //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");
+                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    break;
+                case "视频监控":
+                    //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");
+                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    break;
+                case "地理信息":
+                    //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");
+                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    break;
+
+            }
         }
     }
 }
+
