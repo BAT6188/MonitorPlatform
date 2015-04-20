@@ -24,7 +24,6 @@ using DevExpress.Xpf.Editors.Validation;
 using DevExpress.Xpf.Grid;
 using DevExpress.Xpf.Grid.LookUp;
 using DevExpress.Xpf.Grid.TreeList;
-using MonitorPlatform.Convert;
 using System;
 using System.Diagnostics;
 using System.Windows;
