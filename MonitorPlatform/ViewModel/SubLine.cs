@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 
 namespace MonitorPlatform.ViewModel
 {
-    
     public class SubLine : INotifyPropertyChanged
     {
 
@@ -55,6 +54,22 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+
+        private ObservableCollection<TroubleStatusSum> troubles = new ObservableCollection<TroubleStatusSum>();
+        public ObservableCollection<TroubleStatusSum> Troubles
+        {
+            get
+            {
+                return troubles;
+            }
+            set
+            {
+                troubles = value;
+                NotifyPropertyChanged("Troubles");
+            }
+        }
+
+
         private void NotifyPropertyChanged(string property)
         {
             if (PropertyChanged != null)
@@ -65,4 +80,49 @@ namespace MonitorPlatform.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
+
+
+    public class TroubleStatusSum : INotifyPropertyChanged
+    {
+
+        private String equipmentType;
+        public String EquipmentType
+        {
+            get
+            {
+                return equipmentType;
+            }
+            set
+            {
+                equipmentType = value;
+                NotifyPropertyChanged("EquipmentType");
+            }
+        }
+
+
+        private int number;
+        public int Number
+        {
+            get
+            {
+                return number;
+            }
+            set
+            {
+                number = value;
+                NotifyPropertyChanged("Number");
+            }
+        }
+
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+
 }

@@ -3,11 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace MonitorPlatform.ViewModel
 {
     public class Station : INotifyPropertyChanged
     {
+
+        private int id = 0;
+        public int ID
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                NotifyPropertyChanged("ID");
+            }
+        }
         private string name = "";
         public string Name
         {
@@ -149,7 +164,21 @@ namespace MonitorPlatform.ViewModel
                 brokenNumber = value;
                 NotifyPropertyChanged("BrokenNumber");
             }
-        } 
+        }
+
+        private ObservableCollection<Equipment> equipments = new ObservableCollection<Equipment>();
+        public ObservableCollection<Equipment> Equipments
+        {
+            get
+            {
+                return equipments;
+            }
+            set
+            {
+                equipments = value;
+                NotifyPropertyChanged("Equipments");
+            }
+        }
 
         private void NotifyPropertyChanged(string property)
         {
@@ -161,4 +190,5 @@ namespace MonitorPlatform.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
+   
 }

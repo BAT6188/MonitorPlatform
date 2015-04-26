@@ -10,6 +10,7 @@
 //------------------------------------------------------------------------------
 
 using De.TorstenMandelkow.MetroChart;
+using DevExpress.Xpf.Gauges;
 using MonitorPlatform.Controls;
 using MonitorPlatform.Convert;
 using System;

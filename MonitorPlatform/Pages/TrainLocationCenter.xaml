@@ -1,0 +1,193 @@
+﻿<Page x:Class="MonitorPlatform.Pages.TrainLocationCenter"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+           xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+      xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+      mc:Ignorable="d" 
+      ShowsNavigationUI="False"
+      d:DesignHeight="300" d:DesignWidth="300"
+       dx:ThemeManager.ThemeName="Office2007Silver"
+	Title="TrainLocationCenter">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0"  Grid.Column="0">
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="25"></RowDefinition>
+                <RowDefinition  Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" HorizontalAlignment="Left" >
+                    <Label Content="列车运行信息"></Label>
+            </Border>
+                <Border  Grid.Row="1">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="0" Grid.Column="0">
+                            <Label Content="下一站"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="0" Grid.Column="1">
+                            <Label Content="广济南路"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="0" Grid.Column="2">
+                            <Label Content="日期"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="0" Grid.Column="3">
+                            <Label Content="2015-05-13"></Label>
+                        </Border>
+
+                        <Border  BorderBrush ="White" BorderThickness="1"  Grid.Row="1" Grid.Column="0">
+                            <Label Content="计划到达时间"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="2" Grid.Column="1">
+                            <Label Content="08:53:45"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="3" Grid.Column="2">
+                            <Label Content="预计到达时间"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="4" Grid.Column="3">
+                            <Label Content="08:53:46"></Label>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="25"></RowDefinition>
+                    <RowDefinition  Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" HorizontalAlignment="Left" >
+                    <Label Content="列车营运信息"></Label>
+                </Border>
+                <Border Grid.Row="1">
+                    <dxg:GridControl x:Name="grid"   ItemsSource="{Binding Path=SubWayLines[0].Stations}">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn  FieldName="ID"  Header="序号" />
+                            <dxg:GridColumn FieldName="Name"  Header="站台名称">
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="UpEndTime"  Header="到站时间">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:DateEditSettings DisplayFormat="HH::mm::ss" />
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="DownBeginTime"  Header="发车时间" >
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:DateEditSettings DisplayFormat="HH::mm::ss" />
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="InNumber"  Header="圈次" />
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView AutoWidth="True" NavigationStyle="Row" Background="Black"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" />
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition  Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0"  HorizontalAlignment="Left" >
+                    <Label Content="列车运行信息"></Label>
+                </Border>
+                <Border Grid.Row="1" >
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="0" Grid.Column="0">
+                            <Label Content="列车编号"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="1" Grid.Column="0">
+                            <Label Content="列车类型"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="2" Grid.Column="0">
+                            <Label Content="车厢数（编组）"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="3" Grid.Column="0">
+                            <Label Content="荷载人数"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="4" Grid.Column="0">
+                            <Label Content="购买年份"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="5" Grid.Column="0">
+                            <Label Content="投入使用年度"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="6" Grid.Column="0">
+                            <Label Content="车身尺寸"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="7" Grid.Column="0">
+                            <Label Content="列车配置"></Label>
+                        </Border>
+
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="0" Grid.Column="1">
+                            <Label Content="SZDT－Z0010"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="1" Grid.Column="1">
+                            <Label Content="TR－RCZW"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="2" Grid.Column="1">
+                            <Label Content="6"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="3" Grid.Column="1">
+                            <Label Content="1500"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="4" Grid.Column="1">
+                            <Label Content="2014年"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="5" Grid.Column="1">
+                            <Label Content="2014年"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="6" Grid.Column="1">
+                            <Label Content="6*3*3"></Label>
+                        </Border>
+                        <Border BorderBrush="White" BorderThickness="1" Grid.Row="7" Grid.Column="1">
+                            <Label Content="配置信息"></Label>
+                        </Border>
+                    </Grid>
+                </Border>
+
+
+                
+            </Grid>
+        </Border>
+    </Grid>
+
+</Page>

@@ -74,3 +74,7 @@ E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrafficRight.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrafficLeft.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrainLocationLeft.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrainLocationLeft.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrainLocationCenter.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrainLocationCenter.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusLeft.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusLeft.g.cs

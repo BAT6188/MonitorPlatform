@@ -52,6 +52,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ThirdParty\DevExpress.Xpf.Core.v11.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Xpf.Gauges.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ThirdParty\DevExpress.Xpf.Gauges.v11.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ThirdParty\DevExpress.Xpf.Grid.v11.1.dll</HintPath>
@@ -106,6 +110,9 @@
     <Compile Include="Pages\BossRight.xaml.cs">
       <DependentUpon>BossRight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EquipmentStatusLeft.xaml.cs">
+      <DependentUpon>EquipmentStatusLeft.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TrafficCenter.xaml.cs">
       <DependentUpon>TrafficCenter.xaml</DependentUpon>
     </Compile>
@@ -115,12 +122,16 @@
     <Compile Include="Pages\TrafficRight.xaml.cs">
       <DependentUpon>TrafficRight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TrainLocationCenter.xaml.cs">
+      <DependentUpon>TrainLocationCenter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TrainLocationLeft.xaml.cs">
       <DependentUpon>TrainLocationLeft.xaml</DependentUpon>
     </Compile>
     <Compile Include="RightWindows.xaml.cs">
       <DependentUpon>RightWindows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Equipment.cs" />
     <Compile Include="ViewModel\MonitorDataModel.cs" />
     <Compile Include="ViewModel\Station.cs" />
     <Compile Include="ViewModel\SubLine.cs" />
@@ -157,6 +168,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EquipmentStatusLeft.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\TrafficCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TrafficRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TrainLocationCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,6 +250,10 @@
       <Project>{4AB4B0DB-780C-48B9-A642-8E527353D957}</Project>
       <Name>De.TorstenMandelkow.MetroChart.WPF</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\subline1.bmp" />
+    <Resource Include="Resource\subline2.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

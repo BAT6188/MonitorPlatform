@@ -41,7 +41,7 @@
                     </Border>
                 </DockPanel>
             </Border>
-         </Border>
+        </Border>
         <Border Grid.Row="1" Grid.Column="1">
             <Border Margin="30,5,30,5">
                 <DockPanel LastChildFill="True">
@@ -93,7 +93,7 @@
                     <dxg:TableView AutoWidth="True" NavigationStyle="Row" Background="Black"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" />
                 </dxg:GridControl.View>
             </dxg:GridControl>
-          
+
         </Border>
     </Grid>
 </Page>

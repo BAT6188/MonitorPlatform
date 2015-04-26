@@ -54,13 +54,13 @@ namespace MonitorPlatform
                     break;
                 case "列车位置":
                     this.frame.Source = new Uri("Pages/TrainLocationLeft.xaml", UriKind.Relative);
-                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
-                    //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/TrainLocationCenter.xaml", UriKind.Relative);
+                    right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);
                     break;
                 case "设施设备":
-                    //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");
-                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
-                    //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    this.frame.Source = new Uri("Pages/EquipmentStatusLeft.xaml",UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
                     break;
                 case "视频监控":
                     //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");

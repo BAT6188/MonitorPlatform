@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\MonitorPlatform\MonitorPlatform\App.xaml
-14-978234723
+16-1115375037
 
-21353459075
-211095966215
-CenterWindow.xaml;Controls\CustomTree.xaml;Controls\TabSelectControl.xaml;LeftWindow.xaml;Pages\BossCenter.xaml;Pages\BossLeft.xaml;Pages\BossRight.xaml;Pages\TrafficCenter.xaml;Pages\TrafficLeft.xaml;Pages\TrafficRight.xaml;Pages\TrainLocationLeft.xaml;RightWindows.xaml;Theme\Language.xaml;Theme\Skin.xaml;
+241734898774
+22-239777490
+CenterWindow.xaml;Controls\CustomTree.xaml;Controls\TabSelectControl.xaml;LeftWindow.xaml;Pages\BossCenter.xaml;Pages\BossLeft.xaml;Pages\BossRight.xaml;Pages\EquipmentStatusLeft.xaml;Pages\TrafficCenter.xaml;Pages\TrafficLeft.xaml;Pages\TrafficRight.xaml;Pages\TrainLocationCenter.xaml;Pages\TrainLocationLeft.xaml;RightWindows.xaml;Theme\Language.xaml;Theme\Skin.xaml;
 
 False
 
