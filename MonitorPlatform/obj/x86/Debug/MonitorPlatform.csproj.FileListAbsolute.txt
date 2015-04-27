@@ -63,7 +63,6 @@ E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform.g.resources
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform.Properties.Resources.resources
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\GenerateResource.read.1.tlog
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\GenerateResource.write.1.tlog
-E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform.exe.licenses
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\CustomTree.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\CustomTree.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrafficCenter.baml
