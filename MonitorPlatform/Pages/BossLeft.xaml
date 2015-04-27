@@ -17,7 +17,6 @@
             <RowDefinition Height="260"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
         <Border Grid.Row="0">
             
             <Grid>
@@ -81,7 +80,7 @@
             </Grid>
        
         </Border>
-        <Border Grid.Row="1">
+        <Border Grid.Row="1" Margin="0,10,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -89,15 +88,45 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" Style="{StaticResource BossContainer}" >
-                    <DockPanel LastChildFill="True">
-                        <Grid  DockPanel.Dock="Left">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="25"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0"  Content="线路流量即时分布" HorizontalAlignment="Center"></Label>
-                            <chart:RadialGaugeChart Grid.Row="1"   HorizontalAlignment="Left"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="15"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="15"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                            <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="线路流量即时分布"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线站点即时流量图</TextBlock>
+                        </Border>
+                        <chart:ClusteredColumnChart Grid.Column="0" Grid.Row="2"
+                                            Palette="{Binding Path=SelectedPalette.Value}"
+                                            FontSize="{Binding Path=SelectedFontSize}"
+                                            IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                                            ChartTitleVisibility="Hidden"
+                                            ToolTipFormat="{Binding Path=ToolTipFormat}"
+                                            Foreground="{Binding Path=Foreground}" 
+                                            Background="Transparent"               
+                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                                            SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
+                            <chart:ClusteredColumnChart.Series>
+                                <chart:ChartSeries
+                                                SeriesTitle="Errors"
+                                                DisplayMember="Category"
+                                                ValueMember="Number"
+                                                ItemsSource="{Binding Path=Errors}" />
+                            </chart:ClusteredColumnChart.Series>
+                        </chart:ClusteredColumnChart>
+
+                        <chart:RadialGaugeChart Grid.Row="2"  Grid.Column="1"  HorizontalAlignment="Left"
                                 Palette="{Binding Path=SelectedPalette.Value}"
                                 FontSize="{Binding Path=SelectedFontSize}"
                                 ChartTitleVisibility="Hidden"
@@ -105,20 +134,43 @@
                                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                                 ToolTipFormat="{Binding Path=ToolTipFormat}"
                                 Foreground="{Binding Path=Foreground}" 
-                                Background="{Binding Path=Background}"                 
+                              Background="Transparent"          
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
-                                <chart:RadialGaugeChart.Series>
-                                    <chart:ChartSeries
+                            <chart:RadialGaugeChart.Series>
+                                <chart:ChartSeries
                                         SeriesCaptionVisibility ="Hidden"
                         SeriesTitle="Errors"
                         DisplayMember="Category"
                         ValueMember="Number"
                         ItemsSource="{Binding Path=FirstLine}">
-                                    </chart:ChartSeries>
-                                </chart:RadialGaugeChart.Series>
-                            </chart:RadialGaugeChart>
-                            <chart:RadialGaugeChart Grid.Row="2" HorizontalAlignment="Left"
+                                </chart:ChartSeries>
+                            </chart:RadialGaugeChart.Series>
+                        </chart:RadialGaugeChart>
+                <Border Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="2" >
+                            <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线站点即时流量图</TextBlock>
+                        </Border>
+
+                        <chart:ClusteredColumnChart Grid.Row="4"  Grid.Column="0"
+                                            Palette="{Binding Path=SelectedPalette.Value}"
+                                            FontSize="{Binding Path=SelectedFontSize}"
+                                            IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                                            ChartTitleVisibility="Hidden"
+                                            ToolTipFormat="{Binding Path=ToolTipFormat}"
+                                            Foreground="{Binding Path=Foreground}" 
+                                        Background="Transparent"    
+                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                                            SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
+                            <chart:ClusteredColumnChart.Series>
+                                <chart:ChartSeries
+                                                SeriesTitle="Errors"
+                                                DisplayMember="Category"
+                                                ValueMember="Number"
+                                                ItemsSource="{Binding Path=Errors}" />
+                            </chart:ClusteredColumnChart.Series>
+                        </chart:ClusteredColumnChart>
+
+                        <chart:RadialGaugeChart Grid.Row="4"  Grid.Column="1" HorizontalAlignment="Left"
                                 Palette="{Binding Path=SelectedPalette.Value}"
                                 FontSize="{Binding Path=SelectedFontSize}"
                                 
@@ -127,105 +179,37 @@
                                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                                 ToolTipFormat="{Binding Path=ToolTipFormat}"
                                 Foreground="{Binding Path=Foreground}" 
-                                Background="{Binding Path=Background}"                 
+                             Background="Transparent"                
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
-                                <chart:RadialGaugeChart.Series>
-                                    <chart:ChartSeries
+                            <chart:RadialGaugeChart.Series>
+                                <chart:ChartSeries
                                         SeriesCaptionVisibility ="Hidden"
                         SeriesTitle="Errors"
                         DisplayMember="Category"
                         ValueMember="Number"
                         ItemsSource="{Binding Path=SecondLine}">
-                                    </chart:ChartSeries>
-                                </chart:RadialGaugeChart.Series>
-                            </chart:RadialGaugeChart>
-                        </Grid>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*">
-                                </RowDefinition>
-                                <RowDefinition Height="*">
-                                </RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30">
-                                </ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <Border Grid.Row="0"  Grid.Column="0" >
-
-                                <TextBlock  TextWrapping="Wrap"  VerticalAlignment="Center"  Width="15"  TextAlignment="Center">1号线站点即时流量</TextBlock>
-                            </Border>
-
-                            <Border Grid.Row="0"  Grid.Column="1" >
-                                <chart:ClusteredColumnChart 
-                                            Palette="{Binding Path=SelectedPalette.Value}"
-                                            FontSize="{Binding Path=SelectedFontSize}"
-                                            IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                            ChartTitleVisibility="Hidden"
-                                            ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                            Foreground="{Binding Path=Foreground}" 
-                                            Background="{Binding Path=Background}"                 
-                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                            SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                                    <chart:ClusteredColumnChart.Series>
-                                        <chart:ChartSeries
-                                                SeriesTitle="Errors"
-                                                DisplayMember="Category"
-                                                ValueMember="Number"
-                                                ItemsSource="{Binding Path=Errors}" />
-                                    </chart:ClusteredColumnChart.Series>
-                                </chart:ClusteredColumnChart>
-
-                            </Border>
-
-                            <Border Grid.Row="1"  Grid.Column="0">
-                                <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center"  Width="10" TextAlignment="Center">2号线站点即时流量</TextBlock>
-                            </Border>
-
-                            <Border Grid.Row="1"  Grid.Column="1" >
-                                <chart:ClusteredColumnChart 
-                                            Palette="{Binding Path=SelectedPalette.Value}"
-                                            FontSize="{Binding Path=SelectedFontSize}"
-                                            IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                            ChartTitleVisibility="Hidden"
-                                            ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                            Foreground="{Binding Path=Foreground}" 
-                                            Background="{Binding Path=Background}"                 
-                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                            SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                                    <chart:ClusteredColumnChart.Series>
-                                        <chart:ChartSeries
-                                                SeriesTitle="Errors"
-                                                DisplayMember="Category"
-                                                ValueMember="Number"
-                                                ItemsSource="{Binding Path=Errors}" />
-                                    </chart:ClusteredColumnChart.Series>
-                                </chart:ClusteredColumnChart>
-
-                            </Border>
-                        </Grid>
-                    </DockPanel>
-
+                                </chart:ChartSeries>
+                            </chart:RadialGaugeChart.Series>
+                        </chart:RadialGaugeChart>
+                    </Grid>
+                  
                 </Border>
 
                 <Border Style="{StaticResource BossContainer}" Grid.Column="1">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25"></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="15"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="15"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="设施设备即时信息"></Label>
+                        <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" >
+                            <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="设施设备即时信息"></TextBlock>
                         </Border>
                         <Border Grid.Row="1">
-                            <Label Content="1号线主要设备情况"></Label>
+                            <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线主要设备情况</TextBlock>
                         </Border>
                         <Border Grid.Row="2">
                             <chart:ClusteredBarChart     
@@ -235,7 +219,7 @@
                                     ChartTitleVisibility="Hidden"
                                     ToolTipFormat="{Binding Path=ToolTipFormat}"
                                     Foreground="{Binding Path=Foreground}" 
-                                    Background="{Binding Path=Background}"                 
+                                    Background="Transparent"            
                                     SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                     SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
                                 <chart:ClusteredBarChart.Series>
@@ -249,7 +233,7 @@
 
                         </Border>
                         <Border Grid.Row="3">
-                            <Label Content="2号线主要设备情况"></Label>
+                            <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线主要设备情况</TextBlock>
                         </Border>
                         <Border Grid.Row="4">
                             <chart:ClusteredBarChart     
@@ -259,7 +243,7 @@
                                     ChartTitleVisibility="Hidden"
                                     ToolTipFormat="{Binding Path=ToolTipFormat}"
                                     Foreground="{Binding Path=Foreground}" 
-                                    Background="{Binding Path=Background}"                 
+                                  Background="Transparent"             
                                     SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                     SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
                                 <chart:ClusteredBarChart.Series>
@@ -278,17 +262,19 @@
                 <Border Style="{StaticResource BossContainer}" Grid.Column="2">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
                             <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="异常提醒信息"></Label>
+                  
+                        <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" >
+                            <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="异常提醒信息"></TextBlock>
                         </Border>
                         <Border Grid.Row="1">
-                            <Label Content="1号线"></Label>
+                           
+                            <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线</TextBlock>
                         </Border>
                         <Border Grid.Row="2">
                             <Grid>
@@ -320,7 +306,8 @@
                             </Grid>
                         </Border>
                         <Border Grid.Row="3">
-                            <Label Content="2号线"></Label>
+                          
+                            <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线</TextBlock>
                         </Border>
                         <Border Grid.Row="4">
                             <Grid >

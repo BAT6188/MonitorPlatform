@@ -137,6 +137,8 @@
     <Style TargetType="Border" x:Key="SmallSectionHeader">
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="260"/>
+        
         <!--<Setter Property="FontSize" Value="30" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="Microsoft YaHei" />-->
@@ -160,6 +162,13 @@
         <Setter Property="Margin" Value="0,10,5,5"/>
         <Setter Property="FontSize" Value="18" />
     </Style>
+
+    <Style x:Key="CategorySmallTextStyle" TargetType="TextBlock" >
+        <Setter Property="Margin" Value="0,10,0,3"/>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#0670AF"></Setter>
+    </Style>
+    
     <Style x:Key="ContentTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextStyle}">
         <Setter Property="Margin" Value="0,0,5,5"/>
         <Setter Property="FontSize" Value="14" />
@@ -174,9 +183,9 @@
 
 
     <Style x:Key="BossContainer" TargetType="Border">
-        <Setter Property="Margin" Value="5"/>
+        <!--<Setter Property="Margin" Value="5"/>
         <Setter Property="BorderBrush" Value="White"></Setter>
-        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>-->
     </Style>
     
 
