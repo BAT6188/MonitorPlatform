@@ -255,6 +255,16 @@
     <Resource Include="Resource\subline1.bmp" />
     <Resource Include="Resource\subline2.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThirdParty\DevExpress.Charts.v11.1.Core.dll" />
+    <Content Include="ThirdParty\DevExpress.Data.v11.1.dll" />
+    <Content Include="ThirdParty\DevExpress.Xpf.Charts.v11.1.dll" />
+    <Content Include="ThirdParty\DevExpress.Xpf.Core.v11.1.dll" />
+    <Content Include="ThirdParty\DevExpress.Xpf.Gauges.v11.1.dll" />
+    <Content Include="ThirdParty\DevExpress.Xpf.Grid.v11.1.Core.dll" />
+    <Content Include="ThirdParty\DevExpress.Xpf.Grid.v11.1.dll" />
+    <Content Include="ThirdParty\DevExpress.Xpf.Themes.Office2007Silver.v11.1.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

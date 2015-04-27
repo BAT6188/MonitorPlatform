@@ -9,7 +9,7 @@
         xmlns:control="clr-namespace:MonitorPlatform.Controls"  Loaded="Window_Loaded"
 >
 
-    <Grid x:Name="maingrid" Background="{Binding Path=MainBackground}">
+    <Grid x:Name="maingrid" Style="{StaticResource gridbackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>

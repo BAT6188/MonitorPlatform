@@ -21,9 +21,9 @@
         <Border Grid.Row="0">
             <DockPanel>
                 <Border HorizontalAlignment="Left" Style="{StaticResource BossContainer}"  >
-                    <StackPanel Height="260" Name="stackPanel3" Width="218"  >
-                        <Border BorderBrush="Silver" BorderThickness="1" Height="27" Name="border1">
-                            <Label Content="1号线 共有24站" Height="22" Name="label1" />
+                    <StackPanel Height="260" Name="stackPanel3" Width="320"  >
+                        <Border Style="{StaticResource SmallSectionHeader}"  Height="30" >
+                            <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="1号线 共有24站"></TextBlock>
                         </Border>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Height="98" Name="stackPanel4"   >

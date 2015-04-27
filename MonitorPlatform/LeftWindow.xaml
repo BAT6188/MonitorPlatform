@@ -8,14 +8,14 @@
          xmlns:local="clr-namespace:MonitorPlatform.Convert" 
         xmlns:control="clr-namespace:MonitorPlatform.Controls" 
          Loaded="Window_Loaded">
-   
-    <Grid x:Name="maingrid" Background="{Binding Path=MainBackground}">
+
+    <Grid x:Name="maingrid"  Style="{StaticResource gridbackground}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0">
+        <Border Grid.Row="0" Padding="5">
             <control:TabSelectControl control:TabSelectControl.TabSelectChanged="TabSelectControl_TabSelectChanged"></control:TabSelectControl>
         </Border>
         <Border Grid.Row="1" >

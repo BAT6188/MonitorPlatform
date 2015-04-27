@@ -9,6 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MonitorPlatform.Convert;
 using System;
 using System.Diagnostics;
 using System.Windows;
