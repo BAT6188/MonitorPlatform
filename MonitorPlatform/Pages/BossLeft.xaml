@@ -6,6 +6,7 @@
       mc:Ignorable="d" 
       ShowsNavigationUI="False"
       xmlns:local="clr-namespace:MonitorPlatform.Convert" 
+       xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
 	Title="BossLeft"  >
     <Page.Resources>
@@ -18,7 +19,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0">
-            
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -26,11 +27,11 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" >
                     <StackPanel >
-                    <Border Style="{StaticResource SmallSectionHeader}"  Height="30" >
-                        <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="1号线 共有24站"></TextBlock>
-                    </Border>
+                        <Border Style="{StaticResource SmallSectionHeader}"  Height="30" >
+                            <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="1号线 共有24站"></TextBlock>
+                        </Border>
                         <Border >
-                            
+
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -78,7 +79,7 @@
                     <Image Height="255" Name="image1" Stretch="Fill"   Source="/MonitorPlatform;component/Resource/line.bmp" />
                 </Border>
             </Grid>
-       
+
         </Border>
         <Border Grid.Row="1" Margin="0,10,0,0">
             <Grid>
@@ -91,13 +92,13 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="4*"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.3*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="15"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="15"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
 
@@ -107,26 +108,75 @@
                         <Border Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线站点即时流量图</TextBlock>
                         </Border>
-                        <chart:ClusteredColumnChart Grid.Column="0" Grid.Row="2"
-                                            Palette="{Binding Path=SelectedPalette.Value}"
-                                            FontSize="{Binding Path=SelectedFontSize}"
-                                            IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                            ChartTitleVisibility="Hidden"
-                                            ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                            Foreground="{Binding Path=Foreground}" 
-                                            Background="Transparent"               
-                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                            SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                            <chart:ClusteredColumnChart.Series>
-                                <chart:ChartSeries
-                                                SeriesTitle="Errors"
-                                                DisplayMember="Category"
-                                                ValueMember="Number"
-                                                ItemsSource="{Binding Path=Errors}" />
-                            </chart:ClusteredColumnChart.Series>
-                        </chart:ClusteredColumnChart>
 
-                        <chart:RadialGaugeChart Grid.Row="2"  Grid.Column="1"  HorizontalAlignment="Left"
+
+
+                        <dxc:ChartControl   BorderThickness="0" Background="{x:Null}"    EnableAnimation="False" Grid.Column="0" Grid.Row="2" >
+                            <dxc:ChartControl.Diagram >
+                                <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
+                                    <dxc:XYDiagram2D.AxisX>
+                                        <dxc:AxisX2D >
+                                            <dxc:AxisX2D.Label>
+                                                <dxc:AxisLabel Staggered="True"   Foreground="#00a0e9"  />
+                                            </dxc:AxisX2D.Label>
+                                            <!--
+                                        </dxc:AxisX2D.Label>-->
+                                        </dxc:AxisX2D>
+                                    </dxc:XYDiagram2D.AxisX>
+                                    <dxc:XYDiagram2D.AxisY>
+                                        <dxc:AxisY2D >
+                                            <dxc:AxisY2D.Label>
+                                                <dxc:AxisLabel Foreground="#00a0e9"  />
+                                            </dxc:AxisY2D.Label>
+                                        </dxc:AxisY2D>
+                                    </dxc:XYDiagram2D.AxisY>
+
+                                    <dxc:XYDiagram2D.Series>
+                                        <dxc:BarSideBySideSeries2D  
+                                                     ArgumentDataMember="Name" 
+                                                       ValueDataMember="InNumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].Stations}">
+                                            <dxc:BarSideBySideSeries2D.Label>
+                                                <dxc:SeriesLabel Indent="20" ResolveOverlappingMode="Default" 
+                                    ConnectorThickness="1" 
+                                   Visible="False"
+                                    dxc:BarSideBySideSeries2D.LabelPosition="Outside" />
+                                            </dxc:BarSideBySideSeries2D.Label>
+                                        </dxc:BarSideBySideSeries2D>
+                                        <dxc:LineSeries2D 
+                                                 ArgumentDataMember="Name" 
+                                                       ValueDataMember="OutNumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].Stations}">
+                                            <dxc:LineSeries2D.Label>
+                                                <dxc:SeriesLabel ConnectorVisible="False" 
+                                                     ResolveOverlappingMode="Default" 
+                                                     Visible="False" />
+                                            </dxc:LineSeries2D.Label>
+                                        </dxc:LineSeries2D>
+                                    </dxc:XYDiagram2D.Series>
+                                </dxc:XYDiagram2D>
+                            </dxc:ChartControl.Diagram>
+                            <dxc:ChartControl.Legend  >
+                                <dxc:Legend Background="{x:Null}" ReverseItems="False"   />
+                            </dxc:ChartControl.Legend>
+                        </dxc:ChartControl>
+
+                        <Border Grid.Row="2"  Grid.Column="1"  Style="{StaticResource BossPopupContent}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                    <TextBlock Style="{StaticResource BossPopupContentHeader}" Text="1号线"></TextBlock>
+                                </Border>
+                                <chart:RadialGaugeChart  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
                                 Palette="{Binding Path=SelectedPalette.Value}"
                                 FontSize="{Binding Path=SelectedFontSize}"
                                 ChartTitleVisibility="Hidden"
@@ -137,40 +187,136 @@
                               Background="Transparent"          
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
-                            <chart:RadialGaugeChart.Series>
-                                <chart:ChartSeries
+                                    <chart:RadialGaugeChart.Series>
+                                        <chart:ChartSeries
                                         SeriesCaptionVisibility ="Hidden"
                         SeriesTitle="Errors"
                         DisplayMember="Category"
                         ValueMember="Number"
                         ItemsSource="{Binding Path=FirstLine}">
-                                </chart:ChartSeries>
-                            </chart:RadialGaugeChart.Series>
-                        </chart:RadialGaugeChart>
-                <Border Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="2" >
+                                        </chart:ChartSeries>
+                                    </chart:RadialGaugeChart.Series>
+                                </chart:RadialGaugeChart>
+                                <Border Grid.Row="1" Grid.Column="1" >
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="进:3W"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="1" >
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="出:3W"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="1" >
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="总:6W"></TextBlock>
+                                </Border>
+
+                            </Grid>
+
+                        </Border>
+
+                        <Border Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="2" >
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线站点即时流量图</TextBlock>
                         </Border>
 
-                        <chart:ClusteredColumnChart Grid.Row="4"  Grid.Column="0"
-                                            Palette="{Binding Path=SelectedPalette.Value}"
-                                            FontSize="{Binding Path=SelectedFontSize}"
-                                            IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                            ChartTitleVisibility="Hidden"
-                                            ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                            Foreground="{Binding Path=Foreground}" 
-                                        Background="Transparent"    
-                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                            SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                            <chart:ClusteredColumnChart.Series>
-                                <chart:ChartSeries
-                                                SeriesTitle="Errors"
-                                                DisplayMember="Category"
-                                                ValueMember="Number"
-                                                ItemsSource="{Binding Path=Errors}" />
-                            </chart:ClusteredColumnChart.Series>
-                        </chart:ClusteredColumnChart>
+                        <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False" Grid.Row="4"  Grid.Column="0" >
+                            <dxc:ChartControl.Diagram>
+                                <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
-                        <chart:RadialGaugeChart Grid.Row="4"  Grid.Column="1" HorizontalAlignment="Left"
+                                    <dxc:XYDiagram2D.AxisX>
+                                        <dxc:AxisX2D >
+                                            <dxc:AxisX2D.Label>
+                                                <dxc:AxisLabel Staggered="True"   Foreground="#00a0e9"  />
+                                            </dxc:AxisX2D.Label>
+                                            <!--
+                                        </dxc:AxisX2D.Label>-->
+                                        </dxc:AxisX2D>
+                                    </dxc:XYDiagram2D.AxisX>
+                                    <dxc:XYDiagram2D.AxisY>
+                                        <dxc:AxisY2D >
+                                            <dxc:AxisY2D.Label>
+                                                <dxc:AxisLabel Foreground="#00a0e9"  />
+                                            </dxc:AxisY2D.Label>
+                                        </dxc:AxisY2D>
+                                    </dxc:XYDiagram2D.AxisY>
+                                    <dxc:XYDiagram2D.Series>
+                                        <dxc:BarSideBySideSeries2D 
+                                                     ArgumentDataMember="Name" 
+                                                       ValueDataMember="InNumber"
+                                                       DataSource="{Binding Path=SubWayLines[1].Stations}">
+                                            <dxc:BarSideBySideSeries2D.Label>
+                                                <dxc:SeriesLabel Indent="20" ResolveOverlappingMode="Default" 
+                                    ConnectorThickness="1" 
+                                    Visible="False"
+                                    dxc:BarSideBySideSeries2D.LabelPosition="Outside" />
+                                            </dxc:BarSideBySideSeries2D.Label>
+                                        </dxc:BarSideBySideSeries2D>
+                                        <dxc:LineSeries2D 
+                                                 ArgumentDataMember="Name" 
+                                                       ValueDataMember="OutNumber"
+                                                       DataSource="{Binding Path=SubWayLines[1].Stations}">
+                                            <dxc:LineSeries2D.Label>
+                                                <dxc:SeriesLabel ConnectorVisible="False" 
+                                                     ResolveOverlappingMode="Default" 
+                                                     Visible="False" />
+                                            </dxc:LineSeries2D.Label>
+                                        </dxc:LineSeries2D>
+                                    </dxc:XYDiagram2D.Series>
+                                </dxc:XYDiagram2D>
+                            </dxc:ChartControl.Diagram>
+                            <dxc:ChartControl.Legend>
+                                <dxc:Legend Background="{x:Null}" ReverseItems="False" />
+                            </dxc:ChartControl.Legend>
+                        </dxc:ChartControl>
+                        <Border Grid.Row="4"  Grid.Column="1"  Style="{StaticResource BossPopupContent}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                    <TextBlock Style="{StaticResource BossPopupContentHeader}" Text="2号线"></TextBlock>
+                                </Border>
+                                <chart:RadialGaugeChart  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
+                                Palette="{Binding Path=SelectedPalette.Value}"
+                                FontSize="{Binding Path=SelectedFontSize}"
+                                ChartTitleVisibility="Hidden"
+                                ChartLegendVisibility="Hidden"
+                                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                                Foreground="White" 
+                              Background="{x:Null}"          
+                                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
+                                    <chart:RadialGaugeChart.Series>
+                                        <chart:ChartSeries
+                                        SeriesCaptionVisibility ="Hidden"
+                        SeriesTitle="Errors"
+                        DisplayMember="Category"
+                        ValueMember="Number"
+                        ItemsSource="{Binding Path=SecondLine}">
+                                        </chart:ChartSeries>
+                                    </chart:RadialGaugeChart.Series>
+                                </chart:RadialGaugeChart>
+                                <Border Grid.Row="1" Grid.Column="1" >
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="进:2W"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="2" Grid.Column="1" >
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="出:1W"></TextBlock>
+                                </Border>
+                                <Border Grid.Row="3" Grid.Column="1" >
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="总:3W"></TextBlock>
+                                </Border>
+
+                            </Grid>
+
+                        </Border>
+
+
+
+                        <!--<chart:RadialGaugeChart Grid.Row="4"  Grid.Column="1" HorizontalAlignment="Left"
                                 Palette="{Binding Path=SelectedPalette.Value}"
                                 FontSize="{Binding Path=SelectedFontSize}"
                                 
@@ -191,18 +337,18 @@
                         ItemsSource="{Binding Path=SecondLine}">
                                 </chart:ChartSeries>
                             </chart:RadialGaugeChart.Series>
-                        </chart:RadialGaugeChart>
+                        </chart:RadialGaugeChart>-->
                     </Grid>
-                  
+
                 </Border>
 
                 <Border Style="{StaticResource BossContainer}" Grid.Column="1">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="15"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="15"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" >
@@ -212,48 +358,113 @@
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线主要设备情况</TextBlock>
                         </Border>
                         <Border Grid.Row="2">
-                            <chart:ClusteredBarChart     
-                                    Palette="{Binding Path=SelectedPalette.Value}"
-                                    FontSize="{Binding Path=SelectedFontSize}"
-                                    IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                    ChartTitleVisibility="Hidden"
-                                    ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                    Foreground="{Binding Path=Foreground}" 
-                                    Background="Transparent"            
-                                    SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                    SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                                <chart:ClusteredBarChart.Series>
-                                    <chart:ChartSeries
-                                            SeriesTitle="Errors"
-                                            DisplayMember="Category"
-                                            ValueMember="Number"
-                                            ItemsSource="{Binding Path=Errors}" />
-                                </chart:ClusteredBarChart.Series>
-                            </chart:ClusteredBarChart>
 
+                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+
+                                <dxc:ChartControl.Diagram>
+                                    <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
+
+                                        <dxc:XYDiagram2D.AxisX>
+                                            <dxc:AxisX2D >
+                                                <dxc:AxisX2D.Label>
+                                                    <dxc:AxisLabel    Foreground="#00a0e9"  />
+                                                </dxc:AxisX2D.Label>
+                                                <!--
+                                        </dxc:AxisX2D.Label>-->
+                                            </dxc:AxisX2D>
+                                        </dxc:XYDiagram2D.AxisX>
+                                        <dxc:XYDiagram2D.AxisY>
+                                            <dxc:AxisY2D >
+                                                <dxc:AxisY2D.Label>
+                                                    <dxc:AxisLabel Foreground="#00a0e9"  />
+                                                </dxc:AxisY2D.Label>
+                                            </dxc:AxisY2D>
+                                        </dxc:XYDiagram2D.AxisY>
+                                        <dxc:XYDiagram2D.Series>
+                                            <dxc:BarSideBySideStackedSeries2D 
+                                                            
+                                                              StackedGroup="Tot"
+                                                 ArgumentDataMember="EquipmentType" 
+                                                       ValueDataMember="Number"
+                                                       DataSource="{Binding Path=SubWayLines[0].Troubles}">
+
+                                                <dxc:BarSideBySideStackedSeries2D.Label>
+                                                    <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                                </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                            </dxc:BarSideBySideStackedSeries2D>
+                                            <dxc:BarSideBySideStackedSeries2D 
+                                                             
+                                                              StackedGroup="Tot"
+                                                 ArgumentDataMember="EquipmentType" 
+                                                       ValueDataMember="BadNumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].Troubles}">
+
+                                                <dxc:BarSideBySideStackedSeries2D.Label>
+                                                    <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                                </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                            </dxc:BarSideBySideStackedSeries2D>
+                                        </dxc:XYDiagram2D.Series>
+                                    </dxc:XYDiagram2D>
+                                </dxc:ChartControl.Diagram>
+                            </dxc:ChartControl>
                         </Border>
                         <Border Grid.Row="3">
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线主要设备情况</TextBlock>
                         </Border>
                         <Border Grid.Row="4">
-                            <chart:ClusteredBarChart     
-                                    Palette="{Binding Path=SelectedPalette.Value}"
-                                    FontSize="{Binding Path=SelectedFontSize}"
-                                    IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                    ChartTitleVisibility="Hidden"
-                                    ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                    Foreground="{Binding Path=Foreground}" 
-                                  Background="Transparent"             
-                                    SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                    SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                                <chart:ClusteredBarChart.Series>
-                                    <chart:ChartSeries
-                                            SeriesTitle="Errors"
-                                            DisplayMember="Category"
-                                            ValueMember="Number"
-                                            ItemsSource="{Binding Path=Errors}" />
-                                </chart:ClusteredBarChart.Series>
-                            </chart:ClusteredBarChart>
+
+                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+
+                                <dxc:ChartControl.Diagram>
+                                    <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
+
+                                        <dxc:XYDiagram2D.AxisX>
+                                            <dxc:AxisX2D >
+                                                <dxc:AxisX2D.Label>
+                                                    <dxc:AxisLabel    Foreground="#00a0e9"  />
+                                                </dxc:AxisX2D.Label>
+                                                <!--
+                                        </dxc:AxisX2D.Label>-->
+                                            </dxc:AxisX2D>
+                                        </dxc:XYDiagram2D.AxisX>
+                                        <dxc:XYDiagram2D.AxisY>
+                                            <dxc:AxisY2D >
+                                                <dxc:AxisY2D.Label>
+                                                    <dxc:AxisLabel Foreground="#00a0e9"  />
+                                                </dxc:AxisY2D.Label>
+                                            </dxc:AxisY2D>
+                                        </dxc:XYDiagram2D.AxisY>
+                                        <dxc:XYDiagram2D.Series>
+                                            <dxc:BarSideBySideStackedSeries2D 
+                                                            
+                                                              StackedGroup="Tot"
+                                                 ArgumentDataMember="EquipmentType" 
+                                                       ValueDataMember="Number"
+                                                       DataSource="{Binding Path=SubWayLines[1].Troubles}">
+
+                                                <dxc:BarSideBySideStackedSeries2D.Label>
+                                                    <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                                </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                            </dxc:BarSideBySideStackedSeries2D>
+                                            <dxc:BarSideBySideStackedSeries2D 
+                                                             
+                                                              StackedGroup="Tot"
+                                                 ArgumentDataMember="EquipmentType" 
+                                                       ValueDataMember="BadNumber"
+                                                       DataSource="{Binding Path=SubWayLines[1].Troubles}">
+
+                                                <dxc:BarSideBySideStackedSeries2D.Label>
+                                                    <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                                </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                            </dxc:BarSideBySideStackedSeries2D>
+                                        </dxc:XYDiagram2D.Series>
+                                    </dxc:XYDiagram2D>
+                                </dxc:ChartControl.Diagram>
+                            </dxc:ChartControl>
 
                         </Border>
                     </Grid>
@@ -268,12 +479,12 @@
                             <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                  
+
                         <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" >
                             <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="异常提醒信息"></TextBlock>
                         </Border>
                         <Border Grid.Row="1">
-                           
+
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线</TextBlock>
                         </Border>
                         <Border Grid.Row="2">
@@ -289,24 +500,24 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border   Style="{StaticResource NotifyContainer}"   Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
-                                    <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center">列车位置</TextBlock>
+                                    <TextBlock   Style="{StaticResource NotifyContainerText}" >列车位置</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}" Grid.Column="1" Grid.Row="0"   >
-                                    <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center">客流</TextBlock>
+                                    <TextBlock    Style="{StaticResource NotifyContainerText}">客流</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="0"  Background="Red"    >
-                                    <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center">事件</TextBlock>
+                                <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"     >
+                                    <TextBlock   Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}" Grid.Column="1" Grid.Row="1"   >
-                                    <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center">设施设备</TextBlock>
+                                    <TextBlock    Style="{StaticResource NotifyContainerText}">设施设备</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"    >
-                                    <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center">环境状况</TextBlock>
+                                    <TextBlock    Style="{StaticResource NotifyContainerText}">环境状况</TextBlock>
                                 </Border>
                             </Grid>
                         </Border>
                         <Border Grid.Row="3">
-                          
+
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线</TextBlock>
                         </Border>
                         <Border Grid.Row="4">
@@ -322,19 +533,19 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border Style="{StaticResource NotifyContainer}"     Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">列车位置</TextBlock>
+                                    <TextBlock  Style="{StaticResource NotifyContainerText}">列车位置</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}"  Grid.Column="1" Grid.Row="0"   >
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">客流</TextBlock>
+                                    <TextBlock  Style="{StaticResource NotifyContainerText}">客流</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="0"    >
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">事件</TextBlock>
+                                <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"    >
+                                    <TextBlock  Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="1" Grid.Row="1" Background="Red"   >
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">设施设备</TextBlock>
+                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="1" Grid.Row="1"    >
+                                    <TextBlock  Style="{StaticResource NotifyContainerText}">设施设备</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"  >
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">环境状况</TextBlock>
+                                    <TextBlock  Style="{StaticResource NotifyContainerText}">环境状况</TextBlock>
                                 </Border>
                             </Grid>
                         </Border>

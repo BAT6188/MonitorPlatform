@@ -133,7 +133,7 @@ namespace MonitorPlatform.ViewModel
                 {
                     return "#FFEEEEEE";
                 }
-                return "#FF666666";
+                return "#1190E8";
             }
         }
         public string MainForeground
@@ -214,19 +214,23 @@ namespace MonitorPlatform.ViewModel
             SubWayLines = new ObservableCollection<SubLine>();
             SubLine line1 = new SubLine() { Name = "1号线", CameraTotalNumber = 25 };
 
-            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType ="AFC", Number =3 });
-            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 2 });
-            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 4 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType ="PSCADA", Number =27, BadNumber=1 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PIS", Number = 30, BadNumber = 1 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PA", Number = 40, BadNumber = 3 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSD", Number = 40, BadNumber = 3 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 33, BadNumber = 3 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
 
 
             SubLine line2 = new SubLine() { Name = "2号线", CameraTotalNumber = 30 };
 
 
-
-            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "AFC", Number = 1 });
-            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 2 });
-            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 3 });
-
+            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSCADA", Number = 27, BadNumber = 1 });
+            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PIS", Number = 30, BadNumber = 1 });
+            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PA", Number = 40, BadNumber = 3 });
+            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSD", Number = 40, BadNumber = 3 });
+            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 33, BadNumber = 3 });
+            line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
 
             string[] line1str =  { "木渎站", "金枫路", "汾湖路", "玉山路", "苏州乐园","塔园路","滨河路","西环路",
                                        "桐泾北路 ","广济南路","养育巷","乐桥站","临顿路","相门","东环路",
@@ -234,18 +238,20 @@ namespace MonitorPlatform.ViewModel
                                        "南施街","星塘街","钟南街"};
             string[] line2str = { "苏州北站", "大湾", "富元路", "蠡口", "徐图港", "阳澄湖中路", "陆慕", "平泷路东", "平河路", "苏州火车站", "山塘街", "石路", "广济南路", "三香广场", "劳动路", "胥江路", "桐泾公园", "友联", "盘蠡路", "新家桥", "石湖东路", "宝带桥南" };
             int count=1;
+            Random f = new Random();
+           
             foreach (string stationname in line1str)
             {
-                Station s1 = new Station() { ID =count++, Name = stationname, CameraNumber = 3 };
+                Station s1 = new Station() { ID = count++, Name = stationname, CameraNumber = 3, InNumber = 100 + f.Next(200), OutNumber = 100 + f.Next(200) };
                 s1.Equipments.Add(new Equipment() { ID = "00"+count.ToString(), Name = "轧机", Owner = stationname, EquipmentType = "AFC", Location = "位置1", Use = "用途1", Status = "异常", WaringLevel = "警告" });
                 line1.Stations.Add(s1);
             }
             count = 1;
             foreach (string stationname in line2str)
             {
-                Station s1 = new Station() { ID = count++, Name = stationname, CameraNumber = 3 };
+                Station s1 = new Station() { ID = count++, Name = stationname, CameraNumber = 3, InNumber = 100 + f.Next(200), OutNumber = 100 + f.Next(200) };
                 s1.Equipments.Add(new Equipment() { ID = "00" + count.ToString(), Name = "轧机", Owner = stationname, EquipmentType = "AFC", Location = "位置1", Use = "用途1", Status = "异常", WaringLevel = "警告" });
-                line1.Stations.Add(s1);
+                line2.Stations.Add(s1);
             }
 
             SubWayLines.Add(line1);
@@ -314,8 +320,8 @@ namespace MonitorPlatform.ViewModel
             Infos.Add(new TestClass() { Category = "Naming", Number = 3 });
             Infos.Add(new TestClass() { Category = "Best Practices", Number = 8 });
 
-            FirstLine.Add(new TestClass() { Category = "1号线", Number = 8 });
-            SecondLine.Add(new TestClass() { Category = "2号线", Number = 78 });
+            FirstLine.Add(new TestClass() { Category = "1号线", Number = 70 });
+            SecondLine.Add(new TestClass() { Category = "2号线", Number = 30 });
 
             Camera = new List<PropertyNodeItem>();
 

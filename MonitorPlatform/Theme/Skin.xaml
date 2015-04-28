@@ -153,7 +153,7 @@
     </Style>
 
     <Style x:Key="SectionContentSmallTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextStyle}">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="#00a0e9"/>
         <Setter Property="Margin" Value="0,5,0,5"/>
         <Setter Property="FontSize" Value="12" />
     </Style>
@@ -164,11 +164,47 @@
     </Style>
 
     <Style x:Key="CategorySmallTextStyle" TargetType="TextBlock" >
-        <Setter Property="Margin" Value="0,10,0,3"/>
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="Foreground" Value="#0670AF"></Setter>
+        <!--<Setter Property="Margin" Value="0,10,0,3"/>-->
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="#5aa0ef"></Setter>
+        <Setter Property="Margin" Value="0,10,0,0"></Setter>
     </Style>
-    
+
+    <Style TargetType="Border" x:Key="BossPopupContent">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <!--<Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Microsoft YaHei" />-->
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#0a78b6" Offset="0.0"/>
+                    <GradientStop Color="#003f7e" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BossPopupContentHeader" TargetType="TextBlock" >
+        <!--<Setter Property="Margin" Value="0,10,0,3"/>-->
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="White"></Setter>
+        <!--<Setter Property="Margin" Value="0,5,0,0"></Setter>-->
+    </Style>
+    <Style x:Key="BossPopupContentText" TargetType="TextBlock" >
+        <!--<Setter Property="Margin" Value="0,10,0,3"/>-->
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="#5aa0ef"></Setter>
+        <Setter Property="Margin" Value="0,0,0,5"></Setter>
+    </Style>
+
     <Style x:Key="ContentTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextStyle}">
         <Setter Property="Margin" Value="0,0,5,5"/>
         <Setter Property="FontSize" Value="14" />
@@ -190,8 +226,35 @@
     
 
     <Style x:Key="NotifyContainer" TargetType="Border">
-        <Setter Property="Margin" Value="1"/>
-        <Setter Property="BorderBrush" Value="White"></Setter>
-        <Setter Property="Background" Value="Green"></Setter>
+        <Setter Property="Margin" Value="5,5,5,5"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#0049B5"></Setter>
+        <Setter Property="Background" Value="#092c62"></Setter>
+    </Style>
+
+    <Style x:Key="NotifyContainerText" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="#5AA0EF" />
+        <Setter Property="FontFamily" Value="Microsoft YaHei" />
+    </Style>
+
+
+    <Style x:Key="NotifyContainerAlert" TargetType="Border">
+        <Setter Property="Margin" Value="5,5,5,5"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#bf7a07"></Setter>
+        <Setter Property="Background" Value="#e69a2a"></Setter>
+    </Style>
+
+    <Style x:Key="NotifyContainerAlertText" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="#ffff99" />
+        <Setter Property="FontFamily" Value="Microsoft YaHei" />
     </Style>
 </ResourceDictionary>

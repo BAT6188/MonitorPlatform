@@ -78,3 +78,4 @@ E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\TrainLocationCenter.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusLeft.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusLeft.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform_Content.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform.exe.licenses

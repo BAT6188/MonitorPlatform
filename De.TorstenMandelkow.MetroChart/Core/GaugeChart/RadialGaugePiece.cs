@@ -327,14 +327,15 @@
                 double endAngle = (360 / 100.0) * m_endpercent;
                 double radius = GetRadius();
                 bool isLarge = (endAngle - startAngle) > 180.0;
-
-                Geometry segmentPathData = LayoutSegment(startAngle, endAngle, radius, 0.50, center, true);
+                //--Martin change from 0.5 to 0.8
+                Geometry segmentPathData = LayoutSegment(startAngle, endAngle, radius, 0.80, center, true);
                 if (segmentPathData != null)
                 {
                     SetValue(RadialGaugePiece.GeometryProperty, CloneDeep(segmentPathData as PathGeometry));
                     SetValue(RadialGaugePiece.SelectionGeometryProperty, CloneDeep(segmentPathData as PathGeometry));
                 }
-                Geometry segmentPathDataBackground = LayoutSegment(endAngle, 360, radius, 0.50, center, true);
+                 //--Martin change from 0.5 to 0.8
+                Geometry segmentPathDataBackground = LayoutSegment(endAngle, 360, radius, 0.80, center, true);
                 if (segmentPathDataBackground != null)
                 {
                     SetValue(RadialGaugePiece.BackgroundGeometryProperty, CloneDeep(segmentPathDataBackground as PathGeometry));

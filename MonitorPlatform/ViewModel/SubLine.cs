@@ -114,6 +114,21 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        private int badNumber;
+        public int BadNumber
+        {
+            get
+            {
+                return badNumber;
+            }
+            set
+            {
+                badNumber = value;
+                NotifyPropertyChanged("badNumber");
+            }
+        }
+
+
         private void NotifyPropertyChanged(string property)
         {
             if (PropertyChanged != null)

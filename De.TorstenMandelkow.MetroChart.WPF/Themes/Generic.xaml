@@ -8,7 +8,7 @@
     
     <local:ResourceDictionaryCollection x:Key="DefaultPalette">
         <ResourceDictionary>
-            <SolidColorBrush x:Key="Brush1" Color="#FF007C9C" />
+            <SolidColorBrush x:Key="Brush1" Color="#1190E8" />
         </ResourceDictionary>
         <ResourceDictionary>
             <SolidColorBrush x:Key="Brush2" Color="#FF019FCC" />
@@ -820,10 +820,11 @@
                                                         Value="{Binding Path=Value}"
                                                         IsClickedByUser="{Binding Path=IsClickedByUser, Mode=TwoWay}"
                                                         IsSelected="{Binding Path=IsSelected}"
-                                                        ClientWidth="180"
-                                                        ClientHeight="180" 
+                                                        ClientWidth="90"
+                                                        ClientHeight="90" 
                                                         x:Name="radial">
-                                                     </local:RadialGaugePiece>
+                                                        <!--Martin,ClientWidth/ClientHeight  change from 180 to 90 -->
+                                                    </local:RadialGaugePiece>
                                                     <Border Grid.Row="1" HorizontalAlignment="Center" Margin="0 0 0 10" Visibility="{Binding Path=SeriesCaptionVisibility}">
                                                         <TextBlock Text="{Binding Path=SeriesCaption}" />
                                                     </Border>
