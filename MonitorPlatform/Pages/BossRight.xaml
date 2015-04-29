@@ -13,7 +13,7 @@
 	Title="BossRight" >
     <Page.Resources>
         <local:StringToBrushConverter x:Key="StringToBrushConverter" />
-       
+
     </Page.Resources>
 
     <Grid >
@@ -25,8 +25,8 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Grid.Column="0"  Style="{StaticResource BossContainer}" >
-            <TreeView Name="tvProperties"    Padding="0" Margin="0" BorderThickness="0" ItemsSource="{Binding Path=Camera}">
+        <Border Grid.Row="0" Grid.Column="0"  Margin="10,30,10,10" >
+            <!--<TreeView Name="tvProperties"    Padding="0" Margin="0" BorderThickness="0" ItemsSource="{Binding Path=Camera}">
 
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type localdata:PropertyNodeItem}" ItemsSource="{Binding Path=Children}">
@@ -49,8 +49,38 @@
 
                 </TreeView.ItemTemplate>
 
-            </TreeView>
-        </Border>
+            </TreeView>-->
+            <ScrollViewer  BorderThickness="0"
+                        Style="{StaticResource FavsScrollViewer}">
+                <TreeView Name="tvMain" ItemsSource="{Binding Path=SubWayLines}" BorderThickness="0"   Background="{x:Null}" Cursor="Hand" >
+                    <TreeView.Resources>
+                        <Style TargetType="{x:Type TreeViewItem}"
+                       BasedOn="{StaticResource AeroTreeStyle}"/>
+                        <HierarchicalDataTemplate  DataType="{x:Type localdata:SubLine}" ItemsSource="{Binding Path=Stations}">
+
+                            <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220"  >
+                                <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+
+                                    <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text="{Binding Path=Name}"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </HierarchicalDataTemplate>
+
+                        <HierarchicalDataTemplate DataType="{x:Type localdata:Station}" ItemsSource="{Binding Path=Cameras}">
+
+                            <TextBlock  Text="{Binding Path=Name}" Style="{StaticResource BaseContentTextStyle}"  ></TextBlock>
+
+                        </HierarchicalDataTemplate>
+
+                        <HierarchicalDataTemplate DataType="{x:Type localdata:Camera}">
+                            <TextBlock  Text="{Binding Path=Name}" Style="{StaticResource BaseContentTextStyle}"  ></TextBlock>
+                        </HierarchicalDataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
+
+            </ScrollViewer>
+
+          </Border>
         <Border Grid.Row="1"  Grid.Column="0"  Style="{StaticResource BossContainer}" >
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -88,7 +118,7 @@
 
 
                 </Border>
-             </Grid>
+            </Grid>
 
         </Border>
         <Border Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2"  Style="{StaticResource BossContainer}">

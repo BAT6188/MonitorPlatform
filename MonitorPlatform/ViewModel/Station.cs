@@ -152,6 +152,8 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+
+
         private int brokenNumber;
         public int BrokenNumber
         {
@@ -179,6 +181,22 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("Equipments");
             }
         }
+
+
+        private ObservableCollection<Camera> cameras = new ObservableCollection<Camera>();
+        public ObservableCollection<Camera> Cameras
+        {
+            get
+            {
+                return cameras;
+            }
+            set
+            {
+                cameras = value;
+                NotifyPropertyChanged("Cameras");
+            }
+        }
+
 
         private void NotifyPropertyChanged(string property)
         {

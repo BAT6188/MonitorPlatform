@@ -22,86 +22,143 @@
     <Grid >
        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0"  Style="{StaticResource BossContainer}" >
-            <Grid>
+            <!--<Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition  Height="25"></RowDefinition>
+                    <RowDefinition  Height="30"></RowDefinition>
                     <RowDefinition  Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Content="线路流量即时分布"></Label>
-                </Border>
+            
+                <Border Style="{StaticResource SmallSectionHeader}" Grid.Row="0"  >
+                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="线路流量即时分布"></TextBlock>
+                </Border>-->
                 <Image Grid.Row="1"  Source="/MonitorPlatform;component/Resource/TrafficLine.bmp" Stretch="Fill">
                 </Image>
-            </Grid>
+            <!--</Grid>-->
         </Border>
         <Border   Grid.Column="1"  Style="{StaticResource BossContainer}" >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition  Height="25"></RowDefinition>
+                    <RowDefinition  Height="*"></RowDefinition>
                     <RowDefinition  Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Content="当前拥挤情况说明"></Label>
-                </Border>
-                <Border Grid.Row="1">
-                    <StackPanel>
-                        <Border Height="30" Style="{StaticResource innerborder}"  >
-                            <Label Content="1号线"></Label>
-                        </Border>
-                        <Border  Height="30" Margin ="10,0,0,0" Style="{StaticResource innerborder}" >
-                            <Label Content="上行：木渎 至 钟南街"></Label>
-                        </Border>
-                        <Border  Height="60" Margin ="30,0,0,0" Style="{StaticResource innerborder}" >
-                            <!--<Label Content="拥挤站点：5个\n"></Label>-->
-                            <StackPanel>
-                                <TextBlock   Text="拥挤站点：5个"></TextBlock>
-                                <TextBlock   Text="拥堵站点：0个"></TextBlock>
-                            </StackPanel>
-                            
-                        </Border>
-                        <Border  Height="30" Margin ="10,0,0,0" Style="{StaticResource innerborder}" >
-                            <Label Content="下行：钟南街 至 木渎"></Label>
-                        </Border>
-                        <Border  Height="60" Margin ="30,0,0,0" Style="{StaticResource innerborder}" >
-                            <!--<Label Content="拥挤站点：5个\n"></Label>-->
-                            <StackPanel>
-                                <TextBlock   Text="拥挤站点：5个"></TextBlock>
-                                <TextBlock   Text="拥堵站点：0个"></TextBlock>
-                            </StackPanel>
 
-                        </Border>
-                        <Border  Height="30" Style="{StaticResource innerborder}" >
-                            <Label Content="2号线"></Label>
-                        </Border>
-                        <Border  Height="30" Margin ="10,0,0,0" Style="{StaticResource innerborder}" >
-                            <Label Content="上行：宝带桥南 至 高铁苏州北站"></Label>
-                        </Border>
-                        <Border  Height="60" Margin ="30,0,0,0" Style="{StaticResource innerborder}" >
-                            <!--<Label Content="拥挤站点：5个\n"></Label>-->
-                            <StackPanel>
-                                <TextBlock   Text="拥挤站点：3个"></TextBlock>
-                                <TextBlock   Text="拥堵站点：1个"></TextBlock>
+                <Border Grid.Row="0" Style="{StaticResource BigPopupSection}" Margin="10,20,10,5"  Padding="10,20,10,20">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="50"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220" Margin="0,0,0,20" >
+                            <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+                                <Border CornerRadius="5"   Background="Red" Width="20" Height="20">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="1"  ></TextBlock>
+                                </Border>
+                                <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>    
                             </StackPanel>
                         </Border>
+                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentTextStyle}"  >
+                            <Run  Text="上行" />
+                            <Run  Foreground="White"  Text=" 木渎 " />
+                            <Run  Text="至" />
+                            <Run  Foreground="White"  Text=" 终南山 " />
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥挤站点: " />
+                            <Run  Foreground="White"  Text="5" />
+                            <Run  Text="个" />
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥堵站点: " />
+                            <Run  Foreground="White"  Text="5" />
+                            <Run  Text="个" />
+                        </TextBlock>
 
-                        <Border  Height="30" Margin ="10,0,0,0" Style="{StaticResource innerborder}" >
-                            <Label Content="下行：宝带桥南站 至 高铁苏州北"></Label>
-                        </Border>
-                        <Border  Height="60" Margin ="30,0,0,0" Style="{StaticResource innerborder}" >
-                            <!--<Label Content="拥挤站点：5个\n"></Label>-->
-                            <StackPanel>
-                                <TextBlock   Text="拥挤站点：1个"></TextBlock>
-                                <TextBlock   Text="拥堵站点：0个"></TextBlock>
-                            </StackPanel>
-
-                        </Border>
-                    </StackPanel>
+                        <TextBlock Grid.Row="4" Style="{StaticResource BaseContentTextStyle}"  >
+                            <Run  Text="上行" />
+                            <Run  Foreground="White"  Text=" 终南山 " />
+                            <Run  Text="至" />
+                            <Run  Foreground="White"  Text=" 木渎 " />
+                        </TextBlock>
+                        <TextBlock Grid.Row="5" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥挤站点: " />
+                            <Run  Foreground="White"  Text="5" />
+                            <Run  Text="个" />
+                        </TextBlock>
+                        <TextBlock Grid.Row="6" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥堵站点: " />
+                            <Run  Foreground="White"  Text="5" />
+                            <Run  Text="个" />
+                        </TextBlock>
+                    </Grid>
                     
                 </Border>
+
+
+                <Border Grid.Row="1" Style="{StaticResource BigPopupSection}" Margin="10,5,10,20" Padding="10,20,10,20">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="50"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220" Margin="0,0,0,20" >
+                            <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+                                <Border CornerRadius="5"   Background="Green" Width="20" Height="20">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="2"  ></TextBlock>
+                                </Border>
+                                <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentTextStyle}"  >
+                            <Run  Text="上行" />
+                            <Run  Foreground="White"  Text=" 宝带桥南 " />
+                            <Run  Text="至" />
+                            <Run  Foreground="White"  Text=" 苏州北站 " />
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥挤站点: " />
+                            <Run  Foreground="White"  Text="4" />
+                            <Run  Text="个" />
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥堵站点: " />
+                            <Run  Foreground="White"  Text="5" />
+                            <Run  Text="个" />
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="4" Style="{StaticResource BaseContentTextStyle}"  >
+                            <Run  Text="上行" />
+                            <Run  Foreground="White"  Text=" 苏州北站 " />
+                            <Run  Text="至" />
+                            <Run  Foreground="White"  Text=" 宝带桥南 " />
+                        </TextBlock>
+                        <TextBlock Grid.Row="5" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥挤站点: " />
+                            <Run  Foreground="White"  Text="1" />
+                            <Run  Text="个" />
+                        </TextBlock>
+                        <TextBlock Grid.Row="6" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="     拥堵站点: " />
+                            <Run  Foreground="White"  Text="2" />
+                            <Run  Text="个" />
+                        </TextBlock>
+                    </Grid>
+
+                </Border>
+
             </Grid>
 
         </Border>

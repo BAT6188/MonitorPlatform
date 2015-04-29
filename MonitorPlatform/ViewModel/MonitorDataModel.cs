@@ -244,6 +244,7 @@ namespace MonitorPlatform.ViewModel
             {
                 Station s1 = new Station() { ID = count++, Name = stationname, CameraNumber = 3, InNumber = 100 + f.Next(200), OutNumber = 100 + f.Next(200) };
                 s1.Equipments.Add(new Equipment() { ID = "00"+count.ToString(), Name = "轧机", Owner = stationname, EquipmentType = "AFC", Location = "位置1", Use = "用途1", Status = "异常", WaringLevel = "警告" });
+                s1.Cameras.Add(new Camera() { Name = "摄像头1" });
                 line1.Stations.Add(s1);
             }
             count = 1;
@@ -251,6 +252,7 @@ namespace MonitorPlatform.ViewModel
             {
                 Station s1 = new Station() { ID = count++, Name = stationname, CameraNumber = 3, InNumber = 100 + f.Next(200), OutNumber = 100 + f.Next(200) };
                 s1.Equipments.Add(new Equipment() { ID = "00" + count.ToString(), Name = "轧机", Owner = stationname, EquipmentType = "AFC", Location = "位置1", Use = "用途1", Status = "异常", WaringLevel = "警告" });
+                s1.Cameras.Add(new Camera() { Name = "摄像头1" });
                 line2.Stations.Add(s1);
             }
 
@@ -326,20 +328,20 @@ namespace MonitorPlatform.ViewModel
             Camera = new List<PropertyNodeItem>();
 
 
-            foreach (SubLine subline in SubWayLines)
-            {
-                PropertyNodeItem line = new PropertyNodeItem() { DisplayName = subline.Name };
-                foreach (Station val in subline.Stations)
-                {
-                    PropertyNodeItem station = new PropertyNodeItem() { DisplayName = val.Name};
-                    for (int i = 1; i < val.CameraNumber;i++ )
-                    {
-                        station.Children.Add(new PropertyNodeItem() { DisplayName = "摄像头"+i.ToString(), Icon = cameraimg });
-                    }
-                    line.Children.Add(station);
-                }
-                Camera.Add(line);
-            }
+            //foreach (SubLine subline in SubWayLines)
+            //{
+            //    PropertyNodeItem line = new PropertyNodeItem() { DisplayName = subline.Name };
+            //    foreach (Station val in subline.Stations)
+            //    {
+            //        PropertyNodeItem station = new PropertyNodeItem() { DisplayName = val.Name};
+            //        for (int i = 1; i < val.CameraNumber;i++ )
+            //        {
+            //            station.Children.Add(new PropertyNodeItem() { DisplayName = "摄像头"+i.ToString(), Icon = cameraimg });
+            //        }
+            //        line.Children.Add(station);
+            //    }
+            //    Camera.Add(line);
+            //}
 
             
 

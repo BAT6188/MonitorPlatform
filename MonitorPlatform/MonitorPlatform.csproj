@@ -131,6 +131,7 @@
     <Compile Include="RightWindows.xaml.cs">
       <DependentUpon>RightWindows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Camera.cs" />
     <Compile Include="ViewModel\Equipment.cs" />
     <Compile Include="ViewModel\MonitorDataModel.cs" />
     <Compile Include="ViewModel\Station.cs" />
