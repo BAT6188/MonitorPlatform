@@ -11,11 +11,11 @@
 
     <Grid x:Name="maingrid"  Style="{StaticResource gridbackground}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Padding="5">
+        <Border Grid.Row="0" Padding="5" Style="{StaticResource TitileSection}">
             <control:TabSelectControl control:TabSelectControl.TabSelectChanged="TabSelectControl_TabSelectChanged"></control:TabSelectControl>
         </Border>
         <Border Grid.Row="1" >

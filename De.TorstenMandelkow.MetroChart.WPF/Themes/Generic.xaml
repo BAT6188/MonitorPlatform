@@ -820,8 +820,10 @@
                                                         Value="{Binding Path=Value}"
                                                         IsClickedByUser="{Binding Path=IsClickedByUser, Mode=TwoWay}"
                                                         IsSelected="{Binding Path=IsSelected}"
-                                                        ClientWidth="90"
-                                                        ClientHeight="90" 
+                                                     
+                                                        ClientWidth="{Binding Path=MyClientWidth}"
+                                                        ClientHeight="{Binding Path=MyClientHeight}"
+                                                        
                                                         x:Name="radial">
                                                         <!--Martin,ClientWidth/ClientHeight  change from 180 to 90 -->
                                                     </local:RadialGaugePiece>

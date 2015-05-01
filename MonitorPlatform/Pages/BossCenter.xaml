@@ -8,7 +8,21 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="BossCenter">
 
+    
     <Grid>
-        <Label Content="GIS插件待嵌入。。。。"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Padding="5" Style="{StaticResource TitileSection}">
+            <Border Style="{StaticResource SmallSectionHeader}"  Height="30" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="0"   >
+                <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通视频监控"></TextBlock>
+            </Border>
+        </Border>
+
+        <Border>
+            <Label Content="GIS插件待嵌入。。。。"></Label>
+        </Border>
+
     </Grid>
 </Page>

@@ -23,6 +23,7 @@
         <Setter Property="Padding" Value="0"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
@@ -64,6 +65,7 @@
                                 <VisualState x:Name="Unfocused"/>
                                 <VisualState x:Name="PointerFocused"/>
                             </VisualStateGroup>
+                        
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="InnerGrid" RenderTransformOrigin="0.5, 0.5">
                             <ContentControl Opacity="0.5" x:Name="ContentPresenter" Foreground="{TemplateBinding Foreground}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -75,6 +77,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    
     </Style>
 
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">
@@ -112,7 +115,7 @@
     </Style>
     <Style x:Key="SectionHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextStyle}">
         <Setter Property="Margin" Value="0,0,15,0"/>
-        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontSize" Value="21" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="Microsoft YaHei" />
     </Style>
@@ -137,7 +140,18 @@
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#021327" Offset="0.0"/>
-                    <GradientStop Color="#092245" Offset="1"/>
+                    <GradientStop Color="#11387e" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Border" x:Key="TitileSection">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#0f1a2b" Offset="0.0"/>
+                    <GradientStop Color="#003366" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -226,9 +240,10 @@
 
 
     <Style x:Key="BossContainer" TargetType="Border">
-        <!--<Setter Property="Margin" Value="5"/>
-        <Setter Property="BorderBrush" Value="White"></Setter>
-        <Setter Property="BorderThickness" Value="2"></Setter>-->
+        <!--<Setter Property="CornerRadius" Value="13"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="#0049B5"></Setter>
+        <Setter Property="Background" Value="#092c62"></Setter>-->
     </Style>
 
 
@@ -266,10 +281,13 @@
     </Style>
 
     <Style TargetType="Border" x:Key="BigPopupSection">
-        <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="13"/>
+        <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="BorderBrush" Value="#0049B5"></Setter>
         <Setter Property="Background" Value="#092c62"></Setter>
+        <Setter Property="Margin" Value="5,5,5,5"></Setter>
+        <Setter Property="Padding" Value="10,10,10,10"></Setter>
+      
         <!--<Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -293,8 +311,63 @@
         <Setter Property="Foreground" Value="White" />
 
     </Style>
+    <Style x:Key="BaseContentSmallWhiteStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BaseContentSmallTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
 
 
+
+
+    <Style TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border BorderBrush="{TemplateBinding Control.BorderBrush}" Background="{TemplateBinding Control.Background}"  BorderThickness="2" CornerRadius="15" Name="PART_Background">
+                    <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="#0049B5"></Setter>
+        <Setter Property="Background" Value="#092c62"></Setter>
+        <Setter Property="Margin" Value="5,0,5,0"></Setter>
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="#5AA0EF" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="BorderBrush" Value="#3284d5" />
+                    <Setter Property="Background" Value="#3284d5"></Setter>
+                    <Setter Property="Foreground" Value="White"></Setter>
+                </Trigger.Setters>
+            </Trigger>
+          
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="SmallButtonStyle">
+        <Setter Property="BorderBrush" Value="#0049B5"></Setter>
+        <Setter Property="Background" Value="#092c62"></Setter>
+        <Setter Property="Foreground" Value="#5AA0EF" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="SmallButtonSelectedStyle">
+        <Setter Property="BorderBrush" Value="#3284d5" />
+        <Setter Property="Background" Value="#3284d5"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+
+   
 
     <Style x:Key="TreeViewItemFocusVisual">
         <Setter Property="Control.Template">
@@ -699,4 +772,52 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+    <Style TargetType="DatePicker" x:Key="DatePickerStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#101a2b" Offset="0.0"/>
+                    <GradientStop Color="#1a2746" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="#5aa0ef"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="FontFamily" Value="Microsoft YaHei"></Setter>
+        <Setter Property="Width" Value="180"></Setter>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#0049B5"/>
+        <Style.Resources>
+            <Style TargetType="{x:Type DatePickerTextBox}">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#101a2b" Offset="0.0"/>
+                            <GradientStop Color="#1a2746" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate x:Name="dptext" TargetType="DatePickerTextBox">
+                            <Border >
+                            <Grid>
+                                <Grid x:Name="WatermarkContent"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <ScrollViewer x:Name="PART_ContentHost" Margin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Grid>
+                            </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+               
+            </Style>
+        </Style.Resources>
+    </Style>
+
+
 </ResourceDictionary>

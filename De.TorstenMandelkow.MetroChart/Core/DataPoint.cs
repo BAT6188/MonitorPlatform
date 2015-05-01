@@ -26,6 +26,17 @@
 
     public class DataPoint : DependencyObject, INotifyPropertyChanged
     {
+        public static readonly DependencyProperty MyClientWidthProperty =
+          DependencyProperty.Register("MyClientWidth",
+          typeof(int),
+          typeof(DataPoint),
+          new PropertyMetadata(90));
+        public static readonly DependencyProperty MyClientHeightProperty =
+         DependencyProperty.Register("MyClientHeight",
+         typeof(int),
+         typeof(DataPoint),
+         new PropertyMetadata(90));
+
         public static readonly DependencyProperty MaxDataPointValueProperty =
            DependencyProperty.Register("MaxDataPointValue",
            typeof(double),
@@ -67,6 +78,8 @@
          typeof(Brush),
          typeof(DataPoint),
          new PropertyMetadata(null));
+
+
 
         public static readonly DependencyProperty IsClickedByUserProperty =
           DependencyProperty.Register("IsClickedByUser",
@@ -250,6 +263,18 @@
             get { return (double)GetValue(SumOfDataPointGroupProperty); }
             set { SetValue(SumOfDataPointGroupProperty, value); }
         }
+
+        public int MyClientWidth
+        {
+            get { return (int)GetValue(MyClientWidthProperty); }
+            set { SetValue(MyClientWidthProperty, value); }
+        }
+        public int MyClientHeight
+        {
+            get { return (int)GetValue(MyClientHeightProperty); }
+            set { SetValue(MyClientHeightProperty, value); }
+        }
+
 
         /// <summary>
         /// Von außen wird dieser Wert gefüllt

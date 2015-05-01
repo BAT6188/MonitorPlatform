@@ -16,17 +16,28 @@
 
     </Page.Resources>
 
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Grid.Column="0"  Margin="10,30,10,10" >
-            <!--<TreeView Name="tvProperties"    Padding="0" Margin="0" BorderThickness="0" ItemsSource="{Binding Path=Camera}">
+        <Border Grid.Row="0" Padding="5" Style="{StaticResource TitileSection}">
+            <Border Style="{StaticResource SmallSectionHeader}"  Height="30" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="0"   >
+                <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通视频监控"></TextBlock>
+            </Border>
+        </Border>
+           
+        <Grid Grid.Row= "1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.8*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3.2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource BigPopupSection}" Margin="5,30,5,5" >
+                <!--<TreeView Name="tvProperties"    Padding="0" Margin="0" BorderThickness="0" ItemsSource="{Binding Path=Camera}">
 
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type localdata:PropertyNodeItem}" ItemsSource="{Binding Path=Children}">
@@ -50,80 +61,110 @@
                 </TreeView.ItemTemplate>
 
             </TreeView>-->
-            <ScrollViewer  BorderThickness="0"
+                <ScrollViewer  BorderThickness="0"
                         Style="{StaticResource FavsScrollViewer}">
-                <TreeView Name="tvMain" ItemsSource="{Binding Path=SubWayLines}" BorderThickness="0"   Background="{x:Null}" Cursor="Hand" >
-                    <TreeView.Resources>
-                        <Style TargetType="{x:Type TreeViewItem}"
+                    <TreeView Name="tvMain" ItemsSource="{Binding Path=SubWayLines}" BorderThickness="0"   Background="{x:Null}" Cursor="Hand" >
+                        <TreeView.Resources>
+                            <Style TargetType="{x:Type TreeViewItem}"
                        BasedOn="{StaticResource AeroTreeStyle}"/>
-                        <HierarchicalDataTemplate  DataType="{x:Type localdata:SubLine}" ItemsSource="{Binding Path=Stations}">
+                            <HierarchicalDataTemplate  DataType="{x:Type localdata:SubLine}" ItemsSource="{Binding Path=Stations}">
 
-                            <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220"  >
-                                <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+                                <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220"  >
+                                    <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
 
-                                    <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text="{Binding Path=Name}"></TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </HierarchicalDataTemplate>
+                                        <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text="{Binding Path=Name}"></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </HierarchicalDataTemplate>
 
-                        <HierarchicalDataTemplate DataType="{x:Type localdata:Station}" ItemsSource="{Binding Path=Cameras}">
+                            <HierarchicalDataTemplate DataType="{x:Type localdata:Station}" ItemsSource="{Binding Path=Cameras}">
 
-                            <TextBlock  Text="{Binding Path=Name}" Style="{StaticResource BaseContentTextStyle}"  ></TextBlock>
+                                <TextBlock  Text="{Binding Path=Name}" Style="{StaticResource BaseContentTextStyle}"  ></TextBlock>
 
-                        </HierarchicalDataTemplate>
+                            </HierarchicalDataTemplate>
 
-                        <HierarchicalDataTemplate DataType="{x:Type localdata:Camera}">
-                            <TextBlock  Text="{Binding Path=Name}" Style="{StaticResource BaseContentTextStyle}"  ></TextBlock>
-                        </HierarchicalDataTemplate>
-                    </TreeView.Resources>
-                </TreeView>
+                            <HierarchicalDataTemplate DataType="{x:Type localdata:Camera}">
+                                <TextBlock  Text="{Binding Path=Name}" Style="{StaticResource BaseContentTextStyle}"  ></TextBlock>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
 
-            </ScrollViewer>
+                </ScrollViewer>
 
-          </Border>
-        <Border Grid.Row="1"  Grid.Column="0"  Style="{StaticResource BossContainer}" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30">
-                    </ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+            </Border>
+            <Border Grid.Row="1"  Grid.Column="0"  Style="{StaticResource BigPopupSection}" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.2*">
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                <Border Grid.Row="0"  Grid.Column="0" >
-                    <TextBlock  TextWrapping="Wrap"  VerticalAlignment="Center"  Width="15"  TextAlignment="Center">摄像头分布信息</TextBlock>
-                </Border>
-                <Border Grid.Row="0"  Grid.Column="1" >
-                    <chart:PieChart  
+                    <Border Grid.Row="0"  Grid.Column="0"  Grid.ColumnSpan="2">
+                        <TextBlock   Style="{StaticResource BaseContentSmallWhiteStyle}"  TextAlignment="Center">摄像头分布信息</TextBlock>
+                    </Border>
+                    <Border Grid.Row="1"  Grid.Column="0" >
+                        <chart:DoughnutChart  
                 ChartTitle="Pie Chart"
                 ChartSubTitle="Chart with fixed width and height"
                 Palette="{Binding Path=SelectedPalette.Value}"
                 FontSize="{Binding Path=SelectedFontSize}"
                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                 ChartTitleVisibility="Hidden"
-                ChartLegendVisibility="Hidden"
+                ChartLegendVisibility="Visible"
                 ToolTipFormat="{Binding Path=ToolTipFormat}"
-                
-                Foreground="{Binding Path=Foreground}" 
-                Background="{Binding Path=Background}"                 
+                 InnerRadiusRatio="0.7"
+                Foreground="#5AA0EF" 
+                Background="{x:Null}"                 
                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
-                        <chart:PieChart.Series>
-                            <chart:ChartSeries
+                            <chart:PieChart.Series>
+                                <chart:ChartSeries
                         SeriesTitle="摄像头分布"
                         DisplayMember="Name"
                         ValueMember="CameraTotalNumber"
                         ItemsSource="{Binding Path=SubWayLines}" />
-                        </chart:PieChart.Series>
-                    </chart:PieChart>
+                            </chart:PieChart.Series>
+                        </chart:DoughnutChart>
 
 
-                </Border>
-            </Grid>
+                    </Border>
+                    <Border Style="{StaticResource BigPopupSection}" Grid.Row="1"  Grid.Column="1"  >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Style="{StaticResource BaseContentSmallTextStyle}" >
+                    1号线总数
+                            </TextBlock>
 
-        </Border>
-        <Border Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2"  Style="{StaticResource BossContainer}">
+                            <TextBlock Grid.Row="1" Style="{StaticResource BaseContentSmallWhiteStyle}" Text="{Binding Path=SubWayLines[0].CameraTotalNumber}">
 
+                            </TextBlock>
 
-        </Border>
+                            <TextBlock Grid.Row="2" Style="{StaticResource BaseContentSmallTextStyle}">
+                    2号线总数
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="3" Style="{StaticResource BaseContentSmallWhiteStyle}" Text="{Binding Path=SubWayLines[1].CameraTotalNumber}">
+
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </Border>
+            <Border Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2"  Style="{StaticResource BossPopupContent}" Padding="10,10,10,10">
+
+            </Border>
+        </Grid>
     </Grid>
+  
 </Page>

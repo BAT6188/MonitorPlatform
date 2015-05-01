@@ -212,7 +212,9 @@ namespace MonitorPlatform.ViewModel
         private void InitSubWayData()
         {
             SubWayLines = new ObservableCollection<SubLine>();
-            SubLine line1 = new SubLine() { Name = "1号线", CameraTotalNumber = 25 };
+            int SubLine1Persons = 1462568;
+            int SubLine2Persons = 909263;
+            SubLine line1 = new SubLine() { Name = "1号线", CameraTotalNumber = 25, Persons = SubLine1Persons, PersonsPercent = (int)((float)SubLine1Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
 
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType ="PSCADA", Number =27, BadNumber=1 });
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PIS", Number = 30, BadNumber = 1 });
@@ -222,7 +224,25 @@ namespace MonitorPlatform.ViewModel
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
 
 
-            SubLine line2 = new SubLine() { Name = "2号线", CameraTotalNumber = 30 };
+            
+            line1.Personrates.Add(new PersonsRateSum() { Time = "06", Number = 20000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "07", Number = 30000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "08", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "09", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "10", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "11", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "12", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "13", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "14", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "15", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "16", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "17", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "18", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "19", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "20", Number = 21000 });
+            
+
+            SubLine line2 = new SubLine() { Name = "2号线", CameraTotalNumber = 30, Persons = SubLine2Persons, PersonsPercent = (int)((float)SubLine2Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
 
 
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSCADA", Number = 27, BadNumber = 1 });
@@ -231,6 +251,23 @@ namespace MonitorPlatform.ViewModel
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSD", Number = 40, BadNumber = 3 });
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 33, BadNumber = 3 });
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
+
+
+            line2.Personrates.Add(new PersonsRateSum() { Time = "06", Number = 20000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "07", Number = 30000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "08", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "09", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "10", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "11", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "12", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "13", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "14", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "15", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "16", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "17", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "18", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "19", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "20", Number = 21000 });
 
             string[] line1str =  { "木渎站", "金枫路", "汾湖路", "玉山路", "苏州乐园","塔园路","滨河路","西环路",
                                        "桐泾北路 ","广济南路","养育巷","乐桥站","临顿路","相门","东环路",
@@ -575,3 +612,4 @@ namespace MonitorPlatform.ViewModel
     }
 
 }
+

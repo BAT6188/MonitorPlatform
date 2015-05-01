@@ -22,6 +22,7 @@ namespace MonitorPlatform.Pages
         public TrafficRight()
         {
             InitializeComponent();
+             
         }
     }
 }

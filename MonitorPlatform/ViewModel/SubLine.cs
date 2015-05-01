@@ -39,6 +39,33 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        private int persons;
+        public int Persons
+        {
+            get
+            {
+                return persons;
+            }
+            set
+            {
+                persons = value;
+                NotifyPropertyChanged("Persons");
+            }
+        }
+
+        private int personsPercent;
+        public int PersonsPercent
+        {
+            get
+            {
+                return personsPercent;
+            }
+            set
+            {
+                personsPercent = value;
+                NotifyPropertyChanged("PersonsPercent");
+            }
+        }
 
         private ObservableCollection<Station> stations = new ObservableCollection<Station>();
         public ObservableCollection<Station> Stations
@@ -54,6 +81,20 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+
+        private ObservableCollection<PersonsRateSum> personrates = new ObservableCollection<PersonsRateSum>();
+        public ObservableCollection<PersonsRateSum> Personrates
+        {
+            get
+            {
+                return personrates;
+            }
+            set
+            {
+                personrates = value;
+                NotifyPropertyChanged("Personrates");
+            }
+        }
 
         private ObservableCollection<TroubleStatusSum> troubles = new ObservableCollection<TroubleStatusSum>();
         public ObservableCollection<TroubleStatusSum> Troubles
@@ -140,4 +181,47 @@ namespace MonitorPlatform.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
+
+    public class PersonsRateSum : INotifyPropertyChanged
+    {
+        private String time;
+        public String Time
+        {
+            get
+            {
+                return time;
+            }
+            set
+            {
+                time = value;
+                NotifyPropertyChanged("Time");
+            }
+        }
+
+
+        private int number;
+        public int Number
+        {
+            get
+            {
+                return number;
+            }
+            set
+            {
+                number = value;
+                NotifyPropertyChanged("Number");
+            }
+        }
+
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    
+    }
 }

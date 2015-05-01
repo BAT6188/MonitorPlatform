@@ -12,103 +12,248 @@
 
     <Grid >
         <Grid.RowDefinitions>
+            <RowDefinition   Height="40"></RowDefinition>
             <RowDefinition   Height="*"></RowDefinition>
             <RowDefinition   Height="*"></RowDefinition>
         </Grid.RowDefinitions> 
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border   Grid.Column="0"  Grid.Row="0"  Style="{StaticResource BossContainer}" >
+ 
+
+        <Border Grid.Column="0"  Grid.Row="0"  Grid.ColumnSpan="3"  Padding="5" Style="{StaticResource TitileSection}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource SmallSectionHeader}"  Grid.Column="1"  Height="30" VerticalAlignment="Center"   >
+                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通视频监控"></TextBlock>
+                </Border>
+                <Border   Grid.Column="2"  >
+                    <DatePicker  HorizontalAlignment="Right"  VerticalAlignment="Center"  Height="25"  Style="{StaticResource DatePickerStyle}"  Name="datePicker1" >
+
+                    </DatePicker>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0">
-                    <Grid > 
-                        <Grid.ColumnDefinitions >
-                            <ColumnDefinition Width="70"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Border VerticalAlignment="Center" Grid.Column="0">
-                            <Label Grid.Column="0" Content="日期选择:"></Label>
-                        </Border>
-                        <Border VerticalAlignment="Center" Grid.Column="1">
-                            <DatePicker   Name="datePicker1" Width="auto" />
-                        </Border>
-                        
-                    </Grid>
-                    
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
+                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道线路流量分布图"></TextBlock>
                 </Border>
-                <Border Grid.Row="1">
-                    <chart:RadialGaugeChart Grid.Row="1"   HorizontalAlignment="Left"
+                <Border Grid.Row="1" Grid.Column="0"   >
+                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线流量图</TextBlock>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1"   >
+                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线流量图</TextBlock>
+                </Border>
+                <chart:RadialGaugeChart  Grid.Row="2"  Grid.Column="0"
+                                             HorizontalAlignment="Center"
                                 Palette="{Binding Path=SelectedPalette.Value}"
                                 FontSize="{Binding Path=SelectedFontSize}"
                                 ChartTitleVisibility="Hidden"
                                 ChartLegendVisibility="Hidden"
                                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                                 ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                Foreground="{Binding Path=Foreground}" 
-                                Background="{Binding Path=Background}"                 
+                                             
+                                             MyClientWidth ="120"
+                                MyClientHeight="120"
+                                Foreground="White" 
+                              Background="{x:Null}"          
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
                         <chart:RadialGaugeChart.Series>
                             <chart:ChartSeries
-                            SeriesCaptionVisibility ="Hidden"
-                        SeriesTitle="一号线"
+                                        SeriesCaptionVisibility ="Hidden"
+                        SeriesTitle="Errors"
                         DisplayMember="Category"
-                        ValueMember="Number"
-                        ItemsSource="{Binding Path=FirstLine}">
-                            </chart:ChartSeries>
-                            <chart:ChartSeries
-                            SeriesCaptionVisibility ="Hidden"
-                        SeriesTitle="二号线"
-                        DisplayMember="Category"
+                                
                         ValueMember="Number"
                         ItemsSource="{Binding Path=FirstLine}">
                             </chart:ChartSeries>
                         </chart:RadialGaugeChart.Series>
                     </chart:RadialGaugeChart>
+
+     
+                    <chart:RadialGaugeChart   
+                        Grid.Row="2"  Grid.Column="1"
+                        HorizontalAlignment="Center"
+                              Palette="{Binding Path=SelectedPalette.Value}"
+                                FontSize="{Binding Path=SelectedFontSize}"
+                                ChartTitleVisibility="Hidden"
+                                ChartLegendVisibility="Hidden"
+                                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                                Foreground="{Binding Path=Foreground}" 
+                              Background="Transparent"          
+                              MyClientWidth ="120"
+                                MyClientHeight="120"
+                                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
+                         <chart:RadialGaugeChart.Series>
+                            <chart:ChartSeries
+                         SeriesTitle="Errors"
+                        DisplayMember="Category"
+                        ValueMember="Number"
+                        ItemsSource="{Binding Path=SecondLine}">
+                            </chart:ChartSeries>
+
+                        </chart:RadialGaugeChart.Series>
+                    </chart:RadialGaugeChart>
+      
+                <Border Grid.Row="3" Grid.Column="0" Margin="30,10,15,30"    Style="{StaticResource BossPopupContent}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            
+                        </Grid.RowDefinitions>
+                        <TextBlock  Grid.Row="0"  Style="{StaticResource BaseContentSmallWhiteStyle}" Margin="0,10,0,0"  TextAlignment="Center"  Text="1号线流量">
+                            
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentSmallTextStyle}"  TextAlignment="Center" Text="{Binding Path=SubWayLines[0].Persons}">
+
+                        </TextBlock>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="3" Grid.Column="1" Margin="15,10,30,30"     Style="{StaticResource BossPopupContent}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"  Style="{StaticResource BaseContentSmallWhiteStyle}" Margin="0,10,0,0"  TextAlignment="Center"   Text="2号线流量">
+
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentSmallTextStyle}"  TextAlignment="Center"   Text="{Binding Path=SubWayLines[1].Persons}">
+
+                        </TextBlock>
+                    </Grid>
                 </Border>
             </Grid>
-            
-        </Border>
-
-        <Border   Grid.Column="1"  Grid.Row="0"  Style="{StaticResource BossContainer}" >
+              
+                </Border>
+          
+       
+        <Border   Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="2"  Style="{StaticResource BossContainer}" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" HorizontalAlignment="Center">
-                    <Label Content="分时段轨道进站流量排行"></Label>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
+                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道线路流量分布图"></TextBlock>
                 </Border>
-                <Border Grid.Row="1">
-                    <chart:ClusteredColumnChart 
-                                            Palette="{Binding Path=SelectedPalette.Value}"
-                                            FontSize="{Binding Path=SelectedFontSize}"
-                                            IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                            ChartTitleVisibility="Hidden"
-                                            ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                            Foreground="{Binding Path=Foreground}" 
-                                            Background="{Binding Path=Background}"                 
-                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                            SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                        <chart:ClusteredColumnChart.Series>
-                            <chart:ChartSeries
-                                                SeriesTitle="Errors"
-                                                DisplayMember="Category"
-                                                ValueMember="Number"
-                                                ItemsSource="{Binding Path=Errors}" />
-                        </chart:ClusteredColumnChart.Series>
-                    </chart:ClusteredColumnChart>
+                <Border Grid.Row="1" Grid.Column="0"  >
+                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线分时段轨道进站流量排行</TextBlock>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1"  >
+                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线分时段轨道进站流量排行</TextBlock>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="0" Margin="5">
+                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+                        <dxc:ChartControl.Diagram>
+                            <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
+
+                                <dxc:XYDiagram2D.AxisX>
+                                    <dxc:AxisX2D >
+                                        <dxc:AxisX2D.Label>
+                                            <dxc:AxisLabel    Foreground="#00a0e9"  />
+                                        </dxc:AxisX2D.Label>
+                                        <!--
+                                        </dxc:AxisX2D.Label>-->
+                                    </dxc:AxisX2D>
+                                </dxc:XYDiagram2D.AxisX>
+                                <dxc:XYDiagram2D.AxisY>
+                                    <dxc:AxisY2D >
+                                        <dxc:AxisY2D.Label>
+                                            <dxc:AxisLabel Foreground="#00a0e9"  />
+                                        </dxc:AxisY2D.Label>
+                                    </dxc:AxisY2D>
+                                </dxc:XYDiagram2D.AxisY>
+                                <dxc:XYDiagram2D.Series>
+                                    <dxc:BarSideBySideStackedSeries2D 
+                                                            
+                                                 ArgumentDataMember="Time" 
+                                                       ValueDataMember="Number"
+                                                       DataSource="{Binding Path=SubWayLines[0].Personrates}">
+
+                                        <dxc:BarSideBySideStackedSeries2D.Label>
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                        </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                    </dxc:BarSideBySideStackedSeries2D>
+                                
+                                </dxc:XYDiagram2D.Series>
+                            </dxc:XYDiagram2D>
+                        </dxc:ChartControl.Diagram>
+                    </dxc:ChartControl>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1" Margin="5">
+                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+                        <dxc:ChartControl.Diagram>
+                            <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
+
+                                <dxc:XYDiagram2D.AxisX>
+                                    <dxc:AxisX2D >
+                                        <dxc:AxisX2D.Label>
+                                            <dxc:AxisLabel    Foreground="#00a0e9"  />
+                                        </dxc:AxisX2D.Label>
+                                        <!--
+                                        </dxc:AxisX2D.Label>-->
+                                    </dxc:AxisX2D>
+                                </dxc:XYDiagram2D.AxisX>
+                                <dxc:XYDiagram2D.AxisY>
+                                    <dxc:AxisY2D >
+                                        <dxc:AxisY2D.Label>
+                                            <dxc:AxisLabel Foreground="#00a0e9"  />
+                                        </dxc:AxisY2D.Label>
+                                    </dxc:AxisY2D>
+                                </dxc:XYDiagram2D.AxisY>
+                                <dxc:XYDiagram2D.Series>
+                                    <dxc:BarSideBySideStackedSeries2D 
+                                                            
+                                                 ArgumentDataMember="Time" 
+                                                       ValueDataMember="Number"
+                                                       DataSource="{Binding Path=SubWayLines[1].Personrates}">
+
+                                        <dxc:BarSideBySideStackedSeries2D.Label>
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                        </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                    </dxc:BarSideBySideStackedSeries2D>
+
+                                </dxc:XYDiagram2D.Series>
+                            </dxc:XYDiagram2D>
+                        </dxc:ChartControl.Diagram>
+                    </dxc:ChartControl>
                 </Border>
             </Grid>
         </Border>
 
-        <Border   Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan ="2"  Style="{StaticResource BossContainer}" >
+        <Border   Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan ="3"  Style="{StaticResource BossContainer}" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
@@ -119,87 +264,95 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="1" >
-                    <Label HorizontalAlignment="Center" Content="轨道交通日客流量（百万）"></Label>
+                <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" Grid.Column="1"   >
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource SmallSectionHeaderText}" Text="轨道交通日客流量（百万）"></TextBlock>
                 </Border>
                 <Border Grid.Row="0" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Label Content="月度"></Label>
-                        <Label Content="季度"></Label>
-                        <Label Content="季度"></Label>
+                        <Button  Width="70"  Content="月度">
+                            
+                        </Button>
+                        <Button  Width="70"  Content="季度">
+
+                        </Button>
+                        <Button  Width="70"  Content="年度">
+
+                        </Button>
+                        <Button  Width="70"  Content="全部">
+
+                        </Button>
+                        <Button  Width="70"  Content="累计">
+
+                        </Button>
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" >
-                    <dxc:ChartControl Name="chart"  EnableAnimation="True" BorderThickness="0" >
+                    <dxc:ChartControl Name="chart"  EnableAnimation="True" BorderThickness="0"   Background="{x:Null}" >
                         <dxc:ChartControl.Diagram>
-                            <dxc:XYDiagram2D>
+                            <dxc:XYDiagram2D DomainBrush="{x:Null}">
                                 <dxc:XYDiagram2D.AxisY>
                                     <dxc:AxisY2D>
-                                        <dxc:AxisY2D.Range>
-                                            <dxc:AxisRange dxc:AxisY2D.AlwaysShowZeroLevel="False" MaxValue="390" MinValue="125" />
-                                        </dxc:AxisY2D.Range>
+                                        <dxc:AxisY2D.Label>
+                                            <dxc:AxisLabel Foreground="#00a0e9"  />
+                                        </dxc:AxisY2D.Label>
                                         <dxc:AxisY2D.Title>
-                                            <dxc:AxisTitle Content="客流量（百万）" />
+                                            <dxc:AxisTitle Content="客流量（百万）" Foreground="#00a0e9"  />
                                         </dxc:AxisY2D.Title>
                                     </dxc:AxisY2D>
                                 </dxc:XYDiagram2D.AxisY>
                                 <dxc:XYDiagram2D.AxisX>
                                     <dxc:AxisX2D>
-                                        <dxc:AxisX2D.Range>
-                                            <dxc:AxisRange SideMarginsEnabled="False" />
-                                        </dxc:AxisX2D.Range>
-                                        <dxc:Axis2D.Label>
-                                            <dxc:AxisLabel Staggered="True" />
-                                        </dxc:Axis2D.Label>
+                                        <dxc:AxisX2D.Label>
+                                            <dxc:AxisLabel   Foreground="#00a0e9"  />
+                                        </dxc:AxisX2D.Label>
                                     </dxc:AxisX2D>
                                 </dxc:XYDiagram2D.AxisX>
                                 <dxc:XYDiagram2D.Series>
-                                    <dxc:AreaSeries2D x:Name="year2005" 
+                                    <dxc:LineSeries2D  x:Name="year2005" 
                                               DisplayName="2005" 
-                                                   
                                                       MarkerVisible ="True" 
                                               AnimationAutoStartMode="SetStartState">
-                                        <dxc:AreaSeries2D.MarkerModel>
+                                        <dxc:LineSeries2D.MarkerModel>
                                             <dxc:CircleMarker2DModel />
-                                        </dxc:AreaSeries2D.MarkerModel>
-                                        <dxc:AreaSeries2D.Label>
+                                        </dxc:LineSeries2D.MarkerModel>
+                                            <dxc:LineSeries2D.Label>
                                             <dxc:SeriesLabel ConnectorVisible="False" ResolveOverlappingMode="Default"
                                                      
                                                      dxc:MarkerSeries2D.Angle="{Binding ElementName=slAngle, Path=Value}" />
-                                        </dxc:AreaSeries2D.Label>
-                                        <dxc:AreaSeries2D.Points>
+                                        </dxc:LineSeries2D.Label>
+                                        <dxc:LineSeries2D.Points>
                                             <dxc:SeriesPoint Argument="五月" Value="362.53" />
                                             <dxc:SeriesPoint Argument="六月" Value="348.45" />
                                             <dxc:SeriesPoint Argument="七月" Value="279.02" />
                                             <dxc:SeriesPoint Argument="八月" Value="230.93" />
                                             <dxc:SeriesPoint Argument="九月" Value="203.52" />
                                             <dxc:SeriesPoint Argument="十月" Value="197.12" />
-                                        </dxc:AreaSeries2D.Points>
-                                    </dxc:AreaSeries2D>
-                                    <dxc:AreaSeries2D x:Name="year2004" 
+                                        </dxc:LineSeries2D.Points>
+                                        </dxc:LineSeries2D >
+                                    <dxc:LineSeries2D x:Name="year2004" 
                                               DisplayName="2004" 
                                               AnimationAutoStartMode="SetStartState">
-                                        <dxc:AreaSeries2D.MarkerModel>
+                                        <dxc:LineSeries2D.MarkerModel>
                                             <dxc:CircleMarker2DModel />
-                                        </dxc:AreaSeries2D.MarkerModel>
-                                        <dxc:AreaSeries2D.Label>
+                                        </dxc:LineSeries2D.MarkerModel>
+                                        <dxc:LineSeries2D.Label>
                                             <dxc:SeriesLabel ConnectorVisible="False" ResolveOverlappingMode="Default"
                                                      />
-                                        </dxc:AreaSeries2D.Label>
-                                        <dxc:AreaSeries2D.Points>
+                                        </dxc:LineSeries2D.Label>
+                                        <dxc:LineSeries2D.Points>
                                             <dxc:SeriesPoint Argument="五月" Value="277.02" />
                                             <dxc:SeriesPoint Argument="六月" Value="328.54" />
                                             <dxc:SeriesPoint Argument="七月" Value="297.02" />
                                             <dxc:SeriesPoint Argument="八月" Value="255.3" />
                                             <dxc:SeriesPoint Argument="九月" Value="173.54" />
                                             <dxc:SeriesPoint Argument="十月" Value="131.89" />
-                                        </dxc:AreaSeries2D.Points>
-                                    </dxc:AreaSeries2D>
+                                        </dxc:LineSeries2D.Points>
+                                    </dxc:LineSeries2D>
                                 </dxc:XYDiagram2D.Series>
                             </dxc:XYDiagram2D>
                         </dxc:ChartControl.Diagram>
                         <dxc:ChartControl.Legend>
-                            <dxc:Legend HorizontalPosition="Right" />
+                            <dxc:Legend HorizontalPosition="Right"  Background="Transparent" Foreground="#00a0e9" />
                         </dxc:ChartControl.Legend>
                         <!--<dxc:ChartControl.Titles>
                             <dxc:Title Dock="Top" HorizontalAlignment="Center">Corporations with Highest Market Value</dxc:Title>

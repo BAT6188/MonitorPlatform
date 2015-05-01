@@ -122,7 +122,16 @@
         public static readonly DependencyProperty MaxDataPointGroupSumProperty =
              DependencyProperty.Register("MaxDataPointGroupSum",
              typeof(double), typeof(ChartBase), new PropertyMetadata(0.0, OnMaxDataPointGroupSumChanged));
-
+        public static readonly DependencyProperty MyClientWidthProperty =
+         DependencyProperty.Register("MyClientWidth",
+         typeof(int),
+         typeof(ChartBase),
+         new PropertyMetadata(80));
+        public static readonly DependencyProperty MyClientHeightProperty =
+         DependencyProperty.Register("MyClientHeight",
+         typeof(int),
+         typeof(ChartBase),
+         new PropertyMetadata(80));
         #endregion Fields
 
         
@@ -365,6 +374,16 @@
         {
             get { return (double)GetValue(SumOfDataPointGroupProperty); }
             set { SetValue(SumOfDataPointGroupProperty, value); }
+        }
+        public int MyClientWidth
+        {
+            get { return (int)GetValue(MyClientWidthProperty); }
+            set { SetValue(MyClientWidthProperty, value); }
+        }
+        public int MyClientHeight
+        {
+            get { return (int)GetValue(MyClientHeightProperty); }
+            set { SetValue(MyClientHeightProperty, value); }
         }
 
         public ObservableCollection<string> GridLines
@@ -879,6 +898,20 @@
             tooltipFormatBinding.Path = new PropertyPath("ToolTipFormat");
             BindingOperations.SetBinding(datapoint, DataPoint.ToolTipFormatProperty, tooltipFormatBinding);
 
+
+
+            var widthBinding = new Binding();
+            widthBinding.Source = this;
+            widthBinding.Mode = BindingMode.TwoWay;
+            widthBinding.Path = new PropertyPath("MyClientWidth");
+            BindingOperations.SetBinding(datapoint, DataPoint.MyClientWidthProperty, widthBinding);
+
+
+            var heightBinding = new Binding();
+            heightBinding.Source = this;
+            heightBinding.Mode = BindingMode.TwoWay;
+            heightBinding.Path = new PropertyPath("MyClientHeight");
+            BindingOperations.SetBinding(datapoint, DataPoint.MyClientHeightProperty, heightBinding);
         }
 
         private void CreateDataPointGroupBindings(DataPointGroup dataPointGroup)
