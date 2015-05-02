@@ -116,7 +116,7 @@
 
 
 
-                        <dxc:ChartControl   BorderThickness="0" Background="{x:Null}"    EnableAnimation="False" Grid.Column="0" Grid.Row="2" >
+                        <dxc:ChartControl   BorderThickness="0" Background="{x:Null}"    EnableAnimation="True" Grid.Column="0" Grid.Row="2" >
                             <dxc:ChartControl.Diagram >
                                 <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
                                     <dxc:XYDiagram2D.AxisX>
@@ -220,7 +220,7 @@
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线站点即时流量图</TextBlock>
                         </Border>
 
-                        <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False" Grid.Row="4"  Grid.Column="0" >
+                        <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True" Grid.Row="4"  Grid.Column="0" >
                             <dxc:ChartControl.Diagram>
                                 <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -364,7 +364,7 @@
                         </Border>
                         <Border Grid.Row="2">
 
-                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
 
                                 <dxc:ChartControl.Diagram>
                                     <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
@@ -420,7 +420,7 @@
                         </Border>
                         <Border Grid.Row="4">
 
-                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
 
                                 <dxc:ChartControl.Diagram>
                                     <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >

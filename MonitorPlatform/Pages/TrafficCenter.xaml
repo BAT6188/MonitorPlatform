@@ -173,7 +173,7 @@
                     <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线分时段轨道进站流量排行</TextBlock>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="0" Margin="5">
-                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
                         <dxc:ChartControl.Diagram>
                             <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -212,7 +212,7 @@
                     </dxc:ChartControl>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="1" Margin="5">
-                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="False"  >
+                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
                         <dxc:ChartControl.Diagram>
                             <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 

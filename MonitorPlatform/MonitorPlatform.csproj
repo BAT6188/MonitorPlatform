@@ -260,6 +260,7 @@
   <ItemGroup>
     <Resource Include="Resource\subway.png" />
     <Resource Include="Resource\Car_Normal.png" />
+    <Resource Include="Resource\TrafficLine2.png" />
     <Content Include="ThirdParty\DevExpress.Charts.v11.1.Core.dll" />
     <Content Include="ThirdParty\DevExpress.Data.v11.1.dll" />
     <Content Include="ThirdParty\DevExpress.Xpf.Charts.v11.1.dll" />

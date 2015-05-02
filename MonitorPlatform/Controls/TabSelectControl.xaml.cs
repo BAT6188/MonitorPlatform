@@ -23,11 +23,24 @@ namespace MonitorPlatform.Controls
         public TabSelectControl()
         {
             InitializeComponent();
+            
         }
 
         private void TabSelectControl_Loaded(object sender, RoutedEventArgs e)
         {
+            
             this.DataContext = new MenuItems();
+            
+        }
+
+        void mylist_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            this.mylist.SelectedIndex = 0;
+        }
+
+        void mylist_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+           
         }
 
         public static readonly RoutedEvent TabSelectChangedEvent =

@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              Loaded="TabSelectControl_Loaded">
     
-    <ListBox DockPanel.Dock ="Top" HorizontalAlignment="Center"
+    <ListBox DockPanel.Dock ="Top" HorizontalAlignment="Center" x:Name="mylist"
                     Foreground="{Binding Path=MainForeground}"
                     ItemsSource="{Binding Path=ChartTypes}" 
                     ItemContainerStyle="{StaticResource SelectableListBoxItem}"                     
@@ -20,7 +20,7 @@
         </ListBox.ItemsPanel>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding}" Style="{StaticResource SectionHeaderTextStyle}" />
+                <TextBlock Cursor="Hand"  Text="{Binding}" Style="{StaticResource SectionHeaderTextStyle}" />
             </DataTemplate>
         </ListBox.ItemTemplate>
         <ListBox.Template>

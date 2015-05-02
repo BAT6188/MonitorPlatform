@@ -26,18 +26,67 @@
             <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0"  Style="{StaticResource BossContainer}" >
-            <!--<Grid>
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition  Height="30"></RowDefinition>
+                    <RowDefinition  Height="50"></RowDefinition>
                     <RowDefinition  Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
             
-                <Border Style="{StaticResource SmallSectionHeader}" Grid.Row="0"  >
+                <Border Style="{StaticResource SmallSectionHeader}" Grid.Row="0"   Margin="0,20,0,0">
                     <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="线路流量即时分布"></TextBlock>
-                </Border>-->
-                <Image Grid.Row="1"  Source="/MonitorPlatform;component/Resource/TrafficLine.bmp" Stretch="Fill">
-                </Image>
-            <!--</Grid>-->
+                </Border>
+
+                <Canvas Grid.Row ="1"  Name="trafficcanvas"    Margin="10" >
+                    <Canvas.Background>
+                        <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/TrafficLine2.png" />
+                    </Canvas.Background>
+
+                    <Border Padding="10,15,10,10" Canvas.Left="550" Style="{StaticResource BigPopupSection}"  Canvas.Top="60" Height="140" >
+                        <Grid  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="*"></RowDefinition>
+                                <RowDefinition  Height="*"></RowDefinition>
+                                <RowDefinition  Height="*"></RowDefinition>
+                                <RowDefinition  Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0"  Orientation="Horizontal">
+                                <Border x:Name="sublineBorder"  CornerRadius="5"   Background="Green" Width="20" Height="20">
+                                    <TextBlock x:Name="sublinename"  HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="1"  ></TextBlock>
+                                </Border>
+                                <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Grid.Row="1" x:Name="stationName"  Style="{StaticResource BaseContentTextStyle}" Text="钟南街">
+
+                            </TextBlock>
+                            <TextBlock Grid.Row="2" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="当前进站人数: " />
+                            <Run  x:Name="inNumber"  Foreground="White"  Text="5000" />
+                            </TextBlock>
+                            <TextBlock Grid.Row="3" Style="{StaticResource BaseContentTextStyle}">
+                             <Run  Text="当前出站人数: " />
+                            <Run x:Name="outNumber"  Foreground="White"  Text="5000" />
+                            </TextBlock>
+                        </Grid>
+
+
+                    </Border>
+                  
+                    <Border Grid.Row="0" Style="{StaticResource PopupContent}" Canvas.Top="140" Canvas.Left="90"  Width="250" CornerRadius="10" Height="70" >
+                        <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Vertical">
+                            <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" TextAlignment="Center"  Foreground="#FFCBCBCB"  Text="轨道线路基础信息"></TextBlock>
+                            <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" TextAlignment="Center" >
+                                <Run Foreground="#FFCBCBCB">
+                                全市轨道线路总长度:
+                                    </Run>
+                                <Run Foreground="#FF579BEF" FontSize="18">
+                                    65公里
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Canvas>
+
+            </Grid>
         </Border>
         <Border   Grid.Column="1"  Style="{StaticResource BossContainer}" >
             <Grid>
@@ -59,7 +108,7 @@
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220" Margin="0,0,0,20" >
                             <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
-                                <Border CornerRadius="5"   Background="Red" Width="20" Height="20">
+                                <Border CornerRadius="5"   Background="Green" Width="20" Height="20">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="1"  ></TextBlock>
                                 </Border>
                                 <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>    
@@ -116,7 +165,7 @@
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220" Margin="0,0,0,20" >
                             <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
-                                <Border CornerRadius="5"   Background="Green" Width="20" Height="20">
+                                <Border CornerRadius="5"   Background="Red" Width="20" Height="20">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="2"  ></TextBlock>
                                 </Border>
                                 <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>

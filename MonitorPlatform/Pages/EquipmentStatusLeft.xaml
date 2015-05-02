@@ -27,7 +27,7 @@
                     <Label Content="线路设施设备状态"></Label>
                 </Border>
                 <Border Grid.Row="1">
-                    <dxc:ChartControl Name="chart1"  BorderThickness="0"  EnableAnimation="False">
+                    <dxc:ChartControl Name="chart1"  BorderThickness="0"  EnableAnimation="True">
                         <dxc:ChartControl.Diagram>
                             <dxc:SimpleDiagram2D>
                                 <dxc:SimpleDiagram2D.Series>
@@ -62,7 +62,7 @@
                     </dxc:ChartControl>
                 </Border>
                 <Border Grid.Row="2">
-                    <dxc:ChartControl  BorderThickness="0" EnableAnimation="False">
+                    <dxc:ChartControl  BorderThickness="0" EnableAnimation="True">
                         <dxc:ChartControl.Diagram>
                             <dxc:SimpleDiagram2D>
                                 <dxc:SimpleDiagram2D.Series>
@@ -155,7 +155,7 @@
                             <Label Content="设施设备"></Label>
                         </Border>
                         <Border Grid.Row="1">
-                            <dxc:ChartControl Name="chart" BorderThickness="0"  EnableAnimation="False">
+                            <dxc:ChartControl Name="chart" BorderThickness="0"  EnableAnimation="True">
                                 <dxc:ChartControl.Diagram>
                                     <dxc:XYDiagram2D >
                                         
@@ -208,7 +208,7 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="30"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <dxga:CircularGaugeControl Grid.Column="0"  EnableAnimation="False">
+                                <dxga:CircularGaugeControl Grid.Column="0"  EnableAnimation="True">
                                     <dxga:CircularGaugeControl.Scales>
                                         <dxga:ArcScale HorizontalAlignment="Center">
                                             <dxga:ArcScale.Layers>
@@ -229,7 +229,7 @@
                                 <Border Grid.Column="1">
                                     <Label Content="A相"></Label>
                                 </Border>
-                                <dxga:CircularGaugeControl  Grid.Column="2"   EnableAnimation="False">
+                                <dxga:CircularGaugeControl  Grid.Column="2"   EnableAnimation="True">
                                     <dxga:CircularGaugeControl.Scales>
                                         <dxga:ArcScale HorizontalAlignment="Center">
                                             <dxga:ArcScale.Layers>
@@ -250,7 +250,7 @@
                                 <Border Grid.Column="3">
                                     <Label Content="B相"></Label>
                                 </Border>
-                                <dxga:CircularGaugeControl   Grid.Column="4"  EnableAnimation="False">
+                                <dxga:CircularGaugeControl   Grid.Column="4"  EnableAnimation="True">
                                     <dxga:CircularGaugeControl.Scales>
                                         <dxga:ArcScale HorizontalAlignment="Center">
                                             <dxga:ArcScale.Layers>
