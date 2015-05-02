@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:MonitorPlatform.Convert" 
        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
-	Title="BossLeft"  >
+	Title="BossLeft"   Loaded="Page_Loaded">
     <Page.Resources>
         <local:StringToBrushConverter x:Key="StringToBrushConverter" />
     </Page.Resources>
@@ -18,7 +18,7 @@
             <RowDefinition Height="260"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0">
+        <Border Grid.Row="0" Margin="0,5,0,0">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -76,12 +76,17 @@
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="1"  Style="{StaticResource BigPopupSection}" >
-                    <Image Height="255" Name="image1" Stretch="Fill"   Source="/MonitorPlatform;component/Resource/line.bmp" />
+                    <Canvas Name="traingrid"    >
+                        <Canvas.Background>
+                            <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/subway.png" />
+                        </Canvas.Background>
+                        
+                    </Canvas>
                 </Border>
             </Grid>
 
         </Border>
-        <Border Grid.Row="1" Margin="0,10,0,0">
+        <Border Grid.Row="1" Margin="0,5,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"></ColumnDefinition>

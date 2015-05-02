@@ -137,6 +137,7 @@
     <Compile Include="ViewModel\Station.cs" />
     <Compile Include="ViewModel\SubLine.cs" />
     <Compile Include="ViewModel\TestClass.cs" />
+    <Compile Include="ViewModel\Train.cs" />
     <Page Include="CenterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +258,8 @@
     <Resource Include="Resource\subline2.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\subway.png" />
+    <Resource Include="Resource\Car_Normal.png" />
     <Content Include="ThirdParty\DevExpress.Charts.v11.1.Core.dll" />
     <Content Include="ThirdParty\DevExpress.Data.v11.1.dll" />
     <Content Include="ThirdParty\DevExpress.Xpf.Charts.v11.1.dll" />

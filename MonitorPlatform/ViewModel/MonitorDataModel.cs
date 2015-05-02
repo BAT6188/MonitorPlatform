@@ -240,7 +240,16 @@ namespace MonitorPlatform.ViewModel
             line1.Personrates.Add(new PersonsRateSum() { Time = "18", Number = 21000 });
             line1.Personrates.Add(new PersonsRateSum() { Time = "19", Number = 21000 });
             line1.Personrates.Add(new PersonsRateSum() { Time = "20", Number = 21000 });
-            
+            line1.Trains.Add(new Train() { Location=3,IsDown =true });
+            line1.Trains.Add(new Train() { Location =7, IsDown = true });
+            line1.Trains.Add(new Train() { Location = 14, IsDown = true });
+            line1.Trains.Add(new Train() { Location = 22, IsDown = true });
+
+            line1.Trains.Add(new Train() { Location = 4, IsDown = false });
+            line1.Trains.Add(new Train() { Location = 8, IsDown = false });
+            line1.Trains.Add(new Train() { Location = 11, IsDown = false });
+            line1.Trains.Add(new Train() { Location = 19, IsDown = false });
+
 
             SubLine line2 = new SubLine() { Name = "2号线", CameraTotalNumber = 30, Persons = SubLine2Persons, PersonsPercent = (int)((float)SubLine2Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
 
@@ -268,6 +277,17 @@ namespace MonitorPlatform.ViewModel
             line2.Personrates.Add(new PersonsRateSum() { Time = "18", Number = 21000 });
             line2.Personrates.Add(new PersonsRateSum() { Time = "19", Number = 21000 });
             line2.Personrates.Add(new PersonsRateSum() { Time = "20", Number = 21000 });
+
+            line2.Trains.Add(new Train() { Location = 3, IsDown = true });
+            line2.Trains.Add(new Train() { Location = 7, IsDown = true });
+            line2.Trains.Add(new Train() { Location = 14, IsDown = true });
+            line2.Trains.Add(new Train() { Location = 22, IsDown = true });
+
+            line2.Trains.Add(new Train() { Location = 4, IsDown = false });
+            line2.Trains.Add(new Train() { Location = 8, IsDown = false });
+            line2.Trains.Add(new Train() { Location = 11, IsDown = false });
+            line2.Trains.Add(new Train() { Location = 19, IsDown = false });
+
 
             string[] line1str =  { "木渎站", "金枫路", "汾湖路", "玉山路", "苏州乐园","塔园路","滨河路","西环路",
                                        "桐泾北路 ","广济南路","养育巷","乐桥站","临顿路","相门","东环路",

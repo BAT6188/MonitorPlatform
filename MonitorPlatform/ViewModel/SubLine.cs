@@ -111,6 +111,21 @@ namespace MonitorPlatform.ViewModel
         }
 
 
+        private ObservableCollection<Train> trains = new ObservableCollection<Train>();
+        public ObservableCollection<Train> Trains
+        {
+            get
+            {
+                return trains;
+            }
+            set
+            {
+                trains = value;
+                NotifyPropertyChanged("Trains");
+            }
+        }
+
+
         private void NotifyPropertyChanged(string property)
         {
             if (PropertyChanged != null)
