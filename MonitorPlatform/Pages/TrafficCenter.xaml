@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Style="{StaticResource SmallSectionHeader}"  Grid.Column="1"  Height="30" VerticalAlignment="Center"   >
-                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通视频监控"></TextBlock>
+                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通客流状态分析"></TextBlock>
                 </Border>
                 <Border   Grid.Column="2"  >
                     <DatePicker  HorizontalAlignment="Right"  VerticalAlignment="Center"  Height="25"  Style="{StaticResource DatePickerStyle}"  Name="datePicker1" >

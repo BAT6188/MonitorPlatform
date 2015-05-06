@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Padding="5" Style="{StaticResource TitileSection}">
             <Border Style="{StaticResource SmallSectionHeader}"  Height="30" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="0"   >
-                <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通视频监控"></TextBlock>
+                <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通客流状态分析"></TextBlock>
             </Border>
         </Border>
 

@@ -20,7 +20,6 @@ using DevExpress.Xpf.Editors.Settings;
 using DevExpress.Xpf.Editors.Settings.Extension;
 using DevExpress.Xpf.Editors.Validation;
 using DevExpress.Xpf.Gauges;
-using MonitorPlatform.Convert;
 using System;
 using System.Diagnostics;
 using System.Windows;

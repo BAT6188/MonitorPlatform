@@ -79,3 +79,5 @@ E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusLeft.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusLeft.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform_Content.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform.exe.licenses
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\TrainStatusControl.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\TrainStatusControl.baml

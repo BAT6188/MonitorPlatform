@@ -109,7 +109,7 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("DownEndTime");
             }
         }
-
+        //入站数目
         private int inNumber;
         public int InNumber
         {
@@ -123,7 +123,7 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("InNumber");
             }
         }
-
+        //出站数目
         private int outNumber;
         public int OutNumber
         {
@@ -137,7 +137,7 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("OutNumber");
             }
         }
-
+        //拥堵数量
         private int trafficJam;
         public int TrafficJam
         {
@@ -153,7 +153,7 @@ namespace MonitorPlatform.ViewModel
         }
 
 
-
+        //损坏数量
         private int brokenNumber;
         public int BrokenNumber
         {
@@ -165,6 +165,37 @@ namespace MonitorPlatform.ViewModel
             {
                 brokenNumber = value;
                 NotifyPropertyChanged("BrokenNumber");
+            }
+        }
+
+
+        //1 is normal, 2 is yellow 3 is busy.
+        private int status = 1;
+        public int Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+                NotifyPropertyChanged("Status");
+            }
+        }
+
+        //1 is normal, 2 is yellow 3 is busy.
+        private int arrivetime = 3;
+        public int Arrivetime
+        {
+            get
+            {
+                return arrivetime;
+            }
+            set
+            {
+                arrivetime = value;
+                NotifyPropertyChanged("Arrivetime");
             }
         }
 

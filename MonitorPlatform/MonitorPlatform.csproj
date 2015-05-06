@@ -91,12 +91,17 @@
     <Compile Include="CenterWindow.xaml.cs">
       <DependentUpon>CenterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AutoResizeListBox.cs" />
     <Compile Include="Controls\CustomTree.xaml.cs">
       <DependentUpon>CustomTree.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TabSelectControl.xaml.cs">
       <DependentUpon>TabSelectControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TrainStatusControl.xaml.cs">
+      <DependentUpon>TrainStatusControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Convert\StatusToBrushConverter.cs" />
     <Compile Include="Convert\StringToBrushConverter.cs" />
     <Compile Include="LeftWindow.xaml.cs">
       <DependentUpon>LeftWindow.xaml</DependentUpon>
@@ -147,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TabSelectControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TrainStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,6 +270,7 @@
     <Resource Include="Resource\subway.png" />
     <Resource Include="Resource\Car_Normal.png" />
     <Resource Include="Resource\TrafficLine2.png" />
+    <Resource Include="Resource\trainlocation.png" />
     <Content Include="ThirdParty\DevExpress.Charts.v11.1.Core.dll" />
     <Content Include="ThirdParty\DevExpress.Data.v11.1.dll" />
     <Content Include="ThirdParty\DevExpress.Xpf.Charts.v11.1.dll" />

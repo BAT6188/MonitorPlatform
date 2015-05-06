@@ -9,7 +9,6 @@
       mc:Ignorable="d" 
       ShowsNavigationUI="False"
       d:DesignHeight="300" d:DesignWidth="300"
-       dx:ThemeManager.ThemeName="Office2007Silver"
 	Title="TrainLocationCenter">
 
     <Grid>
@@ -81,7 +80,8 @@
                     <Label Content="列车营运信息"></Label>
                 </Border>
                 <Border Grid.Row="1">
-                    <dxg:GridControl x:Name="grid"   ItemsSource="{Binding Path=SubWayLines[0].Stations}">
+                    <dxg:GridControl x:Name="grid"   ItemsSource="{Binding Path=SubWayLines[0].Stations}"
+                                            Background="Transparent"   Opacity="0.5"       >
                         <dxg:GridControl.Columns>
                             <dxg:GridColumn  FieldName="ID"  Header="序号" />
                             <dxg:GridColumn FieldName="Name"  Header="站台名称">

@@ -3,7 +3,7 @@
                      xmlns:local1="clr-namespace:MonitorPlatform.Convert" 
                      >
     <local1:StringToBrushConverter x:Key="StringToBrushConverter" />
-
+    <local1:StatusToBrushConverter x:Key="StatusToBrushConverter" />
     <Style TargetType="Grid" x:Key="gridbackground">
         <Setter Property="Background">
             <Setter.Value>
@@ -23,7 +23,7 @@
         <Setter Property="Padding" Value="0"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-      
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
@@ -65,7 +65,7 @@
                                 <VisualState x:Name="Unfocused"/>
                                 <VisualState x:Name="PointerFocused"/>
                             </VisualStateGroup>
-                        
+
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="InnerGrid" RenderTransformOrigin="0.5, 0.5">
                             <ContentControl Opacity="0.5" x:Name="ContentPresenter" Foreground="{TemplateBinding Foreground}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -77,7 +77,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    
+
     </Style>
 
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">
@@ -287,7 +287,7 @@
         <Setter Property="Background" Value="#092c62"></Setter>
         <Setter Property="Margin" Value="5,5,5,5"></Setter>
         <Setter Property="Padding" Value="10,10,10,10"></Setter>
-      
+
         <!--<Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -330,8 +330,8 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" Background="{TemplateBinding Control.Background}"  BorderThickness="2" CornerRadius="15" Name="PART_Background">
-                    <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -351,7 +351,7 @@
                     <Setter Property="Foreground" Value="White"></Setter>
                 </Trigger.Setters>
             </Trigger>
-          
+
         </Style.Triggers>
     </Style>
 
@@ -367,7 +367,7 @@
         <Setter Property="Foreground" Value="White"></Setter>
     </Style>
 
-   
+
 
     <Style x:Key="TreeViewItemFocusVisual">
         <Setter Property="Control.Template">
@@ -549,7 +549,7 @@
         </GradientBrush.GradientStops>
     </LinearGradientBrush>-->
     <SolidColorBrush x:Key="PressedBrush" Color="#3582D6" />
-  
+
 
     <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -804,20 +804,59 @@
                     <Setter.Value>
                         <ControlTemplate x:Name="dptext" TargetType="DatePickerTextBox">
                             <Border >
-                            <Grid>
-                                <Grid x:Name="WatermarkContent"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <ScrollViewer x:Name="PART_ContentHost" Margin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                <Grid>
+                                    <Grid x:Name="WatermarkContent"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                        <ScrollViewer x:Name="PART_ContentHost" Margin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-               
+
             </Style>
         </Style.Resources>
     </Style>
 
+    <Style TargetType="Border" x:Key="TrafficSection">
+        <Setter Property="Background" Value="#FF0065CB">
+        </Setter>
+    </Style>
+    <Style x:Key="TrafficListBoxItemStyle" TargetType="ListBoxItem">
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    </Style>
 
+
+    <Style x:Key="TrainBtnStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="0,0,10,10">
+                        <Grid   >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="13"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="13"></RowDefinition>
+                                <RowDefinition Height="13"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Background="{Binding Status, Converter={StaticResource StatusToBrushConverter}}" ></Border>
+                            <TextBlock Grid.Row="1"  Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"><Run >3</Run>分钟</TextBlock>
+                            <TextBlock  Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">到站</TextBlock>
+                        </Grid>
+                    </Border>
+            
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True"/>
+                        <Trigger Property="IsDefaulted" Value="True"/>
+                        <Trigger Property="IsMouseOver" Value="True"/>
+                        <Trigger Property="IsPressed" Value="True"/>
+                        <Trigger Property="IsEnabled" Value="False"/>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

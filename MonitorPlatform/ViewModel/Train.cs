@@ -23,6 +23,8 @@ namespace MonitorPlatform.ViewModel
         }
 
 
+
+
         private bool isDown = true;
         public bool IsDown
         {
@@ -34,6 +36,21 @@ namespace MonitorPlatform.ViewModel
             {
                 isDown = value;
                 NotifyPropertyChanged("IsDown");
+            }
+        }
+
+
+        private string number = "SZDT－Z00104";
+        public string Number
+        {
+            get
+            {
+                return number;
+            }
+            set
+            {
+                number = value;
+                NotifyPropertyChanged("Number");
             }
         }
 
