@@ -40,20 +40,123 @@ namespace MonitorPlatform.ViewModel
         }
 
 
-        private string number = "SZDT－Z00104";
-        public string Number
+        private string trainNumber = "SZDT－Z00104";
+        public string TrainNumber
         {
             get
             {
-                return number;
+                return trainNumber;
             }
             set
             {
-                number = value;
-                NotifyPropertyChanged("Number");
+                trainNumber = value;
+                NotifyPropertyChanged("TrainNumber");
             }
         }
 
+        private string trainType = "TR－RCZW";
+        public string TrainType
+        {
+            get
+            {
+                return trainType;
+            }
+            set
+            {
+                trainType = value;
+                NotifyPropertyChanged("TrainType");
+            }
+        }
+
+        //车厢数（编组
+        private int trainCount = 6;
+        public int TrainCount
+        {
+            get
+            {
+                return trainCount;
+            }
+            set
+            {
+                trainCount = value;
+                NotifyPropertyChanged("TrainCount");
+            }
+        }
+
+        //荷载人数
+        private int trainQuanutity = 1500;
+        public int TrainQuanutity
+        {
+            get
+            {
+                return trainQuanutity;
+            }
+            set
+            {
+                trainQuanutity = value;
+                NotifyPropertyChanged("TrainQuanutity");
+            }
+        }
+
+        //购买年份
+        private string purchaseYear = "2014年";
+        public string PurchaseYear
+        {
+            get
+            {
+                return purchaseYear;
+            }
+            set
+            {
+                purchaseYear = value;
+                NotifyPropertyChanged("PurchaseYear");
+            }
+        }
+
+        //投入使用年度
+        private string adoptYear = "2014年";
+        public string AdoptYear
+        {
+            get
+            {
+                return adoptYear;
+            }
+            set
+            {
+                adoptYear = value;
+                NotifyPropertyChanged("AdoptYear");
+            }
+        }
+
+        //车身尺寸
+        private string trainSize = "6*3*3";
+        public string TrainSize
+        {
+            get
+            {
+                return trainSize;
+            }
+            set
+            {
+                trainSize = value;
+                NotifyPropertyChanged("TrainSize");
+            }
+        }
+
+        //列车配置
+        private string trainConfig = "配置信息";
+        public string TrainConfig
+        {
+            get
+            {
+                return trainConfig;
+            }
+            set
+            {
+                trainConfig = value;
+                NotifyPropertyChanged("TrainConfig");
+            }
+        }
 
         private void NotifyPropertyChanged(string property)
         {

@@ -24,6 +24,7 @@ namespace MonitorPlatform
     {
         RightWindows right;
         CenterWindow center;
+        
         public LeftWindow()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace MonitorPlatform
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = new MonitorDataModel();
+            this.DataContext = MonitorDataModel.Instance();
         }
 
         private void TabSelectControl_TabSelectChanged(object sender, TabSelectChangeEventArgs e)
@@ -59,7 +60,7 @@ namespace MonitorPlatform
                     break;
                 case "设施设备":
                     this.frame.Source = new Uri("Pages/EquipmentStatusLeft.xaml",UriKind.Relative);
-                    center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/EquipmentStatusCenter.xaml", UriKind.Relative);
                     right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
                     break;
                 case "视频监控":

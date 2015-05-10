@@ -13,15 +13,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       
 	Title="TrafficRight">
-    <Page.Resources>
-        <ControlTemplate x:Key="GridTemplate" TargetType="{x:Type dxg:GridControl}">
-            <ContentControl x:Name="PART_ThemesLoader" Background="Transparent">
-                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                    <ContentPresenter Content="{TemplateBinding View}" />
-                </Border>
-            </ContentControl>
-        </ControlTemplate>
-    </Page.Resources>
+
 <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

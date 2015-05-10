@@ -92,6 +92,13 @@ namespace MonitorPlatform.ViewModel
         public Dictionary<string, De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection> Palettes { get; set; }
         public List<string> SelectionBrushes { get; set; }
 
+
+        private static MonitorDataModel _instance = new MonitorDataModel();
+
+        public static MonitorDataModel Instance()
+        {
+            return _instance;
+        }
      
         private object selectedPalette = null;
         public object SelectedPalette
@@ -185,6 +192,21 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+
+        private Train currentTrain = null;
+        public Train CurrentTrain
+        {
+            get
+            {
+                return currentTrain;
+            }
+            set
+            {
+                currentTrain = value;
+                NotifyPropertyChanged("CurrentTrain");
+            }
+        }
+
         private double selectedDoughnutInnerRadiusRatio = 0.75;
         public double SelectedDoughnutInnerRadiusRatio
         {
@@ -217,11 +239,11 @@ namespace MonitorPlatform.ViewModel
             SubLine line1 = new SubLine() { Name = "1号线", CameraTotalNumber = 25, Persons = SubLine1Persons, PersonsPercent = (int)((float)SubLine1Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
 
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType ="PSCADA", Number =27, BadNumber=1 });
-            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PIS", Number = 30, BadNumber = 1 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PIS", Number = 30, BadNumber = 2 });
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PA", Number = 40, BadNumber = 3 });
-            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSD", Number = 40, BadNumber = 3 });
-            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 33, BadNumber = 3 });
-            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSD", Number = 40, BadNumber = 4 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 33, BadNumber = 5 });
+            line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 6 });
 
 
             

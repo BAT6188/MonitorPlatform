@@ -95,6 +95,12 @@
     <Compile Include="Controls\CustomTree.xaml.cs">
       <DependentUpon>CustomTree.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Line1Status.xaml.cs">
+      <DependentUpon>Line1Status.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Line2Status.xaml.cs">
+      <DependentUpon>Line2Status.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TabSelectControl.xaml.cs">
       <DependentUpon>TabSelectControl.xaml</DependentUpon>
     </Compile>
@@ -114,6 +120,9 @@
     </Compile>
     <Compile Include="Pages\BossRight.xaml.cs">
       <DependentUpon>BossRight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EquipmentStatusCenter.xaml.cs">
+      <DependentUpon>EquipmentStatusCenter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EquipmentStatusLeft.xaml.cs">
       <DependentUpon>EquipmentStatusLeft.xaml</DependentUpon>
@@ -151,6 +160,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Line1Status.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Line2Status.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TabSelectControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -176,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\BossRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EquipmentStatusCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

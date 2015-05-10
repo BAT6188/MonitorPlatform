@@ -26,7 +26,7 @@ namespace MonitorPlatform
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            this.DataContext = new MonitorDataModel();
+            this.DataContext = MonitorDataModel.Instance();
         }
     }
 }

@@ -9,25 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MonitorPlatform.ViewModel;
 
-namespace MonitorPlatform
+namespace MonitorPlatform.Controls
 {
     /// <summary>
-    /// RightWindows.xaml 的交互逻辑
+    /// Line2Status.xaml 的交互逻辑
     /// </summary>
-    public partial class RightWindows : Window
+    public partial class Line2Status : UserControl
     {
-        public RightWindows()
+        public Line2Status()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            this.DataContext = MonitorDataModel.Instance();
         }
     }
 }

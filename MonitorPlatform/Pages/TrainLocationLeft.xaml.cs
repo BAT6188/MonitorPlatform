@@ -96,6 +96,7 @@ namespace MonitorPlatform.Pages
         void image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Train trainin = (sender as Image).Tag as Train;
+            MonitorDataModel.Instance().CurrentTrain = trainin;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

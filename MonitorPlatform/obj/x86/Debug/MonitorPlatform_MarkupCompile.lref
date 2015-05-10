@@ -6,6 +6,8 @@ FE:\MonitorPlatform\MonitorPlatform\Controls\TrainStatusControl.xaml
 FE:\MonitorPlatform\MonitorPlatform\LeftWindow.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\BossLeft.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\BossRight.xaml
+FE:\MonitorPlatform\MonitorPlatform\Pages\EquipmentStatusCenter.xaml
+FE:\MonitorPlatform\MonitorPlatform\Pages\EquipmentStatusLeft.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\TrafficCenter.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\TrafficLeft.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\TrainLocationLeft.xaml

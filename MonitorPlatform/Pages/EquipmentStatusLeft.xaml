@@ -9,156 +9,231 @@
         xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
           xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+       xmlns:control="clr-namespace:MonitorPlatform.Controls" 
 	Title="EquipmentStatusLeft">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column ="0" Style="{StaticResource BossContainer}">
+        
+        <Border Grid.Column ="0" >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition  Height="30"></RowDefinition>
+                    <RowDefinition  Height="50"></RowDefinition>
                     <RowDefinition  Height="*"></RowDefinition>
                     <RowDefinition  Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" HorizontalAlignment="Center">
-                    <Label Content="线路设施设备状态"></Label>
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource BaseContentWhiteStyle}"   Text="线路设施设备状态"></TextBlock>
                 </Border>
-                <Border Grid.Row="1">
-                    <dxc:ChartControl Name="chart1"  BorderThickness="0"  EnableAnimation="True">
-                        <dxc:ChartControl.Diagram>
-                            <dxc:SimpleDiagram2D>
-                                <dxc:SimpleDiagram2D.Series>
-                                    <dxc:PieSeries2D  ArgumentScaleType="Qualitative" AnimationAutoStartMode="SetStartState"
-                                             HoleRadiusPercent="80"
-                                                     ArgumentDataMember="EquipmentType" 
-                                                       ValueDataMember="Number"
-                                                       DataSource="{Binding Path=SubWayLines[0].Troubles}" 
-                                             >
-                                     
-                                        <dxc:PieSeries2D.PointOptions>
-                                            <dxc:PointOptions PointView="ArgumentAndValues">
-                                                <dxc:PointOptions.ValueNumericOptions>
-                                                    <dxc:NumericOptions Format="Percent" Precision="0" />
-                                                </dxc:PointOptions.ValueNumericOptions>
-                                            </dxc:PointOptions>
-                                        </dxc:PieSeries2D.PointOptions>
-                                        <dxc:PieSeries2D.Label>
-                                            <dxc:SeriesLabel 
-                                                     dxc:PieSeries.LabelPosition="Outside"
-                                                     RenderMode="RectangleConnectedToCenter" />
-                                        </dxc:PieSeries2D.Label>
 
-                                    </dxc:PieSeries2D>
-                                </dxc:SimpleDiagram2D.Series>
-                            </dxc:SimpleDiagram2D>
-                        </dxc:ChartControl.Diagram>
-                        <dxc:ChartControl.Titles>
-                            <dxc:Title Dock="Bottom" FontSize="12"  HorizontalAlignment="Center" >1号线</dxc:Title>
-                            <dxc:Title Dock="Bottom" FontSize="12"  HorizontalAlignment="Center" >故障总数: 10个</dxc:Title>
-                        </dxc:ChartControl.Titles>
-                    </dxc:ChartControl>
+
+                <Border Grid.Row="1" x:Name="line1Border" Background="#00092B61" Cursor="Hand"   Style="{StaticResource BigPopupSection}" Margin="10"  Padding="10,10,10,0">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="50"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220" Margin="0,0,0,20" >
+                            <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+                                <Border CornerRadius="5"   Background="Green" Width="20" Height="20">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="1"  ></TextBlock>
+                                </Border>
+                                <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                       
+             
+                        <chart:DoughnutChart Grid.Row="1"  
+       
+                Palette="{Binding Path=SelectedPalette.Value}"
+                FontSize="{Binding Path=SelectedFontSize}"
+                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                ChartTitleVisibility="Hidden"
+                ChartLegendVisibility="Visible"
+                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                 InnerRadiusRatio="0.7"
+                Foreground="#5AA0EF" 
+                Background="{x:Null}"                 
+                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
+                                <chart:PieChart.Series>
+                                    <chart:ChartSeries
+                        SeriesTitle="dsd"
+                        DisplayMember="EquipmentType"
+                        ValueMember="BadNumber"
+                        ItemsSource="{Binding Path=SubWayLines[0].Troubles}" />
+                                </chart:PieChart.Series>
+                            </chart:DoughnutChart>
+
+                    </Grid>
+
                 </Border>
-                <Border Grid.Row="2">
-                    <dxc:ChartControl  BorderThickness="0" EnableAnimation="True">
-                        <dxc:ChartControl.Diagram>
-                            <dxc:SimpleDiagram2D>
-                                <dxc:SimpleDiagram2D.Series>
-                                    <dxc:PieSeries2D  ArgumentScaleType="Qualitative" AnimationAutoStartMode="SetStartState"
-                                             HoleRadiusPercent="80"
-                                                     ArgumentDataMember="EquipmentType" 
-                                                       ValueDataMember="Number"
-                                                       DataSource="{Binding Path=SubWayLines[1].Troubles}" 
-                                             >
-                                       
-                                        <dxc:PieSeries2D.PointOptions>
-                                            <dxc:PointOptions PointView="ArgumentAndValues">
-                                                <dxc:PointOptions.ValueNumericOptions>
-                                                    <dxc:NumericOptions Format="Percent" Precision="0" />
-                                                </dxc:PointOptions.ValueNumericOptions>
-                                            </dxc:PointOptions>
-                                        </dxc:PieSeries2D.PointOptions>
-                                        <dxc:PieSeries2D.Label>
-                                            <dxc:SeriesLabel 
-                                                     dxc:PieSeries.LabelPosition="Outside"
-                                                     RenderMode="RectangleConnectedToCenter" />
-                                        </dxc:PieSeries2D.Label>
 
-                                    </dxc:PieSeries2D>
-                                </dxc:SimpleDiagram2D.Series>
-                            </dxc:SimpleDiagram2D>
-                        </dxc:ChartControl.Diagram>
-                        <dxc:ChartControl.Titles>
-                            <dxc:Title Dock="Bottom" FontSize="12"  HorizontalAlignment="Center" >2号线</dxc:Title>
-                            <dxc:Title Dock="Bottom" FontSize="12"  HorizontalAlignment="Center" >故障总数: 10个</dxc:Title>
-                        </dxc:ChartControl.Titles>
-                    </dxc:ChartControl>
+                <Border Grid.Row="2" x:Name="line2Border" Background="#00092B61" Cursor="Hand"  Style="{StaticResource BigPopupWithoutBorderSection}"  Margin="10"  Padding="10">
+                <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="50"></RowDefinition>
+                            <RowDefinition  Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Style="{StaticResource PopupContent}"  Width="220" Margin="0,0,0,20" >
+                            <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+                                <Border CornerRadius="5"  Background="Red" Width="20" Height="20">
+                                    <TextBlock   HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="2"  ></TextBlock>
+                                </Border>
+                                <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>
+                            </StackPanel>
+                        </Border>
+
+                        <chart:DoughnutChart Grid.Row="1"  
+       
+                Palette="{Binding Path=SelectedPalette.Value}"
+                FontSize="{Binding Path=SelectedFontSize}"
+                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                ChartTitleVisibility="Hidden"
+                ChartLegendVisibility="Visible"
+                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                 InnerRadiusRatio="0.7"
+                Foreground="#5AA0EF" 
+                Background="{x:Null}"                 
+                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
+                            <chart:PieChart.Series>
+                                <chart:ChartSeries
+                        SeriesTitle="dsd"
+                        DisplayMember="EquipmentType"
+                        ValueMember="BadNumber"
+                        ItemsSource="{Binding Path=SubWayLines[1].Troubles}" />
+                            </chart:PieChart.Series>
+                        </chart:DoughnutChart>
+                    </Grid>
+
                 </Border>
             </Grid>
         </Border>
-        
+
         <Border Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"></RowDefinition>
-                    <RowDefinition Height="7*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition  Width="4*"></ColumnDefinition>
-                    <ColumnDefinition  Width="6*"></ColumnDefinition>
+                    <ColumnDefinition  Width="*"></ColumnDefinition>
+                    <ColumnDefinition  Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan ="2">
-                    <Image  Stretch="Fill"  Source="/MonitorPlatform;component/Resource/subline1.bmp"> </Image>
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Border  VerticalAlignment="Center" Style="{StaticResource PopupContent}"  Width="220"  >
+                        <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center"  Orientation="Horizontal">
+                            <Border CornerRadius="5" x:Name="borderLineNumber"  Background="Green" Width="20" Height="20">
+                                <TextBlock HorizontalAlignment="Center" x:Name="txtLineNumber" VerticalAlignment="Center"  Style="{StaticResource BaseContentWhiteStyle}"   Text="1"  ></TextBlock>
+                            </Border>
+                            <TextBlock Style="{StaticResource BaseContentWhiteStyle}"  Text=" 号线"></TextBlock>
+                        </StackPanel>
+                    </Border>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="0">
+
+                <Border x:Name="borderLines"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2" Style="{StaticResource BigPopupSection}" Margin="10">
+                    <control:Line1Status></control:Line1Status>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource BigPopupSection}" Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0">
-                            <Label Content="设施设备"></Label>
+                            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center"  TextAlignment="Center"  Style="{StaticResource BaseContentSmallTextStyle}" Text="设施设备"></TextBlock>
                         </Border>
                         <Border Grid.Row="1">
-                        <chart:ClusteredBarChart  
-                                    Palette="{Binding Path=SelectedPalette.Value}"
-                                    FontSize="{Binding Path=SelectedFontSize}"
-                                    IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                                    ChartTitleVisibility="Hidden"
-                                    ToolTipFormat="{Binding Path=ToolTipFormat}"
-                                    Foreground="{Binding Path=Foreground}" 
-                                    Background="{Binding Path=Background}"                 
-                                    SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                                    SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" >
-                            <chart:ClusteredBarChart.Series>
-                                <chart:ChartSeries
-                                            SeriesTitle="Status"
-                                            DisplayMember="EquipmentType"
-                                            ValueMember="Number"
-                                            ItemsSource="{Binding Path=SubWayLines[1].Troubles}" />
-                            </chart:ClusteredBarChart.Series>
-                        </chart:ClusteredBarChart>
+                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+
+                                <dxc:ChartControl.Diagram>
+                                    <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
+
+                                        <dxc:XYDiagram2D.AxisX>
+                                            <dxc:AxisX2D >
+                                                <dxc:AxisX2D.Label>
+                                                    <dxc:AxisLabel    Foreground="#00a0e9"  />
+                                                </dxc:AxisX2D.Label>
+                                                <!--
+                                        </dxc:AxisX2D.Label>-->
+                                            </dxc:AxisX2D>
+                                        </dxc:XYDiagram2D.AxisX>
+                                        <dxc:XYDiagram2D.AxisY>
+                                            <dxc:AxisY2D >
+                                                <dxc:AxisY2D.Label>
+                                                    <dxc:AxisLabel Foreground="#00a0e9"  />
+                                                </dxc:AxisY2D.Label>
+                                            </dxc:AxisY2D>
+                                        </dxc:XYDiagram2D.AxisY>
+                                        <dxc:XYDiagram2D.Series>
+                                            <dxc:BarSideBySideStackedSeries2D 
+                                                            
+                                                              StackedGroup="Tot"
+                                                 ArgumentDataMember="EquipmentType" 
+                                                       ValueDataMember="Number"
+                                                       DataSource="{Binding Path=SubWayLines[0].Troubles}">
+
+                                                <dxc:BarSideBySideStackedSeries2D.Label>
+                                                    <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                                </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                            </dxc:BarSideBySideStackedSeries2D>
+                                            <dxc:BarSideBySideStackedSeries2D 
+                                                             
+                                                              StackedGroup="Tot"
+                                                 ArgumentDataMember="EquipmentType" 
+                                                       ValueDataMember="BadNumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].Troubles}">
+
+                                                <dxc:BarSideBySideStackedSeries2D.Label>
+                                                    <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                                </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                            </dxc:BarSideBySideStackedSeries2D>
+                                        </dxc:XYDiagram2D.Series>
+                                    </dxc:XYDiagram2D>
+                                </dxc:ChartControl.Diagram>
+                            </dxc:ChartControl>
                         </Border>
                     </Grid>
-                   
+
                 </Border>
-                <Border Grid.Row="1" Grid.Column="1">
+                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource BigPopupSection}" Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="15"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0">
-                            <Label Content="设施设备"></Label>
+                            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center"  TextAlignment="Center"  Style="{StaticResource BaseContentSmallTextStyle}" Text="主变电站"></TextBlock>
                         </Border>
                         <Border Grid.Row="1">
-                            <dxc:ChartControl Name="chart" BorderThickness="0"  EnableAnimation="True">
+                            <dxc:ChartControl Foreground="#00a0e9"  Background="{x:Null}" BorderThickness="0"  EnableAnimation="True">
                                 <dxc:ChartControl.Diagram>
-                                    <dxc:XYDiagram2D >
-                                        
+                                    <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}"  >
+                                        <dxc:XYDiagram2D.AxisX>
+                                            <dxc:AxisX2D >
+                                                <dxc:AxisX2D.Label>
+                                                    <dxc:AxisLabel    Foreground="#00a0e9"  />
+                                                </dxc:AxisX2D.Label>
+                                
+                                            </dxc:AxisX2D>
+                                        </dxc:XYDiagram2D.AxisX>
+                                        <dxc:XYDiagram2D.AxisY>
+                                            <dxc:AxisY2D >
+                                                <dxc:AxisY2D.Label>
+                                                    <dxc:AxisLabel Foreground="#00a0e9"  />
+                                                </dxc:AxisY2D.Label>
+                                            </dxc:AxisY2D>
+                                        </dxc:XYDiagram2D.AxisY>
                                         <dxc:XYDiagram2D.Series>
                                             <dxc:BarSideBySideSeries2D x:Name="K110" 
                                                        DisplayName="110KV高压侧电压"
@@ -188,25 +263,28 @@
                                                     <dxc:SeriesPoint Argument="C相" Value="133.845" />
                                                 </dxc:BarSideBySideSeries2D.Points>
                                             </dxc:BarSideBySideSeries2D>
-                                      
+
                                         </dxc:XYDiagram2D.Series>
                                     </dxc:XYDiagram2D>
                                 </dxc:ChartControl.Diagram>
                                 <dxc:ChartControl.Legend>
-                                    <dxc:Legend ReverseItems="False" />
+                                    <dxc:Legend Background="{x:Null}" ReverseItems="False"   Foreground="#5AA0EF" />
                                 </dxc:ChartControl.Legend>
                             </dxc:ChartControl>
 
                         </Border>
                         <Border Grid.Row="2">
+                            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center"  TextAlignment="Center"  Style="{StaticResource BaseContentSmallTextStyle}" Text="电缆温度"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="3">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                         
                                     <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                                  
                                     <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                            
                                 </Grid.ColumnDefinitions>
                                 <dxga:CircularGaugeControl Grid.Column="0"  EnableAnimation="True">
                                     <dxga:CircularGaugeControl.Scales>
@@ -226,55 +304,83 @@
                                         </dxga:ArcScale>
                                     </dxga:CircularGaugeControl.Scales>
                                 </dxga:CircularGaugeControl>
+                              
+                                <dxga:CircularGaugeControl  Grid.Column="1"   EnableAnimation="True">
+                                    <dxga:CircularGaugeControl.Scales>
+                                        <dxga:ArcScale HorizontalAlignment="Center">
+                                            <dxga:ArcScale.Layers>
+                                                <dxga:ArcScaleLayer/>
+                                                <dxga:ArcScaleLayer/>
+                                            </dxga:ArcScale.Layers>
+                                            <dxga:ArcScale.Needles>
+                                                <dxga:ArcScaleNeedle Value="1"/>
+                                            </dxga:ArcScale.Needles>
+                                            <dxga:ArcScale.Ranges>
+                                                <dxga:ArcScaleRange StartValue="0%" EndValue="33%"/>
+                                                <dxga:ArcScaleRange StartValue="33%" EndValue="67%"/>
+                                                <dxga:ArcScaleRange StartValue="67%" EndValue="100%"/>
+                                            </dxga:ArcScale.Ranges>
+                                        </dxga:ArcScale>
+                                    </dxga:CircularGaugeControl.Scales>
+                                </dxga:CircularGaugeControl>
+                              
+                                <dxga:CircularGaugeControl   Grid.Column="2"  EnableAnimation="True">
+                                    <dxga:CircularGaugeControl.Scales>
+                                        <dxga:ArcScale HorizontalAlignment="Center">
+                                            <dxga:ArcScale.Layers>
+                                                <dxga:ArcScaleLayer/>
+                                                <dxga:ArcScaleLayer/>
+                                            </dxga:ArcScale.Layers>
+                                            <dxga:ArcScale.Needles>
+                                                <dxga:ArcScaleNeedle Value="1"/>
+                                            </dxga:ArcScale.Needles>
+                                            <dxga:ArcScale.Ranges>
+                                                <dxga:ArcScaleRange StartValue="0%" EndValue="33%"/>
+                                                <dxga:ArcScaleRange StartValue="33%" EndValue="67%"/>
+                                                <dxga:ArcScaleRange StartValue="67%" EndValue="100%"/>
+                                            </dxga:ArcScale.Ranges>
+                                        </dxga:ArcScale>
+                                    </dxga:CircularGaugeControl.Scales>
+                                </dxga:CircularGaugeControl>
+                               
+                            </Grid>
+
+                        </Border>
+
+                        <Border Grid.Row="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0">
+                                    <TextBlock Style="{StaticResource BaseContentVerySmallTextStyle}" >
+                                        <Run>A相</Run>
+                                        <Run>27</Run>
+                                        <Run>℃</Run>
+                                    </TextBlock>
+                                </Border>
                                 <Border Grid.Column="1">
-                                    <Label Content="A相"></Label>
+                                    <TextBlock Style="{StaticResource BaseContentVerySmallTextStyle}" >
+                                        <Run>B相</Run>
+                                        <Run>27</Run>
+                                        <Run>℃</Run>
+                                    </TextBlock>
                                 </Border>
-                                <dxga:CircularGaugeControl  Grid.Column="2"   EnableAnimation="True">
-                                    <dxga:CircularGaugeControl.Scales>
-                                        <dxga:ArcScale HorizontalAlignment="Center">
-                                            <dxga:ArcScale.Layers>
-                                                <dxga:ArcScaleLayer/>
-                                                <dxga:ArcScaleLayer/>
-                                            </dxga:ArcScale.Layers>
-                                            <dxga:ArcScale.Needles>
-                                                <dxga:ArcScaleNeedle Value="1"/>
-                                            </dxga:ArcScale.Needles>
-                                            <dxga:ArcScale.Ranges>
-                                                <dxga:ArcScaleRange StartValue="0%" EndValue="33%"/>
-                                                <dxga:ArcScaleRange StartValue="33%" EndValue="67%"/>
-                                                <dxga:ArcScaleRange StartValue="67%" EndValue="100%"/>
-                                            </dxga:ArcScale.Ranges>
-                                        </dxga:ArcScale>
-                                    </dxga:CircularGaugeControl.Scales>
-                                </dxga:CircularGaugeControl>
-                                <Border Grid.Column="3">
-                                    <Label Content="B相"></Label>
-                                </Border>
-                                <dxga:CircularGaugeControl   Grid.Column="4"  EnableAnimation="True">
-                                    <dxga:CircularGaugeControl.Scales>
-                                        <dxga:ArcScale HorizontalAlignment="Center">
-                                            <dxga:ArcScale.Layers>
-                                                <dxga:ArcScaleLayer/>
-                                                <dxga:ArcScaleLayer/>
-                                            </dxga:ArcScale.Layers>
-                                            <dxga:ArcScale.Needles>
-                                                <dxga:ArcScaleNeedle Value="1"/>
-                                            </dxga:ArcScale.Needles>
-                                            <dxga:ArcScale.Ranges>
-                                                <dxga:ArcScaleRange StartValue="0%" EndValue="33%"/>
-                                                <dxga:ArcScaleRange StartValue="33%" EndValue="67%"/>
-                                                <dxga:ArcScaleRange StartValue="67%" EndValue="100%"/>
-                                            </dxga:ArcScale.Ranges>
-                                        </dxga:ArcScale>
-                                    </dxga:CircularGaugeControl.Scales>
-                                </dxga:CircularGaugeControl>
-                                <Border Grid.Column="5">
-                                    <Label Content="C相"></Label>
+                                <Border Grid.Column="2">
+                                    <TextBlock Style="{StaticResource BaseContentVerySmallTextStyle}" >
+                                        <Run>C相</Run>
+                                        <Run>27</Run>
+                                        <Run>℃</Run>
+                                    </TextBlock>
                                 </Border>
                             </Grid>
-                            
                         </Border>
-                    </Grid>
+                        </Grid>
                 </Border>
             </Grid>
         </Border>
