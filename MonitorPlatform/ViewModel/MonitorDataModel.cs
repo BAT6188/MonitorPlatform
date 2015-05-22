@@ -400,7 +400,8 @@ namespace MonitorPlatform.ViewModel
             Infos.Add(new TestClass() { Category = "Naming", Number = 3 });
             Infos.Add(new TestClass() { Category = "Best Practices", Number = 8 });
 
-            FirstLine.Add(new TestClass() { Category = "1号线", Number = 70 });
+            FirstLine.Add(new TestClass() { Category = "1号线", Number = 8 });
+            FirstLine.Add(new TestClass() { Category = "11号线", Number = 2 });
             SecondLine.Add(new TestClass() { Category = "2号线", Number = 30 });
 
             Camera = new List<PropertyNodeItem>();

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataProcess
 {
-    public class Class1
+    public class DataCenter
     {
     }
 }

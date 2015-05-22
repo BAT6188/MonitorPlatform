@@ -36,6 +36,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="AxInterop.VSPOcxClientLib">
+      <HintPath>ThirdParty\AxInterop.VSPOcxClientLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Colligate">
+      <HintPath>ThirdParty\Colligate.dll</HintPath>
+    </Reference>
+    <Reference Include="Com.CustomControl">
+      <HintPath>ThirdParty\Com.CustomControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Com.MapPlugin">
+      <HintPath>ThirdParty\Com.MapPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomControlLibrary">
+      <HintPath>ThirdParty\CustomControlLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Charts.v11.1.Core, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ThirdParty\DevExpress.Charts.v11.1.Core.dll</HintPath>
@@ -68,8 +86,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ThirdParty\DevExpress.Xpf.Themes.Office2007Silver.v11.1.dll</HintPath>
     </Reference>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>ThirdParty\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsPresentation">
+      <HintPath>ThirdParty\GMap.NET.WindowsPresentation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ThirdParty\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -82,6 +113,15 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ThirdParty\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ZNJT.WebProxy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ThirdParty\ZNJT.WebProxy.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -101,6 +141,9 @@
     <Compile Include="Controls\Line2Status.xaml.cs">
       <DependentUpon>Line2Status.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NewGis.xaml.cs">
+      <DependentUpon>NewGis.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TabSelectControl.xaml.cs">
       <DependentUpon>TabSelectControl.xaml</DependentUpon>
     </Compile>
@@ -109,6 +152,9 @@
     </Compile>
     <Compile Include="Convert\StatusToBrushConverter.cs" />
     <Compile Include="Convert\StringToBrushConverter.cs" />
+    <Compile Include="Convert\ValToNotifyStyleConverter.cs" />
+    <Compile Include="Convert\ValToNotifyStyleTextConverter.cs" />
+    <Compile Include="Data\DataCenter.cs" />
     <Compile Include="LeftWindow.xaml.cs">
       <DependentUpon>LeftWindow.xaml</DependentUpon>
     </Compile>
@@ -167,6 +213,10 @@
     <Page Include="Controls\Line2Status.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NewGis.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\TabSelectControl.xaml">
       <SubType>Designer</SubType>
@@ -256,6 +306,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -288,6 +339,16 @@
     <Resource Include="Resource\subline2.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ThirdParty\AxInterop.VSPOcxClientLib.dll" />
+    <Content Include="ThirdParty\Com.CustomControl.dll" />
+    <Content Include="ThirdParty\Com.MapPlugin.dll" />
+    <Content Include="ThirdParty\CustomControlLibrary.dll" />
+    <Content Include="ThirdParty\GMap.NET.Core.dll" />
+    <Content Include="ThirdParty\GMap.NET.WindowsPresentation.dll" />
+    <Content Include="ThirdParty\Interop.VSPOcxClientLib.dll" />
+    <Content Include="ThirdParty\System.Windows.Controls.DataVisualization.Toolkit.dll" />
+    <Content Include="ThirdParty\WPFToolkit.dll" />
+    <Content Include="ThirdParty\ZNJT.WebProxy.dll" />
     <Resource Include="Resource\subway.png" />
     <Resource Include="Resource\Car_Normal.png" />
     <Resource Include="Resource\TrafficLine2.png" />
@@ -300,6 +361,26 @@
     <Content Include="ThirdParty\DevExpress.Xpf.Grid.v11.1.Core.dll" />
     <Content Include="ThirdParty\DevExpress.Xpf.Grid.v11.1.dll" />
     <Content Include="ThirdParty\DevExpress.Xpf.Themes.Office2007Silver.v11.1.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VSPerfControl">
+      <Guid>{D4561370-1A0A-405E-8270-84024CACBA99}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VSPOcxClientLib">
+      <Guid>{471B3638-EE90-481F-86F8-79FEDE843CBE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
 using MonitorPlatform.Controls;
+using MonitorPlatform.Data;
 
 namespace MonitorPlatform
 {
@@ -24,7 +25,7 @@ namespace MonitorPlatform
     {
         RightWindows right;
         CenterWindow center;
-        
+        DataCenter data;
         public LeftWindow()
         {
             InitializeComponent();
@@ -32,10 +33,14 @@ namespace MonitorPlatform
             center = new CenterWindow();
             right.Show();
             center.Show();
+            data = new DataCenter(this);
+            data.Login();
+            data.UpdateBoss();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+          
             this.DataContext = MonitorDataModel.Instance();
         }
 

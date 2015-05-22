@@ -11,6 +11,8 @@
 	Title="BossLeft"   Loaded="Page_Loaded">
     <Page.Resources>
         <local:StringToBrushConverter x:Key="StringToBrushConverter" />
+        <local:ValToNotifyStyleConverter x:Key="ValToNotifyStyleConverter" />
+        <local:ValToNotifyStyleTextConverter x:Key="ValToNotifyStyleTextConverter" />
     </Page.Resources>
 
     <Grid>
@@ -196,20 +198,26 @@
                                         <chart:ChartSeries
                                         SeriesCaptionVisibility ="Hidden"
                         SeriesTitle="Errors"
-                        DisplayMember="Category"
-                        ValueMember="Number"
-                        ItemsSource="{Binding Path=FirstLine}">
+                            DisplayMember="Name"
+                        ValueMember="TotalRate"
+                        ItemsSource="{Binding Path=SubWayLines[0].TotalRate}">
                                         </chart:ChartSeries>
                                     </chart:RadialGaugeChart.Series>
                                 </chart:RadialGaugeChart>
                                 <Border Grid.Row="1" Grid.Column="1" >
-                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="进:3W"></TextBlock>
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" >
+                                        <Run Text="进:"></Run><Run Text="{Binding Path=SubWayLines[0].InNumber}"></Run><Run Text="W"></Run>
+                                    </TextBlock>
                                 </Border>
                                 <Border Grid.Row="2" Grid.Column="1" >
-                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="出:3W"></TextBlock>
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" >
+                                    <Run Text="出:"></Run><Run Text="{Binding Path=SubWayLines[0].OutNumber}"></Run><Run Text="W"></Run>
+                                    </TextBlock>
                                 </Border>
                                 <Border Grid.Row="3" Grid.Column="1" >
-                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="总:6W"></TextBlock>
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" >
+                                    <Run Text="总:"></Run><Run Text="{Binding Path=SubWayLines[0].TotalNumber}"></Run><Run Text="W"></Run>
+                                    </TextBlock>
                                 </Border>
 
                             </Grid>
@@ -299,20 +307,26 @@
                                         <chart:ChartSeries
                                         SeriesCaptionVisibility ="Hidden"
                         SeriesTitle="Errors"
-                        DisplayMember="Category"
-                        ValueMember="Number"
-                        ItemsSource="{Binding Path=SecondLine}">
+                         DisplayMember="Name"
+                        ValueMember="TotalRate"
+                        ItemsSource="{Binding Path=SubWayLines[1].TotalRate}">
                                         </chart:ChartSeries>
                                     </chart:RadialGaugeChart.Series>
                                 </chart:RadialGaugeChart>
                                 <Border Grid.Row="1" Grid.Column="1" >
-                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="进:2W"></TextBlock>
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" >
+                                        <Run Text="进:"></Run><Run Text="{Binding Path=SubWayLines[1].InNumber}"></Run><Run Text="W"></Run>
+                                    </TextBlock>
                                 </Border>
                                 <Border Grid.Row="2" Grid.Column="1" >
-                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="出:1W"></TextBlock>
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" >
+                                    <Run Text="出:"></Run><Run Text="{Binding Path=SubWayLines[1].OutNumber}"></Run><Run Text="W"></Run>
+                                    </TextBlock>
                                 </Border>
                                 <Border Grid.Row="3" Grid.Column="1" >
-                                    <TextBlock Style="{StaticResource BossPopupContentText}" Text="总:3W"></TextBlock>
+                                    <TextBlock Style="{StaticResource BossPopupContentText}" >
+                                    <Run Text="总:"></Run><Run Text="{Binding Path=SubWayLines[1].TotalNumber}"></Run><Run Text="W"></Run>
+                                    </TextBlock>
                                 </Border>
 
                             </Grid>
@@ -504,17 +518,23 @@
                                     <ColumnDefinition  Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Border   Style="{StaticResource NotifyContainer}"   Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
-                                    <TextBlock   Style="{StaticResource NotifyContainerText}" >列车位置</TextBlock>
+                                <Border   Style="{Binding SubWayLines[0].TrainIsWarn,
+            Converter={StaticResource ValToNotifyStyleConverter}}"   Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
+                                    <TextBlock  Style="{Binding SubWayLines[0].TrainIsWarn,
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">列车位置</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="1" Grid.Row="0"   >
-                                    <TextBlock    Style="{StaticResource NotifyContainerText}">客流</TextBlock>
+                                <Border Style="{Binding SubWayLines[0].PassIsWarn,
+            Converter={StaticResource ValToNotifyStyleConverter}}" Grid.Column="1" Grid.Row="0"   >
+                                    <TextBlock    Style="{Binding SubWayLines[0].PassIsWarn,
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">客流</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"     >
                                     <TextBlock   Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="1" Grid.Row="1"   >
-                                    <TextBlock    Style="{StaticResource NotifyContainerText}">设施设备</TextBlock>
+                                <Border Style="{Binding SubWayLines[0].EquipIsWarn,
+            Converter={StaticResource ValToNotifyStyleConverter}}" Grid.Column="1" Grid.Row="1"   >
+                                    <TextBlock   Style="{Binding SubWayLines[0].EquipIsWarn,
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">设施设备</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"    >
                                     <TextBlock    Style="{StaticResource NotifyContainerText}">环境状况</TextBlock>
@@ -537,17 +557,23 @@
                                     <ColumnDefinition  Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Border Style="{StaticResource NotifyContainer}"     Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
-                                    <TextBlock  Style="{StaticResource NotifyContainerText}">列车位置</TextBlock>
+                                <Border  Style="{Binding SubWayLines[1].TrainIsWarn,
+            Converter={StaticResource ValToNotifyStyleConverter}}"     Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
+                                    <TextBlock  Style="{Binding SubWayLines[1].TrainIsWarn,
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">列车位置</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}"  Grid.Column="1" Grid.Row="0"   >
-                                    <TextBlock  Style="{StaticResource NotifyContainerText}">客流</TextBlock>
+                                <Border  Style="{Binding SubWayLines[1].PassIsWarn,
+            Converter={StaticResource ValToNotifyStyleConverter}}"  Grid.Column="1" Grid.Row="0"   >
+                                    <TextBlock  Style="{Binding SubWayLines[1].PassIsWarn,
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">客流</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"    >
                                     <TextBlock  Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="1" Grid.Row="1"    >
-                                    <TextBlock  Style="{StaticResource NotifyContainerText}">设施设备</TextBlock>
+                                <Border Style="{Binding SubWayLines[1].EquipIsWarn,
+            Converter={StaticResource ValToNotifyStyleConverter}}" Grid.Column="1" Grid.Row="1"    >
+                                    <TextBlock  Style="{Binding SubWayLines[1].EquipIsWarn,
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">设施设备</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"  >
                                     <TextBlock  Style="{StaticResource NotifyContainerText}">环境状况</TextBlock>

@@ -3,3 +3,8 @@ E:\苏州交通\Project\MonitorPlatform\DataProcess\bin\Debug\DataProcess.pdb
 E:\苏州交通\Project\MonitorPlatform\DataProcess\obj\Debug\ResolveAssemblyReference.cache
 E:\苏州交通\Project\MonitorPlatform\DataProcess\obj\Debug\DataProcess.dll
 E:\苏州交通\Project\MonitorPlatform\DataProcess\obj\Debug\DataProcess.pdb
+E:\MonitorPlatform\DataProcess\obj\Debug\ResolveAssemblyReference.cache
+E:\MonitorPlatform\DataProcess\obj\Debug\DataProcess.dll
+E:\MonitorPlatform\DataProcess\obj\Debug\DataProcess.pdb
+E:\MonitorPlatform\DataProcess\bin\Debug\DataProcess.dll
+E:\MonitorPlatform\DataProcess\bin\Debug\DataProcess.pdb

@@ -3,6 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:f="clr-namespace:MapPlugin;assembly=Com.MapPlugin"
+       xmlns:control="clr-namespace:MonitorPlatform.Controls" 
       ShowsNavigationUI="False"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -20,8 +22,8 @@
             </Border>
         </Border>
 
-        <Border>
-            <Label Content="GIS插件待嵌入。。。。"></Label>
+        <Border Grid.Row="1" > 
+            <control:NewGis />
         </Border>
 
     </Grid>

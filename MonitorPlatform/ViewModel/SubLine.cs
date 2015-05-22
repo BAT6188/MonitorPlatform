@@ -23,6 +23,105 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("Name");
             }
         }
+        private float innumber;
+        public float InNumber
+        {
+            get
+            {
+                return innumber;
+            }
+            set
+            {
+                innumber = value;
+                NotifyPropertyChanged("InNumber");
+            }
+        }
+
+        private float outnumber;
+        public float OutNumber
+        {
+            get
+            {
+                return outnumber;
+            }
+            set
+            {
+                outnumber = value;
+                NotifyPropertyChanged("OutNumber");
+            }
+        }
+
+        private float totalnumber;
+        public float TotalNumber
+        {
+            get
+            {
+                return totalnumber;
+            }
+            set
+            {
+                totalnumber = value;
+                NotifyPropertyChanged("TotalNumber");
+            }
+        }
+
+        // 进站人数/总人数
+        private ObservableCollection<InOutTotal> totalrate = new ObservableCollection<InOutTotal>();
+        public ObservableCollection<InOutTotal> TotalRate
+        {
+            get
+            {
+                return totalrate;
+            }
+            set
+            {
+                totalrate = value;
+                NotifyPropertyChanged("TotalRate");
+            }
+        }
+
+
+        private bool trainIsWarn;
+        public bool TrainIsWarn
+        {
+            get
+            {
+                return trainIsWarn;
+            }
+            set
+            {
+                trainIsWarn = value;
+                NotifyPropertyChanged("TotalRate");
+            }
+        }
+
+        private bool passIsWarn;
+        public bool PassIsWarn
+        {
+            get
+            {
+                return passIsWarn;
+            }
+            set
+            {
+                passIsWarn = value;
+                NotifyPropertyChanged("PassIsWarn");
+            }
+        }
+
+        private bool equipIsWarn;
+        public bool EquipIsWarn
+        {
+            get
+            {
+                return equipIsWarn;
+            }
+            set
+            {
+                equipIsWarn = value;
+                NotifyPropertyChanged("EquipIsWarn");
+            }
+        }
 
 
         private int cameraTotalNumber;
@@ -238,5 +337,50 @@ namespace MonitorPlatform.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
     
+    }
+
+
+    public class InOutTotal : INotifyPropertyChanged
+    {
+
+        private String name;
+        public String Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
+
+
+        private int totalRate;
+        public int TotalRate
+        {
+            get
+            {
+                return totalRate;
+            }
+            set
+            {
+                totalRate = value;
+                NotifyPropertyChanged("TotalRate");
+            }
+        }
+
+        
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

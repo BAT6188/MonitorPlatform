@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
+using MonitorPlatform.Data;
 
 namespace MonitorPlatform
 {
@@ -27,6 +28,7 @@ namespace MonitorPlatform
         {
 
             this.DataContext = MonitorDataModel.Instance();
+           
         }
     }
 }

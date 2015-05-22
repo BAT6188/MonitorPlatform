@@ -23,6 +23,12 @@ namespace MonitorPlatform.Pages
         public BossRight()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(BossRight_Loaded);
+        }
+
+        void BossRight_Loaded(object sender, RoutedEventArgs e)
+        {
+            videoControl.SetLayout(4);
         }
        
     }

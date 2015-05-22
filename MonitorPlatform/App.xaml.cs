@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using ZNJT.WebProxy;
 
 namespace MonitorPlatform
 {
@@ -12,5 +13,7 @@ namespace MonitorPlatform
     /// </summary>
     public partial class App : Application
     {
+        
+      
     }
 }

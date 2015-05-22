@@ -8,6 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/axinterop.vspocxclientlib.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/com.customcontrol.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/com.mapplugin.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/customcontrollibrary.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/gmap.net.core.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/gmap.net.windowspresentation.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/interop.vspocxclientlib.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/system.windows.controls.datavisualization.toolkit.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/wpftoolkit.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/znjt.webproxy.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/devexpress.charts.v11.1.core.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/devexpress.data.v11.1.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/devexpress.xpf.charts.v11.1.dll")]
