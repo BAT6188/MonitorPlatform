@@ -43,13 +43,13 @@
                                     <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="上行: 钟南街－木渎" />
                                     <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="首发时间: 06:00" />
                                     <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="末发时间: 22:45" />
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="当前运行车辆数: 5" />
+                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[0].UptrainCount}"></Run></TextBlock>
                                 </StackPanel>
                                 <StackPanel Height="100" Name="stackPanel5" Grid.Column ="1" HorizontalAlignment="Center" >
                                     <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="下行: 木渎－钟南街" />
                                     <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="首发时间: 06:00" />
                                     <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="末发时间: 22:45" />
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="当前运行车辆数: 5" />
+                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[0].DowntrainCount}"></Run></TextBlock>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -66,13 +66,13 @@
                                 <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="上行: 钟南街－木渎" />
                                 <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="首发时间: 06:00" />
                                 <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="末发时间: 22:45" />
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="当前运行车辆数: 5" />
+                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[1].UptrainCount}"></Run></TextBlock>
                             </StackPanel>
                             <StackPanel Height="100"  Grid.Column ="1" HorizontalAlignment="Center" >
                                 <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="下行: 木渎－钟南街" />
                                 <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="首发时间: 06:00" />
                                 <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="末发时间: 22:45" />
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="当前运行车辆数: 5" />
+                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[1].DowntrainCount}"></Run></TextBlock>
                             </StackPanel>
                         </Grid>
                     </StackPanel>

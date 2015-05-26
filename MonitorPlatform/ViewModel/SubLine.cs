@@ -180,6 +180,36 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        //上行车 数量
+        private int uptrainCount;
+        public int UptrainCount
+        {
+            get
+            {
+                return uptrainCount;
+            }
+            set
+            {
+                uptrainCount = value;
+                NotifyPropertyChanged("UptrainCount");
+            }
+        }
+
+        //上行车 数量
+        private int downtrainCount;
+        public int DowntrainCount
+        {
+            get
+            {
+                return downtrainCount;
+            }
+            set
+            {
+                downtrainCount = value;
+                NotifyPropertyChanged("downtrainCount");
+            }
+        }
+
 
         private ObservableCollection<PersonsRateSum> personrates = new ObservableCollection<PersonsRateSum>();
         public ObservableCollection<PersonsRateSum> Personrates

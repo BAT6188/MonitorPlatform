@@ -105,7 +105,11 @@ namespace MonitorPlatform.Data
             SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
 
             line1.Trains.Clear();
+            line1.UptrainCount = 0;
+            line1.DowntrainCount = 0;
             line2.Trains.Clear();
+            line2.UptrainCount = 0;
+            line2.DowntrainCount = 0;
             XmlNodeList nodes = doc.SelectNodes("/Document/ServiceLine");
             foreach (XmlNode node in nodes)
             {
@@ -119,10 +123,12 @@ namespace MonitorPlatform.Data
                     if (node.SelectSingleNode("Direction").InnerText == "往钟南街方向")
                     {
                         train.IsDown = false;
+                        line1.UptrainCount++;
                     }
                     else
                     {
                         train.IsDown = true;
+                        line1.DowntrainCount++;
                     }
                     line1.Trains.Add(train);
                 }
@@ -131,10 +137,12 @@ namespace MonitorPlatform.Data
                     if (node.SelectSingleNode("Direction").InnerText == "往宝带桥南方向")
                     {
                         train.IsDown = false;
+                        line2.UptrainCount++;
                     }
                     else
                     {
                         train.IsDown = true;
+                        line2.DowntrainCount++;
                     }
                     line2.Trains.Add(train);
                 }
