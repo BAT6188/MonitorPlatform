@@ -76,7 +76,7 @@
             </Border>
 
             <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                <dxg:GridControl Background="Transparent"   Opacity="0.5"  x:Name="grid"   Template="{StaticResource GridTemplate}"  ItemsSource="{Binding Path=SubWayLines[0].Stations}">
+                <dxg:GridControl Background="Transparent"   Opacity="0.5"  x:Name="grid"   Template="{StaticResource GridTemplate}"  ItemsSource="{Binding Path=SubWayLines[0].History_Stations}">
 
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn  FieldName="Name"  Header="站点" />

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MonitorPlatform.Data;
 
 namespace MonitorPlatform.Pages
 {
@@ -26,7 +27,17 @@ namespace MonitorPlatform.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            
             chart.Animate();
+        }
+
+        private void datePicker1_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (datePicker1.SelectedDate.HasValue)
+            {
+                DataCenter.Instance.UpdateTrafficCenter(datePicker1.SelectedDate.Value);
+                DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value);
+            }
         }
     }
 }

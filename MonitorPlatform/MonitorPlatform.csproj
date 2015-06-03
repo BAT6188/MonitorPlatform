@@ -193,6 +193,7 @@
     </Compile>
     <Compile Include="ViewModel\Camera.cs" />
     <Compile Include="ViewModel\Equipment.cs" />
+    <Compile Include="ViewModel\HistoryStation.cs" />
     <Compile Include="ViewModel\MonitorDataModel.cs" />
     <Compile Include="ViewModel\Station.cs" />
     <Compile Include="ViewModel\SubLine.cs" />

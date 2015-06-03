@@ -180,6 +180,21 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        private ObservableCollection<HistoryStation> hisstations = new ObservableCollection<HistoryStation>();
+        public ObservableCollection<HistoryStation> History_Stations
+        {
+            get
+            {
+                return hisstations;
+            }
+            set
+            {
+                hisstations = value;
+                NotifyPropertyChanged("History_Stations");
+            }
+        }
+
+
         //上行车 数量
         private int uptrainCount;
         public int UptrainCount
@@ -210,7 +225,24 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        //历史上某一天 进站人数
 
+
+        private ObservableCollection<InOutTotal> totalrate_history = new ObservableCollection<InOutTotal>();
+        public ObservableCollection<InOutTotal> TotalRate_history
+        {
+            get
+            {
+                return totalrate_history;
+            }
+            set
+            {
+                totalrate_history = value;
+                NotifyPropertyChanged("TotalRate_history");
+            }
+        }
+
+        //分时进站人数 7点，8点，9点....
         private ObservableCollection<PersonsRateSum> personrates = new ObservableCollection<PersonsRateSum>();
         public ObservableCollection<PersonsRateSum> Personrates
         {

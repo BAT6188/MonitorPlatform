@@ -25,7 +25,7 @@ namespace MonitorPlatform
     {
         RightWindows right;
         CenterWindow center;
-        DataCenter data;
+        
         public LeftWindow()
         {
             InitializeComponent();
@@ -33,9 +33,9 @@ namespace MonitorPlatform
             center = new CenterWindow();
             right.Show();
             center.Show();
-            data = new DataCenter(this);
-            data.Login();
-            data.UpdateBoss();
+            DataCenter.Instance.Inital(this);
+            DataCenter.Instance.Login();
+            DataCenter.Instance.UpdateBoss();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -59,6 +59,10 @@ namespace MonitorPlatform.Pages
                         sublinename.Text = "2";
                         sublineBorder.Background = new SolidColorBrush(Colors.Red);
                     }
+                    if (line == 1)
+                    {
+                        station = 23 - station;
+                    }
                     Station s = data.SubWayLines[line - 1].Stations[station];
                     stationName.Text = s.Name;
                     inNumber.Text = s.InNumber.ToString();

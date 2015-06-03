@@ -19,10 +19,28 @@ namespace MonitorPlatform.Data
         public delegate void UpdateUIDate(string data);
         private static WebInvoker proxy;
         private Window win;
-        //private static string userid;
-        public DataCenter(Window window)
+
+        private static DataCenter instance;
+
+        public static DataCenter Instance
+        {
+            get {
+                if (instance == null)
+                {
+                    instance = new DataCenter();
+                }
+                return instance;
+            }
+        }
+
+        public void Inital(Window window)
         {
             win = window;
+        }
+
+        //private static string userid;
+        public DataCenter()
+        {
             string webUrl = string.Empty;
             if (ConfigurationManager.AppSettings.AllKeys.Contains("WebUrl"))
             {
@@ -58,8 +76,33 @@ namespace MonitorPlatform.Data
                 win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
             });
         }
+        public void UpdateTrafficCenter(DateTime time)
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Day_Info");
+            XmlNodeHelper.AddSubValue(tfNode, "QueryDate", "TEXT", time.ToString("yyyy-MM-dd"));
+            string xmlTransform = tfNode.ToString();
 
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainCenterUIData), result.Data);
+            });
+        }
 
+        public void UpdateTrafficRight(DateTime time)
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "StationAFC_Day_Info");
+            XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "68BDB0FB-1118-1901-0922-3F7D78384FF5");
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainRightUIData), result.Data);
+            });
+        }
+
+    
 
         private void UpdateBossStation(XmlNode firstrail, SubLine line1, bool isfirst)
         {
@@ -97,6 +140,22 @@ namespace MonitorPlatform.Data
                 BadNumber = int.Parse(equip.SelectSingleNode("WarnCount").InnerText)
             });
         }
+
+        private void UpdateTraficStation(XmlNode linenode, SubLine line1)
+        {
+            XmlNodeList passnodes = linenode.SelectNodes("PassInfo");
+            line1.Personrates.Clear();
+            foreach (XmlNode passnode in passnodes)
+            {
+                
+                line1.Personrates.Add(new PersonsRateSum()
+                {
+                    Time = passnode.SelectSingleNode("HourTime").InnerText,
+                    Number = int.Parse(passnode.SelectSingleNode("PassTotal").InnerText)
+                });
+            }
+        }
+
         private void UpdateBossUIData(string data)
         {
             XmlDocument doc = new XmlDocument();
@@ -157,5 +216,79 @@ namespace MonitorPlatform.Data
             line1.EquipIsWarn = doc.SelectSingleNode("/Document/EquipIsWarn").InnerText == "1";
 
         }
+
+        private void UpdateTrainCenterUIData(string data)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[0];
+            SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
+
+
+            XmlNodeList  nodes = doc.SelectNodes("/Document/RailLine");
+
+            int line1Total = 0;
+            int line2Total = 0;
+            foreach (XmlNode node in nodes)
+            {
+                if (node.SelectSingleNode("Name").InnerText == "1号线")
+                {
+                    line1Total = int.Parse(node.SelectSingleNode("PassTotal").InnerText);
+                    UpdateTraficStation(node, line1);
+                   
+                }
+                else
+                {
+                    line2Total = int.Parse(node.SelectSingleNode("PassTotal").InnerText);
+                    UpdateTraficStation(node, line2);
+                }
+            }
+
+            if (line1Total + line2Total != 0)
+            {
+                line1.TotalRate_history.Clear();
+                int line1rate = (int)(((float)line1Total / (line1Total + line2Total)) * 100);
+                line1.TotalRate_history.Add(new InOutTotal()
+                {
+                    Name = "1",
+                    TotalRate = line1rate
+                });
+
+                line2.TotalRate_history.Clear();
+                line2.TotalRate_history.Add(new InOutTotal()
+                {
+                    Name = "2",
+                    TotalRate = 100 - line1rate
+                });
+            }
+
+        }
+
+        private void UpdateTrainRightUIData(string data)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[0];
+            SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
+
+            line1.History_Stations.Clear();
+            XmlNodeList nodes = doc.SelectNodes("/Document/Station");
+
+            foreach (XmlNode node in nodes)
+            {
+                HistoryStation his = new HistoryStation();
+                his.Name = node.SelectSingleNode("Name").InnerText;
+                his.InNumber = int.Parse(node.SelectSingleNode("PassIn").InnerText);
+                his.OutNumber = int.Parse(node.SelectSingleNode("PassOut").InnerText);
+                his.TotalNumber = int.Parse(node.SelectSingleNode("PassTotal").InnerText);
+                his.UpBeginTime = DateTime.Parse(node.SelectSingleNode("UStartTime").InnerText);
+                his.UpEndTime = DateTime.Parse(node.SelectSingleNode("UEndTime").InnerText);
+                his.DownBeginTime = DateTime.Parse(node.SelectSingleNode("DStartTime").InnerText);
+                his.DownEndTime = DateTime.Parse(node.SelectSingleNode("DEndTime").InnerText);
+                his.TrafficJam = int.Parse(node.SelectSingleNode("CrowdCount").InnerText);
+                line1.History_Stations.Add(his);
+            }
+        }
+
     }
 }

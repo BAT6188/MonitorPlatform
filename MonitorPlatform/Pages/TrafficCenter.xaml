@@ -35,7 +35,7 @@
                     <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道交通客流状态分析"></TextBlock>
                 </Border>
                 <Border   Grid.Column="2"  >
-                    <DatePicker  HorizontalAlignment="Right"  VerticalAlignment="Center"  Height="25"  Style="{StaticResource DatePickerStyle}"  Name="datePicker1" >
+                    <DatePicker  HorizontalAlignment="Right"  VerticalAlignment="Center"  Height="25"  Style="{StaticResource DatePickerStyle}" SelectedDateChanged="datePicker1_SelectedDateChanged"  Name="datePicker1" >
 
                     </DatePicker>
                 </Border>
@@ -82,10 +82,9 @@
                             <chart:ChartSeries
                                         SeriesCaptionVisibility ="Hidden"
                         SeriesTitle="Errors"
-                        DisplayMember="Category"
-                                
-                        ValueMember="Number"
-                        ItemsSource="{Binding Path=FirstLine}">
+                      DisplayMember="Name"
+                        ValueMember="TotalRate"
+                        ItemsSource="{Binding Path=SubWayLines[0].TotalRate_history}">
                             </chart:ChartSeries>
                         </chart:RadialGaugeChart.Series>
                     </chart:RadialGaugeChart>
@@ -109,9 +108,9 @@
                          <chart:RadialGaugeChart.Series>
                             <chart:ChartSeries
                          SeriesTitle="Errors"
-                        DisplayMember="Category"
-                        ValueMember="Number"
-                        ItemsSource="{Binding Path=SecondLine}">
+                DisplayMember="Name"
+                        ValueMember="TotalRate"
+                        ItemsSource="{Binding Path=SubWayLines[1].TotalRate_history}">
                             </chart:ChartSeries>
 
                         </chart:RadialGaugeChart.Series>

@@ -3,26 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using System.Collections.ObjectModel;
 
 namespace MonitorPlatform.ViewModel
 {
-    public class Station : INotifyPropertyChanged
+    public class HistoryStation : INotifyPropertyChanged
     {
-
-        private int id = 0;
-        public int ID
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-                NotifyPropertyChanged("ID");
-            }
-        }
         private string name = "";
         public string Name
         {
@@ -34,21 +19,6 @@ namespace MonitorPlatform.ViewModel
             {
                 name = value;
                 NotifyPropertyChanged("Name");
-            }
-        }
-
-
-        private int cameraNumber;
-        public int CameraNumber
-        {
-            get
-            {
-                return cameraNumber;
-            }
-            set
-            {
-                cameraNumber = value;
-                NotifyPropertyChanged("CameraNumber");
             }
         }
 
@@ -136,6 +106,21 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("OutNumber");
             }
         }
+
+        private int totalNumber;
+        public int TotalNumber
+        {
+            get
+            {
+                return totalNumber;
+            }
+            set
+            {
+                totalNumber = value;
+                NotifyPropertyChanged("TotalNumber");
+            }
+        }
+
         //拥堵数量
         private int trafficJam;
         public int TrafficJam
@@ -166,67 +151,6 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
-        //1 is normal, 2 is yellow 3 is busy.
-        private int status = 1;
-        public int Status
-        {
-            get
-            {
-                return status;
-            }
-            set
-            {
-                status = value;
-                NotifyPropertyChanged("Status");
-            }
-        }
-
-        //1 is normal, 2 is yellow 3 is busy.
-        private int arrivetime = 3;
-        public int Arrivetime
-        {
-            get
-            {
-                return arrivetime;
-            }
-            set
-            {
-                arrivetime = value;
-                NotifyPropertyChanged("Arrivetime");
-            }
-        }
-
-        
-
-        private ObservableCollection<Equipment> equipments = new ObservableCollection<Equipment>();
-        public ObservableCollection<Equipment> Equipments
-        {
-            get
-            {
-                return equipments;
-            }
-            set
-            {
-                equipments = value;
-                NotifyPropertyChanged("Equipments");
-            }
-        }
-
-
-        private ObservableCollection<Camera> cameras = new ObservableCollection<Camera>();
-        public ObservableCollection<Camera> Cameras
-        {
-            get
-            {
-                return cameras;
-            }
-            set
-            {
-                cameras = value;
-                NotifyPropertyChanged("Cameras");
-            }
-        }
-
 
         private void NotifyPropertyChanged(string property)
         {
@@ -238,5 +162,4 @@ namespace MonitorPlatform.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
-   
 }
