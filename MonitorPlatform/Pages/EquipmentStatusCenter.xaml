@@ -34,7 +34,7 @@
                     <Canvas x:Name="线路" Height="53" Width="644" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Path x:Name="矩形_10" Data="F1M1,1C1,1 643,1 643,1 643,1 643,51 643,51 643,51 1,51 1,51 1,51 1,1 1,1z" Fill="#FF092B61" Height="52" Canvas.Left="0" Canvas.Top="1" Width="644"/>
                         <Path x:Name="矩形_3" Data="F1M2,2C2,2 5,2 5,2 5,2 5,52 5,52 5,52 2,52 2,52 2,52 2,2 2,2z" Fill="#FF0353CB" Height="53" Canvas.Left="205" Canvas.Top="0" Width="6"/>
-                        <CheckBox Content="1号线" Height="23.757" Canvas.Left="318" Style="{DynamicResource SubWayCheckStyle}" Canvas.Top="18" Width="193"/>
+                        <CheckBox  Name="chkLine" IsChecked ="True"  Content="1号线" Click="chkLine_Click"     Height="23.757" Canvas.Left="318" Style="{DynamicResource SubWayCheckStyle}" Canvas.Top="18" Width="193"/>
                         <TextBlock x:Name="线路1" Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" Canvas.Left="88" TextAlignment="Center" TextWrapping="Wrap" Text="线路" Canvas.Top="17"/>
                     </Canvas>
                     <Canvas x:Name="设施设备类型" Height="53" Margin="664,0,0,0" VerticalAlignment="Top">
@@ -56,14 +56,14 @@
                         </Viewbox>
                         <Path x:Name="形状_1_副本_1" Data="M3,3 C3,3 0,0 0,0" Fill="#FFF39700" Height="3" Canvas.Left="291" Canvas.Top="18" Width="3" Stretch="Fill"/>
                         <Path x:Name="形状_1_副本_8" Data="M3,3 C3,3 0,0 0,0" Fill="#FFF39700" Height="3" Canvas.Left="1184" Canvas.Top="18" Width="3" Stretch="Fill"/>
-                        <CheckBox Content="AFC" IsChecked="True"  Height="26.757" Canvas.Left="488" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="15" Width="108"/>
-                        <TextBlock x:Name="PA" Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" Canvas.Left="1639" TextAlignment="Left" TextWrapping="Wrap" Canvas.Top="18"/>
-                        <CheckBox Content="FAS" Height="26.757" Canvas.Left="718" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Content="BAS" Height="26.757" Canvas.Left="935.333" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Content="PSCADA" Height="26.757" Canvas.Left="298" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Content="PSD" Height="26.757" Canvas.Left="1158.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Content="PIS" Height="26.757" Canvas.Left="1384.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Content="FA" Height="26.757" Canvas.Left="1610.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_AFC"  Content="AFC" IsChecked="True"  Height="26.757" Canvas.Left="488" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="15" Width="108"/>
+                        <TextBlock  x:Name="PA" Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" Canvas.Left="1639" TextAlignment="Left" TextWrapping="Wrap" Canvas.Top="18"/>
+                        <CheckBox Name="chk_FAS" Content="FAS" Height="26.757" Canvas.Left="718" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_BAS" Content="BAS" Height="26.757" Canvas.Left="935.333" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PSCADA" Content="PSCADA" Height="26.757" Canvas.Left="298" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PSD" Content="PSD" Height="26.757" Canvas.Left="1158.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PIS" Content="PIS" Height="26.757" Canvas.Left="1384.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PA" Content="PA" Height="26.757" Canvas.Left="1610.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
                     </Canvas>
                 </Grid>
             </Viewbox>
@@ -76,14 +76,14 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <dxg:GridControl Grid.Column="0"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  ItemsSource="{Binding Path=SubWayLines[0].Stations}">
+                <dxg:GridControl Grid.Column="0"      Name="gridStation"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
 
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn  FieldName="Name"  Header="位置/站点" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="设备设施故障总数" />
+                        <dxg:GridColumn FieldName="BrokenNumber"  Header="设备设施故障总数" />
                     </dxg:GridControl.Columns>
-                    <dxg:GridControl.View>
-                        <dxg:TableView Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >
+                    <dxg:GridControl.View >
+                        <dxg:TableView  Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >
                             <dxg:TableView.RowStyle>
                                 <Style BasedOn="{StaticResource {dxgt:GridRowThemeKey ResourceKey=RowStyle}}"  TargetType="{x:Type dxg:GridRowContent}">
                                     <Style.Triggers>
@@ -106,17 +106,17 @@
 
                 </dxg:GridControl>
 
-                <dxg:GridControl Grid.Column="1" Margin="10,0,0,0"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  ItemsSource="{Binding Path=SubWayLines[0].Stations}">
+                <dxg:GridControl Name="griddetail"  Grid.Column="1" Margin="10,0,0,0"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
 
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn  FieldName="Name"  Header="设备设施" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="设备编号" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="设备名称" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="设备种类" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="具体位置" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="设备用途" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="设备状态" />
-                        <dxg:GridColumn FieldName="InNumber"  Header="预警级别" />
+                        <dxg:GridColumn  FieldName="Owner"  Header="设备所属" />
+                        <dxg:GridColumn FieldName="ID"  Header="设备编号" />
+                        <dxg:GridColumn FieldName="Name"  Header="设备名称" />
+                        <dxg:GridColumn FieldName="EquipmentType"  Header="设备种类" />
+                        <dxg:GridColumn FieldName="Location"  Header="具体位置" />
+                        <dxg:GridColumn FieldName="Use"  Header="设备用途" />
+                        <dxg:GridColumn FieldName="Status"  Header="设备状态" />
+                        <dxg:GridColumn FieldName="WaringLevel"  Header="预警级别" />
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
                         <dxg:TableView Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >

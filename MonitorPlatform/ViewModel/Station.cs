@@ -196,7 +196,19 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
-        
+        private string staguid = "";
+        public string StaGUID
+        {
+            get
+            {
+                return staguid;
+            }
+            set
+            {
+                staguid = value;
+                NotifyPropertyChanged("StaGUID");
+            }
+        }
 
         private ObservableCollection<Equipment> equipments = new ObservableCollection<Equipment>();
         public ObservableCollection<Equipment> Equipments

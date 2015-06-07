@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.Controls;
+using MonitorPlatform.ViewModel;
 
 namespace MonitorPlatform.Pages
 {
@@ -29,7 +30,9 @@ namespace MonitorPlatform.Pages
             bigsectionwithout = (Style)Application.Current.TryFindResource("BigPopupWithoutBorderSection");
             line1Border.MouseUp += new MouseButtonEventHandler(line1Border_MouseUp);
             line2Border.MouseUp += new MouseButtonEventHandler(line2Border_MouseUp);
+            MonitorDataModel.Instance().CurrrentLine = MonitorDataModel.Instance().SubWayLines[0];
         }
+        
 
         void line2Border_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -37,7 +40,10 @@ namespace MonitorPlatform.Pages
             line2Border.Style = bigsection;
             txtLineNumber.Text = "2";
             borderLineNumber.Background = new SolidColorBrush(Colors.Red);
-            borderLines.Child = new Line2Status();
+            Line2Status sta = new Line2Status();
+            sta.DataContext = MonitorDataModel.Instance().SubWayLines[1].StaTroubles;
+            borderLines.Child = sta;
+            MonitorDataModel.Instance().CurrrentLine = MonitorDataModel.Instance().SubWayLines[1];
         }
 
         void line1Border_MouseUp(object sender, MouseButtonEventArgs e)
@@ -47,7 +53,11 @@ namespace MonitorPlatform.Pages
             line1Border.Style = bigsection;
             line2Border.Style = bigsectionwithout;
             borderLineNumber.Background = new SolidColorBrush(Colors.Green);
+            Line1Status sta = new Line1Status();
+            sta.DataContext = MonitorDataModel.Instance().SubWayLines[0].StaTroubles;
             borderLines.Child = new Line1Status();
+            MonitorDataModel.Instance().CurrrentLine = MonitorDataModel.Instance().SubWayLines[0];
+            
         }
     }
 }

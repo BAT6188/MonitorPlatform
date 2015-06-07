@@ -17,11 +17,21 @@ namespace MonitorPlatform.Controls
     /// <summary>
     /// Line1Status.xaml 的交互逻辑
     /// </summary>
-    public partial class Line1Status : UserControl
+    public partial class Line1Status : LineStatusControl
     {
         public Line1Status()
         {
             InitializeComponent();
         }
+
+        public override int StationCount
+        {
+            get
+            {
+                return 24;
+            }
+        }
     }
+
+ 
 }

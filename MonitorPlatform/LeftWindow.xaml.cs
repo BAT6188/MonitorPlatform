@@ -36,6 +36,8 @@ namespace MonitorPlatform
             DataCenter.Instance.Inital(this);
             DataCenter.Instance.Login();
             DataCenter.Instance.UpdateBoss();
+            DataCenter.Instance.UpdateEquipmentLeft();
+            DataCenter.Instance.UpdateEquipmentCenter();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

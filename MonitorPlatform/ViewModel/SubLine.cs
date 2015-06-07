@@ -272,6 +272,36 @@ namespace MonitorPlatform.ViewModel
         }
 
 
+        private ObservableCollection<StationTroubleStatus> statroubles = new ObservableCollection<StationTroubleStatus>();
+        public ObservableCollection<StationTroubleStatus> StaTroubles
+        {
+            get
+            {
+                return statroubles;
+            }
+            set
+            {
+                statroubles = value;
+                NotifyPropertyChanged("StaTroubles");
+            }
+        }
+
+
+        private ObservableCollection<VoltageStatus> voltagestat = new ObservableCollection<VoltageStatus>();
+        public ObservableCollection<VoltageStatus> VoltageStat
+        {
+            get
+            {
+                return voltagestat;
+            }
+            set
+            {
+                voltagestat = value;
+                NotifyPropertyChanged("VoltageStatus");
+            }
+        }
+
+
         private ObservableCollection<Train> trains = new ObservableCollection<Train>();
         public ObservableCollection<Train> Trains
         {
@@ -357,7 +387,6 @@ namespace MonitorPlatform.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
-
     public class PersonsRateSum : INotifyPropertyChanged
     {
         private String time;
@@ -401,7 +430,6 @@ namespace MonitorPlatform.ViewModel
     
     }
 
-
     public class InOutTotal : INotifyPropertyChanged
     {
 
@@ -435,6 +463,121 @@ namespace MonitorPlatform.ViewModel
         }
 
         
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    public class StationTroubleStatus : INotifyPropertyChanged
+    {
+        private int id;
+        public int ID
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                NotifyPropertyChanged("ID");
+            }
+        }
+
+
+        private int warncount;
+        public int WarnCount
+        {
+            get
+            {
+                return warncount;
+            }
+            set
+            {
+                warncount = value;
+                NotifyPropertyChanged("WarnCount");
+            }
+        }
+
+
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    public class VoltageStatus : INotifyPropertyChanged
+    {
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
+
+
+        private int val_110;
+        public int Val_110
+        {
+            get
+            {
+                return val_110;
+            }
+            set
+            {
+                val_110 = value;
+                NotifyPropertyChanged("Val_110");
+            }
+        }
+
+        private int val_35;
+        public int Val_35
+        {
+            get
+            {
+                return val_35;
+            }
+            set
+            {
+                val_35 = value;
+                NotifyPropertyChanged("Val_35");
+            }
+        }
+
+        private int cabtemp;
+        public int CabTemp
+        {
+            get
+            {
+                return cabtemp;
+            }
+            set
+            {
+                cabtemp = value;
+                NotifyPropertyChanged("CabTemp");
+            }
+        }
+
+
+
         private void NotifyPropertyChanged(string property)
         {
             if (PropertyChanged != null)

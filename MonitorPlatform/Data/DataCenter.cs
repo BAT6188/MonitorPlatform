@@ -17,6 +17,8 @@ namespace MonitorPlatform.Data
     {
         public const string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
         public delegate void UpdateUIDate(string data);
+        public delegate void UpdateUIDateWithLine(string data, int line);
+        public delegate void UpdateUIDateWithLineDetail(string data, int line,string staguid);
         private static WebInvoker proxy;
         private Window win;
 
@@ -76,6 +78,7 @@ namespace MonitorPlatform.Data
                 win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
             });
         }
+        
         public void UpdateTrafficCenter(DateTime time)
         {
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
@@ -102,7 +105,78 @@ namespace MonitorPlatform.Data
             });
         }
 
-    
+        public void UpdateEquipmentLeft()
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipLineQueryInfo");
+            XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "4ce1f6eb-5334-419b-bea3-a20e16b7e205");
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data,0);
+            });
+
+
+             
+             tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipLineQueryInfo");
+            XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "60f2d09f-1321-4111-955d-66a404d80fcd");
+             xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data ,1);
+            });
+
+
+        }
+
+        public void UpdateEquipmentCenter()
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipStationQueryInfo");
+            XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "4ce1f6eb-5334-419b-bea3-a20e16b7e205");
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 0);
+            });
+
+
+
+            tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipStationQueryInfo");
+            XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "60f2d09f-1321-4111-955d-66a404d80fcd");
+            xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 1);
+            });
+
+
+        }
+
+        public void UpdateEquipmentDetailCenter(string statguid,string euiptypes, int lineid)
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipStationDetailInfo");
+            //XmlNodeHelper.AddSubValue(tfNode, "StationGuid", "TEXT", "bdb2720a-a08b-43bd-a8ba-af9e1bc89998");
+            XmlNodeHelper.AddSubValue(tfNode, "StationGuid", "TEXT", statguid);
+
+            XmlNodeHelper.AddSubValue(tfNode, "PType", "TEXT", euiptypes);
+            XmlNodeHelper.AddSubValue(tfNode, "PageSize", "LONG", "50");
+            XmlNodeHelper.AddSubValue(tfNode, "CurrentPage", "LONG", "1");
+            XmlNodeHelper.AddSubValue(tfNode, "IsPage", "LONG", "False");
+            //1号线 4ce1f6eb-5334-419b-bea3-a20e16b7e205
+            //2号线 60f2d09f-1321-4111-955d-66a404d80fcd
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateEquipmentCenterLineDetailUIData), result.Data, lineid, statguid);
+            });
+        }
 
         private void UpdateBossStation(XmlNode firstrail, SubLine line1, bool isfirst)
         {
@@ -114,7 +188,8 @@ namespace MonitorPlatform.Data
             line1.TotalRate.Add(new InOutTotal()
             {
                 Name = "1",
-                TotalRate = (int)((line1.InNumber / line1.TotalNumber) * 100)
+                
+                TotalRate = (line1.TotalNumber ==0? 0: (int)((line1.InNumber / line1.TotalNumber) * 100))
             });
             foreach (XmlNode sta in firstrail.SelectNodes("Station"))
             {
@@ -217,6 +292,7 @@ namespace MonitorPlatform.Data
 
         }
 
+
         private void UpdateTrainCenterUIData(string data)
         {
             XmlDocument doc = new XmlDocument();
@@ -290,5 +366,129 @@ namespace MonitorPlatform.Data
             }
         }
 
+
+        private void UpdateEquipmentLeftLineUIData(string data,int lineid)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
+            //SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
+            line1.StaTroubles.Clear();
+            line1.History_Stations.Clear();
+            XmlNodeList nodes = doc.SelectNodes("/Document/RailLine/EquipInfo");
+            line1.Troubles.Clear();
+            foreach (XmlNode node in nodes)
+            {
+                TroubleStatusSum sta = new TroubleStatusSum();
+                
+                sta.EquipmentType = node.SelectSingleNode("Kind").InnerText;
+                sta.Number =  int.Parse( node.SelectSingleNode("Count").InnerText);
+                sta.BadNumber = int.Parse( node.SelectSingleNode("WarnCount").InnerText);
+                line1.Troubles.Add(sta);
+            }
+
+             nodes = doc.SelectNodes("/Document/RailLine/Station");
+
+             foreach (XmlNode node in nodes)
+             {
+                 StationTroubleStatus sta = new StationTroubleStatus();
+                 string name = node.SelectSingleNode("Name").InnerText;
+                 Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
+                 if (s != null)
+                 {
+                     int index = line1.Stations.IndexOf(s);
+                     sta.ID = index;
+                     sta.WarnCount = int.Parse(node.SelectSingleNode("WarnCount").InnerText);
+                     line1.StaTroubles.Add(sta);
+                 }
+
+             }
+
+             nodes = doc.SelectNodes("/Document/RailLine/SubVoltage");
+
+
+             line1.VoltageStat.Clear();
+             
+             VoltageStatus volA = new VoltageStatus() { Name = "A相" };
+             VoltageStatus volB = new VoltageStatus() { Name = "B相" };
+             VoltageStatus volC = new VoltageStatus() { Name = "C相" };
+
+             foreach (XmlNode node in nodes)
+             {
+                 VoltageStatus sta = new VoltageStatus();
+                 if (node.SelectSingleNode("Kind").InnerText == "110kv")
+                 {
+                     volA.Val_110 = int.Parse(node.SelectSingleNode("VoltageA").InnerText);
+                     volB.Val_110 = int.Parse(node.SelectSingleNode("VoltageB").InnerText);
+                     volC.Val_110 = int.Parse(node.SelectSingleNode("VoltageC").InnerText);
+                 }
+                 else
+                 {
+                     volA.Val_35 = int.Parse(node.SelectSingleNode("VoltageA").InnerText);
+                     volB.Val_35 = int.Parse(node.SelectSingleNode("VoltageB").InnerText);
+                     volC.Val_35 = int.Parse(node.SelectSingleNode("VoltageC").InnerText);
+                 }
+             }
+
+             volA.CabTemp = int.Parse(doc.SelectSingleNode("/Document/RailLine/CableTemp/TempA").InnerText);
+             volB.CabTemp = int.Parse(doc.SelectSingleNode("/Document/RailLine/CableTemp/TempB").InnerText);
+             volC.CabTemp = int.Parse(doc.SelectSingleNode("/Document/RailLine/CableTemp/TempC").InnerText);
+
+             line1.VoltageStat.Add(volA);
+             line1.VoltageStat.Add(volB);
+             line1.VoltageStat.Add(volC);
+        }
+
+        private void UpdateEquipmentCenterLineUIData(string data, int lineid)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
+           
+
+            XmlNodeList nodes = doc.SelectNodes("/Document/RailLine/Station");
+
+            foreach (XmlNode node in nodes)
+            {
+               
+                string name = node.SelectSingleNode("Name").InnerText;
+                Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
+                if (s != null)
+                {
+                    s.BrokenNumber = int.Parse(node.SelectSingleNode("WarnCount").InnerText);
+                    s.StaGUID = node.SelectSingleNode("GUID").InnerText;
+                }
+            }
+           
+        }
+
+
+        private void UpdateEquipmentCenterLineDetailUIData(string data,int lineid,string guid)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
+
+
+            XmlNodeList nodes = doc.SelectNodes("/Document/Equipment");
+            Station s = line1.Stations.SingleOrDefault(x => x.StaGUID == guid);
+            if (s != null)
+            {
+                s.Equipments.Clear();
+                foreach (XmlNode node in nodes)
+                {
+                    Equipment eqi = new Equipment();
+                    eqi.Name = node.SelectSingleNode("PSignal").InnerText;
+                    eqi.EquipmentType = node.SelectSingleNode("PType").InnerText;
+                    eqi.Owner = node.SelectSingleNode("Name").InnerText;
+                    eqi.Location = node.SelectSingleNode("PLocation").InnerText;
+                    eqi.WaringLevel = node.SelectSingleNode("AlarmGrade").InnerText == "1" ? "警告" : "";
+                    eqi.Status = node.SelectSingleNode("Status").InnerText == "1" ? "异常" : "";
+                    s.Equipments.Add(eqi);
+                }
+            }
+          
+
+        }
     }
 }

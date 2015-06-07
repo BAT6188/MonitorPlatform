@@ -141,6 +141,7 @@
     <Compile Include="Controls\Line2Status.xaml.cs">
       <DependentUpon>Line2Status.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LineStatusControl.cs" />
     <Compile Include="Controls\NewGis.xaml.cs">
       <DependentUpon>NewGis.xaml</DependentUpon>
     </Compile>
@@ -155,6 +156,7 @@
     <Compile Include="Convert\ValToNotifyStyleConverter.cs" />
     <Compile Include="Convert\ValToNotifyStyleTextConverter.cs" />
     <Compile Include="Data\DataCenter.cs" />
+    <Compile Include="Data\ITask.cs" />
     <Compile Include="LeftWindow.xaml.cs">
       <DependentUpon>LeftWindow.xaml</DependentUpon>
     </Compile>

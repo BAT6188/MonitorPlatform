@@ -176,7 +176,7 @@
                                                               StackedGroup="Tot"
                                                  ArgumentDataMember="EquipmentType" 
                                                        ValueDataMember="Number"
-                                                       DataSource="{Binding Path=SubWayLines[0].Troubles}">
+                                                       DataSource="{Binding Path=CurrrentLine.Troubles}">
 
                                                 <dxc:BarSideBySideStackedSeries2D.Label>
                                                     <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
@@ -188,7 +188,7 @@
                                                               StackedGroup="Tot"
                                                  ArgumentDataMember="EquipmentType" 
                                                        ValueDataMember="BadNumber"
-                                                       DataSource="{Binding Path=SubWayLines[0].Troubles}">
+                                                       DataSource="{Binding Path=CurrrentLine.Troubles}">
 
                                                 <dxc:BarSideBySideStackedSeries2D.Label>
                                                     <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
@@ -237,31 +237,29 @@
                                         <dxc:XYDiagram2D.Series>
                                             <dxc:BarSideBySideSeries2D x:Name="K110" 
                                                        DisplayName="110KV高压侧电压"
+                                                          ArgumentDataMember="Name" 
+                                                       ValueDataMember="Val_110"
+                                                       DataSource="{Binding Path=CurrrentLine.VoltageStat}"                
                                                       >
                                                 <dxc:BarSideBySideSeries2D.Label>
                                                     <dxc:SeriesLabel Indent="20" ResolveOverlappingMode="Default" 
                                     ConnectorThickness="1"  
                                     dxc:BarSideBySideSeries2D.LabelPosition="Outside" />
                                                 </dxc:BarSideBySideSeries2D.Label>
-                                                <dxc:BarSideBySideSeries2D.Points>
-                                                    <dxc:SeriesPoint Argument="A相" Value="423.721" />
-                                                    <dxc:SeriesPoint Argument="B相" Value="278.719" />
-                                                    <dxc:SeriesPoint Argument="C相" Value="308.845" />
-                                                </dxc:BarSideBySideSeries2D.Points>
+                         
                                             </dxc:BarSideBySideSeries2D>
                                             <dxc:BarSideBySideSeries2D x:Name="K35" 
                                                        DisplayName="35KV低压侧电压"
+                                                                          ArgumentDataMember="Name" 
+                                                       ValueDataMember="Val_35"
+                                                       DataSource="{Binding Path=CurrrentLine.VoltageStat}"    
                                                        >
                                                 <dxc:BarSideBySideSeries2D.Label>
                                                     <dxc:SeriesLabel Indent="20" ResolveOverlappingMode="Default" 
                                     ConnectorThickness="1" 
                                   dxc:BarSideBySideSeries2D.LabelPosition="Outside"/>
                                                 </dxc:BarSideBySideSeries2D.Label>
-                                                <dxc:BarSideBySideSeries2D.Points>
-                                                    <dxc:SeriesPoint Argument="A相" Value="111.721" />
-                                                    <dxc:SeriesPoint Argument="B相" Value="122.719" />
-                                                    <dxc:SeriesPoint Argument="C相" Value="133.845" />
-                                                </dxc:BarSideBySideSeries2D.Points>
+                                              
                                             </dxc:BarSideBySideSeries2D>
 
                                         </dxc:XYDiagram2D.Series>
@@ -294,12 +292,12 @@
                                                 <dxga:ArcScaleLayer/>
                                             </dxga:ArcScale.Layers>
                                             <dxga:ArcScale.Needles>
-                                                <dxga:ArcScaleNeedle Value="1"/>
+                                                <dxga:ArcScaleNeedle Value="{Binding Path=CurrrentLine.VoltageStat[0].CabTemp}"/>
                                             </dxga:ArcScale.Needles>
                                             <dxga:ArcScale.Ranges>
-                                                <dxga:ArcScaleRange StartValue="0%" EndValue="33%"/>
-                                                <dxga:ArcScaleRange StartValue="33%" EndValue="67%"/>
-                                                <dxga:ArcScaleRange StartValue="67%" EndValue="100%"/>
+                                                <dxga:ArcScaleRange StartValue="0" EndValue="50"/>
+                                                <dxga:ArcScaleRange StartValue="50" EndValue="100"/>
+                                                <dxga:ArcScaleRange StartValue="100" EndValue="150"/>
                                             </dxga:ArcScale.Ranges>
                                         </dxga:ArcScale>
                                     </dxga:CircularGaugeControl.Scales>
@@ -313,12 +311,12 @@
                                                 <dxga:ArcScaleLayer/>
                                             </dxga:ArcScale.Layers>
                                             <dxga:ArcScale.Needles>
-                                                <dxga:ArcScaleNeedle Value="1"/>
+                                                <dxga:ArcScaleNeedle Value="{Binding Path=CurrrentLine.VoltageStat[1].CabTemp}"/>
                                             </dxga:ArcScale.Needles>
                                             <dxga:ArcScale.Ranges>
-                                                <dxga:ArcScaleRange StartValue="0%" EndValue="33%"/>
-                                                <dxga:ArcScaleRange StartValue="33%" EndValue="67%"/>
-                                                <dxga:ArcScaleRange StartValue="67%" EndValue="100%"/>
+                                                <dxga:ArcScaleRange StartValue="0" EndValue="50"/>
+                                                <dxga:ArcScaleRange StartValue="50" EndValue="100"/>
+                                                <dxga:ArcScaleRange StartValue="100" EndValue="150"/>
                                             </dxga:ArcScale.Ranges>
                                         </dxga:ArcScale>
                                     </dxga:CircularGaugeControl.Scales>
@@ -332,12 +330,12 @@
                                                 <dxga:ArcScaleLayer/>
                                             </dxga:ArcScale.Layers>
                                             <dxga:ArcScale.Needles>
-                                                <dxga:ArcScaleNeedle Value="1"/>
+                                                <dxga:ArcScaleNeedle Value="{Binding Path=CurrrentLine.VoltageStat[2].CabTemp}"/>
                                             </dxga:ArcScale.Needles>
                                             <dxga:ArcScale.Ranges>
-                                                <dxga:ArcScaleRange StartValue="0%" EndValue="33%"/>
-                                                <dxga:ArcScaleRange StartValue="33%" EndValue="67%"/>
-                                                <dxga:ArcScaleRange StartValue="67%" EndValue="100%"/>
+                                                <dxga:ArcScaleRange StartValue="0" EndValue="50"/>
+                                                <dxga:ArcScaleRange StartValue="50" EndValue="100"/>
+                                                <dxga:ArcScaleRange StartValue="100" EndValue="150"/>
                                             </dxga:ArcScale.Ranges>
                                         </dxga:ArcScale>
                                     </dxga:CircularGaugeControl.Scales>
@@ -360,21 +358,21 @@
                                 <Border Grid.Column="0">
                                     <TextBlock Style="{StaticResource BaseContentVerySmallTextStyle}" >
                                         <Run>A相</Run>
-                                        <Run>27</Run>
+                                        <Run Text="{Binding Path=CurrrentLine.VoltageStat[0].CabTemp}"></Run>
                                         <Run>℃</Run>
                                     </TextBlock>
                                 </Border>
                                 <Border Grid.Column="1">
                                     <TextBlock Style="{StaticResource BaseContentVerySmallTextStyle}" >
                                         <Run>B相</Run>
-                                        <Run>27</Run>
+                                        <Run Text="{Binding Path=CurrrentLine.VoltageStat[1].CabTemp}"></Run>
                                         <Run>℃</Run>
                                     </TextBlock>
                                 </Border>
                                 <Border Grid.Column="2">
                                     <TextBlock Style="{StaticResource BaseContentVerySmallTextStyle}" >
                                         <Run>C相</Run>
-                                        <Run>27</Run>
+                                        <Run Text="{Binding Path=CurrrentLine.VoltageStat[2].CabTemp}"></Run>
                                         <Run>℃</Run>
                                     </TextBlock>
                                 </Border>
