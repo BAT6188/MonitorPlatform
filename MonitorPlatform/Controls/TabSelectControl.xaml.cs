@@ -62,6 +62,11 @@ namespace MonitorPlatform.Controls
             args.ChoosedTab = (this.DataContext as MenuItems).SelectedChartType;
             this.RaiseEvent(args);
         }
+
+        public void SelectItem(string p)
+        {
+            mylist.SelectedValue = p;
+        }
     }
 
     /// <summary>

@@ -39,7 +39,7 @@ namespace MonitorPlatform.Pages
         int secondlineposY = 1;
         int thirdlineposY = 1;
         int forthlineposY = 1;
-
+      
         Image image = new Image();
         delegate double cal(double x);
 
@@ -49,6 +49,7 @@ namespace MonitorPlatform.Pages
 
             this.SizeChanged += new SizeChangedEventHandler(BossLeft_SizeChanged);
         }
+
 
         void BossLeft_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -145,6 +146,47 @@ namespace MonitorPlatform.Pages
         {
             
             ReCalculateAll();
+        }
+
+        private void Train_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Border c = (sender as Border);
+            bool ischeck;
+            if (bool.TryParse(c.Tag.ToString(), out ischeck))
+            {
+                if (ischeck)
+                {
+                    (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("客流信息");
+                }
+            }
+        }
+
+        private void Traffic_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Border c = (sender as Border);
+            bool ischeck;
+            if (bool.TryParse(c.Tag.ToString(), out ischeck))
+            {
+                if (ischeck)
+                {
+                    (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("列车位置");
+                }
+            }
+         
+        }
+
+        private void Equipment_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Border c = (sender as Border);
+            bool ischeck;
+            if (bool.TryParse(c.Tag.ToString(), out ischeck))
+            {
+                if (ischeck)
+                {
+                    (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("设施设备");
+                }
+            }
+  
         }
     }
 }

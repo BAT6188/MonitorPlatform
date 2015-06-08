@@ -518,13 +518,13 @@
                                     <ColumnDefinition  Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Border   Style="{Binding SubWayLines[0].TrainIsWarn,
-            Converter={StaticResource ValToNotifyStyleConverter}}"   Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
+                                <Border    Style="{Binding SubWayLines[0].TrainIsWarn,
+            Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Train_MouseUp"  Tag="{Binding SubWayLines[0].TrainIsWarn}"   Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
                                     <TextBlock  Style="{Binding SubWayLines[0].TrainIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">列车位置</TextBlock>
                                 </Border>
                                 <Border Style="{Binding SubWayLines[0].PassIsWarn,
-            Converter={StaticResource ValToNotifyStyleConverter}}" Grid.Column="1" Grid.Row="0"   >
+            Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Traffic_MouseUp"  Tag="{Binding SubWayLines[0].PassIsWarn}" Grid.Column="1" Grid.Row="0"   >
                                     <TextBlock    Style="{Binding SubWayLines[0].PassIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">客流</TextBlock>
                                 </Border>
@@ -532,7 +532,7 @@
                                     <TextBlock   Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
                                 </Border>
                                 <Border Style="{Binding SubWayLines[0].EquipIsWarn,
-            Converter={StaticResource ValToNotifyStyleConverter}}" Grid.Column="1" Grid.Row="1"   >
+            Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Equipment_MouseUp" Tag="{Binding SubWayLines[0].EquipIsWarn}" Grid.Column="1" Grid.Row="1"   >
                                     <TextBlock   Style="{Binding SubWayLines[0].EquipIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">设施设备</TextBlock>
                                 </Border>
@@ -557,13 +557,13 @@
                                     <ColumnDefinition  Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Border  Style="{Binding SubWayLines[1].TrainIsWarn,
-            Converter={StaticResource ValToNotifyStyleConverter}}"     Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
+                                <Border  Style="{Binding SubWayLines[1].TrainIsWarn,  
+            Converter={StaticResource ValToNotifyStyleConverter}}"  MouseUp="Train_MouseUp"  Tag="{Binding SubWayLines[1].TrainIsWarn}"   Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  >
                                     <TextBlock  Style="{Binding SubWayLines[1].TrainIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">列车位置</TextBlock>
                                 </Border>
                                 <Border  Style="{Binding SubWayLines[1].PassIsWarn,
-            Converter={StaticResource ValToNotifyStyleConverter}}"  Grid.Column="1" Grid.Row="0"   >
+            Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Traffic_MouseUp" Tag="{Binding SubWayLines[1].PassIsWarn}"     Grid.Column="1" Grid.Row="0"   >
                                     <TextBlock  Style="{Binding SubWayLines[1].PassIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">客流</TextBlock>
                                 </Border>
@@ -571,9 +571,9 @@
                                     <TextBlock  Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
                                 </Border>
                                 <Border Style="{Binding SubWayLines[1].EquipIsWarn,
-            Converter={StaticResource ValToNotifyStyleConverter}}" Grid.Column="1" Grid.Row="1"    >
+            Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Equipment_MouseUp" Tag="{Binding SubWayLines[1].EquipIsWarn}"  Grid.Column="1" Grid.Row="1"    >
                                     <TextBlock  Style="{Binding SubWayLines[1].EquipIsWarn,
-            Converter={StaticResource ValToNotifyStyleTextConverter}}">设施设备</TextBlock>
+            Converter={StaticResource ValToNotifyStyleTextConverter}}" >设施设备</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"  >
                                     <TextBlock  Style="{StaticResource NotifyContainerText}">环境状况</TextBlock>

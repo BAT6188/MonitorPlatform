@@ -46,9 +46,9 @@ namespace MonitorPlatform
             this.DataContext = MonitorDataModel.Instance();
         }
 
-        private void TabSelectControl_TabSelectChanged(object sender, TabSelectChangeEventArgs e)
+        public void ChangeTab(string tab)
         {
-            switch (e.ChoosedTab)
+            switch (tab)
             {
                 case "总裁界面":
                     this.frame.Source = new Uri("Pages/BossLeft.xaml", UriKind.Relative);
@@ -66,9 +66,9 @@ namespace MonitorPlatform
                     right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);
                     break;
                 case "设施设备":
-                    this.frame.Source = new Uri("Pages/EquipmentStatusLeft.xaml",UriKind.Relative);
+                    this.frame.Source = new Uri("Pages/EquipmentStatusLeft.xaml", UriKind.Relative);
                     center.frame.Source = new Uri("Pages/EquipmentStatusCenter.xaml", UriKind.Relative);
-                    right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);
                     break;
                 case "视频监控":
                     //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");
@@ -82,6 +82,18 @@ namespace MonitorPlatform
                     break;
 
             }
+            
+        }
+
+        private void TabSelectControl_TabSelectChanged(object sender, TabSelectChangeEventArgs e)
+        {
+            ChangeTab(e.ChoosedTab);
+        }
+
+        public void ChangeTabByStr(string input)
+        {
+            tabControl.SelectItem(input);
+        
         }
     }
 }
