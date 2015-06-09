@@ -150,42 +150,17 @@ namespace MonitorPlatform.Pages
 
         private void Train_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Border c = (sender as Border);
-            bool ischeck;
-            if (bool.TryParse(c.Tag.ToString(), out ischeck))
-            {
-                if (ischeck)
-                {
-                    (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("客流信息");
-                }
-            }
+            (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("客流信息");
         }
 
         private void Traffic_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Border c = (sender as Border);
-            bool ischeck;
-            if (bool.TryParse(c.Tag.ToString(), out ischeck))
-            {
-                if (ischeck)
-                {
-                    (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("列车位置");
-                }
-            }
-         
+            (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("列车位置");
         }
 
         private void Equipment_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Border c = (sender as Border);
-            bool ischeck;
-            if (bool.TryParse(c.Tag.ToString(), out ischeck))
-            {
-                if (ischeck)
-                {
-                    (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("设施设备");
-                }
-            }
+            (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("设施设备");
   
         }
     }

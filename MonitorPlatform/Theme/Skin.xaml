@@ -252,6 +252,7 @@
     <Style x:Key="NotifyContainer" TargetType="Border">
         <Setter Property="Margin" Value="5,5,5,5"/>
         <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="#0049B5"></Setter>
         <Setter Property="Background" Value="#092c62"></Setter>
@@ -260,6 +261,7 @@
     <Style x:Key="NotifyContainerText" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Foreground" Value="#5AA0EF" />
         <Setter Property="FontFamily" Value="Microsoft YaHei" />

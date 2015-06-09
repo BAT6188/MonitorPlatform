@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
 using MonitorPlatform.Controls;
 using MonitorPlatform.Data;
+using System.Threading;
 
 namespace MonitorPlatform
 {
@@ -25,7 +26,9 @@ namespace MonitorPlatform
     {
         RightWindows right;
         CenterWindow center;
-        
+        Timer timer;
+        DateTime lastupdate_traffic;
+        DateTime lastupdate_boss;
         public LeftWindow()
         {
             InitializeComponent();
@@ -38,6 +41,27 @@ namespace MonitorPlatform
             DataCenter.Instance.UpdateBoss();
             DataCenter.Instance.UpdateEquipmentLeft();
             DataCenter.Instance.UpdateEquipmentCenter();
+             lastupdate_traffic = DateTime.Now;
+             lastupdate_boss = DateTime.Now;
+            //15秒,触发一次
+             timer = new Timer(new TimerCallback(ScheduleTask), null, 15000, 15000);
+            
+        }
+
+        private void ScheduleTask(object key)
+        {
+            DateTime current = DateTime.Now;
+            if ((current - lastupdate_traffic).Seconds >= 30)
+            {
+                DataCenter.Instance.UpdateBoss();
+                DataCenter.Instance.UpdateEquipmentLeft();
+                lastupdate_traffic = current;
+            }
+            if ((current - lastupdate_boss).Minutes >= 15)
+            {
+                DataCenter.Instance.UpdateEquipmentCenter();
+                lastupdate_boss = current;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

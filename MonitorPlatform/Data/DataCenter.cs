@@ -247,11 +247,14 @@ namespace MonitorPlatform.Data
             XmlNodeList nodes = doc.SelectNodes("/Document/ServiceLine");
             foreach (XmlNode node in nodes)
             {
-                Train train = new Train()
+                Train train = new Train();
+
+                if (node.SelectSingleNode("Train/CurrentStationNo") != null)
                 {
-                    Location = double.Parse(node.SelectSingleNode("Train/CurrentStationNo").InnerText),
-                    TrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText)
-                };
+                    train.Location = double.Parse(node.SelectSingleNode("Train/CurrentStationNo").InnerText);
+                }
+                train.TrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+               
                 if (node.SelectSingleNode("Name").InnerText == "1号线")
                 {
                     if (node.SelectSingleNode("Direction").InnerText == "往钟南街方向")
