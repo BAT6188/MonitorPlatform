@@ -206,14 +206,19 @@ namespace MonitorPlatform.Data
                 station.InNumber = int.Parse(firstrail.SelectSingleNode("PassIn").InnerText);
                 station.OutNumber = int.Parse(firstrail.SelectSingleNode("PassOut").InnerText);
             }
-            XmlNode equip = firstrail.SelectSingleNode("Equipment");
             line1.Troubles.Clear();
-            line1.Troubles.Add(new TroubleStatusSum()
+            foreach (XmlNode equip in firstrail.SelectNodes("Equipment"))
             {
-                EquipmentType = equip.SelectSingleNode("Kind").InnerText,
-                Number = int.Parse(equip.SelectSingleNode("Count").InnerText),
-                BadNumber = int.Parse(equip.SelectSingleNode("WarnCount").InnerText)
-            });
+                line1.Troubles.Add(new TroubleStatusSum()
+                {
+                    EquipmentType = equip.SelectSingleNode("Kind").InnerText,
+                    Number = int.Parse(equip.SelectSingleNode("Count").InnerText),
+                    BadNumber = int.Parse(equip.SelectSingleNode("WarnCount").InnerText)
+                });
+            }
+            
+            
+           
         }
 
         private void UpdateTraficStation(XmlNode linenode, SubLine line1)
@@ -249,39 +254,44 @@ namespace MonitorPlatform.Data
             {
                 Train train = new Train();
 
-                if (node.SelectSingleNode("Train/CurrentStationNo") != null)
-                {
-                    train.Location = double.Parse(node.SelectSingleNode("Train/CurrentStationNo").InnerText);
-                }
-                train.TrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+                //if (node.SelectSingleNode("Train/CurrentStationNo") != null)
+                //{
+                //    train.Location = double.Parse(node.SelectSingleNode("Train/CurrentStationNo").InnerText);
+                //}
+               
                
                 if (node.SelectSingleNode("Name").InnerText == "1号线")
                 {
+                  
                     if (node.SelectSingleNode("Direction").InnerText == "往钟南街方向")
                     {
-                        train.IsDown = false;
-                        line1.UptrainCount++;
+                        line1.UptrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+                        line1.UptrainStartTime = node.SelectSingleNode("StartTime").InnerText;
+                        line1.UptrainEndTime = node.SelectSingleNode("EndTime").InnerText;
                     }
                     else
                     {
-                        train.IsDown = true;
-                        line1.DowntrainCount++;
+                        line1.DowntrainStartTime = node.SelectSingleNode("StartTime").InnerText;
+                        line1.DowntrainEndTime = node.SelectSingleNode("EndTime").InnerText;
+                        line1.DowntrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
                     }
-                    line1.Trains.Add(train);
+                 
                 }
                 else
                 {
                     if (node.SelectSingleNode("Direction").InnerText == "往宝带桥南方向")
                     {
-                        train.IsDown = false;
-                        line2.UptrainCount++;
+                        line2.UptrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+                        line2.UptrainStartTime = node.SelectSingleNode("StartTime").InnerText;
+                        line2.UptrainEndTime = node.SelectSingleNode("EndTime").InnerText;
                     }
                     else
                     {
-                        train.IsDown = true;
-                        line2.DowntrainCount++;
+                        line2.DowntrainStartTime = node.SelectSingleNode("StartTime").InnerText;
+                        line2.DowntrainEndTime = node.SelectSingleNode("EndTime").InnerText;
+                        line2.DowntrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
                     }
-                    line2.Trains.Add(train);
+                   
                 }
             }
 

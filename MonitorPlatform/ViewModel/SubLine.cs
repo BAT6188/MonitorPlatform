@@ -138,6 +138,7 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+
         private int persons;
         public int Persons
         {
@@ -195,6 +196,37 @@ namespace MonitorPlatform.ViewModel
         }
 
 
+        //上行车 开始时间
+        private string uptrainStartTime;
+        public string UptrainStartTime
+        {
+            get
+            {
+                return uptrainStartTime;
+            }
+            set
+            {
+                uptrainStartTime = value;
+                NotifyPropertyChanged("UptrainStartTime");
+            }
+        }
+
+        //上行车 结束时间
+        private string uptrainEndTime;
+        public string UptrainEndTime
+        {
+            get
+            {
+                return uptrainEndTime;
+            }
+            set
+            {
+                uptrainEndTime = value;
+                NotifyPropertyChanged("UptrainEndTime");
+            }
+        }
+
+
         //上行车 数量
         private int uptrainCount;
         public int UptrainCount
@@ -210,7 +242,40 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
-        //上行车 数量
+
+
+        //下行车 开始时间
+        private string downtrainStartTime;
+        public string DowntrainStartTime
+        {
+            get
+            {
+                return downtrainStartTime;
+            }
+            set
+            {
+                downtrainStartTime = value;
+                NotifyPropertyChanged("DowntrainStartTime");
+            }
+        }
+
+        //下行车 结束时间
+        private string downtrainEndTime;
+        public string DowntrainEndTime
+        {
+            get
+            {
+                return downtrainEndTime;
+            }
+            set
+            {
+                downtrainEndTime = value;
+                NotifyPropertyChanged("DowntrainEndTime");
+            }
+        }
+
+
+        //下行车 数量
         private int downtrainCount;
         public int DowntrainCount
         {
