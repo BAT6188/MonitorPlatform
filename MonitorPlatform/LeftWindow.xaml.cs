@@ -41,6 +41,8 @@ namespace MonitorPlatform
             DataCenter.Instance.UpdateBoss();
             DataCenter.Instance.UpdateEquipmentLeft();
             DataCenter.Instance.UpdateEquipmentCenter();
+            DataCenter.Instance.UpdateCameraInfo();
+            
              lastupdate_traffic = DateTime.Now;
              lastupdate_boss = DateTime.Now;
             //15秒,触发一次
@@ -60,6 +62,7 @@ namespace MonitorPlatform
             if ((current - lastupdate_boss).Minutes >= 15)
             {
                 DataCenter.Instance.UpdateEquipmentCenter();
+                DataCenter.Instance.UpdateCameraInfo();
                 lastupdate_boss = current;
             }
         }

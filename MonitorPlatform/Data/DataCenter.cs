@@ -178,6 +178,22 @@ namespace MonitorPlatform.Data
             });
         }
 
+        public void UpdateCameraInfo()
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailCameraQueryInfo");
+            //1号线 4ce1f6eb-5334-419b-bea3-a20e16b7e205
+            //2号线 60f2d09f-1321-4111-955d-66a404d80fcd
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                win.Dispatcher.Invoke(new UpdateUIDate(UpdateCameraUIData), result.Data);
+            });
+
+        }
+
+
         private void UpdateBossStation(XmlNode firstrail, SubLine line1, bool isfirst)
         {
 
@@ -501,6 +517,62 @@ namespace MonitorPlatform.Data
                 }
             }
           
+
+        }
+
+
+        private void UpdateCameraUIData(string data)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            //SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
+
+
+            XmlNodeList nodes = doc.SelectNodes("/Document/RailLine");
+
+            foreach (XmlNode node in nodes)
+            {
+                SubLine line;
+                string name = node.SelectSingleNode("Name").InnerText;
+                if (name == "1号线")
+                {
+                    line = MonitorDataModel.Instance().SubWayLines[0];
+                }
+                else
+                {
+                    line = MonitorDataModel.Instance().SubWayLines[1];
+                }
+                int linecamecount = 0;
+                foreach (XmlNode stationnode in node.SelectNodes("Station"))
+                {
+                    string stationname = stationnode.SelectSingleNode("Name").InnerText;
+                    Station s = line.Stations.SingleOrDefault(x => x.Name == stationname);
+                    if (s !=null)
+                    {
+                        s.Cameras.Clear();
+                         s.CameraNumber = 0;
+                        XmlNodeList cameralist = stationnode.SelectNodes("Camera");
+                        if (cameralist != null)
+                        {
+                            foreach (XmlNode camenode in cameralist)
+                            {
+                                Camera camera = new Camera();
+                                camera.Name = camenode.SelectSingleNode("Name").InnerText;
+                                camera.Location = camenode.SelectSingleNode("Location").InnerText;
+                                camera.Code = camenode.SelectSingleNode("Code").InnerText;
+                                camera.Type = camenode.SelectSingleNode("Type").InnerText;
+                                camera.APIID = camenode.SelectSingleNode("APIID").InnerText;
+                                camera.APIIP = camenode.SelectSingleNode("APIIP").InnerText;
+                                camera.Remark = camenode.SelectSingleNode("Remark").InnerText;
+                                s.Cameras.Add(camera);
+                                s.CameraNumber++;
+                                linecamecount++;
+                            }
+                        }
+                    }
+                }
+                line.CameraTotalNumber = linecamecount;
+            }
 
         }
     }
