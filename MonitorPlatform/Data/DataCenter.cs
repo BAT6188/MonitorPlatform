@@ -15,6 +15,8 @@ namespace MonitorPlatform.Data
 {
     public class DataCenter
     {
+        public delegate void UpdateTrainLocation();
+        public event UpdateTrainLocation UpdateTrainLocationEvent;
         public const string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
         public delegate void UpdateUIDate(string data);
         public delegate void UpdateUIDateWithLine(string data, int line);
@@ -23,6 +25,7 @@ namespace MonitorPlatform.Data
         private Window win;
 
         private static DataCenter instance;
+        
 
         public static DataCenter Instance
         {
@@ -49,7 +52,15 @@ namespace MonitorPlatform.Data
                 webUrl = ConfigurationManager.AppSettings["WebUrl"];
             }
             proxy = new WebInvoker(webUrl);
-          
+            
+        }
+
+        public void RaiseTrainLocationUpdate()
+        {
+            if (UpdateTrainLocationEvent != null)
+            {
+                UpdateTrainLocationEvent();
+            }
         }
 
         public void Login()
@@ -268,28 +279,52 @@ namespace MonitorPlatform.Data
             XmlNodeList nodes = doc.SelectNodes("/Document/ServiceLine");
             foreach (XmlNode node in nodes)
             {
-                Train train = new Train();
-
-                //if (node.SelectSingleNode("Train/CurrentStationNo") != null)
-                //{
-                //    train.Location = double.Parse(node.SelectSingleNode("Train/CurrentStationNo").InnerText);
-                //}
+               
                
                
                 if (node.SelectSingleNode("Name").InnerText == "1号线")
                 {
+                   
                   
                     if (node.SelectSingleNode("Direction").InnerText == "往钟南街方向")
                     {
                         line1.UptrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
                         line1.UptrainStartTime = node.SelectSingleNode("StartTime").InnerText;
                         line1.UptrainEndTime = node.SelectSingleNode("EndTime").InnerText;
+
+                        XmlNodeList trainnodes = node.SelectNodes("Train");
+                        if (trainnodes != null)
+                        {
+                            foreach (XmlNode trainnode in trainnodes)
+                            {
+                                Train train = new Train();
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.IsDown = false;
+                                line1.Trains.Add(train);
+                            }
+
+                        }
+               
                     }
                     else
                     {
                         line1.DowntrainStartTime = node.SelectSingleNode("StartTime").InnerText;
                         line1.DowntrainEndTime = node.SelectSingleNode("EndTime").InnerText;
                         line1.DowntrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+                        XmlNodeList trainnodes = node.SelectNodes("Train");
+                        if (trainnodes != null)
+                        {
+                            foreach (XmlNode trainnode in trainnodes)
+                            {
+                                Train train = new Train();
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.IsDown = true;
+                                line1.Trains.Add(train);
+                            }
+
+                        }
                     }
                  
                 }
@@ -300,12 +335,39 @@ namespace MonitorPlatform.Data
                         line2.UptrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
                         line2.UptrainStartTime = node.SelectSingleNode("StartTime").InnerText;
                         line2.UptrainEndTime = node.SelectSingleNode("EndTime").InnerText;
+
+                        XmlNodeList trainnodes = node.SelectNodes("Train");
+                        if (trainnodes != null)
+                        {
+                            foreach (XmlNode trainnode in trainnodes)
+                            {
+                                Train train = new Train();
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.IsDown = false;
+                                line2.Trains.Add(train);
+                            }
+
+                        }
                     }
                     else
                     {
                         line2.DowntrainStartTime = node.SelectSingleNode("StartTime").InnerText;
                         line2.DowntrainEndTime = node.SelectSingleNode("EndTime").InnerText;
                         line2.DowntrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+                        XmlNodeList trainnodes = node.SelectNodes("Train");
+                        if (trainnodes != null)
+                        {
+                            foreach (XmlNode trainnode in trainnodes)
+                            {
+                                Train train = new Train();
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.IsDown = true;
+                                line2.Trains.Add(train);
+                            }
+
+                        }
                     }
                    
                 }
@@ -318,7 +380,7 @@ namespace MonitorPlatform.Data
             line1.TrainIsWarn = doc.SelectSingleNode("/Document/TrainIsWarn").InnerText == "1";
             line1.PassIsWarn = doc.SelectSingleNode("/Document/PassIsWarn").InnerText == "1";
             line1.EquipIsWarn = doc.SelectSingleNode("/Document/EquipIsWarn").InnerText == "1";
-
+            RaiseTrainLocationUpdate();
         }
 
 

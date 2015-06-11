@@ -46,9 +46,16 @@ namespace MonitorPlatform.Pages
         public BossLeft()
         {
             InitializeComponent();
-
+            DataCenter.Instance.UpdateTrainLocationEvent += new DataCenter.UpdateTrainLocation(Instance_UpdateTrainLocationEvent);
             this.SizeChanged += new SizeChangedEventHandler(BossLeft_SizeChanged);
         }
+
+        void Instance_UpdateTrainLocationEvent()
+        {
+            ReCalculateAll();
+        }
+
+
 
 
         void BossLeft_SizeChanged(object sender, SizeChangedEventArgs e)
