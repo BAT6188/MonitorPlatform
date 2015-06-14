@@ -16,6 +16,7 @@ using MonitorPlatform.Controls;
 using MonitorPlatform.Data;
 using System.Threading;
 
+
 namespace MonitorPlatform
 {
    
@@ -34,10 +35,29 @@ namespace MonitorPlatform
             InitializeComponent();
             right = new RightWindows();
             center = new CenterWindow();
+
+            System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
+
+            if (screens.Length == 3)
+            {
+                this.Top = screens[0].WorkingArea.Top;
+                this.Left = screens[0].WorkingArea.Left;
+                this.WindowState = WindowState.Maximized;
+
+                center.Top = screens[1].WorkingArea.Top;
+                center.Left = screens[1].WorkingArea.Left;
+                center.WindowState = WindowState.Maximized;
+
+
+                right.Top = screens[2].WorkingArea.Top;
+                right.Left = screens[2].WorkingArea.Left;
+                right.WindowState = WindowState.Maximized;
+            }
             right.Show();
             center.Show();
             DataCenter.Instance.Inital(this);
-            DataCenter.Instance.Login();
+
+            //DataCenter.Instance.Login();
             DataCenter.Instance.UpdateBoss();
             DataCenter.Instance.UpdateEquipmentLeft();
             DataCenter.Instance.UpdateEquipmentCenter();
@@ -121,6 +141,12 @@ namespace MonitorPlatform
         {
             tabControl.SelectItem(input);
         
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Environment.Exit(0);
         }
     }
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorPlatform", "MonitorPlatform\MonitorPlatform.csproj", "{7481A439-5288-499C-81AC-0CD8C5BCAA5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcess", "DataProcess\DataProcess.csproj", "{169A1141-094C-4F61-803C-CC03A2B8A5C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "DataProcess\Utility.csproj", "{169A1141-094C-4F61-803C-CC03A2B8A5C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{E80B20B8-17A2-424E-B384-9A75461CD4DF}"
 EndProject

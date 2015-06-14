@@ -15,6 +15,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/gmap.net.core.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/gmap.net.windowspresentation.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/interop.vspocxclientlib.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/nlog.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/system.windows.controls.datavisualization.toolkit.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/wpftoolkit.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("thirdparty/znjt.webproxy.dll")]

@@ -92,6 +92,10 @@
     <Reference Include="GMap.NET.WindowsPresentation">
       <HintPath>ThirdParty\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ThirdParty\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -159,6 +163,9 @@
     <Compile Include="Data\ITask.cs" />
     <Compile Include="LeftWindow.xaml.cs">
       <DependentUpon>LeftWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BossCenter.xaml.cs">
       <DependentUpon>BossCenter.xaml</DependentUpon>
@@ -237,6 +244,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\BossCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -310,6 +321,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -332,6 +346,10 @@
     <Resource Include="Resource\trainposition.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataProcess\Utility.csproj">
+      <Project>{169A1141-094C-4F61-803C-CC03A2B8A5C1}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\De.TorstenMandelkow.MetroChart.WPF\De.TorstenMandelkow.MetroChart.WPF.csproj">
       <Project>{4AB4B0DB-780C-48B9-A642-8E527353D957}</Project>
       <Name>De.TorstenMandelkow.MetroChart.WPF</Name>
@@ -342,6 +360,13 @@
     <Resource Include="Resource\subline2.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\图层 3.png" />
+    <Resource Include="Resource\图层 4.png" />
+    <Resource Include="Resource\背景.png" />
+    <Resource Include="Resource\0b6a3da18 %28Layer Mask%29.png" />
+    <Resource Include="Resource\0b6a3da18.png" />
+    <Resource Include="Resource\Button 副本 2.png" />
+    <Resource Include="Resource\Button.png" />
     <Content Include="ThirdParty\AxInterop.VSPOcxClientLib.dll" />
     <Content Include="ThirdParty\Com.CustomControl.dll" />
     <Content Include="ThirdParty\Com.MapPlugin.dll" />
@@ -349,6 +374,7 @@
     <Content Include="ThirdParty\GMap.NET.Core.dll" />
     <Content Include="ThirdParty\GMap.NET.WindowsPresentation.dll" />
     <Content Include="ThirdParty\Interop.VSPOcxClientLib.dll" />
+    <Content Include="ThirdParty\NLog.dll" />
     <Content Include="ThirdParty\System.Windows.Controls.DataVisualization.Toolkit.dll" />
     <Content Include="ThirdParty\WPFToolkit.dll" />
     <Content Include="ThirdParty\ZNJT.WebProxy.dll" />

@@ -10,6 +10,7 @@ using System.Xml;
 using MonitorPlatform.ViewModel;
 using System.Threading;
 using System.Windows;
+using Utility;
 
 namespace MonitorPlatform.Data
 {
@@ -63,17 +64,35 @@ namespace MonitorPlatform.Data
             }
         }
 
-        public void Login()
+        public bool Login(string username, string password)
         {
-            AutoResetEvent eve = new AutoResetEvent(false);
-            
-            proxy.Login("test1", "1", "abcd", (result) =>
+            bool islogin = false;
+            try
             {
-                eve.Set();
-                string c = result.Data;
-            });
+                AutoResetEvent eve = new AutoResetEvent(false);
+                //"test1", "1", 
+                proxy.Login(username, password, "abcd", (result) =>
+                {
+                    if (result.Status != 0)
+                    {
+                        LogCenter.LogMessage("登录失败! username:" + username);
+                        islogin = false;
+                    }
+                    else
+                    {
+                        islogin = true;
+                    }
+                    eve.Set();
+                  
+                });
 
-            eve.WaitOne();
+                eve.WaitOne();
+            }
+            catch (Exception exp)
+            {
+                LogCenter.Log(exp);
+            }
+            return islogin;
         }
 
         
@@ -99,7 +118,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainCenterUIData), result.Data);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainCenterUIData), result.Data);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateTrafficCenter fail." + result.ErrMessage);
+                }
             });
         }
 
@@ -112,7 +138,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainRightUIData), result.Data);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainRightUIData), result.Data);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
+                }
             });
         }
 
@@ -125,7 +158,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data,0);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data, 0);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateEquipmentLeft fail. " + result.ErrMessage);
+                }
             });
 
 
@@ -136,7 +176,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data ,1);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data, 1);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateEquipmentLeft fail. " + result.ErrMessage);
+                }
             });
 
 
@@ -151,7 +198,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 0);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 0);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
+                }
             });
 
 
@@ -162,7 +216,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 1);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 1);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
+                }
             });
 
 
@@ -185,7 +246,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateEquipmentCenterLineDetailUIData), result.Data, lineid, statguid);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateEquipmentCenterLineDetailUIData), result.Data, lineid, statguid);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateEquipmentDetailCenter fail. " + result.ErrMessage);
+                }
             });
         }
 
@@ -199,7 +267,14 @@ namespace MonitorPlatform.Data
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
-                win.Dispatcher.Invoke(new UpdateUIDate(UpdateCameraUIData), result.Data);
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateCameraUIData), result.Data);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateCameraInfo fail. " + result.ErrMessage);
+                }
             });
 
         }
@@ -208,9 +283,9 @@ namespace MonitorPlatform.Data
         private void UpdateBossStation(XmlNode firstrail, SubLine line1, bool isfirst)
         {
 
-            line1.InNumber = float.Parse(firstrail.SelectSingleNode("PassIn").InnerText);
-            line1.OutNumber = float.Parse(firstrail.SelectSingleNode("PassOut").InnerText);
-            line1.TotalNumber = float.Parse(firstrail.SelectSingleNode("PassTotal").InnerText);
+            line1.InNumber = float.Parse(firstrail.SelectSingleNode("PassIn").SafeInnerText());
+            line1.OutNumber = float.Parse(firstrail.SelectSingleNode("PassOut").SafeInnerText());
+            line1.TotalNumber = float.Parse(firstrail.SelectSingleNode("PassTotal").SafeInnerText());
 
             line1.TotalRate.Add(new InOutTotal()
             {
@@ -223,24 +298,24 @@ namespace MonitorPlatform.Data
                 int stano = 0;
                 if (isfirst)
                 {
-                    stano = int.Parse(sta.SelectSingleNode("StationNo").InnerText);
+                    stano = sta.SelectSingleNode("StationNo").SafeInnerInt();
                 }
                 else
                 {
-                    stano = 23 - int.Parse(sta.SelectSingleNode("StationNo").InnerText);
+                    stano = 23 - sta.SelectSingleNode("StationNo").SafeInnerInt();
                 }
                 Station station = line1.Stations[stano - 1];
-                station.InNumber = int.Parse(firstrail.SelectSingleNode("PassIn").InnerText);
-                station.OutNumber = int.Parse(firstrail.SelectSingleNode("PassOut").InnerText);
+                station.InNumber = firstrail.SelectSingleNode("PassIn").SafeInnerInt();
+                station.OutNumber = firstrail.SelectSingleNode("PassOut").SafeInnerInt();
             }
             line1.Troubles.Clear();
             foreach (XmlNode equip in firstrail.SelectNodes("Equipment"))
             {
                 line1.Troubles.Add(new TroubleStatusSum()
                 {
-                    EquipmentType = equip.SelectSingleNode("Kind").InnerText,
-                    Number = int.Parse(equip.SelectSingleNode("Count").InnerText),
-                    BadNumber = int.Parse(equip.SelectSingleNode("WarnCount").InnerText)
+                    EquipmentType = equip.SelectSingleNode("Kind").SafeInnerText(),
+                    Number = equip.SelectSingleNode("Count").SafeInnerInt(),
+                    BadNumber = equip.SelectSingleNode("WarnCount").SafeInnerInt()
                 });
             }
             
@@ -257,8 +332,8 @@ namespace MonitorPlatform.Data
                 
                 line1.Personrates.Add(new PersonsRateSum()
                 {
-                    Time = passnode.SelectSingleNode("HourTime").InnerText,
-                    Number = int.Parse(passnode.SelectSingleNode("PassTotal").InnerText)
+                    Time = passnode.SelectSingleNode("HourTime").SafeInnerText(),
+                    Number = passnode.SelectSingleNode("PassTotal").SafeInnerInt()
                 });
             }
         }
@@ -282,15 +357,15 @@ namespace MonitorPlatform.Data
                
                
                
-                if (node.SelectSingleNode("Name").InnerText == "1号线")
+                if (node.SelectSingleNode("Name").SafeInnerText() == "1号线")
                 {
                    
                   
-                    if (node.SelectSingleNode("Direction").InnerText == "往钟南街方向")
+                    if (node.SelectSingleNode("Direction").SafeInnerText() == "往钟南街方向")
                     {
-                        line1.UptrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
-                        line1.UptrainStartTime = node.SelectSingleNode("StartTime").InnerText;
-                        line1.UptrainEndTime = node.SelectSingleNode("EndTime").InnerText;
+                        line1.UptrainCount = node.SelectSingleNode("TrainCount").SafeInnerInt();
+                        line1.UptrainStartTime = node.SelectSingleNode("StartTime").SafeInnerText();
+                        line1.UptrainEndTime = node.SelectSingleNode("EndTime").SafeInnerText();
 
                         XmlNodeList trainnodes = node.SelectNodes("Train");
                         if (trainnodes != null)
@@ -298,8 +373,8 @@ namespace MonitorPlatform.Data
                             foreach (XmlNode trainnode in trainnodes)
                             {
                                 Train train = new Train();
-                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
-                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
                                 train.IsDown = false;
                                 line1.Trains.Add(train);
                             }
@@ -309,17 +384,17 @@ namespace MonitorPlatform.Data
                     }
                     else
                     {
-                        line1.DowntrainStartTime = node.SelectSingleNode("StartTime").InnerText;
-                        line1.DowntrainEndTime = node.SelectSingleNode("EndTime").InnerText;
-                        line1.DowntrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+                        line1.DowntrainStartTime = node.SelectSingleNode("StartTime").SafeInnerText();
+                        line1.DowntrainEndTime = node.SelectSingleNode("EndTime").SafeInnerText();
+                        line1.DowntrainCount = node.SelectSingleNode("TrainCount").SafeInnerInt();
                         XmlNodeList trainnodes = node.SelectNodes("Train");
                         if (trainnodes != null)
                         {
                             foreach (XmlNode trainnode in trainnodes)
                             {
                                 Train train = new Train();
-                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
-                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
                                 train.IsDown = true;
                                 line1.Trains.Add(train);
                             }
@@ -330,11 +405,11 @@ namespace MonitorPlatform.Data
                 }
                 else
                 {
-                    if (node.SelectSingleNode("Direction").InnerText == "往宝带桥南方向")
+                    if (node.SelectSingleNode("Direction").SafeInnerText() == "往宝带桥南方向")
                     {
-                        line2.UptrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
-                        line2.UptrainStartTime = node.SelectSingleNode("StartTime").InnerText;
-                        line2.UptrainEndTime = node.SelectSingleNode("EndTime").InnerText;
+                        line2.UptrainCount = node.SelectSingleNode("TrainCount").SafeInnerInt();
+                        line2.UptrainStartTime = node.SelectSingleNode("StartTime").SafeInnerText();
+                        line2.UptrainEndTime = node.SelectSingleNode("EndTime").SafeInnerText();
 
                         XmlNodeList trainnodes = node.SelectNodes("Train");
                         if (trainnodes != null)
@@ -342,8 +417,8 @@ namespace MonitorPlatform.Data
                             foreach (XmlNode trainnode in trainnodes)
                             {
                                 Train train = new Train();
-                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
-                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
                                 train.IsDown = false;
                                 line2.Trains.Add(train);
                             }
@@ -352,17 +427,17 @@ namespace MonitorPlatform.Data
                     }
                     else
                     {
-                        line2.DowntrainStartTime = node.SelectSingleNode("StartTime").InnerText;
-                        line2.DowntrainEndTime = node.SelectSingleNode("EndTime").InnerText;
-                        line2.DowntrainCount = int.Parse(node.SelectSingleNode("TrainCount").InnerText);
+                        line2.DowntrainStartTime = node.SelectSingleNode("StartTime").SafeInnerText();
+                        line2.DowntrainEndTime = node.SelectSingleNode("EndTime").SafeInnerText();
+                        line2.DowntrainCount = node.SelectSingleNode("TrainCount").SafeInnerInt();
                         XmlNodeList trainnodes = node.SelectNodes("Train");
                         if (trainnodes != null)
                         {
                             foreach (XmlNode trainnode in trainnodes)
                             {
                                 Train train = new Train();
-                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").InnerText;
-                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").InnerText);
+                                train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
+                                train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
                                 train.IsDown = true;
                                 line2.Trains.Add(train);
                             }
@@ -377,9 +452,9 @@ namespace MonitorPlatform.Data
             UpdateBossStation(nodes[0], line1, true);
             UpdateBossStation(nodes[1], line2, false);
 
-            line1.TrainIsWarn = doc.SelectSingleNode("/Document/TrainIsWarn").InnerText == "1";
-            line1.PassIsWarn = doc.SelectSingleNode("/Document/PassIsWarn").InnerText == "1";
-            line1.EquipIsWarn = doc.SelectSingleNode("/Document/EquipIsWarn").InnerText == "1";
+            line1.TrainIsWarn = doc.SelectSingleNode("/Document/TrainIsWarn").SafeInnerText() == "1";
+            line1.PassIsWarn = doc.SelectSingleNode("/Document/PassIsWarn").SafeInnerText() == "1";
+            line1.EquipIsWarn = doc.SelectSingleNode("/Document/EquipIsWarn").SafeInnerText() == "1";
             RaiseTrainLocationUpdate();
         }
 
@@ -398,15 +473,15 @@ namespace MonitorPlatform.Data
             int line2Total = 0;
             foreach (XmlNode node in nodes)
             {
-                if (node.SelectSingleNode("Name").InnerText == "1号线")
+                if (node.SelectSingleNode("Name").SafeInnerText() == "1号线")
                 {
-                    line1Total = int.Parse(node.SelectSingleNode("PassTotal").InnerText);
+                    line1Total = node.SelectSingleNode("PassTotal").SafeInnerInt();
                     UpdateTraficStation(node, line1);
                    
                 }
                 else
                 {
-                    line2Total = int.Parse(node.SelectSingleNode("PassTotal").InnerText);
+                    line2Total = node.SelectSingleNode("PassTotal").SafeInnerInt();
                     UpdateTraficStation(node, line2);
                 }
             }
@@ -444,15 +519,15 @@ namespace MonitorPlatform.Data
             foreach (XmlNode node in nodes)
             {
                 HistoryStation his = new HistoryStation();
-                his.Name = node.SelectSingleNode("Name").InnerText;
-                his.InNumber = int.Parse(node.SelectSingleNode("PassIn").InnerText);
-                his.OutNumber = int.Parse(node.SelectSingleNode("PassOut").InnerText);
-                his.TotalNumber = int.Parse(node.SelectSingleNode("PassTotal").InnerText);
-                his.UpBeginTime = DateTime.Parse(node.SelectSingleNode("UStartTime").InnerText);
-                his.UpEndTime = DateTime.Parse(node.SelectSingleNode("UEndTime").InnerText);
-                his.DownBeginTime = DateTime.Parse(node.SelectSingleNode("DStartTime").InnerText);
-                his.DownEndTime = DateTime.Parse(node.SelectSingleNode("DEndTime").InnerText);
-                his.TrafficJam = int.Parse(node.SelectSingleNode("CrowdCount").InnerText);
+                his.Name = node.SelectSingleNode("Name").SafeInnerText();
+                his.InNumber = node.SelectSingleNode("PassIn").SafeInnerInt();
+                his.OutNumber = node.SelectSingleNode("PassOut").SafeInnerInt();
+                his.TotalNumber = node.SelectSingleNode("PassTotal").SafeInnerInt();
+                his.UpBeginTime = DateTime.Parse(node.SelectSingleNode("UStartTime").SafeInnerText());
+                his.UpEndTime = DateTime.Parse(node.SelectSingleNode("UEndTime").SafeInnerText());
+                his.DownBeginTime = DateTime.Parse(node.SelectSingleNode("DStartTime").SafeInnerText());
+                his.DownEndTime = DateTime.Parse(node.SelectSingleNode("DEndTime").SafeInnerText());
+                his.TrafficJam = node.SelectSingleNode("CrowdCount").SafeInnerInt();
                 line1.History_Stations.Add(his);
             }
         }
@@ -472,9 +547,9 @@ namespace MonitorPlatform.Data
             {
                 TroubleStatusSum sta = new TroubleStatusSum();
                 
-                sta.EquipmentType = node.SelectSingleNode("Kind").InnerText;
-                sta.Number =  int.Parse( node.SelectSingleNode("Count").InnerText);
-                sta.BadNumber = int.Parse( node.SelectSingleNode("WarnCount").InnerText);
+                sta.EquipmentType = node.SelectSingleNode("Kind").SafeInnerText();
+                sta.Number = node.SelectSingleNode("Count").SafeInnerInt();
+                sta.BadNumber = node.SelectSingleNode("WarnCount").SafeInnerInt();
                 line1.Troubles.Add(sta);
             }
 
@@ -483,13 +558,13 @@ namespace MonitorPlatform.Data
              foreach (XmlNode node in nodes)
              {
                  StationTroubleStatus sta = new StationTroubleStatus();
-                 string name = node.SelectSingleNode("Name").InnerText;
+                 string name = node.SelectSingleNode("Name").SafeInnerText();
                  Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
                  if (s != null)
                  {
                      int index = line1.Stations.IndexOf(s);
                      sta.ID = index;
-                     sta.WarnCount = int.Parse(node.SelectSingleNode("WarnCount").InnerText);
+                     sta.WarnCount = node.SelectSingleNode("WarnCount").SafeInnerInt();
                      line1.StaTroubles.Add(sta);
                  }
 
@@ -507,23 +582,23 @@ namespace MonitorPlatform.Data
              foreach (XmlNode node in nodes)
              {
                  VoltageStatus sta = new VoltageStatus();
-                 if (node.SelectSingleNode("Kind").InnerText == "110kv")
+                 if (node.SelectSingleNode("Kind").SafeInnerText() == "110kv")
                  {
-                     volA.Val_110 = int.Parse(node.SelectSingleNode("VoltageA").InnerText);
-                     volB.Val_110 = int.Parse(node.SelectSingleNode("VoltageB").InnerText);
-                     volC.Val_110 = int.Parse(node.SelectSingleNode("VoltageC").InnerText);
+                     volA.Val_110 = node.SelectSingleNode("VoltageA").SafeInnerInt();
+                     volB.Val_110 = node.SelectSingleNode("VoltageB").SafeInnerInt();
+                     volC.Val_110 = node.SelectSingleNode("VoltageC").SafeInnerInt();
                  }
                  else
                  {
-                     volA.Val_35 = int.Parse(node.SelectSingleNode("VoltageA").InnerText);
-                     volB.Val_35 = int.Parse(node.SelectSingleNode("VoltageB").InnerText);
-                     volC.Val_35 = int.Parse(node.SelectSingleNode("VoltageC").InnerText);
+                     volA.Val_35 = node.SelectSingleNode("VoltageA").SafeInnerInt();
+                     volB.Val_35 = node.SelectSingleNode("VoltageB").SafeInnerInt();
+                     volC.Val_35 = node.SelectSingleNode("VoltageC").SafeInnerInt();
                  }
              }
 
-             volA.CabTemp = int.Parse(doc.SelectSingleNode("/Document/RailLine/CableTemp/TempA").InnerText);
-             volB.CabTemp = int.Parse(doc.SelectSingleNode("/Document/RailLine/CableTemp/TempB").InnerText);
-             volC.CabTemp = int.Parse(doc.SelectSingleNode("/Document/RailLine/CableTemp/TempC").InnerText);
+             volA.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempA").SafeInnerInt();
+             volB.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempB").SafeInnerInt();
+             volC.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempC").SafeInnerInt();
 
              line1.VoltageStat.Add(volA);
              line1.VoltageStat.Add(volB);
@@ -542,12 +617,12 @@ namespace MonitorPlatform.Data
             foreach (XmlNode node in nodes)
             {
                
-                string name = node.SelectSingleNode("Name").InnerText;
+                string name = node.SelectSingleNode("Name").SafeInnerText();
                 Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
                 if (s != null)
                 {
-                    s.BrokenNumber = int.Parse(node.SelectSingleNode("WarnCount").InnerText);
-                    s.StaGUID = node.SelectSingleNode("GUID").InnerText;
+                    s.BrokenNumber = node.SelectSingleNode("WarnCount").SafeInnerInt();
+                    s.StaGUID = node.SelectSingleNode("GUID").SafeInnerText();
                 }
             }
            
@@ -569,12 +644,12 @@ namespace MonitorPlatform.Data
                 foreach (XmlNode node in nodes)
                 {
                     Equipment eqi = new Equipment();
-                    eqi.Name = node.SelectSingleNode("PSignal").InnerText;
-                    eqi.EquipmentType = node.SelectSingleNode("PType").InnerText;
-                    eqi.Owner = node.SelectSingleNode("Name").InnerText;
-                    eqi.Location = node.SelectSingleNode("PLocation").InnerText;
-                    eqi.WaringLevel = node.SelectSingleNode("AlarmGrade").InnerText == "1" ? "警告" : "";
-                    eqi.Status = node.SelectSingleNode("Status").InnerText == "1" ? "异常" : "";
+                    eqi.Name = node.SelectSingleNode("PSignal").SafeInnerText();
+                    eqi.EquipmentType = node.SelectSingleNode("PType").SafeInnerText();
+                    eqi.Owner = node.SelectSingleNode("Name").SafeInnerText();
+                    eqi.Location = node.SelectSingleNode("PLocation").SafeInnerText();
+                    eqi.WaringLevel = node.SelectSingleNode("AlarmGrade").SafeInnerText() == "1" ? "警告" : "";
+                    eqi.Status = node.SelectSingleNode("Status").SafeInnerText() == "1" ? "异常" : "";
                     s.Equipments.Add(eqi);
                 }
             }
@@ -595,7 +670,7 @@ namespace MonitorPlatform.Data
             foreach (XmlNode node in nodes)
             {
                 SubLine line;
-                string name = node.SelectSingleNode("Name").InnerText;
+                string name = node.SelectSingleNode("Name").SafeInnerText();
                 if (name == "1号线")
                 {
                     line = MonitorDataModel.Instance().SubWayLines[0];
@@ -607,7 +682,7 @@ namespace MonitorPlatform.Data
                 int linecamecount = 0;
                 foreach (XmlNode stationnode in node.SelectNodes("Station"))
                 {
-                    string stationname = stationnode.SelectSingleNode("Name").InnerText;
+                    string stationname = stationnode.SelectSingleNode("Name").SafeInnerText();
                     Station s = line.Stations.SingleOrDefault(x => x.Name == stationname);
                     if (s !=null)
                     {
@@ -619,13 +694,13 @@ namespace MonitorPlatform.Data
                             foreach (XmlNode camenode in cameralist)
                             {
                                 Camera camera = new Camera();
-                                camera.Name = camenode.SelectSingleNode("Name").InnerText;
-                                camera.Location = camenode.SelectSingleNode("Location").InnerText;
-                                camera.Code = camenode.SelectSingleNode("Code").InnerText;
-                                camera.Type = camenode.SelectSingleNode("Type").InnerText;
-                                camera.APIID = camenode.SelectSingleNode("APIID").InnerText;
-                                camera.APIIP = camenode.SelectSingleNode("APIIP").InnerText;
-                                camera.Remark = camenode.SelectSingleNode("Remark").InnerText;
+                                camera.Name = camenode.SelectSingleNode("Name").SafeInnerText();
+                                camera.Location = camenode.SelectSingleNode("Location").SafeInnerText();
+                                camera.Code = camenode.SelectSingleNode("Code").SafeInnerText();
+                                camera.Type = camenode.SelectSingleNode("Type").SafeInnerText();
+                                camera.APIID = camenode.SelectSingleNode("APIID").SafeInnerText();
+                                camera.APIIP = camenode.SelectSingleNode("APIIP").SafeInnerText();
+                                camera.Remark = camenode.SelectSingleNode("Remark").SafeInnerText();
                                 s.Cameras.Add(camera);
                                 s.CameraNumber++;
                                 linecamecount++;

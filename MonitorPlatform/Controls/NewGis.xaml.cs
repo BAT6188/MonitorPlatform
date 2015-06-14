@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using Colligate;
 using System.Diagnostics;
+using Utility;
 
 namespace MonitorPlatform.Controls
 {
@@ -102,11 +103,11 @@ namespace MonitorPlatform.Controls
                         // <Label Type = "TEXT">点位显示名称</Label>
                         XmlNodeManage.SetSubValue(cnode, "Label", "point");
                         // <LON Type = "SINGLE">经度</LON>
-                        string sLon = node.SelectSingleNode("//LON").InnerText;
+                        string sLon = node.SelectSingleNode("//LON").SafeInnerText();
                         //string s = XmlNodeManage.GetSubValue(node, "LON");
                         XmlNodeManage.SetSubValue(cnode, "LON", sLon);
                         // <LAT Type = "SINGLE">纬度</LAT>
-                        string sLat = node.SelectSingleNode("//LAT").InnerText;
+                        string sLat = node.SelectSingleNode("//LAT").SafeInnerText();
                         XmlNodeManage.SetSubValue(cnode, "LAT", sLat);
                         // <Time Type = "DATE">点位时间（可选）</Time>
                         //MessageBox.Show(XmlNodeManage.GetSubValue(list, "TimeStamp"));

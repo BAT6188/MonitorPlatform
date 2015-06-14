@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\MonitorPlatform\MonitorPlatform\App.xaml
-211306507963
-18375370921
-40-1041769773
-39-220816954
-CenterWindow.xaml;Controls\CustomTree.xaml;Controls\Line1Status.xaml;Controls\Line2Status.xaml;Controls\NewGis.xaml;Controls\TabSelectControl.xaml;Controls\TrainStatusControl.xaml;LeftWindow.xaml;Pages\BossCenter.xaml;Pages\BossLeft.xaml;Pages\BossRight.xaml;Pages\EquipmentStatusCenter.xaml;Pages\EquipmentStatusLeft.xaml;Pages\TrafficCenter.xaml;Pages\TrafficLeft.xaml;Pages\TrafficRight.xaml;Pages\TrainLocationCenter.xaml;Pages\TrainLocationLeft.xaml;RightWindows.xaml;Theme\Language.xaml;Theme\Skin.xaml;
+22-264126350
+19-839729179
+41-251472859
+4167405111
+CenterWindow.xaml;Controls\CustomTree.xaml;Controls\Line1Status.xaml;Controls\Line2Status.xaml;Controls\NewGis.xaml;Controls\TabSelectControl.xaml;Controls\TrainStatusControl.xaml;LeftWindow.xaml;Login.xaml;Pages\BossCenter.xaml;Pages\BossLeft.xaml;Pages\BossRight.xaml;Pages\EquipmentStatusCenter.xaml;Pages\EquipmentStatusLeft.xaml;Pages\TrafficCenter.xaml;Pages\TrafficLeft.xaml;Pages\TrafficRight.xaml;Pages\TrainLocationCenter.xaml;Pages\TrainLocationLeft.xaml;RightWindows.xaml;Theme\Language.xaml;Theme\Skin.xaml;
 
 True
 

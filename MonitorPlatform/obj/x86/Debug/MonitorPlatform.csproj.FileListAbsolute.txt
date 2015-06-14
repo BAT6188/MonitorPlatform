@@ -104,3 +104,9 @@ E:\MonitorPlatform\MonitorPlatform\bin\Debug\System.Windows.Controls.DataVisuali
 E:\MonitorPlatform\MonitorPlatform\bin\Debug\WPFToolkit.dll
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\NewGis.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\NewGis.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Login.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Login.g.cs
+E:\MonitorPlatform\MonitorPlatform\bin\Debug\NLog.config
+E:\MonitorPlatform\MonitorPlatform\bin\Debug\NLog.dll
+E:\MonitorPlatform\MonitorPlatform\bin\Debug\Utility.dll
+E:\MonitorPlatform\MonitorPlatform\bin\Debug\Utility.pdb

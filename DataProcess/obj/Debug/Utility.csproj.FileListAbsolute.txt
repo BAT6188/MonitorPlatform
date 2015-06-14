@@ -1,0 +1,6 @@
+E:\MonitorPlatform\DataProcess\bin\Debug\Utility.dll
+E:\MonitorPlatform\DataProcess\bin\Debug\Utility.pdb
+E:\MonitorPlatform\DataProcess\bin\Debug\NLog.dll
+E:\MonitorPlatform\DataProcess\obj\Debug\ResolveAssemblyReference.cache
+E:\MonitorPlatform\DataProcess\obj\Debug\Utility.dll
+E:\MonitorPlatform\DataProcess\obj\Debug\Utility.pdb
