@@ -305,8 +305,8 @@ namespace MonitorPlatform.Data
                     stano = 23 - sta.SelectSingleNode("StationNo").SafeInnerInt();
                 }
                 Station station = line1.Stations[stano - 1];
-                station.InNumber = firstrail.SelectSingleNode("PassIn").SafeInnerInt();
-                station.OutNumber = firstrail.SelectSingleNode("PassOut").SafeInnerInt();
+                station.InNumber = sta.SelectSingleNode("PassIn").SafeInnerInt();
+                station.OutNumber = sta.SelectSingleNode("PassOut").SafeInnerInt();
             }
             line1.Troubles.Clear();
             foreach (XmlNode equip in firstrail.SelectNodes("Equipment"))
