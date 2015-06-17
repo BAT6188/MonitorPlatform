@@ -61,7 +61,7 @@
                 <Border VerticalAlignment="Center"  HorizontalAlignment ="Center"  Style="{StaticResource BossPopupContent}" Padding="10"  Height="80">
                     <DockPanel LastChildFill="True">
                         <Border DockPanel.Dock="Left">
-                            <TextBlock Style="{StaticResource BossPopupContentText}" Text="1号线"></TextBlock>
+                            <TextBlock Style="{StaticResource BossPopupContentText}" Text="2号线"></TextBlock>
                         </Border>
                         <Border Margin="10,0,0,0" >
                             <TextBlock  Style="{StaticResource BossPopupContentText}">

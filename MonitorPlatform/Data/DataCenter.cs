@@ -39,6 +39,12 @@ namespace MonitorPlatform.Data
             }
         }
 
+        public string LoginUser
+        {
+            get;
+            set;
+        }
+
         public void Inital(Window window)
         {
             win = window;
@@ -80,6 +86,7 @@ namespace MonitorPlatform.Data
                     }
                     else
                     {
+                        LoginUser = username;
                         islogin = true;
                     }
                     eve.Set();

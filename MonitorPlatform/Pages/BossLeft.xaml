@@ -526,10 +526,10 @@
                                 <Border Style="{Binding SubWayLines[0].PassIsWarn,
             Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Traffic_MouseUp"  Tag="{Binding SubWayLines[0].PassIsWarn}" Grid.Column="1" Grid.Row="0"   >
                                     <TextBlock    Style="{Binding SubWayLines[0].PassIsWarn,
-            Converter={StaticResource ValToNotifyStyleTextConverter}}">客流</TextBlock>
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">乘客流量</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"     >
-                                    <TextBlock   Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
+                                    <TextBlock   Style="{StaticResource NotifyContainerAlertText}">突发事件</TextBlock>
                                 </Border>
                                 <Border Style="{Binding SubWayLines[0].EquipIsWarn,
             Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Equipment_MouseUp" Tag="{Binding SubWayLines[0].EquipIsWarn}" Grid.Column="1" Grid.Row="1"   >
@@ -565,10 +565,10 @@
                                 <Border  Style="{Binding SubWayLines[1].PassIsWarn,
             Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Traffic_MouseUp" Tag="{Binding SubWayLines[1].PassIsWarn}"     Grid.Column="1" Grid.Row="0"   >
                                     <TextBlock  Style="{Binding SubWayLines[1].PassIsWarn,
-            Converter={StaticResource ValToNotifyStyleTextConverter}}">客流</TextBlock>
+            Converter={StaticResource ValToNotifyStyleTextConverter}}">乘客流量</TextBlock>
                                 </Border>
                                 <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"    >
-                                    <TextBlock  Style="{StaticResource NotifyContainerAlertText}">事件</TextBlock>
+                                    <TextBlock  Style="{StaticResource NotifyContainerAlertText}">突发事件</TextBlock>
                                 </Border>
                                 <Border Style="{Binding SubWayLines[1].EquipIsWarn,
             Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Equipment_MouseUp" Tag="{Binding SubWayLines[1].EquipIsWarn}"  Grid.Column="1" Grid.Row="1"    >

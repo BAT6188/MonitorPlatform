@@ -4,6 +4,7 @@ FE:\MonitorPlatform\MonitorPlatform\CenterWindow.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\CustomTree.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\Line1Status.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\Line2Status.xaml
+FE:\MonitorPlatform\MonitorPlatform\Controls\TabSelectControl.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\TrainStatusControl.xaml
 FE:\MonitorPlatform\MonitorPlatform\LeftWindow.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\BossCenter.xaml

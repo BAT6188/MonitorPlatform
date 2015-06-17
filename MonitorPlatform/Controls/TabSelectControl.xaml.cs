@@ -61,6 +61,7 @@ namespace MonitorPlatform.Controls
             TabSelectChangeEventArgs args = new TabSelectChangeEventArgs(TabSelectChangedEvent,this);
             args.ChoosedTab = (this.DataContext as MenuItems).SelectedChartType;
             this.RaiseEvent(args);
+            
         }
 
         public void SelectItem(string p)

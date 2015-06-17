@@ -6,3 +6,61 @@ StackTrace:   在 System.RuntimeMethodHandle._InvokeMethodFast(IRuntimeMethodInfo
    在 System.Delegate.DynamicInvokeImpl(Object[] args)
    在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
    在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 调用的目标发生了异常。
+ Time: 2015-06-16 21:46:06 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-06-17 21:24:40 Message: “在“System.Windows.StaticResourceExtension”上提供值时引发了异常。”，行号为“10”，行位置为“36”。
+StackTrace:   在 System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   在 System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   在 System.Windows.Markup.WpfXamlLoader.LoadBaml(XamlReader xamlReader, Boolean skipJournaledProperties, Object rootObject, XamlAccessLevel accessLevel, Uri baseUri)
+   在 System.Windows.Markup.XamlReader.LoadBaml(Stream stream, ParserContext parserContext, Object parent, Boolean closeStream)
+   在 System.Windows.Application.LoadComponent(Object component, Uri resourceLocator)
+   在 MonitorPlatform.LeftWindow.InitializeComponent() 位置 e:\MonitorPlatform\MonitorPlatform\LeftWindow.xaml:行号 1
+   在 MonitorPlatform.LeftWindow..ctor() 位置 E:\MonitorPlatform\MonitorPlatform\LeftWindow.xaml.cs:行号 35
+   在 MonitorPlatform.Login.btnLogin_MouseUp(Object sender, MouseButtonEventArgs e) 位置 E:\MonitorPlatform\MonitorPlatform\Login.xaml.cs:行号 47
+   在 System.Windows.Input.MouseButtonEventArgs.InvokeEventHandler(Delegate genericHandler, Object genericTarget)
+   在 System.Windows.RoutedEventArgs.InvokeHandler(Delegate handler, Object target)
+   在 System.Windows.RoutedEventHandlerInfo.InvokeHandler(Object target, RoutedEventArgs routedEventArgs)
+   在 System.Windows.EventRoute.InvokeHandlersImpl(Object source, RoutedEventArgs args, Boolean reRaised)
+   在 System.Windows.UIElement.RaiseEventImpl(DependencyObject sender, RoutedEventArgs args)
+   在 System.Windows.UIElement.RaiseTrustedEvent(RoutedEventArgs args)
+   在 System.Windows.UIElement.RaiseEvent(RoutedEventArgs args, Boolean trusted)
+   在 System.Windows.Input.InputManager.ProcessStagingArea()
+   在 System.Windows.Input.InputManager.ProcessInput(InputEventArgs input)
+   在 System.Windows.Input.InputProviderSite.ReportInput(InputReport inputReport)
+   在 System.Windows.Interop.HwndMouseInputProvider.ReportInput(IntPtr hwnd, InputMode mode, Int32 timestamp, RawMouseActions actions, Int32 x, Int32 y, Int32 wheel)
+   在 System.Windows.Interop.HwndMouseInputProvider.FilterMessage(IntPtr hwnd, WindowMessage msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   在 System.Windows.Interop.HwndSource.InputFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   在 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   在 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: “在“System.Windows.StaticResourceExtension”上提供值时引发了异常。”，行号为“10”，行位置为“36”。
+ Time: 2015-06-17 21:29:22 Message: 未将对象引用设置到对象的实例。
+StackTrace:   在 MonitorPlatform.Controls.TabItemControl.OnCheckedChanged(DependencyObject target, DependencyPropertyChangedEventArgs e) 位置 E:\MonitorPlatform\MonitorPlatform\Controls\TabItemControl.xaml.cs:行号 92
+   在 System.Windows.DependencyObject.OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+   在 System.Windows.FrameworkElement.OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+   在 System.Windows.DependencyObject.NotifyPropertyChange(DependencyPropertyChangedEventArgs args)
+   在 System.Windows.DependencyObject.UpdateEffectiveValue(EntryIndex entryIndex, DependencyProperty dp, PropertyMetadata metadata, EffectiveValueEntry oldEntry, EffectiveValueEntry& newEntry, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType)
+   在 System.Windows.DependencyObject.InvalidateProperty(DependencyProperty dp)
+   在 System.Windows.Data.BindingExpressionBase.Invalidate(Boolean isASubPropertyChange)
+   在 System.Windows.Data.BindingExpression.TransferValue(Object newValue, Boolean isASubPropertyChange)
+   在 System.Windows.Data.BindingExpression.Activate(Object item)
+   在 System.Windows.Data.BindingExpression.AttachToContext(AttachAttempt attempt)
+   在 System.Windows.Data.BindingExpression.MS.Internal.Data.IDataBindEngineClient.AttachToContext(Boolean lastChance)
+   在 MS.Internal.Data.DataBindEngine.Task.Run(Boolean lastChance)
+   在 MS.Internal.Data.DataBindEngine.Run(Object arg)
+   在 MS.Internal.Data.DataBindEngine.OnLayoutUpdated(Object sender, EventArgs e)
+   在 System.Windows.ContextLayoutManager.fireLayoutUpdateEvent()
+   在 System.Windows.ContextLayoutManager.UpdateLayout()
+   在 System.Windows.ContextLayoutManager.UpdateLayoutCallback(Object arg)
+   在 System.Windows.Media.MediaContext.InvokeOnRenderCallback.DoWork()
+   在 System.Windows.Media.MediaContext.FireInvokeOnRenderCallbacks()
+   在 System.Windows.Media.MediaContext.RenderMessageHandlerCore(Object resizedCompositionTarget)
+   在 System.Windows.Media.MediaContext.RenderMessageHandler(Object resizedCompositionTarget)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 未将对象引用设置到对象的实例。
+ Time: 2015-06-17 22:07:13 Message: 调用的目标发生了异常。
+StackTrace:   在 System.RuntimeMethodHandle._InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   在 System.RuntimeMethodHandle.InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   在 System.Delegate.DynamicInvokeImpl(Object[] args)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 调用的目标发生了异常。

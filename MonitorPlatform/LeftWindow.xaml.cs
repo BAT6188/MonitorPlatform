@@ -35,7 +35,8 @@ namespace MonitorPlatform
             InitializeComponent();
             right = new RightWindows();
             center = new CenterWindow();
-
+            this.txtTime.Text = System.DateTime.Now.ToString("yyyy年MM月dd日 dddd");
+            this.txtName.Text = DataCenter.Instance.LoginUser;
             System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
 
             if (screens.Length == 3)
@@ -43,15 +44,18 @@ namespace MonitorPlatform
                 this.Top = screens[0].WorkingArea.Top;
                 this.Left = screens[0].WorkingArea.Left;
                 this.WindowState = WindowState.Maximized;
+                this.WindowStyle = System.Windows.WindowStyle.None;
 
                 center.Top = screens[1].WorkingArea.Top;
                 center.Left = screens[1].WorkingArea.Left;
                 center.WindowState = WindowState.Maximized;
+                center.WindowStyle = System.Windows.WindowStyle.None;
 
 
                 right.Top = screens[2].WorkingArea.Top;
                 right.Left = screens[2].WorkingArea.Left;
                 right.WindowState = WindowState.Maximized;
+                right.WindowStyle = System.Windows.WindowStyle.None;
             }
             right.Show();
             center.Show();
@@ -146,6 +150,12 @@ namespace MonitorPlatform
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
+            Environment.Exit(0);
+        }
+
+        private void btnExit_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
             Environment.Exit(0);
         }
     }

@@ -4,30 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d"
+               xmlns:local="clr-namespace:MonitorPlatform.Controls"
              Loaded="TabSelectControl_Loaded">
-    
-    <ListBox DockPanel.Dock ="Top" HorizontalAlignment="Center" x:Name="mylist"
-                    Foreground="{Binding Path=MainForeground}"
+
+    <ListBox Height="40" HorizontalAlignment="Center" x:Name="mylist"
                     ItemsSource="{Binding Path=ChartTypes}" 
-                    ItemContainerStyle="{StaticResource SelectableListBoxItem}"                     
                     Background="Transparent" 
+                    Focusable="False"
+              Style="{StaticResource SelectableListBox}"
+               ItemContainerStyle="{StaticResource SelectableListBoxItem}"     
                     SelectionChanged ="ListBox_SelectionChanged"
                     SelectedItem="{Binding Path=SelectedChartType, Mode=TwoWay}">
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel Orientation="Horizontal" />
+                <StackPanel Orientation="Horizontal"  />
             </ItemsPanelTemplate>
         </ListBox.ItemsPanel>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <TextBlock Cursor="Hand"  Text="{Binding}" Style="{StaticResource SectionHeaderTextStyle}" />
+                <local:TabItemControl   Height="40"  Focusable="False" Cursor="Hand"  Text="{Binding}" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"   ></local:TabItemControl>
             </DataTemplate>
         </ListBox.ItemTemplate>
         <ListBox.Template>
             <ControlTemplate>
-                <Border x:Name="LayoutRoot" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
-                    <ScrollViewer Foreground="{Binding Path=MainForeground}" x:Name="ScrollViewer" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" Padding="{TemplateBinding Padding}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" BorderThickness="0" BorderBrush="Transparent">
-                        <ItemsPresenter/>
+                <Border x:Name="LayoutRoot" Padding="0"  Focusable="False" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                    <ScrollViewer Focusable="False" VerticalScrollBarVisibility="Disabled"  HorizontalScrollBarVisibility="Disabled"  Foreground="{Binding Path=MainForeground}" x:Name="ScrollViewer"  Padding="0"  BorderThickness="0" BorderBrush="Transparent">
+                        <ItemsPresenter Focusable="False"/>
                     </ScrollViewer>
                 </Border>
             </ControlTemplate>

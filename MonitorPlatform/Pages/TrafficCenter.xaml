@@ -55,7 +55,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
-                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道线路流量分布图"></TextBlock>
+                    <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道线路流量环状分布图"></TextBlock>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="0"   >
                     <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线流量图</TextBlock>

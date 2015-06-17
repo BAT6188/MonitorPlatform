@@ -15,8 +15,36 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Padding="5" Style="{StaticResource TitileSection}">
-            <control:TabSelectControl x:Name="tabControl"  control:TabSelectControl.TabSelectChanged="TabSelectControl_TabSelectChanged"></control:TabSelectControl>
+        <Border Grid.Row="0" Padding="5" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                        <Button DockPanel.Dock ="Left" Width="0.1" Height="0.1"></Button>
+                            <TextBlock DockPanel.Dock="Left" Margin="10,0,0,0"  x:Name="txtTime" Foreground="#FF00A1F2" FontWeight="Bold" FontSize="13.333" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" TextAlignment="Left" TextWrapping="Wrap" Text="2015年6月4日  星期三" />
+
+
+                    </DockPanel>
+                </Border>
+                <control:TabSelectControl Grid.Column="1"  x:Name="tabControl"  Focusable="False"  control:TabSelectControl.TabSelectChanged="TabSelectControl_TabSelectChanged"></control:TabSelectControl>    
+                <Border Grid.Column="2">
+                    <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                      
+                        <WrapPanel   Cursor="Hand"  MouseUp="btnExit_MouseUp"  DockPanel.Dock="Right" Margin="0,0,10,0"   Height="19.333"  Orientation="Horizontal" >
+                            <Path x:Name="形状_5" Data="F1M13.8,4.294C13.8,4.294 17,7.515 17,7.515 17,7.515 13.8,10.735 13.8,10.735 13.8,10.735 13.8,8.588 13.8,8.588 13.8,8.588 8.467,8.588 8.467,8.588 8.467,8.588 8.467,6.441 8.467,6.441 8.467,6.441 13.8,6.441 13.8,6.441 13.8,6.441 13.8,4.294 13.8,4.294z M1.64,1C1.64,1 12.094,1 12.094,1 12.447,1 12.734,1.288 12.734,1.644 12.734,1.644 12.734,5.367 12.734,5.367 12.734,5.367 11.667,5.367 11.667,5.367 11.667,5.367 11.667,2.502 11.667,2.502 11.667,2.266 11.476,2.073 11.24,2.073 11.24,2.073 3.133,2.073 3.133,2.073 3.133,2.073 6.546,3.79 6.802,3.92 7.261,4.152 7.4,4.564 7.4,4.835 7.4,4.835 7.4,12.882 7.4,12.882 7.4,12.882 11.24,12.882 11.24,12.882 11.476,12.882 11.667,12.69 11.667,12.453 11.667,12.453 11.667,9.662 11.667,9.662 11.667,9.662 12.734,9.662 12.734,9.662 12.734,9.662 12.734,13.312 12.734,13.312 12.734,13.667 12.447,13.956 12.094,13.956 12.094,13.956 7.4,13.956 7.4,13.956 7.4,13.956 7.4,16.731 7.4,16.731 7.4,16.903 7.218,17.079 6.916,16.92 5.496,16.167 1.631,14.037 1.351,13.886 1.349,13.886 1.348,13.885 1.346,13.884 1.141,13.776 1,13.561 1,13.312 1,13.312 1,1.644 1,1.644 1,1.288 1.286,1 1.64,1z" Fill="#FF0066CB" Height="19" Width="18"/>
+                            <TextBlock x:Name="退出" Foreground="#FF00A1F2" FontSize="13.333" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" TextAlignment="Left" TextWrapping="Wrap" Text="退出"/>
+                        </WrapPanel>
+                        <TextBlock DockPanel.Dock="Right" Margin="0,0,10,0"   x:Name="txtName" Foreground="#FF00A1F2" FontWeight="Bold" FontSize="13.333" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" TextAlignment="Left" TextWrapping="Wrap" Text="Admin" />
+
+                      
+                    </DockPanel>
+                </Border>
+            </Grid>
+            
         </Border>
         <Border Grid.Row="1" >
             <Frame Name="frame"  NavigationUIVisibility ="Hidden"  Source="Pages/BossLeft.xaml"></Frame>
