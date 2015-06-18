@@ -11,6 +11,7 @@
                     ItemsSource="{Binding Path=ChartTypes}" 
                     Background="Transparent" 
                     Focusable="False"
+                BorderThickness="0"
               Style="{StaticResource SelectableListBox}"
                ItemContainerStyle="{StaticResource SelectableListBoxItem}"     
                     SelectionChanged ="ListBox_SelectionChanged"

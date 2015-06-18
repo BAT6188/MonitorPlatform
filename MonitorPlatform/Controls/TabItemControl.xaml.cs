@@ -116,8 +116,9 @@ namespace MonitorPlatform.Controls
             {
 
                 icon.Fill = checkedcolor;
-                item.backselect.Visibility = Visibility.Visible;
                 item.backrect.Visibility = Visibility.Visible;
+                //item.tabgrid.Style = (Style)item.FindResource("selectvalgrid");//
+                item.backselect.Visibility = Visibility.Visible;
                 item.itemtext.Foreground = checkedcolor;
 
             }
@@ -126,8 +127,9 @@ namespace MonitorPlatform.Controls
             {
 
                 icon.Fill = uncheckedcolor;
-                item.backselect.Visibility = Visibility.Hidden;
                 item.backrect.Visibility = Visibility.Hidden;
+                //item.tabgrid.Style = null;//
+                item.backselect.Visibility = Visibility.Hidden;
                 item.itemtext.Foreground = uncheckedcolor;
 
             

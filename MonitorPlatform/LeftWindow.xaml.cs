@@ -61,7 +61,7 @@ namespace MonitorPlatform
             center.Show();
             DataCenter.Instance.Inital(this);
 
-            //DataCenter.Instance.Login();
+            //DataCenter.Instance.Login("test1", "1");
             DataCenter.Instance.UpdateBoss();
             DataCenter.Instance.UpdateEquipmentLeft();
             DataCenter.Instance.UpdateEquipmentCenter();
@@ -122,9 +122,9 @@ namespace MonitorPlatform
                     right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);
                     break;
                 case "视频监控":
-                    //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");
-                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
-                    //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
+                    this.frame.Source = new Uri("Pages/CameraStatusLeft.xaml",UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
                     break;
                 case "地理信息":
                     //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");

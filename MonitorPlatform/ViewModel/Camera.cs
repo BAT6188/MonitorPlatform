@@ -52,6 +52,7 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        //类型
         private string type = "";
         public string Type
         {
@@ -107,6 +108,52 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("Remark");
             }
         }
+
+        //所属行业
+        private string industry = "";
+        public string Industry
+        {
+            get
+            {
+                return industry;
+            }
+            set
+            {
+                industry = value;
+                NotifyPropertyChanged("Industry");
+            }
+        }
+
+        //在线状态
+        private string status = "";
+        public string Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+                NotifyPropertyChanged("Status");
+            }
+        }
+
+        //订阅状态
+        private string subscription = "";
+        public string Subscription
+        {
+            get
+            {
+                return subscription;
+            }
+            set
+            {
+                subscription = value;
+                NotifyPropertyChanged("Subscription");
+            }
+        }
+
 
         private void NotifyPropertyChanged(string property)
         {

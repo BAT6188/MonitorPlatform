@@ -116,3 +116,5 @@ E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform.exe.manifest
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\MonitorPlatform.application
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\TabItemControl.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\TabItemControl.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\CameraStatusLeft.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\CameraStatusLeft.baml

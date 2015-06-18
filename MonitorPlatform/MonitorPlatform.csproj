@@ -208,6 +208,9 @@
     <Compile Include="Pages\BossRight.xaml.cs">
       <DependentUpon>BossRight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CameraStatusLeft.xaml.cs">
+      <DependentUpon>CameraStatusLeft.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EquipmentStatusCenter.xaml.cs">
       <DependentUpon>EquipmentStatusCenter.xaml</DependentUpon>
     </Compile>
@@ -293,6 +296,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\BossRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CameraStatusLeft.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
