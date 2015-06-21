@@ -48,14 +48,14 @@ namespace MonitorPlatform
 
                 center.Top = screens[1].WorkingArea.Top;
                 center.Left = screens[1].WorkingArea.Left;
-                center.WindowState = WindowState.Maximized;
-                center.WindowStyle = System.Windows.WindowStyle.None;
+                //center.WindowState = WindowState.Maximized;
+                //center.WindowStyle = System.Windows.WindowStyle.None;
 
 
                 right.Top = screens[2].WorkingArea.Top;
                 right.Left = screens[2].WorkingArea.Left;
-                right.WindowState = WindowState.Maximized;
-                right.WindowStyle = System.Windows.WindowStyle.None;
+                //right.WindowState = WindowState.Maximized;
+                //right.WindowStyle = System.Windows.WindowStyle.None;
             }
             right.Show();
             center.Show();
@@ -101,7 +101,7 @@ namespace MonitorPlatform
         {
             switch (tab)
             {
-                case "总裁界面":
+                case "系统首页":
                     this.frame.Source = new Uri("Pages/BossLeft.xaml", UriKind.Relative);
                     center.frame.Source = new Uri("Pages/BossCenter.xaml", UriKind.Relative);
                     right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);

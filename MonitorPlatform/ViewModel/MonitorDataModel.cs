@@ -37,7 +37,7 @@ namespace MonitorPlatform.ViewModel
         public MenuItems()
         {
             ChartTypes = new ObservableCollection<string>();
-            ChartTypes.Add("总裁界面");
+            ChartTypes.Add("系统首页");
             ChartTypes.Add("客流信息");
             ChartTypes.Add("列车位置");
             ChartTypes.Add("设施设备");

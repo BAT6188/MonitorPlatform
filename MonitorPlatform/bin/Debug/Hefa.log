@@ -690,3 +690,5 @@ StackTrace:   在 System.Windows.Markup.XamlReader.RewrapException(Exception e, I
    在 System.Windows.Navigation.NavigateQueueItem.Dispatch(Object obj)
    在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
    在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: “对类型“MonitorPlatform.Pages.CameraStatusLeft”的构造函数执行符合指定的绑定约束的调用时引发了异常。”，行号为“13”，行位置为“8”。
+ Time: 2015-06-21 16:30:42 Message: 登录失败! username:test1 Exception: 
+ Time: 2015-06-21 16:31:06 Message: 登录失败! username:test1 Exception: 

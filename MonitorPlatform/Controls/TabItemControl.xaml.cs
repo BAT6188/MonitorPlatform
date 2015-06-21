@@ -76,7 +76,7 @@ namespace MonitorPlatform.Controls
             //Ugly implementation
             switch (item.Text)
             {
-                case "总裁界面":
+                case "系统首页":
                     item.ImageIndex = 1;
                     break;
                 case "客流信息":
