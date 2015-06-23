@@ -17,7 +17,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="260"></RowDefinition>
+            <RowDefinition Height="350"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Margin="0,5,0,0">
@@ -39,17 +39,17 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Height="100" Name="stackPanel4" Grid.Column ="0" HorizontalAlignment="Center"  >
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="上行: 钟南街－木渎" />
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].UptrainStartTime}"></Run></TextBlock>
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].UptrainEndTime}"></Run></TextBlock>
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[0].UptrainCount}"></Run></TextBlock>
+                                <StackPanel Height="150" Name="stackPanel4" Grid.Column ="0" HorizontalAlignment="Center"   >
+                                    <TextBlock  Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}"   Text="上行: 木渎－钟南街" />
+                                    <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].UptrainStartTime}"></Run></TextBlock>
+                                    <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].UptrainEndTime}"></Run></TextBlock>
+                                    <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[0].UptrainCount}"></Run></TextBlock>
                                 </StackPanel>
-                                <StackPanel Height="100" Name="stackPanel5" Grid.Column ="1" HorizontalAlignment="Center" >
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="下行: 木渎－钟南街" />
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].DowntrainStartTime}"></Run></TextBlock>
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].DowntrainEndTime}"></Run></TextBlock>
-                                    <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[0].DowntrainCount}"></Run></TextBlock>
+                                <StackPanel Height="150" Name="stackPanel5" Grid.Column ="1" HorizontalAlignment="Center" >
+                                    <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}"   Text="下行: 钟南街－木渎" />
+                                    <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].DowntrainStartTime}"></Run></TextBlock>
+                                    <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[0].DowntrainEndTime}"></Run></TextBlock>
+                                    <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[0].DowntrainCount}"></Run></TextBlock>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -62,17 +62,17 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Height="100"  Grid.Column ="0" HorizontalAlignment="Center"  >
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="上行: 钟南街－木渎" />
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].UptrainStartTime}"></Run></TextBlock>
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].UptrainEndTime}"></Run></TextBlock>
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[1].UptrainCount}"></Run></TextBlock>
+                            <StackPanel Height="150"  Grid.Column ="0" HorizontalAlignment="Center"  >
+                                <TextBlock Margin="10" TextAlignment="Center"  Style="{StaticResource SectionContentSmallTextStyle}"   Text="上行: 高铁苏州北站－宝带桥南" />
+                                <TextBlock Margin="10" TextAlignment="Center" Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].UptrainStartTime}"></Run></TextBlock>
+                                <TextBlock Margin="10" TextAlignment="Center" Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].UptrainEndTime}"></Run></TextBlock>
+                                <TextBlock Margin="10" TextAlignment="Center" Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[1].UptrainCount}"></Run></TextBlock>
                             </StackPanel>
-                            <StackPanel Height="100"  Grid.Column ="1" HorizontalAlignment="Center" >
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   Text="下行: 木渎－钟南街" />
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].DowntrainStartTime}"></Run></TextBlock>
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].DowntrainEndTime}"></Run></TextBlock>
-                                <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[1].DowntrainCount}"></Run></TextBlock>
+                            <StackPanel Height="150"  Grid.Column ="1" HorizontalAlignment="Center" >
+                                <TextBlock Margin="10" TextAlignment="Center" Style="{StaticResource SectionContentSmallTextStyle}"   Text="下行: 宝带桥南－高铁苏州北站" />
+                                <TextBlock Margin="10" TextAlignment="Center" Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="首发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].DowntrainStartTime}"></Run></TextBlock>
+                                <TextBlock Margin="10" TextAlignment="Center" Style="{StaticResource SectionContentSmallTextStyle}"   ><Run Text="末发时间: "></Run><Run  Text="{Binding Path=SubWayLines[1].DowntrainEndTime}"></Run></TextBlock>
+                                <TextBlock Margin="10" TextAlignment="Center" Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="当前运行车辆数 "></Run><Run  Text="{Binding Path=SubWayLines[1].DowntrainCount}"></Run></TextBlock>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
@@ -191,6 +191,8 @@
                                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                                 ToolTipFormat="{Binding Path=ToolTipFormat}"
                                 Foreground="{Binding Path=Foreground}" 
+                                                           MyClientWidth ="120"
+                                                        MyClientHeight ="120"
                               Background="Transparent"          
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
@@ -206,17 +208,17 @@
                                 </chart:RadialGaugeChart>
                                 <Border Grid.Row="1" Grid.Column="1" >
                                     <TextBlock Style="{StaticResource BossPopupContentText}" >
-                                        <Run Text="进:"></Run><Run Text="{Binding Path=SubWayLines[0].InNumber}"></Run><Run Text="W"></Run>
+                                        <Run Text="进:"></Run><Run Text="{Binding Path=SubWayLines[0].InNumber}"></Run><Run Text=""></Run>
                                     </TextBlock>
                                 </Border>
                                 <Border Grid.Row="2" Grid.Column="1" >
                                     <TextBlock Style="{StaticResource BossPopupContentText}" >
-                                    <Run Text="出:"></Run><Run Text="{Binding Path=SubWayLines[0].OutNumber}"></Run><Run Text="W"></Run>
+                                    <Run Text="出:"></Run><Run Text="{Binding Path=SubWayLines[0].OutNumber}"></Run><Run Text=""></Run>
                                     </TextBlock>
                                 </Border>
                                 <Border Grid.Row="3" Grid.Column="1" >
                                     <TextBlock Style="{StaticResource BossPopupContentText}" >
-                                    <Run Text="总:"></Run><Run Text="{Binding Path=SubWayLines[0].TotalNumber}"></Run><Run Text="W"></Run>
+                                    <Run Text="总:"></Run><Run Text="{Binding Path=SubWayLines[0].TotalNumber}"></Run><Run Text=""></Run>
                                     </TextBlock>
                                 </Border>
 
@@ -299,6 +301,8 @@
                                 ChartLegendVisibility="Hidden"
                                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                                 ToolTipFormat="{Binding Path=ToolTipFormat}"
+                                                           MyClientWidth ="120"
+                                                        MyClientHeight ="120"
                                 Foreground="White" 
                               Background="{x:Null}"          
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
@@ -315,17 +319,17 @@
                                 </chart:RadialGaugeChart>
                                 <Border Grid.Row="1" Grid.Column="1" >
                                     <TextBlock Style="{StaticResource BossPopupContentText}" >
-                                        <Run Text="进:"></Run><Run Text="{Binding Path=SubWayLines[1].InNumber}"></Run><Run Text="W"></Run>
+                                        <Run Text="进:"></Run><Run Text="{Binding Path=SubWayLines[1].InNumber}"></Run><Run Text=""></Run>
                                     </TextBlock>
                                 </Border>
                                 <Border Grid.Row="2" Grid.Column="1" >
                                     <TextBlock Style="{StaticResource BossPopupContentText}" >
-                                    <Run Text="出:"></Run><Run Text="{Binding Path=SubWayLines[1].OutNumber}"></Run><Run Text="W"></Run>
+                                    <Run Text="出:"></Run><Run Text="{Binding Path=SubWayLines[1].OutNumber}"></Run><Run Text=""></Run>
                                     </TextBlock>
                                 </Border>
                                 <Border Grid.Row="3" Grid.Column="1" >
                                     <TextBlock Style="{StaticResource BossPopupContentText}" >
-                                    <Run Text="总:"></Run><Run Text="{Binding Path=SubWayLines[1].TotalNumber}"></Run><Run Text="W"></Run>
+                                    <Run Text="总:"></Run><Run Text="{Binding Path=SubWayLines[1].TotalNumber}"></Run><Run Text=""></Run>
                                     </TextBlock>
                                 </Border>
 

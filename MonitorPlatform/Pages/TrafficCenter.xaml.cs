@@ -23,6 +23,7 @@ namespace MonitorPlatform.Pages
         public TrafficCenter()
         {
             InitializeComponent();
+            datePicker1.SelectedDate = DateTime.Now;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

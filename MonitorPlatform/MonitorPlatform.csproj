@@ -411,6 +411,10 @@
     <Resource Include="Resource\0b6a3da18.png" />
     <Resource Include="Resource\Button 副本 2.png" />
     <Resource Include="Resource\Button.png" />
+    <Resource Include="Resource\形状 1.png" />
+    <Resource Include="Resource\形状 11.png" />
+    <Resource Include="Resource\形状 12.png" />
+    <Resource Include="Resource\形状 13.png" />
     <Content Include="ThirdParty\AxInterop.VSPOcxClientLib.dll" />
     <Content Include="ThirdParty\Com.CustomControl.dll" />
     <Content Include="ThirdParty\Com.MapPlugin.dll" />
