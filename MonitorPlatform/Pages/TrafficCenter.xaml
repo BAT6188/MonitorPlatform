@@ -193,10 +193,12 @@
                                     </dxc:AxisY2D>
                                 </dxc:XYDiagram2D.AxisY>
                                 <dxc:XYDiagram2D.Series>
+                                   
                                     <dxc:BarSideBySideStackedSeries2D 
                                                             
-                                                 ArgumentDataMember="Time" 
-                                                       ValueDataMember="Number"
+                                                              StackedGroup="Tot"
+                                               ArgumentDataMember="Time" 
+                                                       ValueDataMember="InNumber"
                                                        DataSource="{Binding Path=SubWayLines[0].Personrates}">
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
@@ -204,7 +206,21 @@
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
-                                
+                                    <dxc:BarSideBySideStackedSeries2D 
+                                                             
+                                                              StackedGroup="Tot"
+                                                   ArgumentDataMember="Time" 
+                                                       ValueDataMember="Outnumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].Personrates}">
+
+                                        <dxc:BarSideBySideStackedSeries2D.Label>
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                        </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                    </dxc:BarSideBySideStackedSeries2D>
+
+
+
                                 </dxc:XYDiagram2D.Series>
                             </dxc:XYDiagram2D>
                         </dxc:ChartControl.Diagram>
@@ -232,10 +248,24 @@
                                     </dxc:AxisY2D>
                                 </dxc:XYDiagram2D.AxisY>
                                 <dxc:XYDiagram2D.Series>
+
                                     <dxc:BarSideBySideStackedSeries2D 
                                                             
-                                                 ArgumentDataMember="Time" 
-                                                       ValueDataMember="Number"
+                                                              StackedGroup="Tot"
+                                               ArgumentDataMember="Time" 
+                                                       ValueDataMember="InNumber"
+                                                       DataSource="{Binding Path=SubWayLines[1].Personrates}">
+
+                                        <dxc:BarSideBySideStackedSeries2D.Label>
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                        </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                    </dxc:BarSideBySideStackedSeries2D>
+                                    <dxc:BarSideBySideStackedSeries2D 
+                                                             
+                                                              StackedGroup="Tot"
+                                                   ArgumentDataMember="Time" 
+                                                       ValueDataMember="Outnumber"
                                                        DataSource="{Binding Path=SubWayLines[1].Personrates}">
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>

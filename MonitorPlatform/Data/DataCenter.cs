@@ -102,9 +102,6 @@ namespace MonitorPlatform.Data
             return islogin;
         }
 
-        
-        
-        
         public  void UpdateBoss()
         {
             XElement tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "MainPageInitInfo");
@@ -115,7 +112,26 @@ namespace MonitorPlatform.Data
                 win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
             });
         }
-        
+
+        public void UpdateTrafficLeft ()
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFCFifthQueryInfo");
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrafficLeftUIData), result.Data);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateTrafficLeftUIData fail." + result.ErrMessage);
+                }
+            });
+        }
+
         public void UpdateTrafficCenter(DateTime time)
         {
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
@@ -330,6 +346,7 @@ namespace MonitorPlatform.Data
            
         }
 
+
         private void UpdateTraficStation(XmlNode linenode, SubLine line1)
         {
             XmlNodeList passnodes = linenode.SelectNodes("PassInfo");
@@ -340,9 +357,32 @@ namespace MonitorPlatform.Data
                 line1.Personrates.Add(new PersonsRateSum()
                 {
                     Time = passnode.SelectSingleNode("HourTime").SafeInnerText(),
-                    Number = passnode.SelectSingleNode("PassTotal").SafeInnerInt()
+                    InNumber = passnode.SelectSingleNode("PassIn").SafeInnerInt(),
+                    Outnumber = passnode.SelectSingleNode("PassOut").SafeInnerInt()
                 });
             }
+        }
+
+        private void UpdateTrafficLeftStationUIData(XmlNode linenode, SubLine line1, bool isfirst)
+        {
+            foreach (XmlNode sta in linenode.SelectNodes("Station"))
+            {
+                int stano = 0;
+                if (isfirst)
+                {
+                    stano = sta.SelectSingleNode("StationNo").SafeInnerInt();
+                }
+                else
+                {
+                    stano = 23 - sta.SelectSingleNode("StationNo").SafeInnerInt();
+                }
+                Station station = line1.Stations[stano - 1];
+                // CrowdStatus +1
+                station.Status = sta.SelectSingleNode("CrowdStatus").SafeInnerInt() + 1;
+               
+            }
+        
+        
         }
 
         private void UpdateBossUIData(string data)
@@ -465,6 +505,35 @@ namespace MonitorPlatform.Data
             RaiseTrainLocationUpdate();
         }
 
+        private void UpdateTrafficLeftUIData(string data)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[0];
+            SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
+
+
+            XmlNodeList nodes = doc.SelectNodes("/Document/RailLine");
+
+            foreach (XmlNode node in nodes)
+            {
+                //Line 1
+                if (node.SelectSingleNode("Guid").SafeInnerText() == "4ce1f6eb-5334-419b-bea3-a20e16b7e205")
+                {
+                    line1.CrowdStation = node.SelectSingleNode("CrowdStation").SafeInnerInt();
+                    line1.BlockStation = node.SelectSingleNode("BlockStation").SafeInnerInt();
+                    UpdateTrafficLeftStationUIData(node, line1,true);
+
+                }
+                else
+                {
+                    line2.CrowdStation = node.SelectSingleNode("CrowdStation").SafeInnerInt();
+                    line2.BlockStation = node.SelectSingleNode("BlockStation").SafeInnerInt();
+                    UpdateTrafficLeftStationUIData(node, line2, false);
+                }
+            }
+
+        }
 
         private void UpdateTrainCenterUIData(string data)
         {

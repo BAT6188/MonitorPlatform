@@ -58,12 +58,12 @@
                         <Path x:Name="形状_1_副本_8" Data="M3,3 C3,3 0,0 0,0" Fill="#FFF39700" Height="3" Canvas.Left="1184" Canvas.Top="18" Width="3" Stretch="Fill"/>
                         <CheckBox Name="chk_AFC"  Content="AFC" IsChecked="True"  Height="26.757" Canvas.Left="488" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="15" Width="108"/>
                         <TextBlock  x:Name="PA" Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" Canvas.Left="1639" TextAlignment="Left" TextWrapping="Wrap" Canvas.Top="18"/>
-                        <CheckBox Name="chk_FAS" Content="FAS" Height="26.757" Canvas.Left="718" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Name="chk_BAS" Content="BAS" Height="26.757" Canvas.Left="935.333" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Name="chk_PSCADA" Content="PSCADA" Height="26.757" Canvas.Left="298" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Name="chk_PSD" Content="PSD" Height="26.757" Canvas.Left="1158.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Name="chk_PIS" Content="PIS" Height="26.757" Canvas.Left="1384.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Name="chk_PA" Content="PA" Height="26.757" Canvas.Left="1610.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_FAS" IsChecked="True"  Content="FAS" Height="26.757" Canvas.Left="718" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_BAS" IsChecked="True"  Content="BAS" Height="26.757" Canvas.Left="935.333" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PSCADA" IsChecked="True"  Content="PSCADA" Height="26.757" Canvas.Left="298" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PSD" IsChecked="True"  Content="PSD" Height="26.757" Canvas.Left="1158.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PIS" IsChecked="True"  Content="PIS" Height="26.757" Canvas.Left="1384.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_PA" IsChecked="True"  Content="PA" Height="26.757" Canvas.Left="1610.833" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
                     </Canvas>
                 </Grid>
             </Viewbox>

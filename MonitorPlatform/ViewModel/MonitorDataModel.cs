@@ -247,21 +247,21 @@ namespace MonitorPlatform.ViewModel
 
 
             
-            line1.Personrates.Add(new PersonsRateSum() { Time = "06", Number = 20000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "07", Number = 30000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "08", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "09", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "10", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "11", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "12", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "13", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "14", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "15", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "16", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "17", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "18", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "19", Number = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "20", Number = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 20000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "07", InNumber = 30000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "08", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "09", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "10", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "11", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "12", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "13", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "14", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "15", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "16", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "17", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "18", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "19", InNumber = 21000 });
+            line1.Personrates.Add(new PersonsRateSum() { Time = "20", InNumber = 21000 });
             line1.Trains.Add(new Train() { Location=3,IsDown =true });
             line1.Trains.Add(new Train() { Location =7, IsDown = true });
             line1.Trains.Add(new Train() { Location = 14, IsDown = true });
@@ -284,21 +284,21 @@ namespace MonitorPlatform.ViewModel
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
 
 
-            line2.Personrates.Add(new PersonsRateSum() { Time = "06", Number = 20000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "07", Number = 30000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "08", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "09", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "10", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "11", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "12", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "13", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "14", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "15", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "16", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "17", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "18", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "19", Number = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "20", Number = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 20000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "07", InNumber = 30000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "08", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "09", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "10", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "11", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "12", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "13", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "14", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "15", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "16", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "17", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "18", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "19", InNumber = 21000 });
+            line2.Personrates.Add(new PersonsRateSum() { Time = "20", InNumber = 21000 });
 
             line2.Trains.Add(new Train() { Location = 3, IsDown = true });
             line2.Trains.Add(new Train() { Location = 7, IsDown = true });

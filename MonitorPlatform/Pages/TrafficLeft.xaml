@@ -349,12 +349,12 @@
 
                         <TextBlock Grid.Row="5" Style="{StaticResource BaseContentTextStyle}">
                              <Run  Text="     拥挤站点: " />
-                            <Run  Foreground="White"  Text="5" />
+                            <Run  Foreground="White"  Text="{Binding Path=SubWayLines[0].CrowdStation}" />
                             <Run  Text="个" />
                         </TextBlock>
                         <TextBlock Grid.Row="6" Style="{StaticResource BaseContentTextStyle}">
                              <Run  Text="     拥堵站点: " />
-                            <Run  Foreground="White"  Text="5" />
+                            <Run  Foreground="White"  Text="{Binding Path=SubWayLines[0].BlockStation}"  />
                             <Run  Text="个" />
                         </TextBlock>
                     </Grid>
@@ -408,12 +408,12 @@
 
                         <TextBlock Grid.Row="5" Style="{StaticResource BaseContentTextStyle}">
                              <Run  Text="     拥挤站点: " />
-                            <Run  Foreground="White"  Text="5" />
+                            <Run  Foreground="White"  Text="{Binding Path=SubWayLines[1].CrowdStation}" />
                             <Run  Text="个" />
                         </TextBlock>
                         <TextBlock Grid.Row="6" Style="{StaticResource BaseContentTextStyle}">
                              <Run  Text="     拥堵站点: " />
-                            <Run  Foreground="White"  Text="5" />
+                            <Run  Foreground="White"  Text="{Binding Path=SubWayLines[1].BlockStation}"  />
                             <Run  Text="个" />
                         </TextBlock>
                     </Grid>

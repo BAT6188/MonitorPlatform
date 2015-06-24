@@ -14,7 +14,7 @@
       
 	Title="TrafficRight">
 
-<Grid >
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
@@ -32,51 +32,29 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1"></RowDefinition>
-                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Grid.Column="0">
                 <!--<Label Content="2014年5月13日">
                 </Label>-->
             </Border>
-            <Border Grid.Row="1" Grid.Column="0">
-                <Border VerticalAlignment="Center"  HorizontalAlignment ="Center"  Style="{StaticResource BossPopupContent}" Padding="10"  Height="80">
-                    <DockPanel LastChildFill="True">
-                        <Border DockPanel.Dock="Left">
-                            <TextBlock Style="{StaticResource BossPopupContentText}" Text="1号线"></TextBlock>
-                        </Border>
-                        <Border Margin="10,0,0,0" >
-                            <TextBlock  Style="{StaticResource BossPopupContentText}">
-                          <Run>上行：木渎 至 钟南街</Run>
-                          <LineBreak/>
-                                <LineBreak/>
-                          <Run>首发时间：5:00 末发时间：22:00</Run>
-                            </TextBlock>
-                        </Border>
-                    </DockPanel>
-                </Border>
+            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2" Margin="10">
+                <Viewbox  Stretch="Fill" >
+                    <Grid Height="54" Width="1870">
+                        <Canvas x:Name="线路" Height="53" Width="644" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Path x:Name="矩形_10" Data="F1M1,1C1,1 643,1 643,1 643,1 643,51 643,51 643,51 1,51 1,51 1,51 1,1 1,1z" Fill="#FF092B61" Height="52" Canvas.Left="0" Canvas.Top="1" Width="644"/>
+                            <Path x:Name="矩形_3" Data="F1M2,2C2,2 5,2 5,2 5,2 5,52 5,52 5,52 2,52 2,52 2,52 2,2 2,2z" Fill="#FF0353CB" Height="53" Canvas.Left="205" Canvas.Top="0" Width="6"/>
+                            <CheckBox  Name="chkLine" IsChecked ="True"  Content="1号线" Click="chkLine_Click"     Height="23.757" Canvas.Left="318" Style="{DynamicResource SubWayCheckStyle}" Canvas.Top="18" Width="193"/>
+                            <TextBlock x:Name="线路1" Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" Canvas.Left="88" TextAlignment="Center" TextWrapping="Wrap" Text="线路" Canvas.Top="17"/>
+                        </Canvas>
+                    </Grid>
+                </Viewbox>
             </Border>
-            <Border Grid.Row="1" Grid.Column="1">
-              
-                <Border VerticalAlignment="Center"  HorizontalAlignment ="Center"  Style="{StaticResource BossPopupContent}" Padding="10"  Height="80">
-                    <DockPanel LastChildFill="True">
-                        <Border DockPanel.Dock="Left">
-                            <TextBlock Style="{StaticResource BossPopupContentText}" Text="2号线"></TextBlock>
-                        </Border>
-                        <Border Margin="10,0,0,0" >
-                            <TextBlock  Style="{StaticResource BossPopupContentText}">
-                          <Run>下行：木渎 至 钟南街</Run>
-                          <LineBreak/>
-                                <LineBreak/>
-                          <Run>首发时间：5:00 末发时间：22:00</Run>
-                            </TextBlock>
-                        </Border>
-                    </DockPanel>
-                </Border>
-            </Border>
+           
 
             <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                <dxg:GridControl Background="Transparent"   Opacity="0.5"  x:Name="grid"   Template="{StaticResource GridTemplate}"  ItemsSource="{Binding Path=SubWayLines[0].History_Stations}">
+                <dxg:GridControl Background="Transparent"   Opacity="0.5"  x:Name="grid"   Template="{StaticResource GridTemplate}"  >
 
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn  FieldName="Name"  Header="站点" />

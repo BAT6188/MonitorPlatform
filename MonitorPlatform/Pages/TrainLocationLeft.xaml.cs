@@ -97,6 +97,8 @@ namespace MonitorPlatform.Pages
         {
             Train trainin = (sender as Image).Tag as Train;
             MonitorDataModel.Instance().CurrentTrain = trainin;
+            (Window.GetWindow(this) as LeftWindow).ShowTrainLocationCenter();
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

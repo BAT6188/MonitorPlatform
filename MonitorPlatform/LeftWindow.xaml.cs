@@ -63,6 +63,7 @@ namespace MonitorPlatform
 
             //DataCenter.Instance.Login("test1", "1");
             DataCenter.Instance.UpdateBoss();
+            DataCenter.Instance.UpdateTrafficLeft();
             DataCenter.Instance.UpdateEquipmentLeft();
             DataCenter.Instance.UpdateEquipmentCenter();
             DataCenter.Instance.UpdateCameraInfo();
@@ -85,6 +86,7 @@ namespace MonitorPlatform
             }
             if ((current - lastupdate_boss).Minutes >= 15)
             {
+                DataCenter.Instance.UpdateTrafficLeft();
                 DataCenter.Instance.UpdateEquipmentCenter();
                 DataCenter.Instance.UpdateCameraInfo();
                 lastupdate_boss = current;
@@ -95,6 +97,11 @@ namespace MonitorPlatform
         {
           
             this.DataContext = MonitorDataModel.Instance();
+        }
+
+        public void ShowTrainLocationCenter()
+        {
+            center.frame.Source = new Uri("Pages/TrainLocationCenter.xaml", UriKind.Relative);
         }
 
         public void ChangeTab(string tab)
@@ -113,7 +120,7 @@ namespace MonitorPlatform
                     break;
                 case "列车位置":
                     this.frame.Source = new Uri("Pages/TrainLocationLeft.xaml", UriKind.Relative);
-                    center.frame.Source = new Uri("Pages/TrainLocationCenter.xaml", UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/BossCenter.xaml", UriKind.Relative);
                     right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);
                     break;
                 case "设施设备":

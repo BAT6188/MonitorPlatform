@@ -286,9 +286,11 @@ namespace MonitorPlatform.ViewModel
             set
             {
                 downtrainCount = value;
-                NotifyPropertyChanged("downtrainCount");
+                NotifyPropertyChanged("DowntrainCount");
             }
         }
+
+
 
         //历史上某一天 进站人数
 
@@ -319,6 +321,38 @@ namespace MonitorPlatform.ViewModel
             {
                 personrates = value;
                 NotifyPropertyChanged("Personrates");
+            }
+        }
+
+
+        //拥挤站点数
+        private int crowdStation;
+        public int CrowdStation
+        {
+            get
+            {
+                return crowdStation;
+            }
+            set
+            {
+                crowdStation = value;
+                NotifyPropertyChanged("CrowdStation");
+            }
+        }
+
+
+        //拥堵站点数
+        private int blockStation;
+        public int BlockStation
+        {
+            get
+            {
+                return blockStation;
+            }
+            set
+            {
+                blockStation = value;
+                NotifyPropertyChanged("BlockStation");
             }
         }
 
@@ -469,17 +503,32 @@ namespace MonitorPlatform.ViewModel
         }
 
 
-        private int number;
-        public int Number
+        private int innumber;
+        public int InNumber
         {
             get
             {
-                return number;
+                return innumber;
             }
             set
             {
-                number = value;
-                NotifyPropertyChanged("Number");
+                innumber = value;
+                NotifyPropertyChanged("InNumber");
+            }
+        }
+
+
+        private int outnumber;
+        public int Outnumber
+        {
+            get
+            {
+                return outnumber;
+            }
+            set
+            {
+                outnumber = value;
+                NotifyPropertyChanged("Outnumber");
             }
         }
 
