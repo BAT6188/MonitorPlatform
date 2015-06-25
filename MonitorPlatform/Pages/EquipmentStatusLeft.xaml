@@ -61,7 +61,7 @@
                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
                                 <chart:PieChart.Series>
                                     <chart:ChartSeries
-                        SeriesTitle="dsd"
+                        SeriesTitle="ddd"
                         DisplayMember="EquipmentType"
                         ValueMember="BadNumber"
                         ItemsSource="{Binding Path=SubWayLines[0].Troubles}" />
@@ -102,7 +102,7 @@
                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
                             <chart:PieChart.Series>
                                 <chart:ChartSeries
-                        SeriesTitle="dsd"
+                        SeriesTitle="dd"
                         DisplayMember="EquipmentType"
                         ValueMember="BadNumber"
                         ItemsSource="{Binding Path=SubWayLines[1].Troubles}" />

@@ -172,14 +172,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="De.TorstenMandelkow.MetroChart.dll" size="119808">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="De.TorstenMandelkow.MetroChart.dll" size="120832">
       <assemblyIdentity name="De.TorstenMandelkow.MetroChart" version="1.0.0.0" publicKeyToken="D5B8D1BBC99C4A2A" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>A6e1AKtt00/QPy611VqRhBhRdeM=</dsig:DigestValue>
+        <dsig:DigestValue>hpRFGG0N11XQLrgvONiViJfVysc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -220,14 +220,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonitorPlatform.exe" size="9278976">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonitorPlatform.exe" size="9283072">
       <assemblyIdentity name="MonitorPlatform" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>08BBjITFwjvV9JKfcBYHV5RloHc=</dsig:DigestValue>
+        <dsig:DigestValue>67R6eoODnDMx7PwE74A7VbTe29g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

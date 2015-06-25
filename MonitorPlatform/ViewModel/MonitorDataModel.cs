@@ -591,10 +591,19 @@ namespace MonitorPlatform.ViewModel
             set;
         }
 
+        private SubLine currentline;
+
         public SubLine CurrrentLine
         {
-            get;
-            set;
+            get
+            {
+                return currentline;
+            }
+            set
+            {
+                currentline = value;
+                NotifyPropertyChanged("CurrrentLine");
+            }
         }
 
 

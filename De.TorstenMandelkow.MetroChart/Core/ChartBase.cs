@@ -656,6 +656,7 @@
             {
                 Exceptions.Add("Series with empty caption cannot be used.");
             }
+          
 
             //ensure that each series has a different name
             if (this.Series.GroupBy(series => series.SeriesTitle).Any(group => group.Count() > 1))

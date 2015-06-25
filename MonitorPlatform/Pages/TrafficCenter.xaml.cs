@@ -37,7 +37,8 @@ namespace MonitorPlatform.Pages
             if (datePicker1.SelectedDate.HasValue)
             {
                 DataCenter.Instance.UpdateTrafficCenter(datePicker1.SelectedDate.Value);
-                DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value);
+                DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value,0);
+                DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value, 1);
             }
         }
     }

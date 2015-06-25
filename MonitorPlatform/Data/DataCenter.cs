@@ -152,18 +152,25 @@ namespace MonitorPlatform.Data
             });
         }
 
-        public void UpdateTrafficRight(DateTime time)
+        public void UpdateTrafficRight(DateTime time,int lineid)
         {
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "StationAFC_Day_Info");
-            XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "68BDB0FB-1118-1901-0922-3F7D78384FF5");
+            if (lineid == 0)
+            {
+                XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "4ce1f6eb-5334-419b-bea3-a20e16b7e205");
+            }
+            else
+            {
+                XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "60f2d09f-1321-4111-955d-66a404d80fcd");
+            }
             string xmlTransform = tfNode.ToString();
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
                 if (result.Status == 0)
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainRightUIData), result.Data);
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateTrafficRightUIData), result.Data,lineid);
                 }
                 else
                 {
@@ -331,16 +338,16 @@ namespace MonitorPlatform.Data
                 station.InNumber = sta.SelectSingleNode("PassIn").SafeInnerInt();
                 station.OutNumber = sta.SelectSingleNode("PassOut").SafeInnerInt();
             }
-            line1.Troubles.Clear();
-            foreach (XmlNode equip in firstrail.SelectNodes("Equipment"))
-            {
-                line1.Troubles.Add(new TroubleStatusSum()
-                {
-                    EquipmentType = equip.SelectSingleNode("Kind").SafeInnerText(),
-                    Number = equip.SelectSingleNode("Count").SafeInnerInt(),
-                    BadNumber = equip.SelectSingleNode("WarnCount").SafeInnerInt()
-                });
-            }
+            //line1.Troubles.Clear();
+            //foreach (XmlNode equip in firstrail.SelectNodes("Equipment"))
+            //{
+            //    line1.Troubles.Add(new TroubleStatusSum()
+            //    {
+            //        EquipmentType = equip.SelectSingleNode("Kind").SafeInnerText(),
+            //        Number = equip.SelectSingleNode("Count").SafeInnerInt(),
+            //        BadNumber = equip.SelectSingleNode("WarnCount").SafeInnerInt()
+            //    });
+            //}
             
             
            
@@ -582,13 +589,11 @@ namespace MonitorPlatform.Data
 
         }
 
-        private void UpdateTrainRightUIData(string data)
+        private void UpdateTrafficRightUIData(string data,int lineid)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(data);
-            SubLine line1 = MonitorDataModel.Instance().SubWayLines[0];
-            SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
-
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
             line1.History_Stations.Clear();
             XmlNodeList nodes = doc.SelectNodes("/Document/Station");
 
@@ -616,16 +621,21 @@ namespace MonitorPlatform.Data
             SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
             //SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
             line1.StaTroubles.Clear();
-            line1.History_Stations.Clear();
+            //line1.History_Stations.Clear();
             XmlNodeList nodes = doc.SelectNodes("/Document/RailLine/EquipInfo");
             line1.Troubles.Clear();
             foreach (XmlNode node in nodes)
             {
                 TroubleStatusSum sta = new TroubleStatusSum();
-                
+
                 sta.EquipmentType = node.SelectSingleNode("Kind").SafeInnerText();
                 sta.Number = node.SelectSingleNode("Count").SafeInnerInt();
                 sta.BadNumber = node.SelectSingleNode("WarnCount").SafeInnerInt();
+                //Martin Add 1 for display
+                if (sta.BadNumber == 0)
+                {
+                    sta.BadNumber = 1;
+                }
                 line1.Troubles.Add(sta);
             }
 

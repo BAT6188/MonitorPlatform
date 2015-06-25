@@ -8,7 +8,9 @@
       xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
       xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
       ShowsNavigationUI="False"
+      xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
           xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"        
+      xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       
@@ -34,6 +36,7 @@
                 <RowDefinition Height="1"></RowDefinition>
                 <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Grid.Column="0">
                 <!--<Label Content="2014年5月13日">
@@ -51,7 +54,7 @@
                     </Grid>
                 </Viewbox>
             </Border>
-           
+
 
             <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 <dxg:GridControl Background="Transparent"   Opacity="0.5"  x:Name="grid"   Template="{StaticResource GridTemplate}"  >
@@ -107,6 +110,105 @@
 
 
                 </dxg:GridControl>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="0" Margin="10,50,10,50" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" >
+                        <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="进出站流量分布"></TextBlock>
+                    </Border>
+                    <Border Grid.Row="1" Margin="0,10,0,0">
+
+                        <chart:DoughnutChart Grid.Row="1"  
+       
+                Palette="{Binding Path=SelectedPalette.Value}"
+                FontSize="{Binding Path=SelectedFontSize}"
+                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                ChartTitleVisibility="Hidden"
+                ChartLegendVisibility="Visible"
+                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                Foreground="#5AA0EF" 
+                Background="{x:Null}"                 
+                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
+                            <chart:PieChart.Series>
+                                <chart:ChartSeries
+                        SeriesTitle="ddd"
+                        DisplayMember="EquipmentType"
+                        ValueMember="BadNumber"
+                        />
+                            </chart:PieChart.Series>
+                        </chart:DoughnutChart>
+
+                    </Border>
+                </Grid>
+            </Border>
+
+
+            <Border Grid.Row="3" Grid.Column="1" Margin="10,50,10,50" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" >
+                        <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="分时段流量"></TextBlock>
+                    </Border>
+                    <Border Grid.Row="1" Margin="0,10,0,0">
+                        <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                            <dxc:ChartControl.Diagram>
+                                <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
+
+                                    <dxc:XYDiagram2D.AxisX>
+                                        <dxc:AxisX2D >
+                                            <dxc:AxisX2D.Label>
+                                                <dxc:AxisLabel    Foreground="#00a0e9"  />
+                                            </dxc:AxisX2D.Label>
+                                            <!--
+                                        </dxc:AxisX2D.Label>-->
+                                        </dxc:AxisX2D>
+                                    </dxc:XYDiagram2D.AxisX>
+                                    <dxc:XYDiagram2D.AxisY>
+                                        <dxc:AxisY2D >
+                                            <dxc:AxisY2D.Label>
+                                                <dxc:AxisLabel Foreground="#00a0e9"  />
+                                            </dxc:AxisY2D.Label>
+                                        </dxc:AxisY2D>
+                                    </dxc:XYDiagram2D.AxisY>
+                                    <dxc:XYDiagram2D.Series>
+
+                                        <dxc:BarSideBySideStackedSeries2D 
+                                                            
+                                                              StackedGroup="Tot"
+                                               ArgumentDataMember="Time" 
+                                                       ValueDataMember="InNumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].Personrates}">
+
+                                            <dxc:BarSideBySideStackedSeries2D.Label>
+                                                <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                            </dxc:BarSideBySideStackedSeries2D.Label>
+
+                                        </dxc:BarSideBySideStackedSeries2D>
+                                        <dxc:BarSideBySideStackedSeries2D 
+                                                              StackedGroup="Tot"
+                                                   ArgumentDataMember="Time" 
+                                                       ValueDataMember="Outnumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].Personrates}">
+
+                                            <dxc:BarSideBySideStackedSeries2D.Label>
+                                                <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                            </dxc:BarSideBySideStackedSeries2D.Label>
+                                        </dxc:BarSideBySideStackedSeries2D>
+                                    </dxc:XYDiagram2D.Series>
+                                </dxc:XYDiagram2D>
+                            </dxc:ChartControl.Diagram>
+                        </dxc:ChartControl>
+                    </Border>
+                </Grid>
             </Border>
         </Grid>
 
