@@ -337,6 +337,9 @@ namespace MonitorPlatform.Data
                 Station station = line1.Stations[stano - 1];
                 station.InNumber = sta.SelectSingleNode("PassIn").SafeInnerInt();
                 station.OutNumber = sta.SelectSingleNode("PassOut").SafeInnerInt();
+
+
+                
             }
             //line1.Troubles.Clear();
             //foreach (XmlNode equip in firstrail.SelectNodes("Equipment"))
@@ -609,6 +612,35 @@ namespace MonitorPlatform.Data
                 his.DownBeginTime = DateTime.Parse(node.SelectSingleNode("DStartTime").SafeInnerText());
                 his.DownEndTime = DateTime.Parse(node.SelectSingleNode("DEndTime").SafeInnerText());
                 his.TrafficJam = node.SelectSingleNode("CrowdCount").SafeInnerInt();
+
+                //Martin 伪造数据 进出站客流
+                his.StationInOut.Add(new StationInOut()
+                {
+                    Name = "进站人数",
+                    Number = 90//his.InNumber
+                });
+                his.StationInOut.Add(new StationInOut()
+                {
+                    Name = "出站人数",
+                    Number = 110// his.OutNumber
+                });
+                //Martin 伪造数据 Personrates,分时段进出站客流
+                his.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 100, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "07", InNumber = 120, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "08", InNumber = 100, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "09", InNumber = 120, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "10", InNumber = 110, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "11", InNumber = 100, Outnumber = 120 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "12", InNumber = 120, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "13", InNumber = 100, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "14", InNumber = 100, Outnumber = 115 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "15", InNumber = 130, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "16", InNumber = 100, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "17", InNumber = 135, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "18", InNumber = 100, Outnumber = 130 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "19", InNumber = 100, Outnumber = 100 });
+                his.Personrates.Add(new PersonsRateSum() { Time = "20", InNumber = 100, Outnumber = 100 });
+
                 line1.History_Stations.Add(his);
             }
         }

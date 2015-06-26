@@ -23,8 +23,28 @@ namespace MonitorPlatform.Pages
         public TrafficRight()
         {
             InitializeComponent();
-            grid.ItemsSource = MonitorDataModel.Instance().SubWayLines[0].History_Stations;
+            grid.ItemsSource = MonitorDataModel.Instance().CurrrentLine.History_Stations;
+            grid.View.FocusedRowChanged += new DevExpress.Xpf.Grid.FocusedRowChangedEventHandler(View_FocusedRowChanged);
+            grid.View.FocusedRowHandle = 0;
         }
+
+        void View_FocusedRowChanged(object sender, DevExpress.Xpf.Grid.FocusedRowChangedEventArgs e)
+        {
+          
+            //string name = griddetail.View.FocusedRowData.CellData[0].Value.ToString();
+            if (e.NewRow == null)
+            {
+                return;
+            }
+            HistoryStation s = e.NewRow as HistoryStation; //line.Stations.SingleOrDefault(x => x.Name == name);
+            if (s != null)
+            {
+                stationInoutChart.ItemsSource = s.StationInOut;
+                stationTimeInChart.DataSource = s.Personrates;
+                stationTimeOutChart.DataSource = s.Personrates;
+            }
+        }
+
 
         private void chkLine_Click(object sender, RoutedEventArgs e)
         {
@@ -46,6 +66,7 @@ namespace MonitorPlatform.Pages
             {
                 grid.ItemsSource = MonitorDataModel.Instance().SubWayLines[1].History_Stations;
             }
+            grid.View.FocusedRowHandle = 0;
         }
     }
 }

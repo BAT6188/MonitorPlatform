@@ -12,11 +12,43 @@
           xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
 	Title="CameraStatusLeft">
+    <Page.Resources>
+        <DataTemplate x:Key="eShowDetailTemplate">
+            <Button Margin="4,0" VerticalAlignment="Center" Cursor="Hand" Content="{Binding Value}" Command="{Binding View.Tag}" CommandParameter="{Binding Value}" ClickMode="Press">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="19" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Name="text" Margin="0,0,0,1" Text="{TemplateBinding Content}" VerticalAlignment="Center" />
+                            <Path x:Name="path" Stretch="Fill" Fill="{Binding Foreground, ElementName=text}" Data="F1 M 648,462L 644,466L 643,465L 646,462L 643,459L 644,458L 648,462 Z M 652,462L 648,466L 647,465L 650,462L 647,459L 648,458L 652,462 Z " HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="8" Height="7" Grid.Column="1" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=RowData.IsFocused}" Value="False">
+                                <Setter Property="Foreground" Value="#FF2A6DBD" TargetName="text" />
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=RowData.IsFocused}" Value="False" />
+                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Foreground" Value="#FF5E9AE2" TargetName="text" />
+                                <Setter Property="Fill" Value="#FF5E9AE2" TargetName="path" />
+                            </MultiDataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                
+            </Button>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition   Height="40"></RowDefinition>
-            <RowDefinition   Height="*"></RowDefinition>
+            <RowDefinition   Height="60"></RowDefinition>
             <RowDefinition   Height="6*"></RowDefinition>
 
         </Grid.RowDefinitions>
@@ -49,10 +81,10 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <dxg:GridControl Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"    Name="gridStation"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
+                <dxg:GridControl Margin="20"  Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"    Name="gridStation"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
 
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn  FieldName="Name"  Header="站点" />
@@ -82,25 +114,25 @@
 
 
                 </dxg:GridControl>
-                <Border Grid.Column="1"  Grid.Row="0" >
+                <Border Grid.Column="1"  Grid.Row="0"  Margin="20">
                     <StackPanel Height="50" Name="stackPanel4" Grid.Column ="0" HorizontalAlignment="Center"  >
 
-                        <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="车站名称: "></Run><Run  Text="木渎"></Run></TextBlock>
-                        <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="总摄像头: "></Run><Run  Text="50"></Run><Run Text="个； 异常数: "></Run> <Run Text="4"></Run><Run Text="个"></Run></TextBlock>
+                        <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="车站名称: "></Run><Run x:Name="stationname"  Text=""></Run></TextBlock>
+                        <TextBlock Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="总摄像头: "></Run><Run x:Name="stationtotal"  Text=""></Run><Run Text="  异常数: "></Run> <Run x:Name="stationwarn"  Text=""></Run></TextBlock>
                         
                     </StackPanel>
                 </Border>
-                <dxg:GridControl Name="griddetail"  Grid.Column="1" Grid.Row="1"  Margin="10,0,0,0"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
+                <dxg:GridControl Margin="20,0,20,20" Name="griddetail"  Grid.Column="1" Grid.Row="1"    Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
 
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn  FieldName="Code"  Header="摄像头编号" />
+                        <dxg:GridColumn  FieldName="Code"  Header="摄像头编号" CellTemplate="{DynamicResource eShowDetailTemplate}" />
                         <dxg:GridColumn FieldName="Location"  Header="安装位置" />
                         <dxg:GridColumn FieldName="Industry"  Header="所属行业" />
                         <dxg:GridColumn FieldName="Status"  Header="在线状态" />
                         <dxg:GridColumn FieldName="Subscription"  Header="订阅状态" />
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
-                        <dxg:TableView Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >
+                        <dxg:TableView Background="{x:Null}"  Name="view"   AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >
                             <dxg:TableView.RowStyle>
                                 <Style BasedOn="{StaticResource {dxgt:GridRowThemeKey ResourceKey=RowStyle}}"  TargetType="{x:Type dxg:GridRowContent}">
                                     <Style.Triggers>
@@ -125,6 +157,84 @@
             </Grid>
 
         </Border>
-    </Grid>
+        <Popup x:Name="carmerainfo" PopupAnimation="Fade" Width="400"   Height="400"  AllowsTransparency ="True" Placement="Center">
+            <Border Width="400" Height="400"  CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF000033" Offset="0"/>
+                        <GradientStop Color="#FF00469D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" >
+                        <DockPanel VerticalAlignment="Center" LastChildFill="False">
+                            <WrapPanel   Cursor="Hand"  MouseUp="btnClose_MouseUp"  DockPanel.Dock="Right" Margin="0,0,10,0"   Height="19.333"  Orientation="Horizontal" >
+                                <!--<Path x:Name="形状_5" Data="F1M13.8,4.294C13.8,4.294 17,7.515 17,7.515 17,7.515 13.8,10.735 13.8,10.735 13.8,10.735 13.8,8.588 13.8,8.588 13.8,8.588 8.467,8.588 8.467,8.588 8.467,8.588 8.467,6.441 8.467,6.441 8.467,6.441 13.8,6.441 13.8,6.441 13.8,6.441 13.8,4.294 13.8,4.294z M1.64,1C1.64,1 12.094,1 12.094,1 12.447,1 12.734,1.288 12.734,1.644 12.734,1.644 12.734,5.367 12.734,5.367 12.734,5.367 11.667,5.367 11.667,5.367 11.667,5.367 11.667,2.502 11.667,2.502 11.667,2.266 11.476,2.073 11.24,2.073 11.24,2.073 3.133,2.073 3.133,2.073 3.133,2.073 6.546,3.79 6.802,3.92 7.261,4.152 7.4,4.564 7.4,4.835 7.4,4.835 7.4,12.882 7.4,12.882 7.4,12.882 11.24,12.882 11.24,12.882 11.476,12.882 11.667,12.69 11.667,12.453 11.667,12.453 11.667,9.662 11.667,9.662 11.667,9.662 12.734,9.662 12.734,9.662 12.734,9.662 12.734,13.312 12.734,13.312 12.734,13.667 12.447,13.956 12.094,13.956 12.094,13.956 7.4,13.956 7.4,13.956 7.4,13.956 7.4,16.731 7.4,16.731 7.4,16.903 7.218,17.079 6.916,16.92 5.496,16.167 1.631,14.037 1.351,13.886 1.349,13.886 1.348,13.885 1.346,13.884 1.141,13.776 1,13.561 1,13.312 1,13.312 1,1.644 1,1.644 1,1.288 1.286,1 1.64,1z" Fill="#FF0066CB" Height="19" Width="18"/>-->
+                                <TextBlock x:Name="退出" Foreground="#FF00A1F2" FontSize="13.333" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" TextAlignment="Left" TextWrapping="Wrap" Text="退出"/>
+                            </WrapPanel>
+                        </DockPanel>
+                    </Border>
+                    <StackPanel Grid.Row="1"  Grid.Column ="0"  Margin="5,10,0,10">
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备名称:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备代码:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" x:Name="equicode"  Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备型号:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备出厂编号: "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备生产厂家: "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备出厂日期: "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备购置日期: "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备购置价格: "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备使用年限: "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}"  Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备计量单位: "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备技术状况: "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="所属行业:     "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="所属分组:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}"  Text=""></Run></TextBlock>
+                    </StackPanel>
+                    <StackPanel  Grid.Row="1" Grid.Column ="1"  Margin="5,10,0,10">
 
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="所属区域:     "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="所遇路段:     "></Run><Run   Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="所属航段:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}"  Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="所属线路:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}"  Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="所属站台:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}"  Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="安装位置:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备安装经度: "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备安装纬度: "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备安装方向: "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="云台协议:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="云台地址:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="云台使能:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="通道号:       "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel  Grid.Row="1" Grid.Column ="2"   Margin="5,10,0,10">
+
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="设备序号:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="组播IP地址:   "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="组播端口:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="在线状态:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="订阅状态:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="是否支持广播: "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="是否支持云台锁定:"></Run><Run Style="{StaticResource SectionContentSmallWhiteTextStyle}"  Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="录像类型:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="插入时间:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="更新时间:     "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="数据交换协议: "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="服务器地址:   "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                        <TextBlock Margin="5"  Style="{StaticResource SectionContentSmallTextStyle}" ><Run Text="备注:         "></Run><Run  Style="{StaticResource SectionContentSmallWhiteTextStyle}" Text=""></Run></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Popup>
+
+    </Grid>
+   
 </Page>

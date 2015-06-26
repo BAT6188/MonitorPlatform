@@ -245,6 +245,13 @@ namespace MonitorPlatform.ViewModel
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 33, BadNumber = 5 });
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 6 });
 
+            line1.TotalRate_history.Add(new InOutTotal()
+            {
+                Name = "1",
+                TotalRate = 45
+            });
+
+           
 
             
             line1.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 20000 });
@@ -282,6 +289,11 @@ namespace MonitorPlatform.ViewModel
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSD", Number = 40, BadNumber = 3 });
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "FAS", Number = 33, BadNumber = 3 });
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
+            line2.TotalRate_history.Add(new InOutTotal()
+            {
+                Name = "2",
+                TotalRate = 55
+            });
 
 
             line2.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 20000 });

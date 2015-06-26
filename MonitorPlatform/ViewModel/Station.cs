@@ -240,6 +240,9 @@ namespace MonitorPlatform.ViewModel
         }
 
 
+        
+
+
         private void NotifyPropertyChanged(string property)
         {
             if (PropertyChanged != null)
@@ -249,6 +252,50 @@ namespace MonitorPlatform.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    //进出站人数。用于饼图
+    public class StationInOut : INotifyPropertyChanged
+    {
+        private int number;
+        public int Number
+        {
+            get
+            {
+                return number;
+            }
+            set
+            {
+                number = value;
+                NotifyPropertyChanged("Number");
+            }
+        }
+
+
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
+
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
     }
    
 }

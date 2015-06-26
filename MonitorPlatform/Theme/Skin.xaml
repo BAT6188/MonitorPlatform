@@ -104,6 +104,12 @@
         <Setter Property="FontSize" Value="12" />
     </Style>
 
+    <Style x:Key="SectionContentSmallWhiteTextStyle" TargetType="Run" >
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
     <Style x:Key="SectionHeaderSmallTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextStyle}">
         <Setter Property="Margin" Value="0,10,5,5"/>
         <Setter Property="FontSize" Value="18" />

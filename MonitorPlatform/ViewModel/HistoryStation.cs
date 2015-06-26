@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace MonitorPlatform.ViewModel
 {
@@ -151,6 +152,33 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        //分时进站人数 7点，8点，9点....
+        private ObservableCollection<PersonsRateSum> personrates = new ObservableCollection<PersonsRateSum>();
+        public ObservableCollection<PersonsRateSum> Personrates
+        {
+            get
+            {
+                return personrates;
+            }
+            set
+            {
+                personrates = value;
+                NotifyPropertyChanged("Personrates");
+            }
+        }
+        private ObservableCollection<StationInOut> stationInOut = new ObservableCollection<StationInOut>();
+        public ObservableCollection<StationInOut> StationInOut
+        {
+            get
+            {
+                return stationInOut;
+            }
+            set
+            {
+                stationInOut = value;
+                NotifyPropertyChanged("StationInOut");
+            }
+        }
 
         private void NotifyPropertyChanged(string property)
         {
