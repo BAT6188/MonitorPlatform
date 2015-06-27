@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
+using MonitorPlatform.Data;
 
 namespace MonitorPlatform.Pages
 {
@@ -40,8 +41,14 @@ namespace MonitorPlatform.Pages
             if (s != null)
             {
                 stationInoutChart.ItemsSource = s.StationInOut;
-                stationTimeInChart.DataSource = s.Personrates;
-                stationTimeOutChart.DataSource = s.Personrates;
+                detailchart.DataSource = s.Personrates;
+                //stationTimeOutChart.DataSource = s.Personrates;
+                int lineid = 0;
+                if (chkLine.IsChecked.HasValue)
+                {
+                    lineid = chkLine.IsChecked.Value ? 0 : 1;
+                }
+                DataCenter.Instance.UpdateTrafficRight_DetailStation(DataCenter.Instance.SelectTime, lineid, s.StaGUID);
             }
         }
 

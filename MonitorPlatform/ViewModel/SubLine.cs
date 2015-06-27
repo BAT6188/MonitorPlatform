@@ -139,20 +139,6 @@ namespace MonitorPlatform.ViewModel
         }
 
 
-        private int persons;
-        public int Persons
-        {
-            get
-            {
-                return persons;
-            }
-            set
-            {
-                persons = value;
-                NotifyPropertyChanged("Persons");
-            }
-        }
-
         private int personsPercent;
         public int PersonsPercent
         {
@@ -309,18 +295,33 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
-        //分时进站人数 7点，8点，9点....
-        private ObservableCollection<PersonsRateSum> personrates = new ObservableCollection<PersonsRateSum>();
-        public ObservableCollection<PersonsRateSum> Personrates
+        //历史上某天 进出站总人数
+        private int history_totalnumber;
+        public int History_totalnumber
         {
             get
             {
-                return personrates;
+                return history_totalnumber;
             }
             set
             {
-                personrates = value;
-                NotifyPropertyChanged("Personrates");
+                history_totalnumber = value;
+                NotifyPropertyChanged("History_totalnumber");
+            }
+        }
+
+        //分时进站人数 7点，8点，9点....
+        private ObservableCollection<PersonsRateSum> linePersonrates = new ObservableCollection<PersonsRateSum>();
+        public ObservableCollection<PersonsRateSum> LinePersonrates
+        {
+            get
+            {
+                return linePersonrates;
+            }
+            set
+            {
+                linePersonrates = value;
+                NotifyPropertyChanged("LinePersonrates");
             }
         }
 
@@ -416,7 +417,7 @@ namespace MonitorPlatform.ViewModel
         }
 
 
-        private void NotifyPropertyChanged(string property)
+        public void NotifyPropertyChanged(string property)
         {
             if (PropertyChanged != null)
             {

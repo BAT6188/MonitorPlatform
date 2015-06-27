@@ -47,8 +47,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="25"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="110"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -72,8 +72,8 @@
                                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                                 ToolTipFormat="{Binding Path=ToolTipFormat}"
                                              
-                                             MyClientWidth ="120"
-                                MyClientHeight="120"
+                                             MyClientWidth ="170"
+                                MyClientHeight="170"
                                 Foreground="White" 
                               Background="{x:Null}"          
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
@@ -101,8 +101,8 @@
                                 ToolTipFormat="{Binding Path=ToolTipFormat}"
                                 Foreground="{Binding Path=Foreground}" 
                               Background="Transparent"          
-                              MyClientWidth ="120"
-                                MyClientHeight="120"
+                              MyClientWidth ="170"
+                                MyClientHeight="170"
                                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                 SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" Canvas.Left="10" Canvas.Top="56" >
                          <chart:RadialGaugeChart.Series>
@@ -116,7 +116,7 @@
                         </chart:RadialGaugeChart.Series>
                     </chart:RadialGaugeChart>
       
-                <Border Grid.Row="3" Grid.Column="0" Margin="30,10,15,30"    Style="{StaticResource BossPopupContent}">
+                <Border Grid.Row="3" Grid.Column="0" Margin="60,10,60,30"    Style="{StaticResource BossPopupContent}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -126,12 +126,12 @@
                         <TextBlock  Grid.Row="0"  Style="{StaticResource BaseContentSmallWhiteStyle}" Margin="0,10,0,0"  TextAlignment="Center"  Text="1号线流量">
                             
                         </TextBlock>
-                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentSmallTextStyle}"  TextAlignment="Center" Text="{Binding Path=SubWayLines[0].Persons}">
+                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentSmallTextStyle}"  TextAlignment="Center" Text="{Binding Path=SubWayLines[0].History_totalnumber}">
 
                         </TextBlock>
                     </Grid>
                 </Border>
-                <Border Grid.Row="3" Grid.Column="1" Margin="15,10,30,30"     Style="{StaticResource BossPopupContent}">
+                <Border Grid.Row="3" Grid.Column="1" Margin="60,10,60,30"     Style="{StaticResource BossPopupContent}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -141,7 +141,7 @@
                         <TextBlock Grid.Row="0"  Style="{StaticResource BaseContentSmallWhiteStyle}" Margin="0,10,0,0"  TextAlignment="Center"   Text="2号线流量">
 
                         </TextBlock>
-                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentSmallTextStyle}"  TextAlignment="Center"   Text="{Binding Path=SubWayLines[1].Persons}">
+                        <TextBlock Grid.Row="1" Style="{StaticResource BaseContentSmallTextStyle}"  TextAlignment="Center"   Text="{Binding Path=SubWayLines[1].History_totalnumber}">
 
                         </TextBlock>
                     </Grid>
@@ -172,7 +172,8 @@
                     <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线分时段轨道进站流量排行</TextBlock>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="0" Margin="5">
-                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True" 
+                                         DataSource="{Binding Path=SubWayLines[0].LinePersonrates}">
                         <dxc:ChartControl.Diagram>
                             <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -197,24 +198,26 @@
                                     <dxc:BarSideBySideStackedSeries2D 
                                                             
                                                               StackedGroup="Tot"
+                                          DisplayName ="入站人数"
                                                ArgumentDataMember="Time" 
-                                                       ValueDataMember="InNumber"
-                                                       DataSource="{Binding Path=SubWayLines[0].Personrates}">
+                                                       ValueDataMember="InNumber" 
+                                                      >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  />
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
-                                    <dxc:BarSideBySideStackedSeries2D 
-                                                             
+                                    <dxc:BarSideBySideStackedSeries2D    
+                                                              Foreground="Blue"
                                                               StackedGroup="Tot"
+                                                    DisplayName ="出站人数"
                                                    ArgumentDataMember="Time" 
                                                        ValueDataMember="Outnumber"
-                                                       DataSource="{Binding Path=SubWayLines[0].Personrates}">
+                                                     >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"   />
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
@@ -224,10 +227,14 @@
                                 </dxc:XYDiagram2D.Series>
                             </dxc:XYDiagram2D>
                         </dxc:ChartControl.Diagram>
+                        <dxc:ChartControl.Legend>
+                            <dxc:Legend HorizontalPosition="Right"  Background="Transparent" Foreground="#00a0e9" />
+                        </dxc:ChartControl.Legend>
                     </dxc:ChartControl>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="1" Margin="5">
-                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  
+                                       DataSource="{Binding Path=SubWayLines[1].LinePersonrates}" Background="{x:Null}" EnableAnimation="True"  >
                         <dxc:ChartControl.Diagram>
                             <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -250,26 +257,27 @@
                                 <dxc:XYDiagram2D.Series>
 
                                     <dxc:BarSideBySideStackedSeries2D 
-                                                            
+                                                             DisplayName ="入站人数"
                                                               StackedGroup="Tot"
                                                ArgumentDataMember="Time" 
                                                        ValueDataMember="InNumber"
-                                                       DataSource="{Binding Path=SubWayLines[1].Personrates}">
+                                                        >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  />
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
                                     <dxc:BarSideBySideStackedSeries2D 
-                                                             
+                                                              DisplayName ="出站人数"
+                                                             Foreground="Blue"    
                                                               StackedGroup="Tot"
                                                    ArgumentDataMember="Time" 
                                                        ValueDataMember="Outnumber"
-                                                       DataSource="{Binding Path=SubWayLines[1].Personrates}">
+                                                        >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default" Visible="False" />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  />
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
@@ -277,6 +285,9 @@
                                 </dxc:XYDiagram2D.Series>
                             </dxc:XYDiagram2D>
                         </dxc:ChartControl.Diagram>
+                        <dxc:ChartControl.Legend>
+                            <dxc:Legend HorizontalPosition="Right"  Background="Transparent" Foreground="#00a0e9" />
+                        </dxc:ChartControl.Legend>
                     </dxc:ChartControl>
                 </Border>
             </Grid>
@@ -338,7 +349,7 @@
                                 </dxc:XYDiagram2D.AxisX>
                                 <dxc:XYDiagram2D.Series>
                                     <dxc:LineSeries2D  x:Name="year2005" 
-                                              DisplayName="2005" 
+                                              DisplayName="一号线" 
                                                       MarkerVisible ="True" 
                                               AnimationAutoStartMode="SetStartState">
                                         <dxc:LineSeries2D.MarkerModel>
@@ -359,7 +370,7 @@
                                         </dxc:LineSeries2D.Points>
                                         </dxc:LineSeries2D >
                                     <dxc:LineSeries2D x:Name="year2004" 
-                                              DisplayName="2004" 
+                                              DisplayName="二号线" 
                                               AnimationAutoStartMode="SetStartState">
                                         <dxc:LineSeries2D.MarkerModel>
                                             <dxc:CircleMarker2DModel />

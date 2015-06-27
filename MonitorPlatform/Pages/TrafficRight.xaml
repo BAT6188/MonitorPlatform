@@ -160,7 +160,7 @@
                         <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="分时段流量"></TextBlock>
                     </Border>
                     <Border Grid.Row="1" Margin="0,10,0,0">
-                        <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                        <dxc:ChartControl x:Name="detailchart"  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
                             <dxc:ChartControl.Diagram>
                                 <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -183,6 +183,7 @@
                                     <dxc:XYDiagram2D.Series>
 
                                         <dxc:BarSideBySideStackedSeries2D 
+                                             DisplayName ="入站人数"
                                                              x:Name ="stationTimeInChart"
                                                               StackedGroup="Tot"
                                                ArgumentDataMember="Time" 
@@ -196,6 +197,7 @@
                                         </dxc:BarSideBySideStackedSeries2D>
                                         <dxc:BarSideBySideStackedSeries2D 
                                                x:Name ="stationTimeOutChart"
+                                            DisplayName ="出站人数"
                                                               StackedGroup="Tot"
                                                    ArgumentDataMember="Time" 
                                                        ValueDataMember="Outnumber"
@@ -207,7 +209,11 @@
                                         </dxc:BarSideBySideStackedSeries2D>
                                     </dxc:XYDiagram2D.Series>
                                 </dxc:XYDiagram2D>
+                        
                             </dxc:ChartControl.Diagram>
+                            <dxc:ChartControl.Legend>
+                                <dxc:Legend HorizontalPosition="Right"  Background="Transparent" Foreground="#00a0e9" />
+                            </dxc:ChartControl.Legend>
                         </dxc:ChartControl>
                     </Border>
                 </Grid>

@@ -11,6 +11,7 @@ using MonitorPlatform.ViewModel;
 using System.Threading;
 using System.Windows;
 using Utility;
+using System.Collections.ObjectModel;
 
 namespace MonitorPlatform.Data
 {
@@ -21,16 +22,17 @@ namespace MonitorPlatform.Data
         public const string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
         public delegate void UpdateUIDate(string data);
         public delegate void UpdateUIDateWithLine(string data, int line);
-        public delegate void UpdateUIDateWithLineDetail(string data, int line,string staguid);
+        public delegate void UpdateUIDateWithLineDetail(string data, int line, string staguid);
         private static WebInvoker proxy;
         private Window win;
 
         private static DataCenter instance;
-        
+
 
         public static DataCenter Instance
         {
-            get {
+            get
+            {
                 if (instance == null)
                 {
                     instance = new DataCenter();
@@ -40,6 +42,12 @@ namespace MonitorPlatform.Data
         }
 
         public string LoginUser
+        {
+            get;
+            set;
+        }
+
+        public DateTime SelectTime
         {
             get;
             set;
@@ -59,7 +67,7 @@ namespace MonitorPlatform.Data
                 webUrl = ConfigurationManager.AppSettings["WebUrl"];
             }
             proxy = new WebInvoker(webUrl);
-            
+
         }
 
         public void RaiseTrainLocationUpdate()
@@ -90,7 +98,7 @@ namespace MonitorPlatform.Data
                         islogin = true;
                     }
                     eve.Set();
-                  
+
                 });
 
                 eve.WaitOne();
@@ -102,18 +110,18 @@ namespace MonitorPlatform.Data
             return islogin;
         }
 
-        public  void UpdateBoss()
+        public void UpdateBoss()
         {
             XElement tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "MainPageInitInfo");
             string xmlTransform = tfNode.ToString();
-          
+
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
                 win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
             });
         }
 
-        public void UpdateTrafficLeft ()
+        public void UpdateTrafficLeft()
         {
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFCFifthQueryInfo");
@@ -152,10 +160,11 @@ namespace MonitorPlatform.Data
             });
         }
 
-        public void UpdateTrafficRight(DateTime time,int lineid)
+        public void UpdateTrafficRight(DateTime time, int lineid)
         {
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "StationAFC_Day_Info");
+            XmlNodeHelper.AddSubValue(tfNode, "QueryDate", "TEXT", time.ToString("yyyy-MM-dd"));
             if (lineid == 0)
             {
                 XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "4ce1f6eb-5334-419b-bea3-a20e16b7e205");
@@ -170,13 +179,60 @@ namespace MonitorPlatform.Data
             {
                 if (result.Status == 0)
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateTrafficRightUIData), result.Data,lineid);
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateTrafficRightUIData), result.Data, lineid);
                 }
                 else
                 {
                     LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
                 }
             });
+        }
+
+        public void UpdateTrafficRight_DetailStation(DateTime time, int lineid, string stationid)
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "StationAFC_Hour_Info");
+            XmlNodeHelper.AddSubValue(tfNode, "QueryDate", "TEXT", time.ToString("yyyy-MM-dd"));
+            XmlNodeHelper.AddSubValue(tfNode, "StationGuid", "TEXT", stationid);
+
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateTrafficRight_DetailStationUIData), result.Data, lineid, stationid);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
+                }
+            });
+        }
+
+
+        public void UpdaeTrainLocationLeft()
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailInStationTimeQueryInfo");
+            string xmlTransform = tfNode.ToString();
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateLocationLeftUIData), result.Data);
+                }
+                else
+                {
+                    LogCenter.LogMessage("TrainLocationLeft fail. " + result.ErrMessage);
+                }
+            });
+
+
+
+
+
         }
 
         public void UpdateEquipmentLeft()
@@ -199,10 +255,10 @@ namespace MonitorPlatform.Data
             });
 
 
-             
-             tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipLineQueryInfo");
+
+            tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipLineQueryInfo");
             XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "60f2d09f-1321-4111-955d-66a404d80fcd");
-             xmlTransform = tfNode.ToString();
+            xmlTransform = tfNode.ToString();
 
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
@@ -259,7 +315,7 @@ namespace MonitorPlatform.Data
 
         }
 
-        public void UpdateEquipmentDetailCenter(string statguid,string euiptypes, int lineid)
+        public void UpdateEquipmentDetailCenter(string statguid, string euiptypes, int lineid)
         {
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipStationDetailInfo");
@@ -320,8 +376,8 @@ namespace MonitorPlatform.Data
             line1.TotalRate.Add(new InOutTotal()
             {
                 Name = "1",
-                
-                TotalRate = (line1.TotalNumber ==0? 0: (int)((line1.InNumber / line1.TotalNumber) * 100))
+
+                TotalRate = (line1.TotalNumber == 0 ? 0 : (int)((line1.InNumber / line1.TotalNumber) * 100))
             });
             foreach (XmlNode sta in firstrail.SelectNodes("Station"))
             {
@@ -339,7 +395,7 @@ namespace MonitorPlatform.Data
                 station.OutNumber = sta.SelectSingleNode("PassOut").SafeInnerInt();
 
 
-                
+
             }
             //line1.Troubles.Clear();
             //foreach (XmlNode equip in firstrail.SelectNodes("Equipment"))
@@ -351,26 +407,38 @@ namespace MonitorPlatform.Data
             //        BadNumber = equip.SelectSingleNode("WarnCount").SafeInnerInt()
             //    });
             //}
-            
-            
-           
+
+
+
         }
 
 
         private void UpdateTraficStation(XmlNode linenode, SubLine line1)
         {
             XmlNodeList passnodes = linenode.SelectNodes("PassInfo");
-            line1.Personrates.Clear();
+            //line1.LinePersonrates.Clear();
+            foreach (PersonsRateSum p in line1.LinePersonrates)
+            {
+                p.InNumber = 0;
+                p.Outnumber = 0;
+            }
+
+
             foreach (XmlNode passnode in passnodes)
             {
-                
-                line1.Personrates.Add(new PersonsRateSum()
+                string Time = passnode.SelectSingleNode("HourTime").SafeInnerText();
+                PersonsRateSum p = line1.LinePersonrates.SingleOrDefault(x => x.Time == Time);
+                if (p != null)
                 {
-                    Time = passnode.SelectSingleNode("HourTime").SafeInnerText(),
-                    InNumber = passnode.SelectSingleNode("PassIn").SafeInnerInt(),
-                    Outnumber = passnode.SelectSingleNode("PassOut").SafeInnerInt()
-                });
+                    int k = line1.LinePersonrates.IndexOf(p);
+                    line1.LinePersonrates[k].InNumber = passnode.SelectSingleNode("PassIn").SafeInnerInt();
+                    line1.LinePersonrates[k].Outnumber = passnode.SelectSingleNode("PassOut").SafeInnerInt();
+                }
+
             }
+            ObservableCollection<PersonsRateSum> temp = line1.LinePersonrates;
+            line1.LinePersonrates = null;
+            line1.LinePersonrates = temp;
         }
 
         private void UpdateTrafficLeftStationUIData(XmlNode linenode, SubLine line1, bool isfirst)
@@ -389,10 +457,10 @@ namespace MonitorPlatform.Data
                 Station station = line1.Stations[stano - 1];
                 // CrowdStatus +1
                 station.Status = sta.SelectSingleNode("CrowdStatus").SafeInnerInt() + 1;
-               
+
             }
-        
-        
+
+
         }
 
         private void UpdateBossUIData(string data)
@@ -411,13 +479,13 @@ namespace MonitorPlatform.Data
             XmlNodeList nodes = doc.SelectNodes("/Document/ServiceLine");
             foreach (XmlNode node in nodes)
             {
-               
-               
-               
+
+
+
                 if (node.SelectSingleNode("Name").SafeInnerText() == "1号线")
                 {
-                   
-                  
+
+
                     if (node.SelectSingleNode("Direction").SafeInnerText() == "往钟南街方向")
                     {
                         line1.UptrainCount = node.SelectSingleNode("TrainCount").SafeInnerInt();
@@ -437,7 +505,7 @@ namespace MonitorPlatform.Data
                             }
 
                         }
-               
+
                     }
                     else
                     {
@@ -458,7 +526,7 @@ namespace MonitorPlatform.Data
 
                         }
                     }
-                 
+
                 }
                 else
                 {
@@ -501,7 +569,7 @@ namespace MonitorPlatform.Data
 
                         }
                     }
-                   
+
                 }
             }
 
@@ -532,7 +600,7 @@ namespace MonitorPlatform.Data
                 {
                     line1.CrowdStation = node.SelectSingleNode("CrowdStation").SafeInnerInt();
                     line1.BlockStation = node.SelectSingleNode("BlockStation").SafeInnerInt();
-                    UpdateTrafficLeftStationUIData(node, line1,true);
+                    UpdateTrafficLeftStationUIData(node, line1, true);
 
                 }
                 else
@@ -553,7 +621,7 @@ namespace MonitorPlatform.Data
             SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
 
 
-            XmlNodeList  nodes = doc.SelectNodes("/Document/RailLine");
+            XmlNodeList nodes = doc.SelectNodes("/Document/RailLine");
 
             int line1Total = 0;
             int line2Total = 0;
@@ -562,12 +630,14 @@ namespace MonitorPlatform.Data
                 if (node.SelectSingleNode("Name").SafeInnerText() == "1号线")
                 {
                     line1Total = node.SelectSingleNode("PassTotal").SafeInnerInt();
+                    line1.History_totalnumber = line1Total;
                     UpdateTraficStation(node, line1);
-                   
+
                 }
                 else
                 {
                     line2Total = node.SelectSingleNode("PassTotal").SafeInnerInt();
+                    line2.History_totalnumber = line2Total;
                     UpdateTraficStation(node, line2);
                 }
             }
@@ -592,7 +662,7 @@ namespace MonitorPlatform.Data
 
         }
 
-        private void UpdateTrafficRightUIData(string data,int lineid)
+        private void UpdateTrafficRightUIData(string data, int lineid)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(data);
@@ -603,6 +673,8 @@ namespace MonitorPlatform.Data
             foreach (XmlNode node in nodes)
             {
                 HistoryStation his = new HistoryStation();
+                //GUID
+                his.StaGUID = node.SelectSingleNode("GUID").SafeInnerText();
                 his.Name = node.SelectSingleNode("Name").SafeInnerText();
                 his.InNumber = node.SelectSingleNode("PassIn").SafeInnerInt();
                 his.OutNumber = node.SelectSingleNode("PassOut").SafeInnerInt();
@@ -613,40 +685,66 @@ namespace MonitorPlatform.Data
                 his.DownEndTime = DateTime.Parse(node.SelectSingleNode("DEndTime").SafeInnerText());
                 his.TrafficJam = node.SelectSingleNode("CrowdCount").SafeInnerInt();
 
-                //Martin 伪造数据 进出站客流
+
+
                 his.StationInOut.Add(new StationInOut()
                 {
                     Name = "进站人数",
-                    Number = 90//his.InNumber
+                    Number = his.InNumber
                 });
                 his.StationInOut.Add(new StationInOut()
                 {
                     Name = "出站人数",
-                    Number = 110// his.OutNumber
+                    Number = his.OutNumber
                 });
                 //Martin 伪造数据 Personrates,分时段进出站客流
-                his.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 100, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "07", InNumber = 120, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "08", InNumber = 100, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "09", InNumber = 120, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "10", InNumber = 110, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "11", InNumber = 100, Outnumber = 120 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "12", InNumber = 120, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "13", InNumber = 100, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "14", InNumber = 100, Outnumber = 115 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "15", InNumber = 130, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "16", InNumber = 100, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "17", InNumber = 135, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "18", InNumber = 100, Outnumber = 130 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "19", InNumber = 100, Outnumber = 100 });
-                his.Personrates.Add(new PersonsRateSum() { Time = "20", InNumber = 100, Outnumber = 100 });
-
+                for (int i = 6; i <= 22; i++)
+                {
+                    his.Personrates.Add(new PersonsRateSum() { Time = i.ToString("D2"), InNumber = 0, Outnumber = 0 });
+                }
                 line1.History_Stations.Add(his);
             }
         }
 
 
-        private void UpdateEquipmentLeftLineUIData(string data,int lineid)
+        private void UpdateTrafficRight_DetailStationUIData(string data, int lineid, string guid)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
+
+
+            XmlNodeList passnodes = doc.SelectNodes("/Document/PassInfo");
+            HistoryStation s = line1.History_Stations.SingleOrDefault(x => x.StaGUID == guid);
+
+            if (s != null)
+            {
+                foreach (PersonsRateSum p in s.Personrates)
+                {
+                    p.InNumber = 0;
+                    p.Outnumber = 0;
+                }
+                foreach (XmlNode passnode in passnodes)
+                {
+                    string Time = passnode.SelectSingleNode("HourTime").SafeInnerText();
+                    PersonsRateSum p = s.Personrates.SingleOrDefault(x => x.Time == Time);
+                    if (p != null)
+                    {
+                        int k = s.Personrates.IndexOf(p);
+                        s.Personrates[k].InNumber = passnode.SelectSingleNode("PassIn").SafeInnerInt();
+                        s.Personrates[k].Outnumber = passnode.SelectSingleNode("PassOut").SafeInnerInt();
+                    }
+
+                }
+
+                PersonsRateSum notify = new PersonsRateSum();
+                s.Personrates.Add(notify);
+                s.Personrates.Remove(notify);
+            }
+
+        }
+
+        private void UpdateEquipmentLeftLineUIData(string data, int lineid)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(data);
@@ -671,56 +769,56 @@ namespace MonitorPlatform.Data
                 line1.Troubles.Add(sta);
             }
 
-             nodes = doc.SelectNodes("/Document/RailLine/Station");
+            nodes = doc.SelectNodes("/Document/RailLine/Station");
 
-             foreach (XmlNode node in nodes)
-             {
-                 StationTroubleStatus sta = new StationTroubleStatus();
-                 string name = node.SelectSingleNode("Name").SafeInnerText();
-                 Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
-                 if (s != null)
-                 {
-                     int index = line1.Stations.IndexOf(s);
-                     sta.ID = index;
-                     sta.WarnCount = node.SelectSingleNode("WarnCount").SafeInnerInt();
-                     line1.StaTroubles.Add(sta);
-                 }
+            foreach (XmlNode node in nodes)
+            {
+                StationTroubleStatus sta = new StationTroubleStatus();
+                string name = node.SelectSingleNode("Name").SafeInnerText();
+                Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
+                if (s != null)
+                {
+                    int index = line1.Stations.IndexOf(s);
+                    sta.ID = index;
+                    sta.WarnCount = node.SelectSingleNode("WarnCount").SafeInnerInt();
+                    line1.StaTroubles.Add(sta);
+                }
 
-             }
+            }
 
-             nodes = doc.SelectNodes("/Document/RailLine/SubVoltage");
+            nodes = doc.SelectNodes("/Document/RailLine/SubVoltage");
 
 
-             line1.VoltageStat.Clear();
-             
-             VoltageStatus volA = new VoltageStatus() { Name = "A相" };
-             VoltageStatus volB = new VoltageStatus() { Name = "B相" };
-             VoltageStatus volC = new VoltageStatus() { Name = "C相" };
+            line1.VoltageStat.Clear();
 
-             foreach (XmlNode node in nodes)
-             {
-                 VoltageStatus sta = new VoltageStatus();
-                 if (node.SelectSingleNode("Kind").SafeInnerText() == "110kv")
-                 {
-                     volA.Val_110 = node.SelectSingleNode("VoltageA").SafeInnerInt();
-                     volB.Val_110 = node.SelectSingleNode("VoltageB").SafeInnerInt();
-                     volC.Val_110 = node.SelectSingleNode("VoltageC").SafeInnerInt();
-                 }
-                 else
-                 {
-                     volA.Val_35 = node.SelectSingleNode("VoltageA").SafeInnerInt();
-                     volB.Val_35 = node.SelectSingleNode("VoltageB").SafeInnerInt();
-                     volC.Val_35 = node.SelectSingleNode("VoltageC").SafeInnerInt();
-                 }
-             }
+            VoltageStatus volA = new VoltageStatus() { Name = "A相" };
+            VoltageStatus volB = new VoltageStatus() { Name = "B相" };
+            VoltageStatus volC = new VoltageStatus() { Name = "C相" };
 
-             volA.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempA").SafeInnerInt();
-             volB.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempB").SafeInnerInt();
-             volC.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempC").SafeInnerInt();
+            foreach (XmlNode node in nodes)
+            {
+                VoltageStatus sta = new VoltageStatus();
+                if (node.SelectSingleNode("Kind").SafeInnerText() == "110kv")
+                {
+                    volA.Val_110 = node.SelectSingleNode("VoltageA").SafeInnerInt();
+                    volB.Val_110 = node.SelectSingleNode("VoltageB").SafeInnerInt();
+                    volC.Val_110 = node.SelectSingleNode("VoltageC").SafeInnerInt();
+                }
+                else
+                {
+                    volA.Val_35 = node.SelectSingleNode("VoltageA").SafeInnerInt();
+                    volB.Val_35 = node.SelectSingleNode("VoltageB").SafeInnerInt();
+                    volC.Val_35 = node.SelectSingleNode("VoltageC").SafeInnerInt();
+                }
+            }
 
-             line1.VoltageStat.Add(volA);
-             line1.VoltageStat.Add(volB);
-             line1.VoltageStat.Add(volC);
+            volA.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempA").SafeInnerInt();
+            volB.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempB").SafeInnerInt();
+            volC.CabTemp = doc.SelectSingleNode("/Document/RailLine/CableTemp/TempC").SafeInnerInt();
+
+            line1.VoltageStat.Add(volA);
+            line1.VoltageStat.Add(volB);
+            line1.VoltageStat.Add(volC);
         }
 
         private void UpdateEquipmentCenterLineUIData(string data, int lineid)
@@ -728,13 +826,13 @@ namespace MonitorPlatform.Data
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(data);
             SubLine line1 = MonitorDataModel.Instance().SubWayLines[lineid];
-           
+
 
             XmlNodeList nodes = doc.SelectNodes("/Document/RailLine/Station");
 
             foreach (XmlNode node in nodes)
             {
-               
+
                 string name = node.SelectSingleNode("Name").SafeInnerText();
                 Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
                 if (s != null)
@@ -743,11 +841,11 @@ namespace MonitorPlatform.Data
                     s.StaGUID = node.SelectSingleNode("GUID").SafeInnerText();
                 }
             }
-           
+
         }
 
 
-        private void UpdateEquipmentCenterLineDetailUIData(string data,int lineid,string guid)
+        private void UpdateEquipmentCenterLineDetailUIData(string data, int lineid, string guid)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(data);
@@ -771,7 +869,7 @@ namespace MonitorPlatform.Data
                     s.Equipments.Add(eqi);
                 }
             }
-          
+
 
         }
 
@@ -802,10 +900,10 @@ namespace MonitorPlatform.Data
                 {
                     string stationname = stationnode.SelectSingleNode("Name").SafeInnerText();
                     Station s = line.Stations.SingleOrDefault(x => x.Name == stationname);
-                    if (s !=null)
+                    if (s != null)
                     {
                         s.Cameras.Clear();
-                         s.CameraNumber = 0;
+                        s.CameraNumber = 0;
                         XmlNodeList cameralist = stationnode.SelectNodes("Camera");
                         if (cameralist != null)
                         {
@@ -829,6 +927,79 @@ namespace MonitorPlatform.Data
                 line.CameraTotalNumber = linecamecount;
             }
 
+        }
+
+
+        private void UpdateLocationLeftByLineUp(XmlNode node, SubLine line1)
+        {
+            XmlNodeList stationnodes = node.SelectNodes("Station");
+            if (stationnodes != null)
+            {
+                foreach (XmlNode stanode in stationnodes)
+                {
+                    string name = stanode.SelectSingleNode("Name").SafeInnerText();
+                    Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
+                    if (s != null)
+                    {
+                        s.UpFirstTime = stanode.SelectSingleNode("FirstTime").SafeInnerInt();
+                        s.UpSecondTime = stanode.SelectSingleNode("SecondTime").SafeInnerInt();
+                    }
+                }
+            }
+        }
+
+        private void UpdateLocationLeftByLineDown(XmlNode node, SubLine line1)
+        {
+            XmlNodeList stationnodes = node.SelectNodes("Station");
+            if (stationnodes != null)
+            {
+                foreach (XmlNode stanode in stationnodes)
+                {
+                    string name = stanode.SelectSingleNode("Name").SafeInnerText();
+                    Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
+                    if (s != null)
+                    {
+                        s.DownFirstTime = stanode.SelectSingleNode("FirstTime").SafeInnerInt();
+                        s.DownSecondTime = stanode.SelectSingleNode("SecondTime").SafeInnerInt();
+                    }
+                }
+            }
+        }
+
+        private void UpdateLocationLeftUIData(string data)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[0];
+            SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
+            XmlNodeList nodes = doc.SelectNodes("/Document/ServiceLine");
+            foreach (XmlNode node in nodes)
+            {
+                if (node.SelectSingleNode("Name").SafeInnerText() == "1号线")
+                {
+                    if (node.SelectSingleNode("Direction").SafeInnerText() == "往钟南街方向")
+                    {
+                        UpdateLocationLeftByLineUp(node, line1);
+                    }
+                    else
+                    {
+                        UpdateLocationLeftByLineDown(node, line1);
+                    }
+
+                }
+                else
+                {
+                    if (node.SelectSingleNode("Direction").SafeInnerText() == "往宝带桥南方向")
+                    {
+                        UpdateLocationLeftByLineUp(node, line2);
+                    }
+                    else
+                    {
+                        UpdateLocationLeftByLineDown(node, line2);
+                    }
+
+                }
+            }
         }
     }
 }

@@ -109,12 +109,12 @@
                 <dxg:GridControl Name="griddetail"  Grid.Column="1" Margin="10,0,0,0"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
 
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn  FieldName="Owner"  Header="设备所属" />
-                        <dxg:GridColumn FieldName="ID"  Header="设备编号" />
+                        <!--<dxg:GridColumn  FieldName="Owner"  Header="设备所属" />
+                        <dxg:GridColumn FieldName="ID"  Header="设备编号" />-->
                         <dxg:GridColumn FieldName="Name"  Header="设备名称" />
                         <dxg:GridColumn FieldName="EquipmentType"  Header="设备种类" />
                         <dxg:GridColumn FieldName="Location"  Header="具体位置" />
-                        <dxg:GridColumn FieldName="Use"  Header="设备用途" />
+                        <!--<dxg:GridColumn FieldName="Use"  Header="设备用途" />-->
                         <dxg:GridColumn FieldName="Status"  Header="设备状态" />
                         <dxg:GridColumn FieldName="WaringLevel"  Header="预警级别" />
                     </dxg:GridControl.Columns>

@@ -759,3 +759,22 @@ StackTrace:   在 MonitorPlatform.ViewModel.MonitorDataModel.Instance()
    在 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
    在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
    在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: “MonitorPlatform.ViewModel.MonitorDataModel”的类型初始值设定项引发异常。
+ Time: 2015-06-27 19:59:57 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-06-27 23:48:33 Message: 参数计数不匹配。
+StackTrace:   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   在 System.Delegate.DynamicInvokeImpl(Object[] args)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 参数计数不匹配。
+ Time: 2015-06-27 23:50:53 Message: “MonitorPlatform.Controls.TrainDownStatusControl”的类型初始值设定项引发异常。
+StackTrace:   在 System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   在 System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   在 System.Windows.Markup.WpfXamlLoader.LoadBaml(XamlReader xamlReader, Boolean skipJournaledProperties, Object rootObject, XamlAccessLevel accessLevel, Uri baseUri)
+   在 System.Windows.Markup.XamlReader.LoadBaml(Stream stream, ParserContext parserContext, Object parent, Boolean closeStream)
+   在 System.Windows.Application.LoadBamlStreamWithSyncInfo(Stream stream, ParserContext pc)
+   在 MS.Internal.AppModel.AppModelKnownContentFactory.BamlConverter(Stream stream, Uri baseUri, Boolean canUseTopLevelBrowser, Boolean sandboxExternalContent, Boolean allowAsync, Boolean isJournalNavigation, XamlReader& asyncObjectConverter)
+   在 MS.Internal.AppModel.MimeObjectFactory.GetObjectAndCloseStream(Stream s, ContentType contentType, Uri baseUri, Boolean canUseTopLevelBrowser, Boolean sandboxExternalContent, Boolean allowAsync, Boolean isJournalNavigation, XamlReader& asyncObjectConverter)
+   在 System.Windows.Navigation.NavigationService.GetObjectFromResponse(WebRequest request, WebResponse response, Uri destinationUri, Object navState)
+   在 System.Windows.Navigation.NavigationService.DoNavigate(Uri source, NavigationMode f, Object navState)
+   在 System.Windows.Navigation.NavigateQueueItem.Dispatch(Object obj)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: “MonitorPlatform.Controls.TrainDownStatusControl”的类型初始值设定项引发异常。

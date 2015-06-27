@@ -19,7 +19,7 @@
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Background="{Binding Path=Status, Converter={StaticResource StatusToBrushConverter}}" ></Border>
             <TextBlock Grid.Row="1"  Foreground="#FFCCCCCC"  TextWrapping="Wrap"  Width="15" FontSize="13.5"  Text="{Binding Name}"  TextAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-            <TextBlock Grid.Row="2" Foreground="#FF0099FF"  HorizontalAlignment="Center" VerticalAlignment="Center"><Run  Text="{Binding Path=Arrivetime}"></Run>分钟</TextBlock>
+            <TextBlock Grid.Row="2" Foreground="#FF0099FF"  HorizontalAlignment="Center" VerticalAlignment="Center"><Run  Text="{Binding Path=UpFirstTime}"></Run>分钟</TextBlock>
             <TextBlock  Grid.Row="3" Foreground="#FF0099FF"   HorizontalAlignment="Center" VerticalAlignment="Center">到站</TextBlock>
         </Grid>
     </Border>

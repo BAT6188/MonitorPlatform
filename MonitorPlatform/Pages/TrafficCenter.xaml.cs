@@ -23,7 +23,9 @@ namespace MonitorPlatform.Pages
         public TrafficCenter()
         {
             InitializeComponent();
-            datePicker1.SelectedDate = DateTime.Now;
+            DateTime temp = DateTime.Now;
+            datePicker1.SelectedDate = temp;
+            DataCenter.Instance.SelectTime = temp;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -36,6 +38,7 @@ namespace MonitorPlatform.Pages
         {
             if (datePicker1.SelectedDate.HasValue)
             {
+                DataCenter.Instance.SelectTime = datePicker1.SelectedDate.Value;
                 DataCenter.Instance.UpdateTrafficCenter(datePicker1.SelectedDate.Value);
                 DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value,0);
                 DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value, 1);

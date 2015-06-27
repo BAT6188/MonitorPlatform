@@ -187,6 +187,9 @@
     <Compile Include="Controls\TrainStatusControl.xaml.cs">
       <DependentUpon>TrainStatusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TrainDownStatusControl.xaml.cs">
+      <DependentUpon>TrainDownStatusControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Convert\StatusToBrushConverter.cs" />
     <Compile Include="Convert\StringToBrushConverter.cs" />
     <Compile Include="Convert\ValToNotifyStyleConverter.cs" />
@@ -274,6 +277,10 @@
     <Page Include="Controls\TrainStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TrainDownStatusControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LeftWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

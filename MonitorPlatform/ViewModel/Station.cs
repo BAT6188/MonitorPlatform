@@ -181,20 +181,69 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
-        //1 is normal, 2 is yellow 3 is busy.
-        private int arrivetime = 3;
-        public int Arrivetime
+        //上行 第一班还有多久到达
+        private int upFirstTime = 3;
+        public int UpFirstTime
         {
             get
             {
-                return arrivetime;
+                return upFirstTime;
             }
             set
             {
-                arrivetime = value;
-                NotifyPropertyChanged("Arrivetime");
+                upFirstTime = value;
+                NotifyPropertyChanged("UpFirstTime");
             }
         }
+
+        //上行 第二班到达时间
+        private int upSecondTime = 3;
+        public int UpSecondTime
+        {
+            get
+            {
+                return upSecondTime;
+            }
+            set
+            {
+                upSecondTime = value;
+                NotifyPropertyChanged("UpSecondTime");
+            }
+        }
+
+
+
+        //下行 第一班还有多久到达
+        private int downFirstTime = 3;
+        public int DownFirstTime
+        {
+            get
+            {
+                return downFirstTime;
+            }
+            set
+            {
+                downFirstTime = value;
+                NotifyPropertyChanged("DownFirstTime");
+            }
+        }
+
+        //下行 第二班到达时间
+        private int downSecondTime = 3;
+        public int DownSecondTime
+        {
+            get
+            {
+                return downSecondTime;
+            }
+            set
+            {
+                downSecondTime = value;
+                NotifyPropertyChanged("DownSecondTime");
+            }
+        }
+
+
 
         private string staguid = "";
         public string StaGUID

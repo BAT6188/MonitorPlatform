@@ -112,6 +112,9 @@ namespace MonitorPlatform.Pages
             Station stat = (c.DataContext as Station);
 
             string st = (c.Parent as Grid).Tag as string;
+             DateTime currenttime = DateTime.Now;
+            DateTime firstdatetime;
+            DateTime seconddatetime;
             string []lines = st.Split(',');
             if (lines[0] == "1")
             {
@@ -119,10 +122,14 @@ namespace MonitorPlatform.Pages
                 if (lines[1] == "1")
                 {
                     Direction.Text = "钟南街-木渎";
+                     firstdatetime =  currenttime.AddMinutes(stat.UpFirstTime);
+                    seconddatetime =  currenttime.AddMinutes(stat.UpSecondTime);
                 }
                 else
                 {
                     Direction.Text = "木渎-钟南街";
+                        firstdatetime =  currenttime.AddMinutes(stat.DownFirstTime);
+                    seconddatetime =  currenttime.AddMinutes(stat.DownSecondTime);
                 }
             }
             else
@@ -131,14 +138,23 @@ namespace MonitorPlatform.Pages
                 if (lines[1] == "1")
                 {
                     Direction.Text = "苏州北站-宝带桥南";
+                       firstdatetime =  currenttime.AddMinutes(stat.UpFirstTime);
+                    seconddatetime =  currenttime.AddMinutes(stat.UpSecondTime);
                 }
                 else
                 {
                     Direction.Text = "宝带桥南-苏州北站";
+                         firstdatetime =  currenttime.AddMinutes(stat.DownFirstTime);
+                    seconddatetime =  currenttime.AddMinutes(stat.DownSecondTime);
                 }
             }
           
             StationName.Text = stat.Name;
+
+
+            txtFirstTime.Text = firstdatetime.ToString("HH:mm");
+            txtSecondTime.Text = seconddatetime.ToString("HH:mm");
+            txtThirdTime.Text = seconddatetime.ToString("HH:mm");
             traininfo.IsOpen = true;
             traininfo.PlacementTarget = sender as UIElement;
              
@@ -153,3 +169,4 @@ namespace MonitorPlatform.Pages
         }
     }
 }
+

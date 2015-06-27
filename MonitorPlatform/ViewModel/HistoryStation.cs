@@ -137,6 +137,20 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        private string staguid = "";
+        public string StaGUID
+        {
+            get
+            {
+                return staguid;
+            }
+            set
+            {
+                staguid = value;
+                NotifyPropertyChanged("StaGUID");
+            }
+        }
+
         //损坏数量
         private int brokenNumber;
         public int BrokenNumber

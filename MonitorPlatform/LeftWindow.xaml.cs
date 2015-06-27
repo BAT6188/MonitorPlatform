@@ -64,6 +64,8 @@ namespace MonitorPlatform
             //DataCenter.Instance.Login("test1", "1");
             DataCenter.Instance.UpdateBoss();
             DataCenter.Instance.UpdateTrafficLeft();
+            DataCenter.Instance.UpdaeTrainLocationLeft();
+            
             DataCenter.Instance.UpdateEquipmentLeft();
             DataCenter.Instance.UpdateEquipmentCenter();
             DataCenter.Instance.UpdateCameraInfo();
@@ -81,7 +83,9 @@ namespace MonitorPlatform
             if ((current - lastupdate_traffic).Seconds >= 30)
             {
                 DataCenter.Instance.UpdateBoss();
+                DataCenter.Instance.UpdaeTrainLocationLeft();
                 DataCenter.Instance.UpdateEquipmentLeft();
+
                 lastupdate_traffic = current;
             }
             if ((current - lastupdate_boss).Minutes >= 15)

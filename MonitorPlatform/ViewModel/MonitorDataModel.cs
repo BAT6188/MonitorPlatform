@@ -236,7 +236,7 @@ namespace MonitorPlatform.ViewModel
             SubWayLines = new ObservableCollection<SubLine>();
             int SubLine1Persons = 1462568;
             int SubLine2Persons = 909263;
-            SubLine line1 = new SubLine() { Name = "1号线", CameraTotalNumber = 25, Persons = SubLine1Persons, PersonsPercent = (int)((float)SubLine1Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
+            SubLine line1 = new SubLine() { Name = "1号线", CameraTotalNumber = 25, History_totalnumber = SubLine1Persons, PersonsPercent = (int)((float)SubLine1Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
 
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType ="PSCADA", Number =27, BadNumber=1 });
             line1.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PIS", Number = 30, BadNumber = 2 });
@@ -251,24 +251,25 @@ namespace MonitorPlatform.ViewModel
                 TotalRate = 45
             });
 
-           
 
-            
-            line1.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 20000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "07", InNumber = 30000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "08", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "09", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "10", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "11", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "12", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "13", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "14", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "15", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "16", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "17", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "18", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "19", InNumber = 21000 });
-            line1.Personrates.Add(new PersonsRateSum() { Time = "20", InNumber = 21000 });
+
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "06", InNumber = 100, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "07", InNumber = 120, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "08", InNumber = 100, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "09", InNumber = 120, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "10", InNumber = 110, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "11", InNumber = 100, Outnumber = 120 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "12", InNumber = 120, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "13", InNumber = 100, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "14", InNumber = 100, Outnumber = 115 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "15", InNumber = 130, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "16", InNumber = 100, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "17", InNumber = 135, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "18", InNumber = 100, Outnumber = 130 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "19", InNumber = 100, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "20", InNumber = 100, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "21", InNumber = 100, Outnumber = 100 });
+            line1.LinePersonrates.Add(new PersonsRateSum() { Time = "22", InNumber = 100, Outnumber = 100 });
             line1.Trains.Add(new Train() { Location=3,IsDown =true });
             line1.Trains.Add(new Train() { Location =7, IsDown = true });
             line1.Trains.Add(new Train() { Location = 14, IsDown = true });
@@ -280,7 +281,7 @@ namespace MonitorPlatform.ViewModel
             line1.Trains.Add(new Train() { Location = 19, IsDown = false });
 
 
-            SubLine line2 = new SubLine() { Name = "2号线", CameraTotalNumber = 30, Persons = SubLine2Persons, PersonsPercent = (int)((float)SubLine2Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
+            SubLine line2 = new SubLine() { Name = "2号线", CameraTotalNumber = 30, History_totalnumber = SubLine2Persons, PersonsPercent = (int)((float)SubLine2Persons / (float)(SubLine2Persons + SubLine1Persons) * 100) };
 
 
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "PSCADA", Number = 27, BadNumber = 1 });
@@ -296,21 +297,23 @@ namespace MonitorPlatform.ViewModel
             });
 
 
-            line2.Personrates.Add(new PersonsRateSum() { Time = "06", InNumber = 20000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "07", InNumber = 30000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "08", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "09", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "10", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "11", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "12", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "13", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "14", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "15", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "16", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "17", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "18", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "19", InNumber = 21000 });
-            line2.Personrates.Add(new PersonsRateSum() { Time = "20", InNumber = 21000 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "06", InNumber = 100, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "07", InNumber = 120, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "08", InNumber = 100, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "09", InNumber = 120, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "10", InNumber = 110, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "11", InNumber = 100, Outnumber = 120 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "12", InNumber = 120, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "13", InNumber = 100, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "14", InNumber = 100, Outnumber = 115 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "15", InNumber = 130, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "16", InNumber = 100, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "17", InNumber = 135, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "18", InNumber = 100, Outnumber = 130 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "19", InNumber = 100, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "20", InNumber = 100, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "21", InNumber = 100, Outnumber = 100 });
+            line2.LinePersonrates.Add(new PersonsRateSum() { Time = "22", InNumber = 100, Outnumber = 100 });
 
             line2.Trains.Add(new Train() { Location = 3, IsDown = true });
             line2.Trains.Add(new Train() { Location = 7, IsDown = true });
