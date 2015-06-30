@@ -28,6 +28,14 @@ namespace MonitorPlatform.Data
 
         private static DataCenter instance;
 
+        public enum QueryType
+        { 
+            Month =0,
+            Quarter,
+            Year,
+            All,
+            Addup
+        }
 
         public static DataCenter Instance
         {
@@ -365,7 +373,6 @@ namespace MonitorPlatform.Data
 
         }
 
-
         private void UpdateBossStation(XmlNode firstrail, SubLine line1, bool isfirst)
         {
 
@@ -411,7 +418,6 @@ namespace MonitorPlatform.Data
 
 
         }
-
 
         private void UpdateTraficStation(XmlNode linenode, SubLine line1)
         {
@@ -865,7 +871,7 @@ namespace MonitorPlatform.Data
                     eqi.Owner = node.SelectSingleNode("Name").SafeInnerText();
                     eqi.Location = node.SelectSingleNode("PLocation").SafeInnerText();
                     eqi.WaringLevel = node.SelectSingleNode("AlarmGrade").SafeInnerText() == "1" ? "警告" : "";
-                    eqi.Status = node.SelectSingleNode("Status").SafeInnerText() == "1" ? "异常" : "";
+                    eqi.Status = node.SelectSingleNode("Status").SafeInnerText() == "1" ? "异常" : "正常";
                     s.Equipments.Add(eqi);
                 }
             }

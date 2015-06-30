@@ -48,7 +48,13 @@ namespace MonitorPlatform.Controls
                 (this.FindName("s" + (i+1).ToString()) as System.Windows.Shapes.Path).Fill = blue;
             }
             for(int i=0;i <stat.Count; i++){
-                (this.FindName("s" + (i+1).ToString()) as System.Windows.Shapes.Path).Fill = yellow;
+
+                StationTroubleStatus status = stat[i];
+                if (status.WarnCount > 0)
+                {
+
+                    (this.FindName("s" + (status.ID+1).ToString()) as System.Windows.Shapes.Path).Fill = yellow;
+                }
             }
             
         }

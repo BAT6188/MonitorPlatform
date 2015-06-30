@@ -23,6 +23,13 @@ namespace MonitorPlatform
         public Login()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(Login_Loaded);
+        }
+
+        void Login_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized;
+            this.WindowStyle = System.Windows.WindowStyle.None;
         }
 
         private void btnLogin_MouseUp(object sender, MouseButtonEventArgs e)

@@ -371,6 +371,21 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        //月度，季度，年度，全部，累计 统计
+        private ObservableCollection<PersonsRateAnalyze> rateReportData = new ObservableCollection<PersonsRateAnalyze>();
+        public ObservableCollection<PersonsRateAnalyze> RateReportData
+        {
+            get
+            {
+                return rateReportData;
+            }
+            set
+            {
+                rateReportData = value;
+                NotifyPropertyChanged("RateReportData");
+            }
+        }
+
 
         private ObservableCollection<StationTroubleStatus> statroubles = new ObservableCollection<StationTroubleStatus>();
         public ObservableCollection<StationTroubleStatus> StaTroubles
@@ -703,4 +718,53 @@ namespace MonitorPlatform.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
+
+
+
+    public class PersonsRateAnalyze : INotifyPropertyChanged
+    {
+        private String time;
+        public String Time
+        {
+            get
+            {
+                return time;
+            }
+            set
+            {
+                time = value;
+                NotifyPropertyChanged("Time");
+            }
+        }
+
+
+ 
+
+
+        private int totalnumber;
+        public int TotalNumber
+        {
+            get
+            {
+                return totalnumber;
+            }
+            set
+            {
+                totalnumber = value;
+                NotifyPropertyChanged("TotalNumber");
+            }
+        }
+
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+    }
+
 }

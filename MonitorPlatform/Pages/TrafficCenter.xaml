@@ -166,10 +166,10 @@
                     <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="轨道线路流量分布图"></TextBlock>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="0"  >
-                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线分时段轨道进站流量排行</TextBlock>
+                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >1号线分时段轨道进出站流量</TextBlock>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="1"  >
-                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线分时段轨道进站流量排行</TextBlock>
+                    <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线分时段轨道进出站流量</TextBlock>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="0" Margin="5">
                     <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True" 
@@ -198,7 +198,7 @@
                                     <dxc:BarSideBySideStackedSeries2D 
                                                             
                                                               StackedGroup="Tot"
-                                          DisplayName ="入站人数"
+                                          DisplayName ="进站人数"
                                                ArgumentDataMember="Time" 
                                                        ValueDataMember="InNumber" 
                                                       >
@@ -257,7 +257,7 @@
                                 <dxc:XYDiagram2D.Series>
 
                                     <dxc:BarSideBySideStackedSeries2D 
-                                                             DisplayName ="入站人数"
+                                                             DisplayName ="进站人数"
                                                               StackedGroup="Tot"
                                                ArgumentDataMember="Time" 
                                                        ValueDataMember="InNumber"
@@ -351,7 +351,10 @@
                                     <dxc:LineSeries2D  x:Name="year2005" 
                                               DisplayName="一号线" 
                                                       MarkerVisible ="True" 
-                                              AnimationAutoStartMode="SetStartState">
+                                              AnimationAutoStartMode="SetStartState"
+                                                        ArgumentDataMember="Time" 
+                                                       ValueDataMember="TotalNumber"
+                                                       DataSource="{Binding Path=SubWayLines[0].RateReportData}">
                                         <dxc:LineSeries2D.MarkerModel>
                                             <dxc:CircleMarker2DModel />
                                         </dxc:LineSeries2D.MarkerModel>
@@ -360,17 +363,13 @@
                                                      
                                                      dxc:MarkerSeries2D.Angle="{Binding ElementName=slAngle, Path=Value}" />
                                         </dxc:LineSeries2D.Label>
-                                        <dxc:LineSeries2D.Points>
-                                            <dxc:SeriesPoint Argument="五月" Value="362.53" />
-                                            <dxc:SeriesPoint Argument="六月" Value="348.45" />
-                                            <dxc:SeriesPoint Argument="七月" Value="279.02" />
-                                            <dxc:SeriesPoint Argument="八月" Value="230.93" />
-                                            <dxc:SeriesPoint Argument="九月" Value="203.52" />
-                                            <dxc:SeriesPoint Argument="十月" Value="197.12" />
-                                        </dxc:LineSeries2D.Points>
                                         </dxc:LineSeries2D >
                                     <dxc:LineSeries2D x:Name="year2004" 
                                               DisplayName="二号线" 
+                                                       ArgumentDataMember="Time" 
+                                                       ValueDataMember="TotalNumber"
+                                                       DataSource="{Binding Path=SubWayLines[1].RateReportData}"
+                                                      
                                               AnimationAutoStartMode="SetStartState">
                                         <dxc:LineSeries2D.MarkerModel>
                                             <dxc:CircleMarker2DModel />
@@ -379,14 +378,7 @@
                                             <dxc:SeriesLabel ConnectorVisible="False" ResolveOverlappingMode="Default"
                                                      />
                                         </dxc:LineSeries2D.Label>
-                                        <dxc:LineSeries2D.Points>
-                                            <dxc:SeriesPoint Argument="五月" Value="277.02" />
-                                            <dxc:SeriesPoint Argument="六月" Value="328.54" />
-                                            <dxc:SeriesPoint Argument="七月" Value="297.02" />
-                                            <dxc:SeriesPoint Argument="八月" Value="255.3" />
-                                            <dxc:SeriesPoint Argument="九月" Value="173.54" />
-                                            <dxc:SeriesPoint Argument="十月" Value="131.89" />
-                                        </dxc:LineSeries2D.Points>
+                                      
                                     </dxc:LineSeries2D>
                                 </dxc:XYDiagram2D.Series>
                             </dxc:XYDiagram2D>

@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
 using MonitorPlatform.Data;
+using DevExpress.Xpf.Grid;
 
 namespace MonitorPlatform.Pages
 {
@@ -27,7 +28,29 @@ namespace MonitorPlatform.Pages
            
             gridStation.ItemsSource = MonitorDataModel.Instance().SubWayLines[0].Stations;
             gridStation.View.FocusedRowChanged += new DevExpress.Xpf.Grid.FocusedRowChangedEventHandler(View_FocusedRowChanged);
+            chk_AFC.Click += new RoutedEventHandler(chk_AFC_Click);
+            chk_FAS.Click += new RoutedEventHandler(chk_AFC_Click);
+            chk_BAS.Click += new RoutedEventHandler(chk_AFC_Click);
+            chk_PSCADA.Click += new RoutedEventHandler(chk_AFC_Click);
+            chk_PSD.Click += new RoutedEventHandler(chk_AFC_Click);
+            chk_PIS.Click += new RoutedEventHandler(chk_AFC_Click);
+            chk_PA.Click += new RoutedEventHandler(chk_AFC_Click);
            
+        }
+
+        void chk_AFC_Click(object sender, RoutedEventArgs e)
+        {
+            string condition = GetSelectChk();
+            object data = gridStation.View.FocusedRow;
+            if (data != null & data is Station)
+            {
+                Station s = data as Station; //line.Stations.SingleOrDefault(x => x.Name == name);
+                if (s != null)
+                {
+                    griddetail.ItemsSource = s.Equipments.Where(x => condition.Contains(x.EquipmentType));
+
+                }
+            }
         }
 
         void View_FocusedRowChanged(object sender, DevExpress.Xpf.Grid.FocusedRowChangedEventArgs e)
@@ -55,8 +78,10 @@ namespace MonitorPlatform.Pages
                 DataCenter.Instance.UpdateEquipmentDetailCenter(s.StaGUID, GetSelectChk(), lineid);
 
                 griddetail.ItemsSource = s.Equipments;
+               
             }
         }
+
 
         private string GetSelectChk()
         {
