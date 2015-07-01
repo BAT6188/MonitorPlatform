@@ -309,19 +309,19 @@
                 </Border>
                 <Border Grid.Row="0" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button  Width="70"  Content="月度">
+                        <Button  Width="70"  Content="月度" Click="btnMonth_Click">
                             
                         </Button>
-                        <Button  Width="70"  Content="季度">
+                        <Button  Width="70"  Content="季度" Click="btnQuator_Click">
     
                         </Button>
-                        <Button  Width="70"  Content="年度">
+                        <Button  Width="70"  Content="年度" Click="btnYear_Click"> 
 
                         </Button>
-                        <Button  Width="70"  Content="全部">
+                        <Button  Width="70"  Content="全部" Click="btnAll_Click">
 
                         </Button>
-                        <Button  Width="70"  Content="累计">
+                        <Button  Width="70"  Content="累计" Click="btnAddup_Click">
 
                         </Button>
                     </StackPanel>

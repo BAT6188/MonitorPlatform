@@ -42,6 +42,46 @@ namespace MonitorPlatform.Pages
                 DataCenter.Instance.UpdateTrafficCenter(datePicker1.SelectedDate.Value);
                 DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value,0);
                 DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value, 1);
+
+                //Defualt, Open month report
+                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Month);
+            }
+        }
+
+        private void btnMonth_Click(object sender, RoutedEventArgs e)
+        {
+            if (datePicker1.SelectedDate.HasValue)
+            {
+                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value,MonitorPlatform.Data.DataCenter.QueryType.Month);
+            }
+        }
+        private void btnQuator_Click(object sender, RoutedEventArgs e)
+        {
+            if (datePicker1.SelectedDate.HasValue)
+            {
+                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Quarter);
+            }
+        }
+        private void btnYear_Click(object sender, RoutedEventArgs e)
+        {
+            if (datePicker1.SelectedDate.HasValue)
+            {
+                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Year);
+            }
+
+        }
+        private void btnAll_Click(object sender, RoutedEventArgs e)
+        {
+            if (datePicker1.SelectedDate.HasValue)
+            {
+                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.All);
+            }
+        }
+        private void btnAddup_Click(object sender, RoutedEventArgs e)
+        {
+            if (datePicker1.SelectedDate.HasValue)
+            {
+                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Addup);
             }
         }
     }

@@ -22,6 +22,7 @@ namespace MonitorPlatform.Data
         public const string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
         public delegate void UpdateUIDate(string data);
         public delegate void UpdateUIDateWithLine(string data, int line);
+        public delegate void UpdateUIDateWithQuery(string data, QueryType type);
         public delegate void UpdateUIDateWithLineDetail(string data, int line, string staguid);
         private static WebInvoker proxy;
         private Window win;
@@ -218,6 +219,27 @@ namespace MonitorPlatform.Data
             });
         }
 
+        public void UpdateTrafficCenterReport(DateTime time, QueryType querytype)
+        {
+            string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Month_Info");
+            XmlNodeHelper.AddSubValue(tfNode, "QueryDate", "TEXT", time.ToString("yyyy-MM-dd"));
+            string xmlTransform = tfNode.ToString();
+
+
+            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            {
+                if (result.Status == 0)
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDateWithQuery(UpdateTrafficCenterReportUIData), result.Data, querytype);
+                }
+                else
+                {
+                    LogCenter.LogMessage("UpdateTrafficCenterReportUIData fail. " + result.ErrMessage);
+                }
+            });
+        }
+        
 
         public void UpdaeTrainLocationLeft()
         {
@@ -1004,6 +1026,82 @@ namespace MonitorPlatform.Data
                         UpdateLocationLeftByLineDown(node, line2);
                     }
 
+                }
+            }
+        }
+
+
+        private void UpdateTrafficCenterReportByMonth(SubLine line, XmlNode node)
+        { 
+            
+            ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+            //最近30天
+            DateTime current = DateTime.Now;
+            for (int i = 30; i >= 0; i-- )
+            {
+                reportdata.Add(new PersonsRateAnalyze() { Time = current.AddDays(-i).ToString("MM-dd"), TotalNumber = 0 });
+            }
+            XmlNodeList nodes = node.SelectNodes("PassInfo");
+            foreach (XmlNode passnode in nodes)
+            {
+                string time = passnode.SelectSingleNode("Date").SafeInnerText();
+
+                //Convert from 2015-06-01 to 06-01
+                if(time.Contains("-"))
+                {
+                    time = time.Substring( time.IndexOf("-")+1);
+                }
+                PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
+                if(matchnode!=null)
+                {
+                    matchnode.TotalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+                 }
+            }
+            line.RateReportData = reportdata;
+        }
+
+        private void UpdateTrafficCenterReportUIData(string data, QueryType type)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[0];
+            SubLine line2 = MonitorDataModel.Instance().SubWayLines[1];
+            
+            XmlNodeList nodes = doc.SelectNodes("/Document/RailLine");
+            foreach (XmlNode node in nodes)
+            {
+                SubLine targetline; 
+                if (node.SelectSingleNode("Name").SafeInnerText() == "1号线")
+                {
+                    targetline = line1;
+                }
+                else
+                {
+                    targetline = line2;
+                }
+
+
+                switch (type)
+                {
+                    case QueryType.Month:
+                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        break;
+                    case QueryType.Quarter:
+                        //Abel, Modify here
+                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        break;
+                    case QueryType.Year:
+                        //Abel, Modify here
+                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        break;
+                    case QueryType.All:
+                        //Abel, Modify here
+                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        break;
+                    case QueryType.Addup:
+                        //Abel, Modify here
+                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        break;
                 }
             }
         }
