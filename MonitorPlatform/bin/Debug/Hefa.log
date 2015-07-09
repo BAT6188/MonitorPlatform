@@ -778,3 +778,23 @@ StackTrace:   在 System.Windows.Markup.XamlReader.RewrapException(Exception e, I
    在 System.Windows.Navigation.NavigateQueueItem.Dispatch(Object obj)
    在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
    在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: “MonitorPlatform.Controls.TrainDownStatusControl”的类型初始值设定项引发异常。
+ Time: 2015-07-08 23:45:17 Message: 登录失败! username:test1 Exception: 
+ Time: 2015-07-09 20:34:27 Message: 未将对象引用设置到对象的实例。
+StackTrace:   在 MonitorPlatform.WindowManager.ShowTrafficImage() 位置 E:\MonitorPlatform\MonitorPlatform\WindowManager.cs:行号 37
+   在 MonitorPlatform.Pages.TrainLocationLeft.StationName_MouseDown(Object sender, MouseButtonEventArgs e) 位置 E:\MonitorPlatform\MonitorPlatform\Pages\TrainLocationLeft.xaml.cs:行号 194
+   在 System.Windows.Input.MouseButtonEventArgs.InvokeEventHandler(Delegate genericHandler, Object genericTarget)
+   在 System.Windows.RoutedEventArgs.InvokeHandler(Delegate handler, Object target)
+   在 System.Windows.RoutedEventHandlerInfo.InvokeHandler(Object target, RoutedEventArgs routedEventArgs)
+   在 System.Windows.EventRoute.InvokeHandlersImpl(Object source, RoutedEventArgs args, Boolean reRaised)
+   在 System.Windows.UIElement.RaiseEventImpl(DependencyObject sender, RoutedEventArgs args)
+   在 System.Windows.ContentElement.RaiseTrustedEvent(RoutedEventArgs args)
+   在 System.Windows.Input.InputManager.ProcessStagingArea()
+   在 System.Windows.Input.InputManager.ProcessInput(InputEventArgs input)
+   在 System.Windows.Input.InputProviderSite.ReportInput(InputReport inputReport)
+   在 System.Windows.Interop.HwndMouseInputProvider.ReportInput(IntPtr hwnd, InputMode mode, Int32 timestamp, RawMouseActions actions, Int32 x, Int32 y, Int32 wheel)
+   在 System.Windows.Interop.HwndMouseInputProvider.FilterMessage(IntPtr hwnd, WindowMessage msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   在 System.Windows.Interop.HwndSource.InputFilterMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   在 MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   在 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 未将对象引用设置到对象的实例。

@@ -38,6 +38,9 @@ namespace MonitorPlatform
             this.txtTime.Text = System.DateTime.Now.ToString("yyyy年MM月dd日 dddd");
             this.txtName.Text = DataCenter.Instance.LoginUser;
             System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
+            WindowManager.Instance.left = this;
+            WindowManager.Instance.center = center;
+            WindowManager.Instance.right = right;
 
             if (screens.Length == 3)
             {
@@ -104,10 +107,7 @@ namespace MonitorPlatform
             this.DataContext = MonitorDataModel.Instance();
         }
 
-        public void ShowTrainLocationCenter()
-        {
-            center.frame.Source = new Uri("Pages/TrainLocationCenter.xaml", UriKind.Relative);
-        }
+      
 
         public void ChangeTab(string tab)
         {
@@ -148,6 +148,8 @@ namespace MonitorPlatform
             
         }
 
+        
+
         private void TabSelectControl_TabSelectChanged(object sender, TabSelectChangeEventArgs e)
         {
             ChangeTab(e.ChoosedTab);
@@ -158,6 +160,8 @@ namespace MonitorPlatform
             tabControl.SelectItem(input);
         
         }
+
+
 
         protected override void OnClosed(EventArgs e)
         {

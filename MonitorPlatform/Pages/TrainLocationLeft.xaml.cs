@@ -97,7 +97,7 @@ namespace MonitorPlatform.Pages
         {
             Train trainin = (sender as Image).Tag as Train;
             MonitorDataModel.Instance().CurrentTrain = trainin;
-            (Window.GetWindow(this) as LeftWindow).ShowTrainLocationCenter();
+            WindowManager.Instance.ShowTrainLocationCenter();
 
         }
 
@@ -162,10 +162,68 @@ namespace MonitorPlatform.Pages
         }
         void chart_MouseLeave(object sender, MouseEventArgs e)
         {
-            traininfo.IsOpen = false;
-            traininfo.PlacementTarget = sender as UIElement;
+            if (!traininfo.IsMouseOver)
+            {
+                traininfo.IsOpen = false;
+                traininfo.PlacementTarget = sender as UIElement;
              
+            }
+            
             //pointTooltip.IsOpen = false;
+        }
+
+        void pop_MouseLeave(object sender, MouseEventArgs e)
+        {
+            traininfo.IsOpen = false;
+            //traininfo.PlacementTarget = sender as UIElement;
+
+            //pointTooltip.IsOpen = false;
+        }
+
+        void pop_MouseEnter(object sender, MouseEventArgs e)
+        {
+            traininfo.IsOpen = true;
+            //traininfo.PlacementTarget = sender as UIElement;
+
+            //pointTooltip.IsOpen = false;
+        }
+
+
+        private void StationName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowManager.Instance.ShowTrafficImage();
+        }
+
+
+        public void ShowTrafficImage()
+        {
+            inforpic.IsOpen = true;
+            Window parentwin = Window.GetWindow(this);
+            inforpic.PlacementTarget = parentwin;
+            DependencyObject parent = inforpic.Child;
+
+            do
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+
+                if (parent != null && parent.ToString() == "System.Windows.Controls.Primitives.PopupRoot")
+                {
+                    var element = parent as FrameworkElement;
+
+                    element.Height = parentwin.Height;
+                    element.Width = parentwin.Width;
+
+                    break;
+                }
+            }
+            while (parent != null);
+
+            
+        }
+
+        public void CloseTrafficImage()
+        {
+            inforpic.IsOpen = false;
         }
     }
 }

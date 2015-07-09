@@ -532,15 +532,17 @@
                                     <TextBlock    Style="{Binding SubWayLines[0].PassIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">乘客流量</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"     >
-                                    <TextBlock   Style="{StaticResource NotifyContainerAlertText}">突发事件</TextBlock>
+                                <Border Style="{StaticResource NotifyContainer}" 
+                                        MouseUp="Event_MouseUp"   Grid.Column="2" Grid.Row="0"     >
+                                    <TextBlock   Style="{StaticResource NotifyContainerText}">突发事件</TextBlock>
                                 </Border>
                                 <Border Style="{Binding SubWayLines[0].EquipIsWarn,
             Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Equipment_MouseUp" Tag="{Binding SubWayLines[0].EquipIsWarn}" Grid.Column="1" Grid.Row="1"   >
                                     <TextBlock   Style="{Binding SubWayLines[0].EquipIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">设施设备</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"    >
+                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"  
+                                        MouseUp="Enviorment_MouseUp"   >
                                     <TextBlock    Style="{StaticResource NotifyContainerText}">环境状况</TextBlock>
                                 </Border>
                             </Grid>
@@ -571,15 +573,17 @@
                                     <TextBlock  Style="{Binding SubWayLines[1].PassIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}">乘客流量</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainerAlert}" Grid.Column="2" Grid.Row="0"    >
-                                    <TextBlock  Style="{StaticResource NotifyContainerAlertText}">突发事件</TextBlock>
+                                <Border Style="{StaticResource NotifyContainer}"
+                                        MouseUp="Event_MouseUp"  Grid.Column="2" Grid.Row="0"    >
+                                    <TextBlock  Style="{StaticResource NotifyContainerText}">突发事件</TextBlock>
                                 </Border>
                                 <Border Style="{Binding SubWayLines[1].EquipIsWarn,
             Converter={StaticResource ValToNotifyStyleConverter}}" MouseUp="Equipment_MouseUp" Tag="{Binding SubWayLines[1].EquipIsWarn}"  Grid.Column="1" Grid.Row="1"    >
                                     <TextBlock  Style="{Binding SubWayLines[1].EquipIsWarn,
             Converter={StaticResource ValToNotifyStyleTextConverter}}" >设施设备</TextBlock>
                                 </Border>
-                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1"  >
+                                <Border Style="{StaticResource NotifyContainer}" Grid.Column="2" Grid.Row="1" 
+                                         MouseUp="Enviorment_MouseUp" >
                                     <TextBlock  Style="{StaticResource NotifyContainerText}">环境状况</TextBlock>
                                 </Border>
                             </Grid>

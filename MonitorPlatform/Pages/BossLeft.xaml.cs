@@ -170,5 +170,17 @@ namespace MonitorPlatform.Pages
             (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("设施设备");
   
         }
+
+        private void Event_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            WindowManager.Instance.ShowEvent();
+
+        }
+        private void Enviorment_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            WindowManager.Instance.ShowEnviorment();
+
+        }
+        
     }
 }

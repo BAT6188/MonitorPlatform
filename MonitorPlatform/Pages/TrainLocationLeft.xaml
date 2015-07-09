@@ -17,12 +17,12 @@
             <Setter Property="Margin" Value="2,0,2,0"></Setter>
         </Style>
     </Page.Resources>
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Border Grid.Row="0" Margin="5">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions> 
+                </Grid.RowDefinitions>
                 <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource TrafficSection}" Margin="5">
                     <TextBlock Style="{StaticResource BaseContentWhiteStyle}" TextWrapping="Wrap" TextAlignment="Center"  Width="25" VerticalAlignment="Center" HorizontalAlignment="Center">1号线</TextBlock>
                 </Border>
@@ -359,7 +359,7 @@
                 </Border>
             </Grid>
         </Border>
-        <Popup x:Name="traininfo" PopupAnimation="Fade"  AllowsTransparency ="True" Placement="MousePoint">
+        <Popup x:Name="traininfo" PopupAnimation="Fade"  AllowsTransparency ="True" Placement="MousePoint" MouseEnter="pop_MouseEnter" MouseLeave="pop_MouseLeave">
             <Border Width="180" Height="199" CornerRadius="10">
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -378,7 +378,7 @@
                     </Run>
                     
                     <LineBreak/>
-                    <Run x:Name="StationName">
+                    <Run x:Name="StationName" MouseDown="StationName_MouseDown"  Cursor="Hand"  TextDecorations="Underline">
                         星湖街站
                     </Run>
                     </TextBlock>
@@ -391,11 +391,19 @@
                     <LineBreak/>
                     <Run FontSize="14" Text="第三班："/>
                     <Run x:Name="txtThirdTime" FontSize="18" Text="06:40"/></TextBlock>
-                  
+
                 </StackPanel>
             </Border>
-        
+
+        </Popup>
+
+        <Popup x:Name="inforpic"   PopupAnimation="Fade"  AllowsTransparency ="True" Placement="RelativePoint">
+            <Border x:Name="infoborder">
+                <Border.Background>
+                    <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/横道图01_01.png" />
+                </Border.Background>
+            </Border>
         </Popup>
     </Grid>
-   
+
 </Page>

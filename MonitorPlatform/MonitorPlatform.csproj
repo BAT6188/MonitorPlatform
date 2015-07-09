@@ -196,6 +196,9 @@
     <Compile Include="Convert\ValToNotifyStyleTextConverter.cs" />
     <Compile Include="Data\DataCenter.cs" />
     <Compile Include="Data\ITask.cs" />
+    <Compile Include="FullScreen.xaml.cs">
+      <DependentUpon>FullScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LeftWindow.xaml.cs">
       <DependentUpon>LeftWindow.xaml</DependentUpon>
     </Compile>
@@ -214,11 +217,20 @@
     <Compile Include="Pages\CameraStatusLeft.xaml.cs">
       <DependentUpon>CameraStatusLeft.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EnviormentCenter.xaml.cs">
+      <DependentUpon>EnviormentCenter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EquipmentStatusCenter.xaml.cs">
       <DependentUpon>EquipmentStatusCenter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EquipmentStatusLeft.xaml.cs">
       <DependentUpon>EquipmentStatusLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EquipmentStatusRight.xaml.cs">
+      <DependentUpon>EquipmentStatusRight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EventCenter.xaml.cs">
+      <DependentUpon>EventCenter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TrafficCenter.xaml.cs">
       <DependentUpon>TrafficCenter.xaml</DependentUpon>
@@ -246,6 +258,7 @@
     <Compile Include="ViewModel\SubLine.cs" />
     <Compile Include="ViewModel\TestClass.cs" />
     <Compile Include="ViewModel\Train.cs" />
+    <Compile Include="WindowManager.cs" />
     <Page Include="CenterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="FullScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LeftWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -310,6 +327,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EnviormentCenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EquipmentStatusCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -317,6 +338,14 @@
     <Page Include="Pages\EquipmentStatusLeft.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\EquipmentStatusRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EventCenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TrafficCenter.xaml">
       <SubType>Designer</SubType>
@@ -422,6 +451,10 @@
     <Resource Include="Resource\形状 11.png" />
     <Resource Include="Resource\形状 12.png" />
     <Resource Include="Resource\形状 13.png" />
+    <Resource Include="Resource\横道图01_01.png" />
+    <Resource Include="Resource\横道图01_02.png" />
+    <Resource Include="Resource\横道图01_03.png" />
+    <Resource Include="Resource\FAS平面图.png" />
     <Content Include="ThirdParty\AxInterop.VSPOcxClientLib.dll" />
     <Content Include="ThirdParty\Com.CustomControl.dll" />
     <Content Include="ThirdParty\Com.MapPlugin.dll" />

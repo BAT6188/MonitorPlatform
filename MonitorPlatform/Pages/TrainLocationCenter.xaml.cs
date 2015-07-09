@@ -23,5 +23,35 @@ namespace MonitorPlatform.Pages
         {
             InitializeComponent();
         }
+
+        public void ShowTrafficImage()
+        {
+            inforpic.IsOpen = true;
+            Window parentwin = Window.GetWindow(this);
+            inforpic.PlacementTarget = parentwin;
+            DependencyObject parent = inforpic.Child;
+
+            do
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+
+                if (parent != null && parent.ToString() == "System.Windows.Controls.Primitives.PopupRoot")
+                {
+                    var element = parent as FrameworkElement;
+
+                    element.Height = parentwin.Height;
+                    element.Width = parentwin.Width;
+
+                    break;
+                }
+            }
+            while (parent != null);
+        }
+
+        public void CloseTrafficImage()
+        {
+            inforpic.IsOpen = false;
+        }
     }
+
 }

@@ -120,3 +120,11 @@ E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\CameraStatusLeft.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\CameraStatusLeft.baml
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\TrainDownStatusControl.g.cs
 E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Controls\TrainDownStatusControl.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\FullScreen.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EventCenter.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\FullScreen.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EventCenter.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusRight.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EquipmentStatusRight.g.cs
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EnviormentCenter.baml
+E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\Pages\EnviormentCenter.g.cs

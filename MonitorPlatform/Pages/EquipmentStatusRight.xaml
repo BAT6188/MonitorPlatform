@@ -1,0 +1,16 @@
+﻿<Page x:Class="MonitorPlatform.Pages.EquipmentStatusRight"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+	Title="EquipmentStatusRight">
+
+    <Grid>
+        <Border x:Name="infoborder">
+            <Border.Background>
+                <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/FAS平面图.png" />
+            </Border.Background>
+        </Border>
+    </Grid>
+</Page>

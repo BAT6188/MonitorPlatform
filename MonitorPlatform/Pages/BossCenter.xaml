@@ -25,6 +25,13 @@
         <Border Grid.Row="1" > 
             <control:NewGis />
         </Border>
-
+        <Popup x:Name="inforpic"   PopupAnimation="Fade"  AllowsTransparency ="True" Placement="RelativePoint">
+            <Border x:Name="infoborder">
+              
+                <Border.Background>
+                    <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/横道图01_02.png" />
+                </Border.Background>
+            </Border>
+        </Popup>
     </Grid>
 </Page>
