@@ -1,4 +1,4 @@
-﻿
+﻿E:\MonitorPlatform\MonitorPlatform\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
 
 FE:\MonitorPlatform\MonitorPlatform\CenterWindow.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\CustomTree.xaml
@@ -6,6 +6,7 @@ FE:\MonitorPlatform\MonitorPlatform\Controls\Line1Status.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\Line2Status.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\TabSelectControl.xaml
 FE:\MonitorPlatform\MonitorPlatform\Controls\TrainStatusControl.xaml
+FE:\MonitorPlatform\MonitorPlatform\Controls\TrainDownStatusControl.xaml
 FE:\MonitorPlatform\MonitorPlatform\LeftWindow.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\BossCenter.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\BossLeft.xaml
@@ -18,5 +19,4 @@ FE:\MonitorPlatform\MonitorPlatform\Pages\TrafficLeft.xaml
 FE:\MonitorPlatform\MonitorPlatform\Pages\TrainLocationLeft.xaml
 FE:\MonitorPlatform\MonitorPlatform\RightWindows.xaml
 FE:\MonitorPlatform\MonitorPlatform\Theme\Skin.xaml
-FE:\MonitorPlatform\MonitorPlatform\Controls\TrainDownStatusControl.xaml
 

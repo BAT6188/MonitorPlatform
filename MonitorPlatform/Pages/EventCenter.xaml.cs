@@ -22,6 +22,8 @@ namespace MonitorPlatform.Pages
         public EventCenter()
         {
             InitializeComponent();
+              DateTime temp = DateTime.Now;
+            datePicker1.SelectedDate = temp;
         }
 
         private void datePicker1_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

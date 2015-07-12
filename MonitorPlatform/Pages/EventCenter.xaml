@@ -13,7 +13,7 @@
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition   Height="40"></RowDefinition>
-            <RowDefinition   Height="60"></RowDefinition>
+            <RowDefinition   Height="70"></RowDefinition>
             <RowDefinition   Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -33,7 +33,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="状态:"></TextBlock>
-                        <ComboBox Name="status">
+                        <ComboBox Name="status" SelectedIndex="0" Margin="10,0,0,0">
                             <ComboBoxItem>全部</ComboBoxItem>
                             <ComboBoxItem>未处理</ComboBoxItem>
                             <ComboBoxItem>已处理</ComboBoxItem>
@@ -46,7 +46,7 @@
                 <Border  Grid.Column="1"  Margin="10" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="线路:"></TextBlock>
-                        <ComboBox Name="lines">
+                        <ComboBox Name="lines" SelectedIndex="0" Margin="10,0,0,0">
                             <ComboBoxItem>1号线</ComboBoxItem>
                             <ComboBoxItem>2号线</ComboBoxItem>
                             <ComboBoxItem>全部</ComboBoxItem>
@@ -58,7 +58,7 @@
                 <Border  Grid.Column="2"  Margin="10" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="日期选择:"></TextBlock>
-                        <DatePicker    Height="25"  Style="{StaticResource DatePickerStyle}" SelectedDateChanged="datePicker1_SelectedDateChanged"  Name="datePicker1" >
+                        <DatePicker  Margin="10,0,0,0"  Height="25"  Style="{StaticResource DatePickerStyle}" SelectedDateChanged="datePicker1_SelectedDateChanged"  Name="datePicker1" >
                         </DatePicker>
                     </StackPanel>
 
@@ -69,13 +69,13 @@
             <dxg:GridControl Grid.Column="0"      Name="gridStation"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
 
                 <dxg:GridControl.Columns>
-                    <dxg:GridColumn  FieldName="Name"  Header="序号" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="线路" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="位置" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="发生时间" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="上报时间" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="状态" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="描述" />
+                    <dxg:GridColumn  FieldName="Number"  Header="序号" />
+                    <dxg:GridColumn FieldName="LineNumber"  Header="线路" />
+                    <dxg:GridColumn FieldName="Location"  Header="位置" />
+                    <dxg:GridColumn FieldName="HappenTime"  Header="发生时间" />
+                    <dxg:GridColumn FieldName="ReportTime"  Header="上报时间" />
+                    <dxg:GridColumn FieldName="Status"  Header="状态" />
+                    <dxg:GridColumn FieldName="Description"  Header="描述" />
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View >
                     <dxg:TableView  Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >

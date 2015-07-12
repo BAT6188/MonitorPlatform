@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
       mc:Ignorable="d" 
       xmlns:local="clr-namespace:MonitorPlatform.Convert" 
     ShowsNavigationUI="False"
@@ -172,8 +173,8 @@
                     <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线分时段轨道进出站流量</TextBlock>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="0" Margin="5">
-                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True" 
-                                         DataSource="{Binding Path=SubWayLines[0].LinePersonrates}">
+                    <dxc:ChartControl x:Name="line1chart"  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True" 
+                                     MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave"     DataSource="{Binding Path=SubWayLines[0].LinePersonrates}">
                         <dxc:ChartControl.Diagram>
                             <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -196,15 +197,14 @@
                                 <dxc:XYDiagram2D.Series>
                                    
                                     <dxc:BarSideBySideStackedSeries2D 
-                                                            
-                                                              StackedGroup="Tot"
+                                          StackedGroup="Tot"
                                           DisplayName ="进站人数"
                                                ArgumentDataMember="Time" 
                                                        ValueDataMember="InNumber" 
                                                       >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  Visible ="False" />
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
@@ -217,7 +217,7 @@
                                                      >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"   />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"    Visible ="False"/>
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
@@ -228,13 +228,13 @@
                             </dxc:XYDiagram2D>
                         </dxc:ChartControl.Diagram>
                         <dxc:ChartControl.Legend>
-                            <dxc:Legend HorizontalPosition="Right"  Background="Transparent" Foreground="#00a0e9" />
+                            <dxc:Legend HorizontalPosition="RightOutside"  Background="Transparent" Foreground="#00a0e9" />
                         </dxc:ChartControl.Legend>
                     </dxc:ChartControl>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="1" Margin="5">
-                    <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  
-                                       DataSource="{Binding Path=SubWayLines[1].LinePersonrates}" Background="{x:Null}" EnableAnimation="True"  >
+                    <dxc:ChartControl x:Name="line2chart" BorderThickness="0" Foreground="#00a0e9"  
+                                 MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave"       DataSource="{Binding Path=SubWayLines[1].LinePersonrates}" Background="{x:Null}" EnableAnimation="True"  >
                         <dxc:ChartControl.Diagram>
                             <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -264,7 +264,7 @@
                                                         >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  Visible="False" />
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
@@ -277,7 +277,7 @@
                                                         >
 
                                         <dxc:BarSideBySideStackedSeries2D.Label>
-                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"  />
+                                            <dxc:SeriesLabel ResolveOverlappingMode="Default"   Visible="False" />
                                         </dxc:BarSideBySideStackedSeries2D.Label>
 
                                     </dxc:BarSideBySideStackedSeries2D>
@@ -286,7 +286,7 @@
                             </dxc:XYDiagram2D>
                         </dxc:ChartControl.Diagram>
                         <dxc:ChartControl.Legend>
-                            <dxc:Legend HorizontalPosition="Right"  Background="Transparent" Foreground="#00a0e9" />
+                            <dxc:Legend HorizontalPosition="RightOutside"  Background="Transparent" Foreground="#00a0e9" />
                         </dxc:ChartControl.Legend>
                     </dxc:ChartControl>
                 </Border>
@@ -309,25 +309,25 @@
                 </Border>
                 <Border Grid.Row="0" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button  Width="70"  Content="月度" Click="btnMonth_Click">
-                            
-                        </Button>
-                        <Button  Width="70"  Content="季度" Click="btnQuator_Click">
-    
-                        </Button>
-                        <Button  Width="70"  Content="年度" Click="btnYear_Click"> 
-
-                        </Button>
-                        <Button  Width="70"  Content="全部" Click="btnAll_Click">
-
-                        </Button>
-                        <Button  Width="70"  Content="累计" Click="btnAddup_Click">
-
-                        </Button>
+                        <RadioButton x:Name="rdMonth"  Style="{StaticResource RDOButton}"  Width="70"  GroupName="report"  Click="btnMonth_Click">
+                            <TextBlock TextAlignment="Center"><Run Text="月度"/></TextBlock>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource RDOButton}"  Width="70"  GroupName="report"  Click="btnQuator_Click">
+                            <TextBlock TextAlignment="Center"><Run Text="季度"/></TextBlock>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource RDOButton}"  Width="70" GroupName="report"  Click="btnYear_Click">
+                            <TextBlock TextAlignment="Center"><Run Text="年度"/></TextBlock>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource RDOButton}"  Width="70" GroupName="report"  Click="btnAll_Click">
+                            <TextBlock TextAlignment="Center"><Run Text="全部"/></TextBlock>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource RDOButton}"  Width="70" GroupName="report"   Click="btnAddup_Click">
+                            <TextBlock TextAlignment="Center"><Run Text="累计"/></TextBlock>
+                        </RadioButton>
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" >
-                    <dxc:ChartControl Name="chart"  EnableAnimation="True" BorderThickness="0"   Background="{x:Null}" >
+                    <dxc:ChartControl Name="chart"  EnableAnimation="True" BorderThickness="0"  MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave"  Background="{x:Null}" >
                         <dxc:ChartControl.Diagram>
                             <dxc:XYDiagram2D DomainBrush="{x:Null}">
                                 <dxc:XYDiagram2D.AxisY>
@@ -360,7 +360,7 @@
                                         </dxc:LineSeries2D.MarkerModel>
                                             <dxc:LineSeries2D.Label>
                                             <dxc:SeriesLabel ConnectorVisible="False" ResolveOverlappingMode="Default"
-                                                     
+                                                      Visible ="False"
                                                      dxc:MarkerSeries2D.Angle="{Binding ElementName=slAngle, Path=Value}" />
                                         </dxc:LineSeries2D.Label>
                                         </dxc:LineSeries2D >
@@ -376,6 +376,7 @@
                                         </dxc:LineSeries2D.MarkerModel>
                                         <dxc:LineSeries2D.Label>
                                             <dxc:SeriesLabel ConnectorVisible="False" ResolveOverlappingMode="Default"
+                                                              Visible ="False"
                                                      />
                                         </dxc:LineSeries2D.Label>
                                       
@@ -384,14 +385,19 @@
                             </dxc:XYDiagram2D>
                         </dxc:ChartControl.Diagram>
                         <dxc:ChartControl.Legend>
-                            <dxc:Legend HorizontalPosition="Right"  Background="Transparent" Foreground="#00a0e9" />
+                            <dxc:Legend HorizontalPosition="RightOutside"  Background="Transparent" Foreground="#00a0e9" />
                         </dxc:ChartControl.Legend>
                         <!--<dxc:ChartControl.Titles>
                             <dxc:Title Dock="Top" HorizontalAlignment="Center">Corporations with Highest Market Value</dxc:Title>
                             <dxc:Title Dock="Bottom" HorizontalAlignment="Right" FontSize="12" Foreground="Silver" Margin="0,10,0,0">From www.geohive.com</dxc:Title>
                         </dxc:ChartControl.Titles>-->
                     </dxc:ChartControl>
+                   
                 </Border>
+                <Popup Name="pointTooltip">
+                    <Popup.AllowsTransparency>True</Popup.AllowsTransparency>
+                    <dxe:TextEdit x:Name="ttContent" IsReadOnly="True" />
+                </Popup>
             </Grid>
           
         </Border>

@@ -528,6 +528,7 @@ namespace MonitorPlatform.Data
                                 Train train = new Train();
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
+                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
                                 train.IsDown = false;
                                 line1.Trains.Add(train);
                             }
@@ -548,6 +549,7 @@ namespace MonitorPlatform.Data
                                 Train train = new Train();
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
+                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
                                 train.IsDown = true;
                                 line1.Trains.Add(train);
                             }
@@ -572,6 +574,7 @@ namespace MonitorPlatform.Data
                                 Train train = new Train();
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
+                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
                                 train.IsDown = false;
                                 line2.Trains.Add(train);
                             }
@@ -591,6 +594,7 @@ namespace MonitorPlatform.Data
                                 Train train = new Train();
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
+                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
                                 train.IsDown = true;
                                 line2.Trains.Add(train);
                             }
@@ -713,7 +717,12 @@ namespace MonitorPlatform.Data
                 his.DownEndTime = DateTime.Parse(node.SelectSingleNode("DEndTime").SafeInnerText());
                 his.TrafficJam = node.SelectSingleNode("CrowdCount").SafeInnerInt();
 
-
+                if (his.InNumber == 0 && his.OutNumber == 0)
+                { 
+                    //Martin.伪造数据
+                    his.InNumber = 1;
+                    his.OutNumber = 0;
+                }
 
                 his.StationInOut.Add(new StationInOut()
                 {
@@ -892,8 +901,8 @@ namespace MonitorPlatform.Data
                     eqi.EquipmentType = node.SelectSingleNode("PType").SafeInnerText();
                     eqi.Owner = node.SelectSingleNode("Name").SafeInnerText();
                     eqi.Location = node.SelectSingleNode("PLocation").SafeInnerText();
-                    eqi.WaringLevel = node.SelectSingleNode("AlarmGrade").SafeInnerText() == "1" ? "警告" : "";
-                    eqi.Status = node.SelectSingleNode("Status").SafeInnerText() == "1" ? "异常" : "正常";
+                    eqi.WaringLevel = node.SelectSingleNode("AlarmGrade").SafeInnerText();
+                    eqi.Status = node.SelectSingleNode("Status").SafeInnerText() == "1" ? "预警" : "正常";
                     s.Equipments.Add(eqi);
                 }
             }
@@ -1039,7 +1048,7 @@ namespace MonitorPlatform.Data
             DateTime current = DateTime.Now;
             for (int i = 30; i >= 0; i-- )
             {
-                reportdata.Add(new PersonsRateAnalyze() { Time = current.AddDays(-i).ToString("MM-dd"), TotalNumber = 0 });
+                reportdata.Add(new PersonsRateAnalyze() { Time = current.AddDays(-i).ToString("M-dd"), TotalNumber = 0 });
             }
             XmlNodeList nodes = node.SelectNodes("PassInfo");
             foreach (XmlNode passnode in nodes)
@@ -1107,3 +1116,4 @@ namespace MonitorPlatform.Data
         }
     }
 }
+

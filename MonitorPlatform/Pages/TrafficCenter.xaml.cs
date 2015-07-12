@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.Data;
+using DevExpress.Xpf.Charts;
+using System.Windows.Controls.Primitives;
 
 namespace MonitorPlatform.Pages
 {
@@ -25,12 +27,14 @@ namespace MonitorPlatform.Pages
             InitializeComponent();
             DateTime temp = DateTime.Now;
             datePicker1.SelectedDate = temp;
+
             DataCenter.Instance.SelectTime = temp;
+            rdMonth.IsChecked = true;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             chart.Animate();
         }
 
@@ -40,7 +44,7 @@ namespace MonitorPlatform.Pages
             {
                 DataCenter.Instance.SelectTime = datePicker1.SelectedDate.Value;
                 DataCenter.Instance.UpdateTrafficCenter(datePicker1.SelectedDate.Value);
-                DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value,0);
+                DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value, 0);
                 DataCenter.Instance.UpdateTrafficRight(datePicker1.SelectedDate.Value, 1);
 
                 //Defualt, Open month report
@@ -52,7 +56,7 @@ namespace MonitorPlatform.Pages
         {
             if (datePicker1.SelectedDate.HasValue)
             {
-                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value,MonitorPlatform.Data.DataCenter.QueryType.Month);
+                DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Month);
             }
         }
         private void btnQuator_Click(object sender, RoutedEventArgs e)
@@ -83,6 +87,33 @@ namespace MonitorPlatform.Pages
             {
                 DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Addup);
             }
+        }
+
+        void chart_MouseMove(object sender, MouseEventArgs e)
+        {
+            ChartControl orgchart = sender as ChartControl;
+            Point position = e.GetPosition(orgchart);
+            ChartHitInfo hitInfo = orgchart.CalcHitInfo(position);
+            if (hitInfo != null && hitInfo.SeriesPoint != null)
+            {
+                ttContent.Text = string.Format("时间 = {0}\n人数 = {1}",
+                       hitInfo.SeriesPoint.Argument, Math.Round(hitInfo.SeriesPoint.NonAnimatedValue, 2));
+                pointTooltip.Placement = PlacementMode.RelativePoint;
+                pointTooltip.PlacementTarget = orgchart;
+                pointTooltip.HorizontalOffset = position.X + 5;
+                pointTooltip.VerticalOffset = position.Y + 5;
+                pointTooltip.IsOpen = true;
+                Cursor = Cursors.Hand;
+            }
+            else
+            {
+                pointTooltip.IsOpen = false;
+                Cursor = Cursors.Arrow;
+            }
+        }
+        void chart_MouseLeave(object sender, MouseEventArgs e)
+        {
+            pointTooltip.IsOpen = false;
         }
     }
 }

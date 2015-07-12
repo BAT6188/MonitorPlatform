@@ -157,12 +157,12 @@ namespace MonitorPlatform.Pages
 
         private void Train_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("客流信息");
+            (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("列车位置");
         }
 
         private void Traffic_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("列车位置");
+            (Window.GetWindow(this) as LeftWindow).ChangeTabByStr("客流信息");
         }
 
         private void Equipment_MouseUp(object sender, MouseButtonEventArgs e)

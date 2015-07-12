@@ -22,7 +22,19 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
-
+        private string sectionClass;
+        public string SectionClass
+        {
+            get
+            {
+                return sectionClass;
+            }
+            set
+            {
+                sectionClass = value;
+                NotifyPropertyChanged("SectionClass");
+            }
+        }
 
 
         private bool isDown = true;

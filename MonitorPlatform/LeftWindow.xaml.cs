@@ -46,8 +46,8 @@ namespace MonitorPlatform
             {
                 this.Top = screens[0].WorkingArea.Top;
                 this.Left = screens[0].WorkingArea.Left;
-                this.WindowState = WindowState.Maximized;
-                this.WindowStyle = System.Windows.WindowStyle.None;
+                //this.WindowState = WindowState.Maximized;
+                //this.WindowStyle = System.Windows.WindowStyle.None;
 
                 center.Top = screens[1].WorkingArea.Top;
                 center.Left = screens[1].WorkingArea.Left;

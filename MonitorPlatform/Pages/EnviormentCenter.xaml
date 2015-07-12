@@ -13,7 +13,7 @@
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition   Height="40"></RowDefinition>
-            <RowDefinition   Height="60"></RowDefinition>
+            <RowDefinition   Height="70"></RowDefinition>
             <RowDefinition   Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -33,7 +33,7 @@
                 <Border  Grid.Column="0"  Margin="10" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="日期选择:"></TextBlock>
-                        <DatePicker    Height="25"  Style="{StaticResource DatePickerStyle}"  Name="datePicker1" >
+                        <DatePicker  Margin="10,0,0,0"  Height="25"  Style="{StaticResource DatePickerStyle}"  Name="datePicker1" >
                         </DatePicker>
                     </StackPanel>
 
@@ -44,14 +44,14 @@
             <dxg:GridControl Grid.Column="0"      Name="gridStation"  Background="Transparent"   Opacity="0.5"    Template="{StaticResource GridTemplate}"  >
 
                 <dxg:GridControl.Columns>
-                    <dxg:GridColumn  FieldName="Name"  Header="序号" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="车站名称" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="火警状态" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="火警报警信号" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="温度" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="湿度" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="压力" />
-                    <dxg:GridColumn FieldName="BrokenNumber"  Header="浓度" />
+                    <dxg:GridColumn  FieldName="Number"  Header="序号" />
+                    <dxg:GridColumn FieldName="Station"  Header="车站名称" />
+                    <dxg:GridColumn FieldName="FireStatus"  Header="火警状态" />
+                    <dxg:GridColumn FieldName="FireInfo"  Header="火警报警信号" />
+                    <dxg:GridColumn FieldName="Temprature"  Header="温度" />
+                    <dxg:GridColumn FieldName="Wet"  Header="湿度" />
+                    <dxg:GridColumn FieldName="Pressure"  Header="压力" />
+                    <dxg:GridColumn FieldName="Level"  Header="浓度" />
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View >
                     <dxg:TableView  Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >

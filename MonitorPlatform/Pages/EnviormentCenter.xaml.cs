@@ -22,6 +22,14 @@ namespace MonitorPlatform.Pages
         public EnviormentCenter()
         {
             InitializeComponent();
+            DateTime temp = DateTime.Now;
+            datePicker1.SelectedDate = temp;
+            this.Loaded += new RoutedEventHandler(EnviormentCenter_Loaded);
+        }
+
+        void EnviormentCenter_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

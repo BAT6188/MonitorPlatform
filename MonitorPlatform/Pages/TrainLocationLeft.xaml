@@ -16,6 +16,10 @@
         <Style TargetType="localctr:TrainStatusControl">
             <Setter Property="Margin" Value="2,0,2,0"></Setter>
         </Style>
+
+        <Style TargetType="localctr:TrainDownStatusControl">
+            <Setter Property="Margin" Value="2,0,2,0"></Setter>
+        </Style>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -46,7 +50,7 @@
                     <TextBlock Style="{StaticResource BaseContentWhiteStyle}"
                               FontSize="13"  TextWrapping="Wrap" Width="20" VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center">下行</TextBlock>
                 </Border>
-                <Border Margin="10,5,10,5" Grid.Row="0" Grid.Column="2">
+                <Border Margin="0,5,0,5" Grid.Row="0" Grid.Column="2">
                     <Grid Tag="1,1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"></RowDefinition>
@@ -120,7 +124,7 @@
 
                     </Grid>
                 </Border>
-                <Border Margin="10,5,10,5" Grid.Row="1" Grid.Column="2">
+                <Border Margin="0,5,0,5" Grid.Row="1" Grid.Column="2">
                     <Grid Tag="1,2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"></RowDefinition>
@@ -219,7 +223,7 @@
                     <TextBlock Style="{StaticResource BaseContentWhiteStyle}"
                               FontSize="13"  TextWrapping="Wrap" Width="20" VerticalAlignment="Center" TextAlignment="Center"  HorizontalAlignment="Center">下行</TextBlock>
                 </Border>
-                <Border Margin="10,5,10,5" Grid.Row="0"  Grid.Column="2">
+                <Border Margin="0,5,0,5" Grid.Row="0"  Grid.Column="2">
                     <Grid  Tag="2,1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"></RowDefinition>
@@ -265,7 +269,7 @@
                         <localctr:TrainStatusControl Grid.Row="1" Grid.Column="0"  DataContext="{Binding Path=SubWayLines[1].Stations[0]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         <localctr:TrainStatusControl Grid.Row="1" Grid.Column="1"  DataContext="{Binding Path=SubWayLines[1].Stations[1]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         <localctr:TrainStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[2]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[2]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        
                         <localctr:TrainStatusControl Grid.Row="1" Grid.Column="3" DataContext="{Binding Path=SubWayLines[1].Stations[3]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         <localctr:TrainStatusControl Grid.Row="1" Grid.Column="4" DataContext="{Binding Path=SubWayLines[1].Stations[4]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
                         <localctr:TrainStatusControl Grid.Row="1" Grid.Column="5" DataContext="{Binding Path=SubWayLines[1].Stations[5]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
@@ -288,7 +292,7 @@
 
                     </Grid>
                 </Border>
-                <Border Margin="10,5,10,5" Grid.Row="1" Grid.Column="2">
+                <Border Margin="0,5,0,5" Grid.Row="1" Grid.Column="2">
                     <Grid  Tag="2,2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"></RowDefinition>
@@ -333,7 +337,7 @@
                         </Canvas>
                         <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="0"  DataContext="{Binding Path=SubWayLines[1].Stations[0]}"   MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="1"  DataContext="{Binding Path=SubWayLines[1].Stations[1]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[2]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        
                         <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[2]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="3" DataContext="{Binding Path=SubWayLines[1].Stations[3]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="4" DataContext="{Binding Path=SubWayLines[1].Stations[4]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
