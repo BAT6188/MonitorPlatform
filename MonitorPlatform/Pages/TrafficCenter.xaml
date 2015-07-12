@@ -333,7 +333,7 @@
                                 <dxc:XYDiagram2D.AxisY>
                                     <dxc:AxisY2D>
                                         <dxc:AxisY2D.Label>
-                                            <dxc:AxisLabel Foreground="#00a0e9"  />
+                                            <dxc:AxisLabel  Foreground="#00a0e9"  />
                                         </dxc:AxisY2D.Label>
                                         <dxc:AxisY2D.Title>
                                             <dxc:AxisTitle Content="客流量（百万）" Foreground="#00a0e9"  />
@@ -343,7 +343,7 @@
                                 <dxc:XYDiagram2D.AxisX>
                                     <dxc:AxisX2D>
                                         <dxc:AxisX2D.Label>
-                                            <dxc:AxisLabel   Foreground="#00a0e9"  />
+                                            <dxc:AxisLabel Staggered="True"   Foreground="#00a0e9"  />
                                         </dxc:AxisX2D.Label>
                                     </dxc:AxisX2D>
                                 </dxc:XYDiagram2D.AxisX>

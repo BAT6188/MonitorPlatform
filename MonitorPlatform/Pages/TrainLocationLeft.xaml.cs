@@ -24,12 +24,33 @@ namespace MonitorPlatform.Pages
         public TrainLocationLeft()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(TrainLocationLeft_Loaded);
             this.SizeChanged += new SizeChangedEventHandler(TrainLocationLeft_SizeChanged);
         }
 
+        void TrainLocationLeft_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window parentwin = Window.GetWindow(this);
+            parentwin.LocationChanged += new EventHandler(parentwin_LocationChanged);
+            parentwin.SizeChanged += new SizeChangedEventHandler(parentwin_SizeChanged);
+        }
+        void parentwin_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SetPopUpSize();
+        }
+        void parentwin_LocationChanged(object sender, EventArgs e)
+        {
+            if (inforpic.IsOpen)
+            {
+                var mi = typeof(Popup).GetMethod("UpdatePosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                mi.Invoke(inforpic, null);
+            }
+        }
         void TrainLocationLeft_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ReCalculateAll();
+            SetPopUpSize();
         }
 
         void ReCalculateAll()
@@ -194,10 +215,9 @@ namespace MonitorPlatform.Pages
             WindowManager.Instance.ShowTrafficImage();
         }
 
-
-        public void ShowTrafficImage()
+        public void SetPopUpSize()
         {
-            inforpic.IsOpen = true;
+            return;
             Window parentwin = Window.GetWindow(this);
             inforpic.PlacementTarget = parentwin;
             DependencyObject parent = inforpic.Child;
@@ -210,15 +230,22 @@ namespace MonitorPlatform.Pages
                 {
                     var element = parent as FrameworkElement;
 
-                    element.Height = parentwin.Height;
-                    element.Width = parentwin.Width;
+
+                    element.Height = parentwin.Height;// parentwin.Height;
+                    element.Width = parentwin.Width;// parentwin.Width;
 
                     break;
                 }
             }
             while (parent != null);
 
-            
+
+        }
+
+        public void ShowTrafficImage()
+        {
+            inforpic.IsOpen = true;
+            SetPopUpSize();
         }
 
         public void CloseTrafficImage()

@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
+using System.Windows.Controls.Primitives;
 
 namespace MonitorPlatform.Pages
 {
@@ -23,16 +24,34 @@ namespace MonitorPlatform.Pages
         public BossRight()
         {
             InitializeComponent();
+         
             this.Loaded += new RoutedEventHandler(BossRight_Loaded);
         }
 
+        void parentwin_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SetPopUpSize();
+        }
+        void parentwin_LocationChanged(object sender, EventArgs e)
+        {
+            if (inforpic.IsOpen)
+            {
+                var mi = typeof(Popup).GetMethod("UpdatePosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                mi.Invoke(inforpic, null);
+            }
+        }
         void BossRight_Loaded(object sender, RoutedEventArgs e)
         {
             videoControl.SetLayout(4);
+            Window parentwin = Window.GetWindow(this);
+            parentwin.LocationChanged += new EventHandler(parentwin_LocationChanged);
+            parentwin.SizeChanged += new SizeChangedEventHandler(parentwin_SizeChanged);
+         
         }
-        public void ShowTrafficImage()
+
+        public void SetPopUpSize()
         {
-            inforpic.IsOpen = true;
             Window parentwin = Window.GetWindow(this);
             inforpic.PlacementTarget = parentwin;
             DependencyObject parent = inforpic.Child;
@@ -45,8 +64,9 @@ namespace MonitorPlatform.Pages
                 {
                     var element = parent as FrameworkElement;
 
-                    element.Height = parentwin.Height;
-                    element.Width = parentwin.Width;
+
+                    element.Height = parentwin.ActualHeight;// parentwin.Height;
+                    element.Width = parentwin.ActualWidth;// parentwin.Width;
 
                     break;
                 }
@@ -54,6 +74,12 @@ namespace MonitorPlatform.Pages
             while (parent != null);
 
 
+        }
+
+        public void ShowTrafficImage()
+        {
+            inforpic.IsOpen = true;
+            SetPopUpSize();
         }
 
         public void CloseTrafficImage()

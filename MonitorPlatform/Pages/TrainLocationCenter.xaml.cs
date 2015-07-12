@@ -15,6 +15,7 @@ using MonitorPlatform.Data;
 using System.Windows.Resources;
 using System.IO;
 using MonitorPlatform.ViewModel;
+using System.Windows.Controls.Primitives;
 
 namespace MonitorPlatform.Pages
 {
@@ -28,15 +29,38 @@ namespace MonitorPlatform.Pages
         public TrainLocationCenter()
         {
             InitializeComponent();
+           
+            this.Loaded += new RoutedEventHandler(TrainLocationCenter_Loaded);
             LoadPoints();
             DataCenter.Instance.UpdateTrainLocationEvent += new DataCenter.UpdateTrainLocation(Instance_UpdateTrainLocationEvent);
             this.SizeChanged += new SizeChangedEventHandler(TrainLocationCenter_SizeChanged);
 
         }
 
+        void TrainLocationCenter_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window parentwin = Window.GetWindow(this);
+            parentwin.LocationChanged += new EventHandler(parentwin_LocationChanged);
+            parentwin.SizeChanged += new SizeChangedEventHandler(parentwin_SizeChanged);
+            ReCalculateAll();
+        }
+        void parentwin_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SetPopUpSize();
+        }
+        void parentwin_LocationChanged(object sender, EventArgs e)
+        {
+            if (inforpic.IsOpen)
+            {
+                var mi = typeof(Popup).GetMethod("UpdatePosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                mi.Invoke(inforpic, null);
+            }
+        }
+
         public void LoadPoints()
         {
-            StreamResourceInfo info = Application.GetResourceStream(new Uri("/MonitorPlatform;component/Resource/Car_Normal.png", UriKind.RelativeOrAbsolute));
+            StreamResourceInfo info = Application.GetResourceStream(new Uri("/MonitorPlatform;component/Resource/Points.txt", UriKind.RelativeOrAbsolute));
             StreamReader reader = new StreamReader(info.Stream);
             points.Clear();
             while(!reader.EndOfStream){
@@ -59,15 +83,11 @@ namespace MonitorPlatform.Pages
             ReCalculateAll();
         }
 
-
-
-
         void TrainLocationCenter_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ReCalculateAll();
 
         }
-
 
         public void DrawTrain(Train train, double widthfactor, double heightfactor)
         {
@@ -80,14 +100,13 @@ namespace MonitorPlatform.Pages
                 image.Height = 20;
                 image.Stretch = Stretch.Fill;
                 image.Source = new BitmapImage(new Uri("/MonitorPlatform;component/Resource/Car_Normal.png", UriKind.RelativeOrAbsolute));
-                Canvas.SetTop(image, org.X*widthfactor);
-                Canvas.SetLeft(image, org.Y * heightfactor);
+                Canvas.SetLeft(image, org.X * widthfactor);
+                Canvas.SetTop(image, org.Y * heightfactor);
                 infoborder.Children.Add(image);
             }
            
         }
         
-
         public void ReCalculateAll()
         {
             int orign_height = 739;
@@ -105,10 +124,8 @@ namespace MonitorPlatform.Pages
             }
         }
 
-
-        public void ShowTrafficImage()
+        public void SetPopUpSize()
         {
-            inforpic.IsOpen = true;
             Window parentwin = Window.GetWindow(this);
             inforpic.PlacementTarget = parentwin;
             DependencyObject parent = inforpic.Child;
@@ -121,15 +138,23 @@ namespace MonitorPlatform.Pages
                 {
                     var element = parent as FrameworkElement;
 
-                    element.Height = parentwin.Height;
-                    element.Width = parentwin.Width;
+
+                    element.Height = parentwin.ActualHeight;// parentwin.Height;
+                    element.Width = parentwin.ActualWidth;// parentwin.Width;
 
                     break;
                 }
             }
             while (parent != null);
+
+
         }
 
+        public void ShowTrafficImage()
+        {
+            inforpic.IsOpen = true;
+            SetPopUpSize();
+        }
         public void CloseTrafficImage()
         {
             inforpic.IsOpen = false;
