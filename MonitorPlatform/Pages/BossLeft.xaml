@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       ShowsNavigationUI="False"
+      xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
       xmlns:local="clr-namespace:MonitorPlatform.Convert" 
        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
        xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
@@ -118,7 +119,7 @@
 
 
 
-                        <dxc:ChartControl   BorderThickness="0" Background="{x:Null}"    EnableAnimation="True" Grid.Column="0" Grid.Row="2" >
+                        <dxc:ChartControl MouseMove="stachart_MouseMove" MouseLeave="chart_MouseLeave"   BorderThickness="0" Background="{x:Null}"    EnableAnimation="True" Grid.Column="0" Grid.Row="2" >
                             <dxc:ChartControl.Diagram >
                                 <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
                                     <dxc:XYDiagram2D.AxisX>
@@ -230,7 +231,7 @@
                             <TextBlock Style="{StaticResource CategorySmallTextStyle}" >2号线站点即时流量图</TextBlock>
                         </Border>
 
-                        <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True" Grid.Row="4"  Grid.Column="0" >
+                        <dxc:ChartControl MouseMove="stachart_MouseMove" MouseLeave="chart_MouseLeave"   BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True" Grid.Row="4"  Grid.Column="0" >
                             <dxc:ChartControl.Diagram>
                                 <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -382,7 +383,7 @@
                         </Border>
                         <Border Grid.Row="2">
 
-                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                            <dxc:ChartControl MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave"    BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
 
                                 <dxc:ChartControl.Diagram>
                                     <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
@@ -438,7 +439,7 @@
                         </Border>
                         <Border Grid.Row="4">
 
-                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                            <dxc:ChartControl MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave"    BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
 
                                 <dxc:ChartControl.Diagram>
                                     <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
@@ -591,9 +592,13 @@
                     </Grid>
 
                 </Border>
+                
             </Grid>
 
         </Border>
-
+        <Popup Name="pointTooltip">
+            <Popup.AllowsTransparency>True</Popup.AllowsTransparency>
+            <dxe:TextEdit x:Name="ttContent" IsReadOnly="True" />
+        </Popup>
     </Grid>
 </Page>

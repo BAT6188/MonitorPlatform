@@ -149,7 +149,7 @@
                             <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center"  TextAlignment="Center"  Style="{StaticResource BaseContentSmallTextStyle}" Text="设施设备"></TextBlock>
                         </Border>
                         <Border Grid.Row="1">
-                            <dxc:ChartControl  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                            <dxc:ChartControl MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave" BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
 
                                 <dxc:ChartControl.Diagram>
                                     <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
@@ -216,7 +216,7 @@
                             <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Center"  TextAlignment="Center"  Style="{StaticResource BaseContentSmallTextStyle}" Text="主变电站"></TextBlock>
                         </Border>
                         <Border Grid.Row="1">
-                            <dxc:ChartControl Foreground="#00a0e9"  Background="{x:Null}" BorderThickness="0"  EnableAnimation="True">
+                            <dxc:ChartControl MouseMove="elechart_MouseMove" MouseLeave="chart_MouseLeave" Foreground="#00a0e9"  Background="{x:Null}" BorderThickness="0"  EnableAnimation="True">
                                 <dxc:ChartControl.Diagram>
                                     <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}"  >
                                         <dxc:XYDiagram2D.AxisX>
@@ -242,7 +242,7 @@
                                                        DataSource="{Binding Path=CurrrentLine.VoltageStat}"                
                                                       >
                                                 <dxc:BarSideBySideSeries2D.Label>
-                                                    <dxc:SeriesLabel Indent="20" ResolveOverlappingMode="Default" 
+                                                    <dxc:SeriesLabel Indent="20" Visible="False"  ResolveOverlappingMode="Default" 
                                     ConnectorThickness="1"  
                                     dxc:BarSideBySideSeries2D.LabelPosition="Outside" />
                                                 </dxc:BarSideBySideSeries2D.Label>
@@ -255,7 +255,7 @@
                                                        DataSource="{Binding Path=CurrrentLine.VoltageStat}"    
                                                        >
                                                 <dxc:BarSideBySideSeries2D.Label>
-                                                    <dxc:SeriesLabel Indent="20" ResolveOverlappingMode="Default" 
+                                                    <dxc:SeriesLabel Indent="20" Visible="False"  ResolveOverlappingMode="Default" 
                                     ConnectorThickness="1" 
                                   dxc:BarSideBySideSeries2D.LabelPosition="Outside"/>
                                                 </dxc:BarSideBySideSeries2D.Label>
@@ -382,5 +382,9 @@
                 </Border>
             </Grid>
         </Border>
+        <Popup Name="pointTooltip">
+            <Popup.AllowsTransparency>True</Popup.AllowsTransparency>
+            <dxe:TextEdit x:Name="ttContent" IsReadOnly="True" />
+        </Popup>
     </Grid>
 </Page>

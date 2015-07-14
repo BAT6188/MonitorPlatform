@@ -83,6 +83,8 @@ namespace MonitorPlatform.ViewModel
     public class MonitorDataModel : INotifyPropertyChanged
     {
 
+        public delegate void CurrentTrainChanged();
+        public event CurrentTrainChanged CurrentTrainChangedEvent;
         private const string cameraimg = "/Resource/camera.png";
         public Dictionary<string, string[]> subway = new Dictionary<string, string[]>();
         public DelegateCommand AddSeriesCommand { get; set; }
@@ -203,6 +205,10 @@ namespace MonitorPlatform.ViewModel
             set
             {
                 currentTrain = value;
+                if (CurrentTrainChangedEvent != null)
+                {
+                    CurrentTrainChangedEvent();
+                }
                 NotifyPropertyChanged("CurrentTrain");
             }
         }

@@ -31,6 +31,11 @@ namespace MonitorPlatform
             right.frame.Source = new Uri("Pages/EquipmentStatusRight.xaml", UriKind.Relative);
         }
 
+        public void CloseEquipmentRight()
+        {
+            right.frame.Source = new Uri("Pages/BossRight.xaml", UriKind.Relative);
+        }
+
         public void ShowEvent()
         {
             center.frame.Source = new Uri("Pages/EventCenter.xaml", UriKind.Relative);

@@ -217,7 +217,7 @@ namespace MonitorPlatform.Pages
 
         public void SetPopUpSize()
         {
-            return;
+            
             Window parentwin = Window.GetWindow(this);
             inforpic.PlacementTarget = parentwin;
             DependencyObject parent = inforpic.Child;

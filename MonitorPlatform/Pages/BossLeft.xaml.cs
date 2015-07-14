@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MonitorPlatform.ViewModel;
 using MonitorPlatform.Data;
+using DevExpress.Xpf.Charts;
+using System.Windows.Controls.Primitives;
 
 namespace MonitorPlatform.Pages
 {
@@ -181,6 +183,55 @@ namespace MonitorPlatform.Pages
             WindowManager.Instance.ShowEnviorment();
 
         }
-        
+
+
+        void stachart_MouseMove(object sender, MouseEventArgs e)
+        {
+            ChartControl orgchart = sender as ChartControl;
+            Point position = e.GetPosition(orgchart);
+            ChartHitInfo hitInfo = orgchart.CalcHitInfo(position);
+            if (hitInfo != null && hitInfo.SeriesPoint != null)
+            {
+                ttContent.Text = string.Format("站点 = {0}\n人数 = {1}",
+                       hitInfo.SeriesPoint.Argument, Math.Round(hitInfo.SeriesPoint.NonAnimatedValue, 2));
+                pointTooltip.Placement = PlacementMode.RelativePoint;
+                pointTooltip.PlacementTarget = orgchart;
+                pointTooltip.HorizontalOffset = position.X + 5;
+                pointTooltip.VerticalOffset = position.Y + 5;
+                pointTooltip.IsOpen = true;
+                Cursor = Cursors.Hand;
+            }
+            else
+            {
+                pointTooltip.IsOpen = false;
+                Cursor = Cursors.Arrow;
+            }
+        }
+        void chart_MouseMove(object sender, MouseEventArgs e)
+        {
+            ChartControl orgchart = sender as ChartControl;
+            Point position = e.GetPosition(orgchart);
+            ChartHitInfo hitInfo = orgchart.CalcHitInfo(position);
+            if (hitInfo != null && hitInfo.SeriesPoint != null)
+            {
+                ttContent.Text = string.Format("设备 = {0}\n数量 = {1}",
+                       hitInfo.SeriesPoint.Argument, Math.Round(hitInfo.SeriesPoint.NonAnimatedValue, 2));
+                pointTooltip.Placement = PlacementMode.RelativePoint;
+                pointTooltip.PlacementTarget = orgchart;
+                pointTooltip.HorizontalOffset = position.X + 5;
+                pointTooltip.VerticalOffset = position.Y + 5;
+                pointTooltip.IsOpen = true;
+                Cursor = Cursors.Hand;
+            }
+            else
+            {
+                pointTooltip.IsOpen = false;
+                Cursor = Cursors.Arrow;
+            }
+        }
+        void chart_MouseLeave(object sender, MouseEventArgs e)
+        {
+            pointTooltip.IsOpen = false;
+        }
     }
 }

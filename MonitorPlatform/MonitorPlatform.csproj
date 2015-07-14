@@ -456,6 +456,7 @@
     <Resource Include="Resource\横道图01_03.png" />
     <Resource Include="Resource\FAS平面图.png" />
     <Resource Include="Resource\Points.txt" />
+    <Resource Include="Resource\trainlocationreverse.png" />
     <Content Include="ThirdParty\AxInterop.VSPOcxClientLib.dll" />
     <Content Include="ThirdParty\Com.CustomControl.dll" />
     <Content Include="ThirdParty\Com.MapPlugin.dll" />

@@ -52,6 +52,21 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        private int cameraWarnNumber;
+        public int CameraWarnNumber
+        {
+            get
+            {
+                return cameraWarnNumber;
+            }
+            set
+            {
+                cameraWarnNumber = value;
+                NotifyPropertyChanged("CameraWarnNumber");
+            }
+        }
+
+
         private DateTime upBeginTime;
         public DateTime UpBeginTime
         {
@@ -242,6 +257,35 @@ namespace MonitorPlatform.ViewModel
                 NotifyPropertyChanged("DownSecondTime");
             }
         }
+
+        private string uptrainno = "";
+        public string UpTrainNo
+        {
+            get
+            {
+                return uptrainno;
+            }
+            set
+            {
+                uptrainno = value;
+                NotifyPropertyChanged("UpTrainNo");
+            }
+        }
+
+        private string downtrainno = "";
+        public string DownTrainNo
+        {
+            get
+            {
+                return downtrainno;
+            }
+            set
+            {
+                downtrainno = value;
+                NotifyPropertyChanged("DownTrainNo");
+            }
+        }
+
 
 
 

@@ -66,26 +66,26 @@
                                 <TextBlock Style="{StaticResource BaseContentSmallTextStyle}" Text="下一站"></TextBlock>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="1">
-                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" Text="广济南路"></TextBlock>
+                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}"  x:Name="txtNextStation"  Text="广济南路"></TextBlock>
                             </Border>
                             <Border Grid.Row="0" Grid.Column="2">
                                 <TextBlock Style="{StaticResource BaseContentSmallTextStyle}" Text="日期"></TextBlock>
                             </Border>
                             <Border  Grid.Row="0" Grid.Column="3">
-                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" Text="2015-05-13"></TextBlock>
+                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" x:Name="txtCurrentDate"  Text="2015-05-13"></TextBlock>
                             </Border>
 
                             <Border   Grid.Row="1" Grid.Column="0">
                                 <TextBlock Style="{StaticResource BaseContentSmallTextStyle}" Text="计划到达时间"></TextBlock>
                             </Border>
                             <Border  Grid.Row="2" Grid.Column="1">
-                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" Text="08:53:45"></TextBlock>
+                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" x:Name="txtPlanArriveTime"  Text="08:53:45"></TextBlock>
                             </Border>
                             <Border  Grid.Row="3" Grid.Column="2">
                                 <TextBlock Style="{StaticResource BaseContentSmallTextStyle}" Text="预计到达时间"></TextBlock>
                             </Border>
                             <Border  Grid.Row="4" Grid.Column="3">
-                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" Text="08:53:46"></TextBlock>
+                                <TextBlock Style="{StaticResource BaseContentSmallWhiteStyle}" x:Name="txtEstimateArrivaTime"  Text="08:53:46"></TextBlock>
                             </Border>
                         </Grid>
                     </Border>

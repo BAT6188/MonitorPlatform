@@ -530,6 +530,7 @@ namespace MonitorPlatform.Data
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
                                 
                                 train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
+                                train.LineNo = 0;
                                 //Martin 伪造数据
                                 train.SectionClass = "G1502A";
                                 train.IsDown = false;
@@ -553,7 +554,8 @@ namespace MonitorPlatform.Data
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
                                 train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
-                              
+                                train.LineNo = 0;
+                                
                                 train.IsDown = true;
                                 line1.Trains.Add(train);
                             }
@@ -581,6 +583,7 @@ namespace MonitorPlatform.Data
                                 train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
                                 //Martin 伪造数据
                                 train.SectionClass = "G1505B";
+                                train.LineNo = 1;
                                 train.IsDown = false;
                                 line2.Trains.Add(train);
                             }
@@ -601,7 +604,7 @@ namespace MonitorPlatform.Data
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
                                 train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
-                       
+                                train.LineNo = 1;
                                 train.IsDown = true;
                                 line2.Trains.Add(train);
                             }
@@ -948,6 +951,7 @@ namespace MonitorPlatform.Data
                     {
                         s.Cameras.Clear();
                         s.CameraNumber = 0;
+                        s.CameraWarnNumber = 0;
                         XmlNodeList cameralist = stationnode.SelectNodes("Camera");
                         if (cameralist != null)
                         {
@@ -987,6 +991,7 @@ namespace MonitorPlatform.Data
                     {
                         s.UpFirstTime = stanode.SelectSingleNode("FirstTime").SafeInnerInt();
                         s.UpSecondTime = stanode.SelectSingleNode("SecondTime").SafeInnerInt();
+                        s.UpTrainNo = stanode.SelectSingleNode("TrainNO").SafeInnerText();
                     }
                 }
             }
@@ -1005,6 +1010,7 @@ namespace MonitorPlatform.Data
                     {
                         s.DownFirstTime = stanode.SelectSingleNode("FirstTime").SafeInnerInt();
                         s.DownSecondTime = stanode.SelectSingleNode("SecondTime").SafeInnerInt();
+                        s.DownTrainNo = stanode.SelectSingleNode("TrainNO").SafeInnerText();
                     }
                 }
             }

@@ -160,7 +160,7 @@
                         <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="分时段流量"></TextBlock>
                     </Border>
                     <Border Grid.Row="1" Margin="0,10,0,0">
-                        <dxc:ChartControl x:Name="detailchart"  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
+                        <dxc:ChartControl MouseMove="chart_MouseMove" MouseLeave="chart_MouseLeave"   x:Name="detailchart"  BorderThickness="0" Foreground="#00a0e9"  Background="{x:Null}" EnableAnimation="True"  >
                             <dxc:ChartControl.Diagram>
                                 <dxc:XYDiagram2D Background="{x:Null}" DomainBrush="{x:Null}" >
 
@@ -219,7 +219,10 @@
                 </Grid>
             </Border>
         </Grid>
-
+        <Popup Name="pointTooltip">
+            <Popup.AllowsTransparency>True</Popup.AllowsTransparency>
+            <dxe:TextEdit x:Name="ttContent" IsReadOnly="True" />
+        </Popup>
 
     </Grid>
 </Page>

@@ -166,7 +166,7 @@
 
                         <Canvas Grid.Row="0" x:Name="firstlineup" Grid.Column="0"  Grid.ColumnSpan="24">
                             <Canvas.Background>
-                                <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/trainlocation.png" />
+                                <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/trainlocationreverse.png" />
                             </Canvas.Background>
                         </Canvas>
 
@@ -332,7 +332,7 @@
                         </Grid.ColumnDefinitions>
                         <Canvas Grid.Row="0" x:Name="secondlineup" Grid.Column="0" Grid.ColumnSpan="22">
                             <Canvas.Background>
-                                <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/trainlocation.png" />
+                                <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/trainlocationreverse.png" />
                             </Canvas.Background>
                         </Canvas>
                         <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="0"  DataContext="{Binding Path=SubWayLines[1].Stations[0]}"   MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>

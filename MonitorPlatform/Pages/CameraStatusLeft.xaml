@@ -89,7 +89,7 @@
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn  FieldName="Name"  Header="站点" />
                         <dxg:GridColumn FieldName="CameraNumber"  Header="总摄像头数" />
-                        <dxg:GridColumn FieldName="BrokenNumber"  Header="异常数" />
+                        <dxg:GridColumn FieldName="CameraWarnNumber"  Header="异常数" />
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View >
                         <dxg:TableView  Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >

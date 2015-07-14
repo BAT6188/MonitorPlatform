@@ -51,6 +51,21 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        //0代表1号线，1代表2号线
+        private int lineNo = 0;
+        public int LineNo
+        {
+            get
+            {
+                return lineNo;
+            }
+            set
+            {
+                lineNo = value;
+                NotifyPropertyChanged("LineNo");
+            }
+        }
+
 
         private string trainNumber = "SZDT－Z00104";
         public string TrainNumber

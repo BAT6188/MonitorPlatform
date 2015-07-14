@@ -950,3 +950,36 @@ StackTrace:   在 System.RuntimeMethodHandle._InvokeMethodFast(IRuntimeMethodInfo
    在 MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
    在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
    在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 调用的目标发生了异常。
+ Time: 2015-07-14 12:45:28 Message: 值不能为 null。
+参数名: key
+StackTrace:   在 System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   在 System.Collections.Generic.Dictionary`2.ContainsKey(TKey key)
+   在 MonitorPlatform.Pages.BossCenter.DrawTrain(Train train, Double widthfactor, Double heightfactor) 位置 E:\MonitorPlatform\MonitorPlatform\Pages\BossCenter.xaml.cs:行号 94
+   在 MonitorPlatform.Pages.BossCenter.ReCalculateAll() 位置 E:\MonitorPlatform\MonitorPlatform\Pages\BossCenter.xaml.cs:行号 119
+   在 MonitorPlatform.Pages.BossCenter.TrainLocationCenter_SizeChanged(Object sender, SizeChangedEventArgs e) 位置 E:\MonitorPlatform\MonitorPlatform\Pages\BossCenter.xaml.cs:行号 88
+   在 System.Windows.SizeChangedEventArgs.InvokeEventHandler(Delegate genericHandler, Object genericTarget)
+   在 System.Windows.RoutedEventArgs.InvokeHandler(Delegate handler, Object target)
+   在 System.Windows.RoutedEventHandlerInfo.InvokeHandler(Object target, RoutedEventArgs routedEventArgs)
+   在 System.Windows.EventRoute.InvokeHandlersImpl(Object source, RoutedEventArgs args, Boolean reRaised)
+   在 System.Windows.UIElement.RaiseEventImpl(DependencyObject sender, RoutedEventArgs args)
+   在 System.Windows.UIElement.RaiseEvent(RoutedEventArgs e)
+   在 System.Windows.FrameworkElement.OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+   在 System.Windows.ContextLayoutManager.fireSizeChangedEvents()
+   在 System.Windows.ContextLayoutManager.UpdateLayout()
+   在 System.Windows.ContextLayoutManager.UpdateLayoutCallback(Object arg)
+   在 System.Windows.Media.MediaContext.InvokeOnRenderCallback.DoWork()
+   在 System.Windows.Media.MediaContext.FireInvokeOnRenderCallbacks()
+   在 System.Windows.Media.MediaContext.RenderMessageHandlerCore(Object resizedCompositionTarget)
+   在 System.Windows.Media.MediaContext.RenderMessageHandler(Object resizedCompositionTarget)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 值不能为 null。
+参数名: key
+ Time: 2015-07-14 13:17:32 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-14 13:17:35 Message: 调用的目标发生了异常。
+StackTrace:   在 System.RuntimeMethodHandle._InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   在 System.RuntimeMethodHandle.InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   在 System.Delegate.DynamicInvokeImpl(Object[] args)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 调用的目标发生了异常。
+ Time: 2015-07-14 13:17:46 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 

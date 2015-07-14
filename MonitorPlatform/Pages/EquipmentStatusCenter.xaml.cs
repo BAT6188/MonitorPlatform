@@ -78,10 +78,14 @@ namespace MonitorPlatform.Pages
                 DataCenter.Instance.UpdateEquipmentDetailCenter(s.StaGUID, GetSelectChk(), lineid);
 
                 griddetail.ItemsSource = s.Equipments;
-                //if (s.Name.Contains("广济南路"))
-                //{
+                if (s.Name.Contains("广济南路"))
+                {
                     WindowManager.Instance.ShowEquipmentRight();
-                //}
+                }
+                else
+                {
+                    WindowManager.Instance.CloseEquipmentRight();
+                }
             }
         }
 

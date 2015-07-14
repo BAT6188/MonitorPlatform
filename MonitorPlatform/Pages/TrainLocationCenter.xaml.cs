@@ -34,11 +34,66 @@ namespace MonitorPlatform.Pages
             LoadPoints();
             DataCenter.Instance.UpdateTrainLocationEvent += new DataCenter.UpdateTrainLocation(Instance_UpdateTrainLocationEvent);
             this.SizeChanged += new SizeChangedEventHandler(TrainLocationCenter_SizeChanged);
-
+            MonitorDataModel.Instance().CurrentTrainChangedEvent += new MonitorDataModel.CurrentTrainChanged(TrainLocationCenter_CurrentTrainChangedEvent);
         }
 
+        void TrainLocationCenter_CurrentTrainChangedEvent()
+        {
+            SetPropByCurrentTrain();
+        }
+
+        public void SetPropByCurrentTrain()
+        {
+            Train t = MonitorDataModel.Instance().CurrentTrain;
+            if (t != null)
+            {
+                DateTime now =DateTime.Now;
+                txtCurrentDate.Text = now.ToString("yyyy-MM-dd");
+
+               SubLine line =  MonitorDataModel.Instance().SubWayLines[t.LineNo];
+                double nextstationID;
+               if (t.IsDown)
+               {
+                   if (line.Stations.Count > (int)t.Location && (int)t.Location >= 0)
+                   {
+                       Station next = line.Stations[(int)t.Location];
+                       this.txtNextStation.Text = next.Name;
+                       this.txtEstimateArrivaTime.Text = now.AddMinutes(next.DownFirstTime).ToString("HH:mm");
+                       this.txtPlanArriveTime.Text = this.txtEstimateArrivaTime.Text;
+                   }
+                   else
+                   {
+                       this.txtNextStation.Text = "终点站";
+                       this.txtPlanArriveTime.Text = now.ToString("HH:mm");
+                       this.txtEstimateArrivaTime.Text = now.ToString("HH:mm");
+                   }
+                   
+               }
+               else
+               {
+                   nextstationID = t.Location - 2;
+                   if(line.Stations.Count>(int)(t.Location - 2) && (int)(t.Location - 2)>=0){
+                       Station next = line.Stations[(int)t.Location - 2];
+                       this.txtNextStation.Text = next.Name;
+                       this.txtEstimateArrivaTime.Text =now.AddMinutes( next.UpFirstTime).ToString("HH:mm");
+                       this.txtPlanArriveTime.Text = this.txtEstimateArrivaTime.Text;
+                   }
+                   else
+                   {
+                       this.txtNextStation.Text = "终点站";
+                       this.txtPlanArriveTime.Text = now.ToString("HH:mm");
+                       this.txtEstimateArrivaTime.Text = now.ToString("HH:mm");
+                   }
+               }
+
+            }
+        }
+
+        
         void TrainLocationCenter_Loaded(object sender, RoutedEventArgs e)
         {
+
+            SetPropByCurrentTrain();
             Window parentwin = Window.GetWindow(this);
             parentwin.LocationChanged += new EventHandler(parentwin_LocationChanged);
             parentwin.SizeChanged += new SizeChangedEventHandler(parentwin_SizeChanged);
