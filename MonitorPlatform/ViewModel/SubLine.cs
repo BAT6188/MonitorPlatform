@@ -431,7 +431,20 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
-
+        
+        private ObservableCollection<EventData> eventdatas = new ObservableCollection<EventData>();
+        public ObservableCollection<EventData> EventDatas
+        {
+            get
+            {
+                return eventdatas;
+            }
+            set
+            {
+                eventdatas = value;
+                NotifyPropertyChanged("EventDatas");
+            }
+        }
         public void NotifyPropertyChanged(string property)
         {
             if (PropertyChanged != null)

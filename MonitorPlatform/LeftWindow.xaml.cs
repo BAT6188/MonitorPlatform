@@ -72,7 +72,7 @@ namespace MonitorPlatform
             DataCenter.Instance.UpdateEquipmentLeft();
             DataCenter.Instance.UpdateEquipmentCenter();
             DataCenter.Instance.UpdateCameraInfo();
-            
+            DataCenter.Instance.UpdateEventData();
              lastupdate_traffic = DateTime.Now;
              lastupdate_boss = DateTime.Now;
             //15秒,触发一次
@@ -96,6 +96,8 @@ namespace MonitorPlatform
                 DataCenter.Instance.UpdateTrafficLeft();
                 DataCenter.Instance.UpdateEquipmentCenter();
                 DataCenter.Instance.UpdateCameraInfo();
+                DataCenter.Instance.UpdateEventData();
+                
                 lastupdate_boss = current;
             }
         }

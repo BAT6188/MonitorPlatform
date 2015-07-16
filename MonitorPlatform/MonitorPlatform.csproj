@@ -252,6 +252,7 @@
     </Compile>
     <Compile Include="ViewModel\Camera.cs" />
     <Compile Include="ViewModel\Equipment.cs" />
+    <Compile Include="ViewModel\EventData.cs" />
     <Compile Include="ViewModel\HistoryStation.cs" />
     <Compile Include="ViewModel\MonitorDataModel.cs" />
     <Compile Include="ViewModel\Station.cs" />
@@ -457,6 +458,16 @@
     <Resource Include="Resource\FAS平面图.png" />
     <Resource Include="Resource\Points.txt" />
     <Resource Include="Resource\trainlocationreverse.png" />
+    <Resource Include="Resource\点型火灾探测器-1.png" />
+    <Resource Include="Resource\点型火灾探测器-2.png" />
+    <Resource Include="Resource\手动报警按钮-1.png" />
+    <Resource Include="Resource\手动报警按钮-2.png" />
+    <Resource Include="Resource\气体灭火控制器-1.png" />
+    <Resource Include="Resource\气体灭火控制器-2.png" />
+    <Resource Include="Resource\消火栓按钮-1.png" />
+    <Resource Include="Resource\消火栓按钮-2.png" />
+    <Resource Include="Resource\FAS.png" />
+    <Resource Include="Resource\FAS_WithStatus.png" />
     <Content Include="ThirdParty\AxInterop.VSPOcxClientLib.dll" />
     <Content Include="ThirdParty\Com.CustomControl.dll" />
     <Content Include="ThirdParty\Com.MapPlugin.dll" />

@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace MonitorPlatform.ViewModel
 {
-    public class Camera
+    public class Camera : INotifyPropertyChanged
     {
 
         private string name = "";

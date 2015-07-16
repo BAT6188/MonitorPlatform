@@ -220,14 +220,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonitorPlatform.exe" size="9449984">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonitorPlatform.exe" size="9544704">
       <assemblyIdentity name="MonitorPlatform" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>kBYzxW2DczB0tjYz1GLrGsJ6ilo=</dsig:DigestValue>
+        <dsig:DigestValue>SSHHFPxiuWVJJLwIW/ZdRyq2Zv0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -287,7 +287,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>KhduznmoruJ+/wqGURjs2evyXnU=</dsig:DigestValue>
+        <dsig:DigestValue>7EhV85bIgjM6rDbGNCZlwVscrdA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -468,7 +468,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>KhduznmoruJ+/wqGURjs2evyXnU=</dsig:DigestValue>
+      <dsig:DigestValue>7EhV85bIgjM6rDbGNCZlwVscrdA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

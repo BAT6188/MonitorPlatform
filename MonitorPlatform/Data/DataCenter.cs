@@ -26,6 +26,8 @@ namespace MonitorPlatform.Data
         public delegate void UpdateUIDateWithLineDetail(string data, int line, string staguid);
         private static WebInvoker proxy;
         private Window win;
+        private DateTime currentTime;
+
 
         private static DataCenter instance;
 
@@ -124,10 +126,18 @@ namespace MonitorPlatform.Data
             XElement tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "MainPageInitInfo");
             string xmlTransform = tfNode.ToString();
 
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
-            });
+
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
+                {
+                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
+                });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
         }
 
         public void UpdateTrafficLeft()
@@ -135,18 +145,24 @@ namespace MonitorPlatform.Data
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFCFifthQueryInfo");
             string xmlTransform = tfNode.ToString();
-
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                if (result.Status == 0)
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrafficLeftUIData), result.Data);
-                }
-                else
-                {
-                    LogCenter.LogMessage("UpdateTrafficLeftUIData fail." + result.ErrMessage);
-                }
-            });
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrafficLeftUIData), result.Data);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateTrafficLeftUIData fail." + result.ErrMessage);
+                    }
+                });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
         }
 
         public void UpdateTrafficCenter(DateTime time)
@@ -155,7 +171,9 @@ namespace MonitorPlatform.Data
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Day_Info");
             XmlNodeHelper.AddSubValue(tfNode, "QueryDate", "TEXT", time.ToString("yyyy-MM-dd"));
             string xmlTransform = tfNode.ToString();
-
+            try
+            {
+             
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
                 if (result.Status == 0)
@@ -167,6 +185,11 @@ namespace MonitorPlatform.Data
                     LogCenter.LogMessage("UpdateTrafficCenter fail." + result.ErrMessage);
                 }
             });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
         }
 
         public void UpdateTrafficRight(DateTime time, int lineid)
@@ -183,7 +206,9 @@ namespace MonitorPlatform.Data
                 XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "60f2d09f-1321-4111-955d-66a404d80fcd");
             }
             string xmlTransform = tfNode.ToString();
-
+            try
+            {
+             
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
                 if (result.Status == 0)
@@ -195,6 +220,11 @@ namespace MonitorPlatform.Data
                     LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
                 }
             });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
         }
 
         public void UpdateTrafficRight_DetailStation(DateTime time, int lineid, string stationid)
@@ -205,39 +235,79 @@ namespace MonitorPlatform.Data
             XmlNodeHelper.AddSubValue(tfNode, "StationGuid", "TEXT", stationid);
 
             string xmlTransform = tfNode.ToString();
-
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                if (result.Status == 0)
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateTrafficRight_DetailStationUIData), result.Data, lineid, stationid);
-                }
-                else
-                {
-                    LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
-                }
-            });
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateTrafficRight_DetailStationUIData), result.Data, lineid, stationid);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
+                    }
+                });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
         }
 
         public void UpdateTrafficCenterReport(DateTime time, QueryType querytype)
         {
+            this.currentTime = time;
+
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Month_Info");
+            switch (querytype)
+            {
+                case QueryType.Month:
+                    taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Month_Info");
+                    break;
+                case QueryType.Quarter:
+                    taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Quarter_Info");
+                    break;
+                case QueryType.Year:
+                    taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Year_Info");
+                    break;
+                case QueryType.All:
+                    taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_All_Info");
+                    break;
+                case QueryType.Addup:
+                    taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
+                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Cumulative_Info");
+                    break;
+            }
+
             XmlNodeHelper.AddSubValue(tfNode, "QueryDate", "TEXT", time.ToString("yyyy-MM-dd"));
             string xmlTransform = tfNode.ToString();
 
 
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                if (result.Status == 0)
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDateWithQuery(UpdateTrafficCenterReportUIData), result.Data, querytype);
-                }
-                else
-                {
-                    LogCenter.LogMessage("UpdateTrafficCenterReportUIData fail. " + result.ErrMessage);
-                }
-            });
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDateWithQuery(UpdateTrafficCenterReportUIData), result.Data, querytype);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateTrafficCenterReportUIData fail. " + result.ErrMessage);
+                    }
+                });
+            }
+            catch (Exception exp)
+            {
+                LogCenter.Log(exp);
+            }
+
         }
         
 
@@ -246,7 +316,8 @@ namespace MonitorPlatform.Data
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailInStationTimeQueryInfo");
             string xmlTransform = tfNode.ToString();
-
+            try
+            {
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
                 if (result.Status == 0)
@@ -258,11 +329,11 @@ namespace MonitorPlatform.Data
                     LogCenter.LogMessage("TrainLocationLeft fail. " + result.ErrMessage);
                 }
             });
-
-
-
-
-
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
         }
 
         public void UpdateEquipmentLeft()
@@ -271,7 +342,8 @@ namespace MonitorPlatform.Data
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipLineQueryInfo");
             XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "4ce1f6eb-5334-419b-bea3-a20e16b7e205");
             string xmlTransform = tfNode.ToString();
-
+            try
+            {
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
                 if (result.Status == 0)
@@ -284,24 +356,33 @@ namespace MonitorPlatform.Data
                 }
             });
 
-
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
 
             tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipLineQueryInfo");
             XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "60f2d09f-1321-4111-955d-66a404d80fcd");
             xmlTransform = tfNode.ToString();
-
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                if (result.Status == 0)
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data, 1);
-                }
-                else
-                {
-                    LogCenter.LogMessage("UpdateEquipmentLeft fail. " + result.ErrMessage);
-                }
-            });
-
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data, 1);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateEquipmentLeft fail. " + result.ErrMessage);
+                    }
+                });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
 
         }
 
@@ -311,37 +392,47 @@ namespace MonitorPlatform.Data
             XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipStationQueryInfo");
             XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "4ce1f6eb-5334-419b-bea3-a20e16b7e205");
             string xmlTransform = tfNode.ToString();
-
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                if (result.Status == 0)
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 0);
-                }
-                else
-                {
-                    LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
-                }
-            });
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 0);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
+                    }
+                });
 
-
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
 
             tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "EquipStationQueryInfo");
             XmlNodeHelper.AddSubValue(tfNode, "LineGuid", "TEXT", "60f2d09f-1321-4111-955d-66a404d80fcd");
             xmlTransform = tfNode.ToString();
-
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                if (result.Status == 0)
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 1);
-                }
-                else
-                {
-                    LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
-                }
-            });
-
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 1);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
+                    }
+                });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
 
         }
 
@@ -359,7 +450,8 @@ namespace MonitorPlatform.Data
             //1号线 4ce1f6eb-5334-419b-bea3-a20e16b7e205
             //2号线 60f2d09f-1321-4111-955d-66a404d80fcd
             string xmlTransform = tfNode.ToString();
-
+            try
+            {
             proxy.TransformData(taskGuid, xmlTransform, (result) =>
             {
                 if (result.Status == 0)
@@ -371,6 +463,11 @@ namespace MonitorPlatform.Data
                     LogCenter.LogMessage("UpdateEquipmentDetailCenter fail. " + result.ErrMessage);
                 }
             });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
         }
 
         public void UpdateCameraInfo()
@@ -380,20 +477,57 @@ namespace MonitorPlatform.Data
             //1号线 4ce1f6eb-5334-419b-bea3-a20e16b7e205
             //2号线 60f2d09f-1321-4111-955d-66a404d80fcd
             string xmlTransform = tfNode.ToString();
-
-            proxy.TransformData(taskGuid, xmlTransform, (result) =>
+            try
             {
-                if (result.Status == 0)
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateCameraUIData), result.Data);
-                }
-                else
-                {
-                    LogCenter.LogMessage("UpdateCameraInfo fail. " + result.ErrMessage);
-                }
-            });
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDate(UpdateCameraUIData), result.Data);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateCameraInfo fail. " + result.ErrMessage);
+                    }
+                });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
 
         }
+
+
+        public void UpdateEventData()
+        {
+            string taskGuid = "531cc4e5-6765-446d-a02e-b029abce8c5a";//PlatformAccount
+            XElement tfNode = XmlNodeHelper.GetDocumentNode("531cc4e5-6765-446d-a02e-b029abce8c5a", "AccidentQueryInfo");
+            //1号线 4ce1f6eb-5334-419b-bea3-a20e16b7e205
+            //2号线 60f2d09f-1321-4111-955d-66a404d80fcd
+            string xmlTransform = tfNode.ToString();
+
+            try
+            {
+                proxy.TransformData(taskGuid, xmlTransform, (result) =>
+                {
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDate(UpdateEventUIData), result.Data);
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateCameraInfo fail. " + result.ErrMessage);
+                    }
+                });
+            }
+            catch (System.Exception ex)
+            {
+                LogCenter.Log(ex);
+            }
+
+        }
+
 
         private void UpdateBossStation(XmlNode firstrail, SubLine line1, bool isfirst)
         {
@@ -977,6 +1111,46 @@ namespace MonitorPlatform.Data
 
         }
 
+        private void UpdateEventUIData(string data)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data);
+            SubLine line1 = MonitorDataModel.Instance().SubWayLines[0];
+            line1.EventDatas.Clear();
+
+            XmlNodeList nodes = doc.SelectNodes("/Document/Accident");
+
+            foreach (XmlNode node in nodes)
+            {
+
+                EventData newevent = new EventData();
+                newevent.Name= node.SelectSingleNode("Name").SafeInnerText();
+                newevent.AType = node.SelectSingleNode("AType").SafeInnerText();
+                newevent.ALevel = node.SelectSingleNode("ALevel").SafeInnerText();
+                newevent.ADesc = node.SelectSingleNode("ADesc").SafeInnerText();
+                newevent.OccurTime = node.SelectSingleNode("OccurTime").SafeInnerText();
+                newevent.OccurPlace = node.SelectSingleNode("OccurPlace").SafeInnerText();
+                newevent.OccurReason = node.SelectSingleNode("OccurReason").SafeInnerText();
+                newevent.ReceiveTime = node.SelectSingleNode("ReceiveTime").SafeInnerText();
+                int statusid = node.SelectSingleNode("Status").SafeInnerInt() ;
+                 //Status：0-已处理,1-未处里,2-忽略
+                if (statusid ==0)
+                {
+                    newevent.Status = "已处理";
+                }
+                else  if (statusid ==1)
+                {
+                    newevent.Status = "未处理";
+                }
+                else
+                {
+                    newevent.Status = "忽略";
+                }
+                line1.EventDatas.Add(newevent);
+            }
+
+        }
+
 
         private void UpdateLocationLeftByLineUp(XmlNode node, SubLine line1)
         {
@@ -1058,10 +1232,10 @@ namespace MonitorPlatform.Data
             
             ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
             //最近30天
-            DateTime current = DateTime.Now;
+            //DateTime current = DateTime.Now;
             for (int i = 30; i >= 0; i-- )
             {
-                reportdata.Add(new PersonsRateAnalyze() { Time = current.AddDays(-i).ToString("M-dd"), TotalNumber = 0 });
+                reportdata.Add(new PersonsRateAnalyze() { Time = currentTime.AddDays(-i).ToString("M-dd"), TotalNumber = 0 });
             }
             XmlNodeList nodes = node.SelectNodes("PassInfo");
             foreach (XmlNode passnode in nodes)
@@ -1081,6 +1255,117 @@ namespace MonitorPlatform.Data
             }
             line.RateReportData = reportdata;
         }
+
+                // for quarter person rate.
+        private void UpdateTrafficCenterReportByQuarter(SubLine line, XmlNode node)
+        {
+            ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+
+            XmlNodeList nodes = node.SelectNodes("PassInfo");
+            foreach (XmlNode passnode in nodes)
+            {
+                string time = passnode.SelectSingleNode("Date").SafeInnerText();
+
+                int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+
+                reportdata.Add(new PersonsRateAnalyze { Time = time, TotalNumber = totalNumber });
+            }
+            line.RateReportData = reportdata;
+            //ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+
+            //// latest 90 days
+            //DateTime current = DateTime.Now;
+            //for (int i = 90; i >= 0; i--)
+            //{
+            //    reportdata.Add(new PersonsRateAnalyze { Time = current.AddDays(-i).ToString("M-d"), TotalNumber = 0 });
+            //}
+
+            //XmlNodeList nodes = node.SelectNodes("PassInfo");
+            //foreach (XmlNode passnode in nodes)
+            //{
+            //    string time = passnode.SelectSingleNode("Date").SafeInnerText();
+
+            //    if (time.Contains("-"))
+            //    {
+            //        time = time.Substring(time.IndexOf("-") + 1);
+            //    }
+
+            //    PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
+            //    if (matchnode != null)
+            //    {
+            //        matchnode.TotalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+            //    }
+            //}                      
+
+            //line.RateReportData = reportdata;
+        }
+
+        // person rate by year
+        private void UpdateTrafficCenterReportByYear(SubLine line, XmlNode node)
+        {
+            ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+
+            // latest 90 days
+           
+            for (int i = 12; i >= 0; i--)
+            {
+                reportdata.Add(new PersonsRateAnalyze { Time = currentTime.AddMonths(-i).ToString("yyyy-M"), TotalNumber = 0 });
+            }
+
+            XmlNodeList nodes = node.SelectNodes("PassInfo");
+            foreach (XmlNode passnode in nodes)
+            {
+                string time = passnode.SelectSingleNode("Month").SafeInnerText().Trim();
+
+                //if (time.Contains("-"))
+                //{
+                //    time = time.Substring(time.IndexOf("-") + 1);
+                //}
+
+                PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
+                if (matchnode != null)
+                {
+                    matchnode.TotalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+                }
+            }
+            line.RateReportData = reportdata;
+        }
+
+        private void UpdateTrafficCenterReportByAll(SubLine line, XmlNode node)
+        {
+            ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+
+            XmlNodeList nodes = node.SelectNodes("PassInfo");
+            foreach (XmlNode passnode in nodes)
+            {
+                string time = passnode.SelectSingleNode("Month").SafeInnerText();
+
+                int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+
+                reportdata.Add(new PersonsRateAnalyze { Time = time, TotalNumber = totalNumber });
+            }
+            line.RateReportData = reportdata;
+        }
+
+        // person rate by add up.
+        private void UpdateTrafficCenterReportByAddup(SubLine line, XmlNode node)
+        {
+            ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+
+           
+            XmlNodeList nodes = node.SelectNodes("PassInfo");
+            foreach (XmlNode passnode in nodes)
+            {
+                string time = passnode.SelectSingleNode("Month").SafeInnerText();
+                
+                int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+                
+                reportdata.Add(new PersonsRateAnalyze { Time = time, TotalNumber = totalNumber});
+            }
+            line.RateReportData = reportdata;
+        }
+
+
 
         private void UpdateTrafficCenterReportUIData(string data, QueryType type)
         {
@@ -1110,19 +1395,19 @@ namespace MonitorPlatform.Data
                         break;
                     case QueryType.Quarter:
                         //Abel, Modify here
-                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        UpdateTrafficCenterReportByQuarter(targetline, node);
                         break;
                     case QueryType.Year:
                         //Abel, Modify here
-                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        UpdateTrafficCenterReportByYear(targetline, node);
                         break;
                     case QueryType.All:
                         //Abel, Modify here
-                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        UpdateTrafficCenterReportByAll(targetline, node);
                         break;
                     case QueryType.Addup:
                         //Abel, Modify here
-                        UpdateTrafficCenterReportByMonth(targetline, node);
+                        UpdateTrafficCenterReportByAddup(targetline, node);
                         break;
                 }
             }

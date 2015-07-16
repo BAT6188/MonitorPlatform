@@ -9,7 +9,7 @@
     <Grid>
         <Border x:Name="infoborder">
             <Border.Background>
-                <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/FAS平面图.png" />
+                <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/FAS_WithStatus.png" />
             </Border.Background>
         </Border>
     </Grid>
