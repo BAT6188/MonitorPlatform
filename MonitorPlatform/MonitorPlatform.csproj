@@ -468,6 +468,7 @@
     <Resource Include="Resource\消火栓按钮-2.png" />
     <Resource Include="Resource\FAS.png" />
     <Resource Include="Resource\FAS_WithStatus.png" />
+    <Resource Include="Resource\FAS_Final.png" />
     <Content Include="ThirdParty\AxInterop.VSPOcxClientLib.dll" />
     <Content Include="ThirdParty\Com.CustomControl.dll" />
     <Content Include="ThirdParty\Com.MapPlugin.dll" />

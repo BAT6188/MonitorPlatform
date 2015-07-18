@@ -1041,6 +1041,7 @@ namespace MonitorPlatform.Data
                 foreach (XmlNode node in nodes)
                 {
                     Equipment eqi = new Equipment();
+                    eqi.GUID = node.SelectSingleNode("GUID").SafeInnerText();
                     eqi.Name = node.SelectSingleNode("PSignal").SafeInnerText();
                     eqi.EquipmentType = node.SelectSingleNode("PType").SafeInnerText();
                     eqi.Owner = node.SelectSingleNode("Name").SafeInnerText();
@@ -1265,6 +1266,12 @@ namespace MonitorPlatform.Data
             foreach (XmlNode passnode in nodes)
             {
                 string time = passnode.SelectSingleNode("Date").SafeInnerText();
+
+                DateTime date;
+                if (DateTime.TryParse(time, out date))
+                {
+                    time = date.ToString("M-dd");
+                }
 
                 int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
 

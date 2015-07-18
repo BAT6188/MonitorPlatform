@@ -7,10 +7,10 @@
 	Title="EquipmentStatusRight">
 
     <Grid>
-        <Border x:Name="infoborder">
-            <Border.Background>
-                <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/FAS_WithStatus.png" />
-            </Border.Background>
-        </Border>
+        <Canvas x:Name="infoborder">
+            <Canvas.Background>
+                <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/FAS_Final.png" />
+            </Canvas.Background>
+        </Canvas>
     </Grid>
 </Page>

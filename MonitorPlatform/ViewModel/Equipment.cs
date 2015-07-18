@@ -22,6 +22,20 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        private string guid;
+        public string GUID
+        {
+            get
+            {
+                return guid;
+            }
+            set
+            {
+                guid = value;
+                NotifyPropertyChanged("GUID");
+            }
+        }
+
 
         private string id;
         public string ID

@@ -612,6 +612,8 @@ namespace MonitorPlatform.ViewModel
             set;
         }
 
+  
+
         private SubLine currentline;
 
         public SubLine CurrrentLine
@@ -624,6 +626,22 @@ namespace MonitorPlatform.ViewModel
             {
                 currentline = value;
                 NotifyPropertyChanged("CurrrentLine");
+            }
+        }
+
+
+        private Station currentstation;
+
+        public Station CurrentStation
+        {
+            get
+            {
+                return currentstation;
+            }
+            set
+            {
+                currentstation = value;
+                NotifyPropertyChanged("CurrentStation");
             }
         }
 

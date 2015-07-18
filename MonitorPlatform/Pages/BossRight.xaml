@@ -164,10 +164,37 @@
 
             </Border>
             <Border Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2"  Style="{StaticResource BossPopupContent}" Padding="10,10,10,10">
-                <wfi:WindowsFormsHost>
-                    <wf:AxVSPOcxClient x:Name="videoControl"  Dock="Fill" >
-                    </wf:AxVSPOcxClient>
-                </wfi:WindowsFormsHost>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <wfi:WindowsFormsHost Grid.Row="0">
+                        <wf:AxVSPOcxClient x:Name="videoControl"  Dock="Fill" >
+                        </wf:AxVSPOcxClient>
+                    </wfi:WindowsFormsHost>
+
+                    <Border Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <RadioButton x:Name="rdMonth"  Style="{StaticResource RDOButton}"  Width="70"  GroupName="screen"  Tag="1" Click="btnScreenClick">
+                                <TextBlock TextAlignment="Center"><Run Text="单屏"/></TextBlock>
+                            </RadioButton>
+                            <!--<RadioButton Style="{StaticResource RDOButton}"  Width="70"  GroupName="screen" Tag="2"  Click="btnScreenClick">
+                                <TextBlock TextAlignment="Center"><Run Text="双屏"/></TextBlock>
+                            </RadioButton>-->
+                            <RadioButton Style="{StaticResource RDOButton}" x:Name="fourraido"  Width="70" GroupName="screen" Tag="4"  Click="btnScreenClick">
+                                <TextBlock TextAlignment="Center"><Run Text="四屏"/></TextBlock>
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource RDOButton}"  Width="70" GroupName="screen" Tag="8"  Click="btnScreenClick">
+                                <TextBlock TextAlignment="Center"><Run Text="八屏"/></TextBlock>
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource RDOButton}"  Width="70" GroupName="screen"  Tag="16"  Click="btnScreenClick">
+                                <TextBlock TextAlignment="Center"><Run Text="十六屏"/></TextBlock>
+                            </RadioButton>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                
             </Border>
         </Grid>
         <Popup x:Name="inforpic"   PopupAnimation="Fade"  AllowsTransparency ="True" Placement="RelativePoint">

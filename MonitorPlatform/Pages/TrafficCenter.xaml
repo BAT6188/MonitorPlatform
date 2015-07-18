@@ -305,7 +305,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" Grid.Column="1"   >
-                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource SmallSectionHeaderText}" Text="轨道交通日客流量（百万）"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource SmallSectionHeaderText}" Text="轨道交通日客流量"></TextBlock>
                 </Border>
                 <Border Grid.Row="0" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -336,7 +336,7 @@
                                             <dxc:AxisLabel  Foreground="#00a0e9"  />
                                         </dxc:AxisY2D.Label>
                                         <dxc:AxisY2D.Title>
-                                            <dxc:AxisTitle Content="客流量（百万）" Foreground="#00a0e9"  />
+                                            <dxc:AxisTitle Content="客流量" Foreground="#00a0e9"  />
                                         </dxc:AxisY2D.Title>
                                     </dxc:AxisY2D>
                                 </dxc:XYDiagram2D.AxisY>

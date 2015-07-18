@@ -220,14 +220,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonitorPlatform.exe" size="9544704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonitorPlatform.exe" size="9653248">
       <assemblyIdentity name="MonitorPlatform" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>SSHHFPxiuWVJJLwIW/ZdRyq2Zv0=</dsig:DigestValue>
+        <dsig:DigestValue>jR7cuofg4oIyKT+bElGfVhCvs5I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

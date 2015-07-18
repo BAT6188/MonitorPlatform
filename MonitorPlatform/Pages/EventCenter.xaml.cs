@@ -34,6 +34,9 @@ namespace MonitorPlatform.Pages
                 return;
             }
             ObservableCollection<EventData> source= new ObservableCollection<EventData>();
+            ObservableCollection<StationInOut> troubles = new ObservableCollection<StationInOut>();
+            troubles.Add(new StationInOut() { Name = "1号线", Number = MonitorDataModel.Instance().SubWayLines[0].EventDatas.Count });
+            troubles.Add(new StationInOut() { Name = "2号线", Number = MonitorDataModel.Instance().SubWayLines[1].EventDatas.Count });
 
             IEnumerable<EventData> data1 = null;
             IEnumerable<EventData> data2 = null;
@@ -66,6 +69,7 @@ namespace MonitorPlatform.Pages
                 }
             }
             this.gridEvent.ItemsSource = source;
+            this.lineEventChart.ItemsSource = troubles;
         }
 
         public IEnumerable<EventData> FilterByStatus(IEnumerable<EventData>  data)
@@ -116,4 +120,6 @@ namespace MonitorPlatform.Pages
 
       
     }
+
+
 }

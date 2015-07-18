@@ -6,6 +6,7 @@
        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
       xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+           xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="EventCenter">
@@ -13,7 +14,7 @@
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition   Height="40"></RowDefinition>
-            <RowDefinition   Height="70"></RowDefinition>
+            <RowDefinition   Height="200"></RowDefinition>
             <RowDefinition   Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -25,13 +26,16 @@
         <Border Grid.Row="1" Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+              
                 </Grid.ColumnDefinitions>
                  <Border  Grid.Column="0"  Margin="10" >
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Center">
                         <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="状态:"></TextBlock>
                         <ComboBox Name="status" SelectedIndex="0" Margin="10,0,0,0" SelectionChanged="datePicker1_SelectedDateChanged">
                             <ComboBoxItem>全部</ComboBoxItem>
@@ -44,7 +48,7 @@
                 </Border>
 
                 <Border  Grid.Column="1"  Margin="10" >
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Center">
                         <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="线路:"></TextBlock>
                         <ComboBox Name="lines" SelectedIndex="0" Margin="10,0,0,0" SelectionChanged="datePicker1_SelectedDateChanged">
                             <ComboBoxItem >1号线</ComboBoxItem>
@@ -56,11 +60,37 @@
                 </Border>
 
                 <Border  Grid.Column="2"  Margin="10" >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="日期选择:"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Center">
+                        <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="发生时间:"></TextBlock>
                         <DatePicker  Margin="10,0,0,0"  Height="25"  Style="{StaticResource DatePickerStyle}" SelectedDateChanged="datePicker1_SelectedDateChanged"  Name="datePicker1" >
                         </DatePicker>
                     </StackPanel>
+
+                </Border>
+
+                <Border Grid.Column="4"  Margin="10"  >
+
+                    <chart:DoughnutChart Grid.Row="1"    
+                Palette="{Binding Path=SelectedPalette.Value}"
+                FontSize="{Binding Path=SelectedFontSize}"
+                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                ChartTitleVisibility="Hidden"
+                ChartLegendVisibility="Visible"
+                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                InnerRadiusRatio="0.7"
+                Foreground="#5AA0EF" 
+                Background="{x:Null}"                 
+                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}"  >
+                        <chart:PieChart.Series>
+                            <chart:ChartSeries
+                                     x:Name="lineEventChart"
+                        SeriesTitle="ddd"
+                        DisplayMember="Name"
+                        ValueMember="Number"
+                        />
+                        </chart:PieChart.Series>
+                    </chart:DoughnutChart>
 
                 </Border>
             </Grid>

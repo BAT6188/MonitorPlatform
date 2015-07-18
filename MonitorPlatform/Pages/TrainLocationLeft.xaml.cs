@@ -171,7 +171,7 @@ namespace MonitorPlatform.Pages
             }
           
             StationName.Text = stat.Name;
-
+        
 
             txtFirstTime.Text = firstdatetime.ToString("HH:mm");
             txtSecondTime.Text = seconddatetime.ToString("HH:mm");
@@ -212,7 +212,11 @@ namespace MonitorPlatform.Pages
 
         private void StationName_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            WindowManager.Instance.ShowTrafficImage();
+            if (StationName.Text.Contains("广济南"))
+            {
+                
+                WindowManager.Instance.ShowTrafficImage();
+            }
         }
 
         public void SetPopUpSize()

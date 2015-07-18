@@ -47,8 +47,20 @@ namespace MonitorPlatform.Pages
             Window parentwin = Window.GetWindow(this);
             parentwin.LocationChanged += new EventHandler(parentwin_LocationChanged);
             parentwin.SizeChanged += new SizeChangedEventHandler(parentwin_SizeChanged);
-         
+            fourraido.IsChecked = true;
         }
+
+
+
+        private void btnScreenClick(object sender, RoutedEventArgs e)
+        {
+            RadioButton radio = sender as RadioButton;
+            if (radio != null)
+            {
+                videoControl.SetLayout(int.Parse(radio.Tag.ToString()));
+            }
+        }
+
 
         public void SetPopUpSize()
         {
