@@ -121,6 +121,27 @@ namespace MonitorPlatform.Data
             return islogin;
         }
 
+        private bool isInError = false;
+        public void ShowError()
+        {
+            lock (this)
+            {
+                if (!isInError)
+                {
+                    MessageBox.Show("网络故障，停止刷新数据！", "警告", MessageBoxButton.OK, MessageBoxImage.Error);
+                    isInError = true;
+                }
+            }
+        }
+
+        public void ClearError()
+        {
+            lock (this)
+            {
+                isInError = false;
+            }
+        }
+
         public void UpdateBoss()
         {
             XElement tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "MainPageInitInfo");
@@ -131,7 +152,16 @@ namespace MonitorPlatform.Data
 
                 proxy.TransformData(taskGuid, xmlTransform, (result) =>
                 {
-                    win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
+                    if (result.Status == 0)
+                    {
+                        win.Dispatcher.Invoke(new UpdateUIDate(UpdateBossUIData), result.Data);
+                        ClearError();
+                    }
+                    else
+                    {
+                        LogCenter.LogMessage("UpdateTrafficLeftUIData fail." + result.ErrMessage);
+                        ShowError();
+                    }
                 });
             }
             catch (System.Exception ex)
@@ -152,10 +182,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrafficLeftUIData), result.Data);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateTrafficLeftUIData fail." + result.ErrMessage);
+                        ShowError();
                     }
                 });
             }
@@ -179,10 +211,12 @@ namespace MonitorPlatform.Data
                 if (result.Status == 0)
                 {
                     win.Dispatcher.Invoke(new UpdateUIDate(UpdateTrainCenterUIData), result.Data);
+                    ClearError();
                 }
                 else
                 {
                     LogCenter.LogMessage("UpdateTrafficCenter fail." + result.ErrMessage);
+                    ShowError();
                 }
             });
             }
@@ -214,10 +248,12 @@ namespace MonitorPlatform.Data
                 if (result.Status == 0)
                 {
                     win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateTrafficRightUIData), result.Data, lineid);
+                    ClearError();
                 }
                 else
                 {
                     LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
+                    ShowError();
                 }
             });
             }
@@ -242,10 +278,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateTrafficRight_DetailStationUIData), result.Data, lineid, stationid);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateTrafficRight fail. " + result.ErrMessage);
+                        ShowError();
                     }
                 });
             }
@@ -296,10 +334,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDateWithQuery(UpdateTrafficCenterReportUIData), result.Data, querytype);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateTrafficCenterReportUIData fail. " + result.ErrMessage);
+                        ShowError();
                     }
                 });
             }
@@ -323,10 +363,12 @@ namespace MonitorPlatform.Data
                 if (result.Status == 0)
                 {
                     win.Dispatcher.Invoke(new UpdateUIDate(UpdateLocationLeftUIData), result.Data);
+                    ClearError();
                 }
                 else
                 {
                     LogCenter.LogMessage("TrainLocationLeft fail. " + result.ErrMessage);
+                    ShowError();
                 }
             });
             }
@@ -349,10 +391,12 @@ namespace MonitorPlatform.Data
                 if (result.Status == 0)
                 {
                     win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data, 0);
+                    ClearError();
                 }
                 else
                 {
                     LogCenter.LogMessage("UpdateEquipmentLeft fail. " + result.ErrMessage);
+                    ShowError();
                 }
             });
 
@@ -372,10 +416,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentLeftLineUIData), result.Data, 1);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateEquipmentLeft fail. " + result.ErrMessage);
+                        ShowError();
                     }
                 });
             }
@@ -399,10 +445,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 0);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
+                        ShowError();
                     }
                 });
 
@@ -422,10 +470,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDateWithLine(UpdateEquipmentCenterLineUIData), result.Data, 1);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateEquipmentCenter fail. " + result.ErrMessage);
+                        ShowError();
                     }
                 });
             }
@@ -457,10 +507,12 @@ namespace MonitorPlatform.Data
                 if (result.Status == 0)
                 {
                     win.Dispatcher.Invoke(new UpdateUIDateWithLineDetail(UpdateEquipmentCenterLineDetailUIData), result.Data, lineid, statguid);
+                    ClearError();
                 }
                 else
                 {
                     LogCenter.LogMessage("UpdateEquipmentDetailCenter fail. " + result.ErrMessage);
+                    ShowError();
                 }
             });
             }
@@ -484,10 +536,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDate(UpdateCameraUIData), result.Data);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateCameraInfo fail. " + result.ErrMessage);
+                        ShowError();
                     }
                 });
             }
@@ -514,10 +568,12 @@ namespace MonitorPlatform.Data
                     if (result.Status == 0)
                     {
                         win.Dispatcher.Invoke(new UpdateUIDate(UpdateEventUIData), result.Data);
+                        ClearError();
                     }
                     else
                     {
                         LogCenter.LogMessage("UpdateCameraInfo fail. " + result.ErrMessage);
+                        ShowError();
                     }
                 });
             }

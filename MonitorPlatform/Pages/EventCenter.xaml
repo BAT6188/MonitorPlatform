@@ -76,7 +76,7 @@
                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                 ChartTitleVisibility="Hidden"
                 ChartLegendVisibility="Visible"
-                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                ToolTipFormat="{Binding Path=ToolTipFormatWithoutPercent}"
                 InnerRadiusRatio="0.7"
                 Foreground="#5AA0EF" 
                 Background="{x:Null}"                 

@@ -660,7 +660,15 @@ namespace MonitorPlatform.ViewModel
         {
             get
             {
-                return "{0} in series '{2}' has value '{1}' ({3:P2})";
+                return "{1}%";
+            }
+        }
+
+        public string ToolTipFormatWithoutPercent
+        {
+            get
+            {
+                return "{1}";
             }
         }
     }

@@ -266,29 +266,29 @@
                                 <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/trainlocation.png" />
                             </Canvas.Background>
                         </Canvas>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="0"  DataContext="{Binding Path=SubWayLines[1].Stations[0]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="1"  DataContext="{Binding Path=SubWayLines[1].Stations[1]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[2]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="0"  DataContext="{Binding Path=SubWayLines[1].Stations[21]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="1"  DataContext="{Binding Path=SubWayLines[1].Stations[20]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[19]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="3" DataContext="{Binding Path=SubWayLines[1].Stations[3]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="4" DataContext="{Binding Path=SubWayLines[1].Stations[4]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="5" DataContext="{Binding Path=SubWayLines[1].Stations[5]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="6" DataContext="{Binding Path=SubWayLines[1].Stations[6]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="7" DataContext="{Binding Path=SubWayLines[1].Stations[7]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="8" DataContext="{Binding Path=SubWayLines[1].Stations[8]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="9" DataContext="{Binding Path=SubWayLines[1].Stations[9]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="10" DataContext="{Binding Path=SubWayLines[1].Stations[10]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"  />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="11" DataContext="{Binding Path=SubWayLines[1].Stations[11]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="12" DataContext="{Binding Path=SubWayLines[1].Stations[12]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="13" DataContext="{Binding Path=SubWayLines[1].Stations[13]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="14" DataContext="{Binding Path=SubWayLines[1].Stations[14]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"  />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="15" DataContext="{Binding Path=SubWayLines[1].Stations[15]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="16" DataContext="{Binding Path=SubWayLines[1].Stations[16]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="17" DataContext="{Binding Path=SubWayLines[1].Stations[17]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="18" DataContext="{Binding Path=SubWayLines[1].Stations[18]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="19" DataContext="{Binding Path=SubWayLines[1].Stations[19]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="20" DataContext="{Binding Path=SubWayLines[1].Stations[20]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="21" DataContext="{Binding Path=SubWayLines[1].Stations[21]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="3" DataContext="{Binding Path=SubWayLines[1].Stations[18]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="4" DataContext="{Binding Path=SubWayLines[1].Stations[17]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="5" DataContext="{Binding Path=SubWayLines[1].Stations[16]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="6" DataContext="{Binding Path=SubWayLines[1].Stations[15]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="7" DataContext="{Binding Path=SubWayLines[1].Stations[14]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="8" DataContext="{Binding Path=SubWayLines[1].Stations[13]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="9" DataContext="{Binding Path=SubWayLines[1].Stations[12]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="10" DataContext="{Binding Path=SubWayLines[1].Stations[11]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"  />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="11" DataContext="{Binding Path=SubWayLines[1].Stations[10]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="12" DataContext="{Binding Path=SubWayLines[1].Stations[9]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="13" DataContext="{Binding Path=SubWayLines[1].Stations[8]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="14" DataContext="{Binding Path=SubWayLines[1].Stations[7]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"  />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="15" DataContext="{Binding Path=SubWayLines[1].Stations[6]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="16" DataContext="{Binding Path=SubWayLines[1].Stations[5]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="17" DataContext="{Binding Path=SubWayLines[1].Stations[4]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="18" DataContext="{Binding Path=SubWayLines[1].Stations[3]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="19" DataContext="{Binding Path=SubWayLines[1].Stations[2]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="20" DataContext="{Binding Path=SubWayLines[1].Stations[1]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainStatusControl Grid.Row="1" Grid.Column="21" DataContext="{Binding Path=SubWayLines[1].Stations[0]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
 
                     </Grid>
                 </Border>
@@ -335,29 +335,29 @@
                                 <ImageBrush Stretch="Fill"  ImageSource="/MonitorPlatform;component/Resource/trainlocationreverse.png" />
                             </Canvas.Background>
                         </Canvas>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="0"  DataContext="{Binding Path=SubWayLines[1].Stations[0]}"   MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="1"  DataContext="{Binding Path=SubWayLines[1].Stations[1]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="0"  DataContext="{Binding Path=SubWayLines[1].Stations[21]}"   MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="1"  DataContext="{Binding Path=SubWayLines[1].Stations[20]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
                         
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[2]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="3" DataContext="{Binding Path=SubWayLines[1].Stations[3]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="4" DataContext="{Binding Path=SubWayLines[1].Stations[4]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="5" DataContext="{Binding Path=SubWayLines[1].Stations[5]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="6" DataContext="{Binding Path=SubWayLines[1].Stations[6]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="7" DataContext="{Binding Path=SubWayLines[1].Stations[7]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="8" DataContext="{Binding Path=SubWayLines[1].Stations[8]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="9" DataContext="{Binding Path=SubWayLines[1].Stations[9]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="10" DataContext="{Binding Path=SubWayLines[1].Stations[10]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="11" DataContext="{Binding Path=SubWayLines[1].Stations[11]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="12" DataContext="{Binding Path=SubWayLines[1].Stations[12]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="13" DataContext="{Binding Path=SubWayLines[1].Stations[13]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="14" DataContext="{Binding Path=SubWayLines[1].Stations[14]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="15" DataContext="{Binding Path=SubWayLines[1].Stations[15]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="16" DataContext="{Binding Path=SubWayLines[1].Stations[16]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="17" DataContext="{Binding Path=SubWayLines[1].Stations[17]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="18" DataContext="{Binding Path=SubWayLines[1].Stations[18]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="19" DataContext="{Binding Path=SubWayLines[1].Stations[19]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="20" DataContext="{Binding Path=SubWayLines[1].Stations[20]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
-                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="21" DataContext="{Binding Path=SubWayLines[1].Stations[21]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=SubWayLines[1].Stations[19]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="3" DataContext="{Binding Path=SubWayLines[1].Stations[18]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="4" DataContext="{Binding Path=SubWayLines[1].Stations[17]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="5" DataContext="{Binding Path=SubWayLines[1].Stations[16]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="6" DataContext="{Binding Path=SubWayLines[1].Stations[15]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="7" DataContext="{Binding Path=SubWayLines[1].Stations[14]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="8" DataContext="{Binding Path=SubWayLines[1].Stations[13]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="9" DataContext="{Binding Path=SubWayLines[1].Stations[12]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="10" DataContext="{Binding Path=SubWayLines[1].Stations[11]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="11" DataContext="{Binding Path=SubWayLines[1].Stations[10]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="12" DataContext="{Binding Path=SubWayLines[1].Stations[9]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="13" DataContext="{Binding Path=SubWayLines[1].Stations[8]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="14" DataContext="{Binding Path=SubWayLines[1].Stations[7]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="15" DataContext="{Binding Path=SubWayLines[1].Stations[6]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="16" DataContext="{Binding Path=SubWayLines[1].Stations[5]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="17" DataContext="{Binding Path=SubWayLines[1].Stations[4]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="18" DataContext="{Binding Path=SubWayLines[1].Stations[3]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="19" DataContext="{Binding Path=SubWayLines[1].Stations[2]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="20" DataContext="{Binding Path=SubWayLines[1].Stations[1]}" MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave" />
+                        <localctr:TrainDownStatusControl Grid.Row="1" Grid.Column="21" DataContext="{Binding Path=SubWayLines[1].Stations[0]}"  MouseEnter="chart_MouseEnter" MouseLeave="chart_MouseLeave"/>
 
                     </Grid>
                 </Border>

@@ -118,7 +118,7 @@
                 IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
                 ChartTitleVisibility="Hidden"
                 ChartLegendVisibility="Visible"
-                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                ToolTipFormat="{Binding Path=ToolTipFormatWithoutPercent}"
                  InnerRadiusRatio="0.7"
                 Foreground="#5AA0EF" 
                 Background="{x:Null}"                 
@@ -169,8 +169,8 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="50"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <wfi:WindowsFormsHost Grid.Row="0">
-                        <wf:AxVSPOcxClient x:Name="videoControl"  Dock="Fill" >
+                    <wfi:WindowsFormsHost Grid.Row="0"  Margin="0">
+                        <wf:AxVSPOcxClient x:Name="videoControl"   Dock="Fill" >
                         </wf:AxVSPOcxClient>
                     </wfi:WindowsFormsHost>
 

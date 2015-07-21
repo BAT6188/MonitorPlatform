@@ -1149,3 +1149,56 @@ StackTrace:   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullP
    在 System.Windows.Media.MediaContext.RenderMessageHandler(Object resizedCompositionTarget)
    在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
    在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 未能找到路径“E:\MonitorPlatform;component\Resource\点型火灾探测器-1.png”的一部分。
+ Time: 2015-07-21 21:28:12 Message: 调用的目标发生了异常。
+StackTrace:   在 System.RuntimeMethodHandle._InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   在 System.RuntimeMethodHandle.InvokeMethodFast(IRuntimeMethodInfo method, Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeType typeOwner)
+   在 System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   在 System.Delegate.DynamicInvokeImpl(Object[] args)
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler) Exception: 调用的目标发生了异常。
+ Time: 2015-07-21 21:41:16 Message: 登录失败! username:test1 Exception: 
+ Time: 2015-07-21 21:42:45 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:42:45 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:42:46 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:42:46 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:15 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:16 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:17 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:18 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:45 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:45 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:45 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:43:45 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:15 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:15 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:15 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:15 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:45 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:45 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:45 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:44:45 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:45:34 Message: 登录失败! username:test1 Exception: 
+ Time: 2015-07-21 21:47:05 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:06 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:07 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:08 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:16 Message: UpdateTrafficCenter fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:17 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:18 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:19 Message: UpdateTrafficCenterReportUIData fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:21 Message: UpdateTrafficCenter fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:21 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:21 Message: UpdateTrafficCenterReportUIData fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:22 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:24 Message: UpdateTrafficCenter fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:25 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:26 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:27 Message: UpdateTrafficCenterReportUIData fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:28 Message: UpdateTrafficCenter fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:29 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:30 Message: UpdateTrafficRight fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:31 Message: UpdateTrafficCenterReportUIData fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:35 Message: TrainLocationLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:35 Message: UpdateTrafficLeftUIData fail.无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:35 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
+ Time: 2015-07-21 21:47:35 Message: UpdateEquipmentLeft fail. 无法连接到远程服务器 Exception: 
