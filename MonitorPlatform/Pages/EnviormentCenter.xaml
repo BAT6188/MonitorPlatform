@@ -19,25 +19,34 @@
 
         <Border Grid.Row="0"   Padding="5" Style="{StaticResource TitileSection}">
             <Border Style="{StaticResource SmallSectionHeader}"  Height="30" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="0"   >
-                <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="运营事件即时信息"></TextBlock>
+                <TextBlock Style="{StaticResource SmallSectionHeaderText}" TextAlignment="Center"  Text="环境状况即时信息"></TextBlock>
             </Border>
         </Border>
         <Border Grid.Row="1" Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+
                 </Grid.ColumnDefinitions>
                 
+
                 <Border  Grid.Column="0"  Margin="10" >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="日期选择:"></TextBlock>
-                        <DatePicker  Margin="10,0,0,0"  Height="25"  Style="{StaticResource DatePickerStyle}"  Name="datePicker1" >
-                        </DatePicker>
+                    <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Center">
+                        <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="线路:"></TextBlock>
+                        <ComboBox Name="lines" SelectedIndex="0" Margin="10,0,0,0" >
+                            <ComboBoxItem >1号线</ComboBoxItem>
+                            <ComboBoxItem>2号线</ComboBoxItem>
+                            <ComboBoxItem>全部</ComboBoxItem>
+                        </ComboBox>
                     </StackPanel>
 
                 </Border>
+
+              
             </Grid>
         </Border>
         <Border Grid.Row="2" Margin="10">

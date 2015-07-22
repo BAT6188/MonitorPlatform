@@ -253,7 +253,7 @@ namespace MonitorPlatform.ViewModel
 
             line1.TotalRate_history.Add(new InOutTotal()
             {
-                Name = "1",
+                Name = "1号线",
                 TotalRate = 45
             });
 
@@ -298,7 +298,7 @@ namespace MonitorPlatform.ViewModel
             line2.Troubles.Add(new TroubleStatusSum() { EquipmentType = "BAS", Number = 20, BadNumber = 0 });
             line2.TotalRate_history.Add(new InOutTotal()
             {
-                Name = "2",
+                Name = "2号线",
                 TotalRate = 55
             });
 
@@ -660,7 +660,7 @@ namespace MonitorPlatform.ViewModel
         {
             get
             {
-                return "{1}%";
+                return "{0}:{1}%";
             }
         }
 
@@ -668,7 +668,7 @@ namespace MonitorPlatform.ViewModel
         {
             get
             {
-                return "{1}";
+                return "{0}:{1}";
             }
         }
     }

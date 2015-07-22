@@ -592,12 +592,7 @@ namespace MonitorPlatform.Data
             line1.OutNumber = float.Parse(firstrail.SelectSingleNode("PassOut").SafeInnerText());
             line1.TotalNumber = float.Parse(firstrail.SelectSingleNode("PassTotal").SafeInnerText());
 
-            line1.TotalRate.Add(new InOutTotal()
-            {
-                Name = "1",
-
-                TotalRate = (line1.TotalNumber == 0 ? 0 : (int)((line1.InNumber / line1.TotalNumber) * 100))
-            });
+         
             foreach (XmlNode sta in firstrail.SelectNodes("Station"))
             {
                 int stano = 0;
@@ -808,6 +803,21 @@ namespace MonitorPlatform.Data
             nodes = doc.SelectNodes("/Document/RailLine");
             UpdateBossStation(nodes[0], line1, true);
             UpdateBossStation(nodes[1], line2, false);
+            float totalnumbers = line1.TotalNumber + line2.TotalNumber;
+            line1.TotalRate.Clear();
+            line1.TotalRate.Add(new InOutTotal()
+            {
+                Name =  "1号线" ,
+                TotalRate = (totalnumbers == 0 ? 0 : (int)((line1.TotalNumber / totalnumbers) * 100))
+            });
+
+            line2.TotalRate.Clear();
+            line2.TotalRate.Add(new InOutTotal()
+            {
+                Name = "2号线",
+                TotalRate = (line2.TotalNumber == 0 ? 0 : 100 - (int)((line1.TotalNumber / totalnumbers) * 100))
+            });
+
 
             line1.TrainIsWarn = doc.SelectSingleNode("/Document/TrainIsWarn").SafeInnerText() == "1";
             line1.PassIsWarn = doc.SelectSingleNode("/Document/PassIsWarn").SafeInnerText() == "1";
@@ -880,14 +890,14 @@ namespace MonitorPlatform.Data
                 int line1rate = (int)(((float)line1Total / (line1Total + line2Total)) * 100);
                 line1.TotalRate_history.Add(new InOutTotal()
                 {
-                    Name = "1",
+                    Name = "1号线",
                     TotalRate = line1rate
                 });
 
                 line2.TotalRate_history.Clear();
                 line2.TotalRate_history.Add(new InOutTotal()
                 {
-                    Name = "2",
+                    Name = "2号线",
                     TotalRate = 100 - line1rate
                 });
             }
@@ -1212,6 +1222,7 @@ namespace MonitorPlatform.Data
         private void UpdateLocationLeftByLineUp(XmlNode node, SubLine line1)
         {
             XmlNodeList stationnodes = node.SelectNodes("Station");
+            DateTime time = DateTime.Now;
             if (stationnodes != null)
             {
                 foreach (XmlNode stanode in stationnodes)
@@ -1221,6 +1232,8 @@ namespace MonitorPlatform.Data
                     if (s != null)
                     {
                         s.UpFirstTime = stanode.SelectSingleNode("FirstTime").SafeInnerInt();
+                        s.UpFirstDateTime = time.AddMinutes(s.UpFirstTime);
+                        s.UpFirstLeaveDateTime = time.AddMinutes(s.UpFirstTime + 1);
                         s.UpSecondTime = stanode.SelectSingleNode("SecondTime").SafeInnerInt();
                         s.UpTrainNo = stanode.SelectSingleNode("TrainNO").SafeInnerText();
                     }
@@ -1233,6 +1246,7 @@ namespace MonitorPlatform.Data
             XmlNodeList stationnodes = node.SelectNodes("Station");
             if (stationnodes != null)
             {
+                DateTime time = DateTime.Now;
                 foreach (XmlNode stanode in stationnodes)
                 {
                     string name = stanode.SelectSingleNode("Name").SafeInnerText();
@@ -1240,6 +1254,8 @@ namespace MonitorPlatform.Data
                     if (s != null)
                     {
                         s.DownFirstTime = stanode.SelectSingleNode("FirstTime").SafeInnerInt();
+                        s.DownFirstDateTime = time.AddMinutes(s.DownFirstTime);
+                        s.DownFirstLeaveDateTime = time.AddMinutes(s.DownFirstTime + 1);
                         s.DownSecondTime = stanode.SelectSingleNode("SecondTime").SafeInnerInt();
                         s.DownTrainNo = stanode.SelectSingleNode("TrainNO").SafeInnerText();
                     }

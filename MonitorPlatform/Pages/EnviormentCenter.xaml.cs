@@ -23,7 +23,7 @@ namespace MonitorPlatform.Pages
         {
             InitializeComponent();
             DateTime temp = DateTime.Now;
-            datePicker1.SelectedDate = temp;
+            //datePicker1.SelectedDate = temp;
             this.Loaded += new RoutedEventHandler(EnviormentCenter_Loaded);
         }
 

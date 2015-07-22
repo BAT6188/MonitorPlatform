@@ -45,12 +45,14 @@ namespace MonitorPlatform.Pages
         public void SetPropByCurrentTrain()
         {
             Train t = MonitorDataModel.Instance().CurrentTrain;
+            
             if (t != null)
             {
                 DateTime now =DateTime.Now;
                 txtCurrentDate.Text = now.ToString("yyyy-MM-dd");
 
                SubLine line =  MonitorDataModel.Instance().SubWayLines[t.LineNo];
+               stationGrid.ItemsSource = line.Stations;
                 double nextstationID;
                if (t.IsDown)
                {

@@ -105,23 +105,23 @@
                     <Border Style="{StaticResource SmallSectionHeader}"  Grid.Row="0" >
                         <TextBlock Style="{StaticResource SmallSectionHeaderText}" Text="列车营运信息"></TextBlock>
                     </Border>
-                    <dxg:GridControl Margin="0,10,0,0" Grid.Row="1" Background="Transparent"   Opacity="0.5"  x:Name="grid"   Template="{StaticResource GridTemplate}"  ItemsSource="{Binding Path=SubWayLines[0].Stations}">
+                    <dxg:GridControl x:Name="stationGrid"  Margin="0,10,0,0" Grid.Row="1" Background="Transparent"   Opacity="0.5"     Template="{StaticResource GridTemplate}"  ItemsSource="{Binding Path=SubWayLines[0].Stations}">
 
                         <dxg:GridControl.Columns>
                             <dxg:GridColumn  FieldName="ID"  Header="序号" />
                             <dxg:GridColumn FieldName="Name"  Header="站台名称">
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="UpEndTime"  Header="到站时间">
+                            <dxg:GridColumn FieldName="UpFirstDateTime"  Header="到站时间">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:DateEditSettings DisplayFormat="HH::mm::ss" />
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="DownBeginTime"  Header="发车时间" >
+                            <dxg:GridColumn FieldName="UpFirstLeaveDateTime"  Header="发车时间" >
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:DateEditSettings DisplayFormat="HH::mm::ss" />
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="InNumber"  Header="圈次" />
+                            <dxg:GridColumn FieldName="Roundtime"  Header="圈次" />
                         </dxg:GridControl.Columns>
                         <dxg:GridControl.View>
                             <dxg:TableView Background="{x:Null}"    AutoWidth="True" NavigationStyle="Row"  ShowGroupPanel="False"  AllowEditing="False"  ShowGroupedColumns="False" >

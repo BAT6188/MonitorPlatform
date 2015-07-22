@@ -67,6 +67,78 @@ namespace MonitorPlatform.ViewModel
         }
 
 
+        private DateTime upFirstDateTime;
+        public DateTime UpFirstDateTime
+        {
+            get
+            {
+                return upFirstDateTime;
+            }
+            set
+            {
+                upFirstDateTime = value;
+                NotifyPropertyChanged("UpFirstDateTime");
+            }
+        }
+
+        private int roundtime = 3;
+        public int Roundtime
+        {
+            get
+            {
+                return roundtime;
+            }
+            set
+            {
+                roundtime = value;
+                NotifyPropertyChanged("Roundtime");
+            }
+        }
+ 
+
+
+        //第一班列车离站时间
+        private DateTime upFirstLeaveDateTime;
+        public DateTime UpFirstLeaveDateTime
+        {
+            get
+            {
+                return upFirstLeaveDateTime;
+            }
+            set
+            {
+                upFirstLeaveDateTime = value;
+                NotifyPropertyChanged("UpFirstLeaveDateTime");
+            }
+        }
+        private DateTime downFirstLeaveDateTime;
+        public DateTime DownFirstLeaveDateTime
+        {
+            get
+            {
+                return downFirstLeaveDateTime;
+            }
+            set
+            {
+                downFirstLeaveDateTime = value;
+                NotifyPropertyChanged("DownFirstLeaveDateTime");
+            }
+        }
+
+        private DateTime downFirstDateTime;
+        public DateTime DownFirstDateTime
+        {
+            get
+            {
+                return downFirstDateTime;
+            }
+            set
+            {
+                downFirstDateTime = value;
+                NotifyPropertyChanged("DownFirstDateTime");
+            }
+        }
+
         private DateTime upBeginTime;
         public DateTime UpBeginTime
         {
