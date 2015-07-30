@@ -197,7 +197,7 @@
                 
             </Border>
         </Grid>
-        <Popup x:Name="inforpic"   PopupAnimation="Fade"  AllowsTransparency ="True" Placement="RelativePoint">
+        <ctr:PopupNonTopmost x:Name="inforpic"   PopupAnimation="Fade"    AllowsTransparency ="True" Placement="RelativePoint">
             <Border x:Name="infoborder">
                 <DockPanel VerticalAlignment="Top" LastChildFill="False" Height="20">
                     <WrapPanel   Cursor="Hand"  MouseUp="btnClose_MouseUp"  DockPanel.Dock="Right" Margin="0,0,10,0"   Height="19.333"  Orientation="Horizontal" >
@@ -209,7 +209,7 @@
                     <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/横道图01_03.png" />
                 </Border.Background>
             </Border>
-        </Popup>
+        </ctr:PopupNonTopmost>
     </Grid>
   
 </Page>

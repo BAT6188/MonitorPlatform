@@ -17,6 +17,14 @@ namespace MonitorPlatform
         public App()
         {
             this.DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+        }
+
+        void  CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception  exception = e.ExceptionObject as Exception;
+            MessageBox.Show("程序出现异常,请联系开发者!", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            LogCenter.Log(exception);
         }
 
         void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

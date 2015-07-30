@@ -178,6 +178,7 @@
     <Compile Include="Controls\NewGis.xaml.cs">
       <DependentUpon>NewGis.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PopupNonTopmost.cs" />
     <Compile Include="Controls\TabItemControl.xaml.cs">
       <DependentUpon>TabItemControl.xaml</DependentUpon>
     </Compile>

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:f="clr-namespace:MapPlugin;assembly=Com.MapPlugin"
-       xmlns:control="clr-namespace:MonitorPlatform.Controls" 
+      xmlns:control="clr-namespace:MonitorPlatform.Controls" 
       ShowsNavigationUI="False"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -25,12 +25,12 @@
         <Border Grid.Row="1" > 
             <control:NewGis />
         </Border>
-        <Popup x:Name="inforpic"   PopupAnimation="Fade"  AllowsTransparency ="True" Placement="RelativePoint">
+        <control:PopupNonTopmost x:Name="inforpic"   PopupAnimation="Fade"   AllowsTransparency ="True" Placement="RelativePoint">
             <Canvas x:Name="infoborder">
                 <Canvas.Background>
                     <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/横道图01_02.png" />
                 </Canvas.Background>
             </Canvas>
-        </Popup>
+        </control:PopupNonTopmost>
     </Grid>
 </Page>

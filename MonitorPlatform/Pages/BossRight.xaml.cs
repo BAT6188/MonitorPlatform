@@ -26,6 +26,7 @@ namespace MonitorPlatform.Pages
             InitializeComponent();
          
             this.Loaded += new RoutedEventHandler(BossRight_Loaded);
+            
         }
 
         void parentwin_SizeChanged(object sender, SizeChangedEventArgs e)

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+      xmlns:control="clr-namespace:MonitorPlatform.Controls" 
       xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
       mc:Ignorable="d" 
       ShowsNavigationUI="False"
@@ -232,13 +233,13 @@
             </Border>
 
         </Grid>
-        <Popup x:Name="inforpic"   PopupAnimation="Fade"   AllowsTransparency ="True" Placement="RelativePoint">
+        <control:PopupNonTopmost x:Name="inforpic"   PopupAnimation="Fade"   AllowsTransparency ="True" Placement="RelativePoint">
             <Canvas x:Name="infoborder">
                 <Canvas.Background>
                     <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/横道图01_02.png" />
                 </Canvas.Background>
             </Canvas>
-        </Popup>
+        </control:PopupNonTopmost>
 
     </Grid>
   

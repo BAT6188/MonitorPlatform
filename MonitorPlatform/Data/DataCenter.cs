@@ -717,7 +717,7 @@ namespace MonitorPlatform.Data
                                 train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
                                 train.LineNo = 0;
                                 //Martin 伪造数据
-                                train.SectionClass = "G1502A";
+                                //train.SectionClass = "G1502A";
                                 train.IsDown = false;
                                 line1.Trains.Add(train);
                             }
@@ -738,7 +738,7 @@ namespace MonitorPlatform.Data
                                 Train train = new Train();
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
-                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
+                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText().ToUpper();
                                 train.LineNo = 0;
                                 
                                 train.IsDown = true;
@@ -765,9 +765,9 @@ namespace MonitorPlatform.Data
                                 Train train = new Train();
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
-                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
+                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText().ToUpper();
                                 //Martin 伪造数据
-                                train.SectionClass = "G1505B";
+                                //train.SectionClass = "G1505B";
                                 train.LineNo = 1;
                                 train.IsDown = false;
                                 line2.Trains.Add(train);
@@ -788,7 +788,7 @@ namespace MonitorPlatform.Data
                                 Train train = new Train();
                                 train.TrainNumber = trainnode.SelectSingleNode("TrainNo").SafeInnerText();
                                 train.Location = double.Parse(trainnode.SelectSingleNode("CurrentStationNo").SafeInnerText());
-                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText();
+                                train.SectionClass = trainnode.SelectSingleNode("SectionClass").SafeInnerText().ToUpper();
                                 train.LineNo = 1;
                                 train.IsDown = true;
                                 line2.Trains.Add(train);
