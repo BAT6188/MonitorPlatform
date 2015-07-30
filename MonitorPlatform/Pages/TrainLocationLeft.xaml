@@ -393,8 +393,8 @@
                     <Run FontSize="14" Text="第二班："/>
                     <Run x:Name="txtSecondTime" FontSize="18" Text="06:35"/>
                     <LineBreak/>
-                    <Run FontSize="14" Text="第三班："/>
-                    <Run x:Name="txtThirdTime" FontSize="18" Text="06:40"/></TextBlock>
+                    <!--<Run FontSize="14" Text="第三班："/>
+                    <Run x:Name="txtThirdTime" FontSize="18" Text="06:40"/>--></TextBlock>
 
                 </StackPanel>
             </Border>

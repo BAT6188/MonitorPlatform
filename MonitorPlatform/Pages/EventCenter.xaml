@@ -28,6 +28,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*"></ColumnDefinition>
                     <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -60,6 +62,34 @@
                 </Border>
 
                 <Border  Grid.Column="2"  Margin="10" >
+
+                    <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Center">
+                        <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="类型:"></TextBlock>
+                        <ComboBox Name="type" SelectedIndex="0" Margin="10,0,0,0" SelectionChanged="datePicker1_SelectedDateChanged">
+                            <ComboBoxItem>全部</ComboBoxItem>
+                            <ComboBoxItem>轨道公交接驳事件</ComboBoxItem>
+                            <ComboBoxItem>其他</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+
+                </Border>
+                <Border  Grid.Column="3"  Margin="10" >
+
+                    <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Center">
+                        <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="等级:"></TextBlock>
+                        <ComboBox Name="grade" SelectedIndex="0" Margin="10,0,0,0" SelectionChanged="datePicker1_SelectedDateChanged">
+                            <ComboBoxItem>全部</ComboBoxItem>
+                            <ComboBoxItem>一级事件</ComboBoxItem>
+                            <ComboBoxItem>二级事件</ComboBoxItem>
+                            <ComboBoxItem>三级事件</ComboBoxItem>
+                            <ComboBoxItem>四级事件</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+
+                </Border>
+                <Border  Grid.Column="4"  Margin="10" >
                     <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Center">
                         <TextBlock Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True"  Text="发生时间:"></TextBlock>
                         <DatePicker  Margin="10,0,0,0"  Height="25"  Style="{StaticResource DatePickerStyle}" SelectedDateChanged="datePicker1_SelectedDateChanged"  Name="datePicker1" >
@@ -68,7 +98,7 @@
 
                 </Border>
 
-                <Border Grid.Column="4"  Margin="10"  >
+                <Border Grid.Column="6"  Margin="10"  >
 
                     <chart:DoughnutChart Grid.Row="1"    
                 Palette="{Binding Path=SelectedPalette.Value}"

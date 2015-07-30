@@ -175,7 +175,7 @@ namespace MonitorPlatform.Pages
 
             txtFirstTime.Text = firstdatetime.ToString("HH:mm");
             txtSecondTime.Text = seconddatetime.ToString("HH:mm");
-            txtThirdTime.Text = seconddatetime.ToString("HH:mm");
+            //txtThirdTime.Text = seconddatetime.ToString("HH:mm");
             traininfo.IsOpen = true;
             traininfo.PlacementTarget = sender as UIElement;
              
