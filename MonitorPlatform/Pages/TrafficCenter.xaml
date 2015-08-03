@@ -341,7 +341,10 @@
                                     </dxc:AxisY2D>
                                 </dxc:XYDiagram2D.AxisY>
                                 <dxc:XYDiagram2D.AxisX>
-                                    <dxc:AxisX2D>
+                                    <dxc:AxisX2D x:Name="axisX" DateTimeGridAlignment="Week">
+                                        <dxc:AxisX2D.DateTimeOptions>
+                                            <dxc:DateTimeOptions Format="Custom" FormatString="yyyy-M-d" />
+                                        </dxc:AxisX2D.DateTimeOptions>
                                         <dxc:AxisX2D.Label>
                                             <dxc:AxisLabel Staggered="True"   Foreground="#00a0e9"  />
                                         </dxc:AxisX2D.Label>
@@ -353,6 +356,7 @@
                                                       MarkerVisible ="True" 
                                               AnimationAutoStartMode="SetStartState"
                                                         ArgumentDataMember="Time" 
+                                                       ArgumentScaleType="DateTime"
                                                        ValueDataMember="TotalNumber"
                                                        DataSource="{Binding Path=SubWayLines[0].RateReportData}">
                                         <dxc:LineSeries2D.MarkerModel>
@@ -367,6 +371,7 @@
                                     <dxc:LineSeries2D x:Name="year2004" 
                                               DisplayName="二号线" 
                                                        ArgumentDataMember="Time" 
+                                                      ArgumentScaleType="DateTime"
                                                        ValueDataMember="TotalNumber"
                                                        DataSource="{Binding Path=SubWayLines[1].RateReportData}"
                                                       

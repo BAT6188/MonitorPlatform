@@ -56,6 +56,7 @@ namespace MonitorPlatform.Pages
         {
             if (datePicker1.SelectedDate.HasValue)
             {
+                this.axisX.DateTimeGridAlignment = DateTimeMeasurementUnit.Week;
                 DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Month);
             }
         }
@@ -63,6 +64,7 @@ namespace MonitorPlatform.Pages
         {
             if (datePicker1.SelectedDate.HasValue)
             {
+                this.axisX.DateTimeGridAlignment = DateTimeMeasurementUnit.Week;
                 DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Quarter);
             }
         }
@@ -70,6 +72,7 @@ namespace MonitorPlatform.Pages
         {
             if (datePicker1.SelectedDate.HasValue)
             {
+                this.axisX.DateTimeGridAlignment = DateTimeMeasurementUnit.Month;
                 DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Year);
             }
 
@@ -78,6 +81,7 @@ namespace MonitorPlatform.Pages
         {
             if (datePicker1.SelectedDate.HasValue)
             {
+                this.axisX.DateTimeGridAlignment = DateTimeMeasurementUnit.Month;
                 DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.All);
             }
         }
@@ -85,6 +89,7 @@ namespace MonitorPlatform.Pages
         {
             if (datePicker1.SelectedDate.HasValue)
             {
+                this.axisX.DateTimeGridAlignment = DateTimeMeasurementUnit.Month;
                 DataCenter.Instance.UpdateTrafficCenterReport(datePicker1.SelectedDate.Value, MonitorPlatform.Data.DataCenter.QueryType.Addup);
             }
         }
