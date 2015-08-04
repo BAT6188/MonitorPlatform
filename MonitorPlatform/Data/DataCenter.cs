@@ -298,28 +298,28 @@ namespace MonitorPlatform.Data
             this.currentTime = time;
 
             string taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
-            XElement tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Month_Info");
+            XElement tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "RailAFC_Month_Info");
             switch (querytype)
             {
                 case QueryType.Month:
                     taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
-                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Month_Info");
+                    tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "RailAFC_Month_Info");
                     break;
                 case QueryType.Quarter:
                     taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
-                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Quarter_Info");
+                    tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "RailAFC_Quarter_Info");
                     break;
                 case QueryType.Year:
                     taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
-                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Year_Info");
+                    tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "RailAFC_Year_Info2");
                     break;
                 case QueryType.All:
                     taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
-                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_All_Info");
+                    tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "RailAFC_All_Info2");
                     break;
                 case QueryType.Addup:
                     taskGuid = "91457eae-f7fc-42b4-a64b-f9825336dea7";
-                    tfNode = XmlNodeHelper.GetDocumentNode("91457eae-f7fc-42b4-a64b-f9825336dea7", "RailAFC_Cumulative_Info");
+                    tfNode = XmlNodeHelper.GetDocumentNode(taskGuid, "RailAFC_Cumulative_Info");
                     break;
             }
 
@@ -1312,18 +1312,18 @@ namespace MonitorPlatform.Data
             //DateTime current = DateTime.Now;
             for (int i = 30; i >= 0; i-- )
             {
-                reportdata.Add(new PersonsRateAnalyze() { Time = currentTime.AddDays(-i).ToString("M-dd"), TotalNumber = 0 });
+                reportdata.Add(new PersonsRateAnalyze() { Time = currentTime.AddDays(-i).ToString("yyyy-M-dd"), TotalNumber = 0 });
             }
             XmlNodeList nodes = node.SelectNodes("PassInfo");
             foreach (XmlNode passnode in nodes)
             {
                 string time = passnode.SelectSingleNode("Date").SafeInnerText();
 
-                //Convert from 2015-06-01 to 06-01
-                if(time.Contains("-"))
-                {
-                    time = time.Substring( time.IndexOf("-")+1);
-                }
+                ////Convert from 2015-06-01 to 06-01
+                //if(time.Contains("-"))
+                //{
+                //    time = time.Substring( time.IndexOf("-")+1);
+                //}
                 PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
                 if(matchnode!=null)
                 {
@@ -1336,75 +1336,95 @@ namespace MonitorPlatform.Data
                 // for quarter person rate.
         private void UpdateTrafficCenterReportByQuarter(SubLine line, XmlNode node)
         {
-            ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
-
-            XmlNodeList nodes = node.SelectNodes("PassInfo");
-            foreach (XmlNode passnode in nodes)
-            {
-                string time = passnode.SelectSingleNode("Date").SafeInnerText();
-
-                DateTime date;
-                if (DateTime.TryParse(time, out date))
-                {
-                    time = date.ToString("M-dd");
-                }
-
-                int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
-
-                reportdata.Add(new PersonsRateAnalyze { Time = time, TotalNumber = totalNumber });
-            }
-            line.RateReportData = reportdata;
             //ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
-
-            //// latest 90 days
-            //DateTime current = DateTime.Now;
-            //for (int i = 90; i >= 0; i--)
-            //{
-            //    reportdata.Add(new PersonsRateAnalyze { Time = current.AddDays(-i).ToString("M-d"), TotalNumber = 0 });
-            //}
 
             //XmlNodeList nodes = node.SelectNodes("PassInfo");
             //foreach (XmlNode passnode in nodes)
             //{
             //    string time = passnode.SelectSingleNode("Date").SafeInnerText();
 
-            //    if (time.Contains("-"))
+            //    DateTime date;
+            //    if (DateTime.TryParse(time, out date))
             //    {
-            //        time = time.Substring(time.IndexOf("-") + 1);
+            //        time = date.ToString("M-dd");
             //    }
 
-            //    PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
-            //    if (matchnode != null)
-            //    {
-            //        matchnode.TotalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
-            //    }
-            //}                      
+            //    int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
 
+            //    reportdata.Add(new PersonsRateAnalyze { Time = time, TotalNumber = totalNumber });
+            //}
             //line.RateReportData = reportdata;
-        }
 
-        // person rate by year
-        private void UpdateTrafficCenterReportByYear(SubLine line, XmlNode node)
-        {
             ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
 
             // latest 90 days
-           
-            for (int i = 12; i >= 0; i--)
+            DateTime current = DateTime.Now;
+            for (int i = 90; i >= 0; i--)
             {
-                reportdata.Add(new PersonsRateAnalyze { Time = currentTime.AddMonths(-i).ToString("yyyy-M"), TotalNumber = 0 });
+                reportdata.Add(new PersonsRateAnalyze { Time = current.AddDays(-i).ToString("yyyy-M-d"), TotalNumber = 0 });
             }
 
             XmlNodeList nodes = node.SelectNodes("PassInfo");
             foreach (XmlNode passnode in nodes)
             {
-                string time = passnode.SelectSingleNode("Month").SafeInnerText().Trim();
+                string time = passnode.SelectSingleNode("Date").SafeInnerText();
 
                 //if (time.Contains("-"))
                 //{
                 //    time = time.Substring(time.IndexOf("-") + 1);
                 //}
 
+                PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
+                if (matchnode != null)
+                {
+                    matchnode.TotalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+                }
+            }
+
+            line.RateReportData = reportdata;
+        }
+
+        // person rate by year
+        private void UpdateTrafficCenterReportByYear(SubLine line, XmlNode node)
+        {
+            //ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+
+            //// latest 12 months           
+            //for (int i = 12; i >= 0; i--)
+            //{
+            //    reportdata.Add(new PersonsRateAnalyze { Time = currentTime.AddMonths(-i).ToString("yyyy-M"), TotalNumber = 0 });
+            //}
+
+            //XmlNodeList nodes = node.SelectNodes("PassInfo");
+            //foreach (XmlNode passnode in nodes)
+            //{
+            //    string time = passnode.SelectSingleNode("Month").SafeInnerText().Trim();
+                               
+            //    PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
+            //    if (matchnode != null)
+            //    {
+            //        matchnode.TotalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
+            //    }
+            //}
+            //line.RateReportData = reportdata;
+
+            ObservableCollection<PersonsRateAnalyze> reportdata = new ObservableCollection<PersonsRateAnalyze>();
+            //最近365天
+            //DateTime current = DateTime.Now;
+            for (int i = 365; i >= 0; i--)
+            {
+                reportdata.Add(new PersonsRateAnalyze() { Time = currentTime.AddDays(-i).ToString("yyyy-M-dd"), TotalNumber = 0 });
+            }
+            XmlNodeList nodes = node.SelectNodes("PassInfo");
+            foreach (XmlNode passnode in nodes)
+            {
+                string time = passnode.SelectSingleNode("Date").SafeInnerText();
+
+                //Convert from 2015-06-01 to 06-01
+                //if (time.Contains("-"))
+                //{
+                //    time = time.Substring(time.IndexOf("-") + 1);
+                //}
                 PersonsRateAnalyze matchnode = reportdata.SingleOrDefault(x => x.Time == time);
                 if (matchnode != null)
                 {
@@ -1421,7 +1441,7 @@ namespace MonitorPlatform.Data
             XmlNodeList nodes = node.SelectNodes("PassInfo");
             foreach (XmlNode passnode in nodes)
             {
-                string time = passnode.SelectSingleNode("Month").SafeInnerText();
+                string time = passnode.SelectSingleNode("Date").SafeInnerText();
 
                 int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
 
@@ -1439,7 +1459,7 @@ namespace MonitorPlatform.Data
             XmlNodeList nodes = node.SelectNodes("PassInfo");
             foreach (XmlNode passnode in nodes)
             {
-                string time = passnode.SelectSingleNode("Month").SafeInnerText();
+                string time = passnode.SelectSingleNode("Date").SafeInnerText();
                 
                 int totalNumber = passnode.SelectSingleNode("PassTotal").SafeInnerInt();
                 
