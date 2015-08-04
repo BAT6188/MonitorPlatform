@@ -29,7 +29,7 @@ namespace MonitorPlatform.Pages
         public TrainLocationCenter()
         {
             InitializeComponent();
-           
+
             this.Loaded += new RoutedEventHandler(TrainLocationCenter_Loaded);
             LoadPoints();
             DataCenter.Instance.UpdateTrainLocationEvent += new DataCenter.UpdateTrainLocation(Instance_UpdateTrainLocationEvent);
@@ -45,53 +45,54 @@ namespace MonitorPlatform.Pages
         public void SetPropByCurrentTrain()
         {
             Train t = MonitorDataModel.Instance().CurrentTrain;
-            
+
             if (t != null)
             {
-                DateTime now =DateTime.Now;
+                DateTime now = DateTime.Now;
                 txtCurrentDate.Text = now.ToString("yyyy-MM-dd");
 
-               SubLine line =  MonitorDataModel.Instance().SubWayLines[t.LineNo];
-               stationGrid.ItemsSource = line.Stations;
+                SubLine line = MonitorDataModel.Instance().SubWayLines[t.LineNo];
+                stationGrid.ItemsSource = line.Stations;
                 double nextstationID;
-               if (t.IsDown)
-               {
-                   if (line.Stations.Count > (int)t.Location && (int)t.Location >= 0)
-                   {
-                       Station next = line.Stations[(int)t.Location];
-                       this.txtNextStation.Text = next.Name;
-                       this.txtEstimateArrivaTime.Text = now.AddMinutes(next.DownFirstTime).ToString("HH:mm");
-                       this.txtPlanArriveTime.Text = this.txtEstimateArrivaTime.Text;
-                   }
-                   else
-                   {
-                       this.txtNextStation.Text = "终点站";
-                       this.txtPlanArriveTime.Text = now.ToString("HH:mm");
-                       this.txtEstimateArrivaTime.Text = now.ToString("HH:mm");
-                   }
-                   
-               }
-               else
-               {
-                   nextstationID = t.Location - 2;
-                   if(line.Stations.Count>(int)(t.Location - 2) && (int)(t.Location - 2)>=0){
-                       Station next = line.Stations[(int)t.Location - 2];
-                       this.txtNextStation.Text = next.Name;
-                       this.txtEstimateArrivaTime.Text =now.AddMinutes( next.UpFirstTime).ToString("HH:mm");
-                       this.txtPlanArriveTime.Text = this.txtEstimateArrivaTime.Text;
-                   }
-                   else
-                   {
-                       this.txtNextStation.Text = "终点站";
-                       this.txtPlanArriveTime.Text = now.ToString("HH:mm");
-                       this.txtEstimateArrivaTime.Text = now.ToString("HH:mm");
-                   }
-               }
+                if (t.IsDown)
+                {
+                    if (line.Stations.Count > (int)t.Location && (int)t.Location >= 0)
+                    {
+                        Station next = line.Stations[(int)t.Location];
+                        this.txtNextStation.Text = next.Name;
+                        this.txtEstimateArrivaTime.Text = now.AddMinutes(next.DownFirstTime).ToString("HH:mm");
+                        this.txtPlanArriveTime.Text = this.txtEstimateArrivaTime.Text;
+                    }
+                    else
+                    {
+                        this.txtNextStation.Text = "终点站";
+                        this.txtPlanArriveTime.Text = now.ToString("HH:mm");
+                        this.txtEstimateArrivaTime.Text = now.ToString("HH:mm");
+                    }
+
+                }
+                else
+                {
+                    nextstationID = t.Location - 2;
+                    if (line.Stations.Count > (int)(t.Location - 2) && (int)(t.Location - 2) >= 0)
+                    {
+                        Station next = line.Stations[(int)t.Location - 2];
+                        this.txtNextStation.Text = next.Name;
+                        this.txtEstimateArrivaTime.Text = now.AddMinutes(next.UpFirstTime).ToString("HH:mm");
+                        this.txtPlanArriveTime.Text = this.txtEstimateArrivaTime.Text;
+                    }
+                    else
+                    {
+                        this.txtNextStation.Text = "终点站";
+                        this.txtPlanArriveTime.Text = now.ToString("HH:mm");
+                        this.txtEstimateArrivaTime.Text = now.ToString("HH:mm");
+                    }
+                }
 
             }
         }
 
-        
+
         void TrainLocationCenter_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -99,20 +100,15 @@ namespace MonitorPlatform.Pages
             Window parentwin = Window.GetWindow(this);
             parentwin.LocationChanged += new EventHandler(parentwin_LocationChanged);
             parentwin.SizeChanged += new SizeChangedEventHandler(parentwin_SizeChanged);
-            ReCalculateAll();
+           
         }
         void parentwin_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            SetPopUpSize();
+            
         }
         void parentwin_LocationChanged(object sender, EventArgs e)
         {
-            if (inforpic.IsOpen)
-            {
-                var mi = typeof(Popup).GetMethod("UpdatePosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                mi.Invoke(inforpic, null);
-            }
+           
         }
 
         public void LoadPoints()
@@ -120,7 +116,8 @@ namespace MonitorPlatform.Pages
             StreamResourceInfo info = Application.GetResourceStream(new Uri("/MonitorPlatform;component/Resource/Points.txt", UriKind.RelativeOrAbsolute));
             StreamReader reader = new StreamReader(info.Stream);
             points.Clear();
-            while(!reader.EndOfStream){
+            while (!reader.EndOfStream)
+            {
 
                 string output = reader.ReadLine();
                 if (!string.IsNullOrEmpty(output))
@@ -128,93 +125,22 @@ namespace MonitorPlatform.Pages
                     string[] contents = output.Split(',');
                     if (contents.Length == 3)
                     {
-                        points.Add(contents[0], new Point(int.Parse(contents[1]),int.Parse(contents[2])));
+                        points.Add(contents[0], new Point(int.Parse(contents[1]), int.Parse(contents[2])));
                     }
                 }
             }
-            
+
         }
 
         void Instance_UpdateTrainLocationEvent()
         {
-            ReCalculateAll();
+            //ReCalculateAll();
         }
 
         void TrainLocationCenter_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ReCalculateAll();
+            //ReCalculateAll();
 
-        }
-
-        public void DrawTrain(Train train, double widthfactor, double heightfactor)
-        {
-            if (points.ContainsKey(train.SectionClass))
-            {
-                Point org = points[train.SectionClass];
-                
-                Image image = new Image();
-                image.Width = 20;
-                image.Height = 20;
-                image.Stretch = Stretch.Fill;
-                image.Source = new BitmapImage(new Uri("/MonitorPlatform;component/Resource/Car_Normal.png", UriKind.RelativeOrAbsolute));
-                Canvas.SetLeft(image, org.X * widthfactor);
-                Canvas.SetTop(image, org.Y * heightfactor);
-                infoborder.Children.Add(image);
-            }
-           
-        }
-        
-        public void ReCalculateAll()
-        {
-            int orign_height = 739;
-            int orign_width = 1709;
-            double widthfactor = this.ActualWidth / orign_width;
-            double heightfactor = this.ActualHeight / orign_height;
-            infoborder.Children.Clear();
-            foreach (Train train in MonitorDataModel.Instance().SubWayLines[0].Trains)
-            {
-                DrawTrain(train, widthfactor, heightfactor);
-            }
-            foreach (Train train in MonitorDataModel.Instance().SubWayLines[1].Trains)
-            {
-                DrawTrain(train, widthfactor, heightfactor);
-            }
-        }
-
-        public void SetPopUpSize()
-        {
-            Window parentwin = Window.GetWindow(this);
-            inforpic.PlacementTarget = parentwin;
-            DependencyObject parent = inforpic.Child;
-
-            do
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-
-                if (parent != null && parent.ToString() == "System.Windows.Controls.Primitives.PopupRoot")
-                {
-                    var element = parent as FrameworkElement;
-
-
-                    element.Height = parentwin.ActualHeight;// parentwin.Height;
-                    element.Width = parentwin.ActualWidth;// parentwin.Width;
-
-                    break;
-                }
-            }
-            while (parent != null);
-
-
-        }
-
-        public void ShowTrafficImage()
-        {
-            inforpic.IsOpen = true;
-            SetPopUpSize();
-        }
-        public void CloseTrafficImage()
-        {
-            inforpic.IsOpen = false;
         }
     }
 

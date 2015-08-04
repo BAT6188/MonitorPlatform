@@ -9,22 +9,30 @@
         xmlns:control="clr-namespace:MonitorPlatform.Controls"  Loaded="Window_Loaded"
 >
 
-    <Grid x:Name="maingrid" Style="{StaticResource gridbackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid x:Name="maingrid" Style="{StaticResource gridbackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Border Grid.Row="0">
-            <!--<control:TabSelectControl></control:TabSelectControl>-->
-        </Border>
-        <Border Grid.Row="1" >
-            <Frame Name="frame"  NavigationUIVisibility ="Hidden" Source="Pages/BossCenter.xaml"></Frame>
-        </Border>
+            <Border Grid.Row="0">
+                <!--<control:TabSelectControl></control:TabSelectControl>-->
+            </Border>
+            <Border Grid.Row="1" >
+                <Frame Name="frame"  NavigationUIVisibility ="Hidden" Source="Pages/BossCenter.xaml"></Frame>
+            </Border>
 
-        <Grid.LayoutTransform>
-            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" />
-        </Grid.LayoutTransform>
+            <Grid.LayoutTransform>
+                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.0" ScaleY="1.0" />
+            </Grid.LayoutTransform>
+        </Grid>
+        <Canvas x:Name="infoborder" Visibility="Hidden">
+            <Canvas.Background>
+                <ImageBrush Stretch="Fill"   ImageSource="/MonitorPlatform;component/Resource/横道图01_02.png" />
+            </Canvas.Background>
+        </Canvas>
     </Grid>
+    
 
 </Window>

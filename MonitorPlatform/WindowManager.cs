@@ -49,8 +49,9 @@ namespace MonitorPlatform
 
         public void ShowTrafficImage()
         {
-            InvokeShowTraffic(left);
-            InvokeShowTraffic(center);
+            left.ShowTrafficImage();
+            center.ShowTrafficImage();
+            right.ShowTrafficImage();
             InvokeShowTraffic(right);
         }
 
@@ -60,7 +61,10 @@ namespace MonitorPlatform
             Frame f = obj as Frame;
             Type pagetype = f.Content.GetType();
             MethodInfo showtraffic = pagetype.GetMethod("ShowTrafficImage");
-            showtraffic.Invoke(f.Content, null);
+            if (showtraffic != null)
+            {
+                showtraffic.Invoke(f.Content, null);
+            }
         }
 
         private void InvokeCloseTrafficImage(Window w)
@@ -69,14 +73,18 @@ namespace MonitorPlatform
             Frame f = obj as Frame;
             Type pagetype = f.Content.GetType();
             MethodInfo showtraffic = pagetype.GetMethod("CloseTrafficImage");
-            showtraffic.Invoke(f.Content, null);
+            if (showtraffic != null)
+            {
+                showtraffic.Invoke(f.Content, null);
+            }
         }
 
 
         public void CloseTrafficImage()
         {
-            InvokeCloseTrafficImage(left);
-            InvokeCloseTrafficImage(center);
+            left.CloseTrafficImage();
+            center.CloseTrafficImage();
+            right.CloseTrafficImage();
             InvokeCloseTrafficImage(right);
         }
 

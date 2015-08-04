@@ -36,21 +36,16 @@ namespace MonitorPlatform.Pages
         }
         void parentwin_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            SetPopUpSize();
+            //SetPopUpSize();
         }
         void parentwin_LocationChanged(object sender, EventArgs e)
         {
-            if (inforpic.IsOpen)
-            {
-                var mi = typeof(Popup).GetMethod("UpdatePosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                mi.Invoke(inforpic, null);
-            }
+        
         }
         void TrainLocationLeft_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ReCalculateAll();
-            SetPopUpSize();
+            //SetPopUpSize();
         }
 
         void ReCalculateAll()
@@ -219,43 +214,6 @@ namespace MonitorPlatform.Pages
             }
         }
 
-        public void SetPopUpSize()
-        {
-            
-            Window parentwin = Window.GetWindow(this);
-            inforpic.PlacementTarget = parentwin;
-            DependencyObject parent = inforpic.Child;
-
-            do
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-
-                if (parent != null && parent.ToString() == "System.Windows.Controls.Primitives.PopupRoot")
-                {
-                    var element = parent as FrameworkElement;
-
-
-                    element.Height = parentwin.Height;// parentwin.Height;
-                    element.Width = parentwin.Width;// parentwin.Width;
-
-                    break;
-                }
-            }
-            while (parent != null);
-
-
-        }
-
-        public void ShowTrafficImage()
-        {
-            inforpic.IsOpen = true;
-            SetPopUpSize();
-        }
-
-        public void CloseTrafficImage()
-        {
-            inforpic.IsOpen = false;
-        }
     }
 }
 

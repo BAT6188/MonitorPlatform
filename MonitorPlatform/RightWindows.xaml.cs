@@ -30,5 +30,21 @@ namespace MonitorPlatform
             this.WindowStyle = System.Windows.WindowStyle.None;
             this.DataContext = MonitorDataModel.Instance();
         }
+
+        public void ShowTrafficImage()
+        {
+            infoborder.Visibility = Visibility.Visible;
+
+        }
+
+        public void CloseTrafficImage()
+        {
+            infoborder.Visibility = Visibility.Hidden;
+        }
+
+        private void btnClose_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            WindowManager.Instance.CloseTrafficImage();
+        }
     }
 }

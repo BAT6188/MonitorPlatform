@@ -1023,11 +1023,15 @@ namespace MonitorPlatform.Data
                 StationTroubleStatus sta = new StationTroubleStatus();
                 string name = node.SelectSingleNode("Name").SafeInnerText();
                 Station s = line1.Stations.SingleOrDefault(x => x.Name == name);
+
+                
                 if (s != null)
                 {
+                    s.SType = node.SelectSingleNode("SType").SafeInnerInt(); ;
                     int index = line1.Stations.IndexOf(s);
                     sta.ID = index;
                     sta.WarnCount = node.SelectSingleNode("WarnCount").SafeInnerInt();
+                    
                     line1.StaTroubles.Add(sta);
                 }
 

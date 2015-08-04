@@ -167,6 +167,21 @@ namespace MonitorPlatform.ViewModel
             }
         }
 
+        public int stype = 0;
+        public int SType
+        {
+            get
+            {
+                return stype;
+            }
+            set
+            {
+                stype = value;
+                NotifyPropertyChanged("SType");
+            }
+        }
+
+
 
         private DateTime upEndTime;
         public DateTime UpEndTime

@@ -40,11 +40,11 @@
                     <Canvas x:Name="设施位置类型" Height="53" Margin="664,0,0,0" VerticalAlignment="Top">
                         <Path x:Name="矩形_11" Data="F1M1,1C1,1 1205,1 1205,1 1205,1 1205,51 1205,51 1205,51 1,51 1,51 1,51 1,1 1,1z" Fill="#FF092B61" Height="52" Canvas.Left="0" Canvas.Top="1" Width="1206"/>
                         <Path x:Name="矩形_3_副本" Data="F1M2,2C2,2 5,2 5,2 5,2 5,52 5,52 5,52 2,52 2,52 2,52 2,2 2,2z" Fill="#FF0353CB" Height="53" Canvas.Left="205" Canvas.Top="0" Width="6"/>
-                        <CheckBox Content="控制中心" IsChecked="True"  Height="26.757" Canvas.Left="271" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="15" Width="108" />
+                        <CheckBox Name="chk_CC" Content="控制中心"  IsChecked="True"  Height="26.757" Canvas.Left="271" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="15" Width="108" />
                         <TextBlock x:Name="设施设备类型1" Foreground="#FF0099FF" FontSize="18" FontFamily="Microsoft YaHei" IsHyphenationEnabled="True" Canvas.Left="51" TextAlignment="Center" TextWrapping="Wrap" Text="设施位置类型" Canvas.Top="17"/>
-                        <CheckBox Content="车辆段" IsChecked="True"  Height="26.757" Canvas.Left="494.5" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="15" Width="108"/>
-                        <CheckBox Content="车站" IsChecked="True"  Height="26.757" Canvas.Left="725.5" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
-                        <CheckBox Content="其他" IsChecked="True"  Height="26.757" Canvas.Left="951.5" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_Train" Content="车辆段"  IsChecked="True"  Height="26.757" Canvas.Left="494.5" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="15" Width="108"/>
+                        <CheckBox Name="chk_Station" Content="车站"  IsChecked="True"  Height="26.757" Canvas.Left="725.5" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
+                        <CheckBox Name="chk_Other" Content="其他"  IsChecked="True"  Height="26.757" Canvas.Left="951.5" Style="{DynamicResource TrainCheckBoxStyle}" Canvas.Top="14" Width="108"/>
                     </Canvas>
                     <Canvas x:Name="设备种类1" Height="53" VerticalAlignment="Bottom">
                         <Viewbox Height="53" Stretch="Fill" Width="1870">

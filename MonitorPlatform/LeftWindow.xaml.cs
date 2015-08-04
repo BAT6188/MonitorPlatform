@@ -142,7 +142,7 @@ namespace MonitorPlatform
                     break;
                 case "地理信息":
                     //this.frame.Source = new Uri("Pages/BossLeft.xaml,UriKind.Relative");
-                    //center.frame.Source = new Uri("Pages/BossCenter.xaml",UriKind.Relative);
+                    center.frame.Source = new Uri("Pages/BossCenter.xaml", UriKind.Relative);
                     //right.frame.Source = new Uri("Pages/BossRight.xaml",UriKind.Relative);
                     break;
 
@@ -175,6 +175,17 @@ namespace MonitorPlatform
         {
             this.Close();
             Environment.Exit(0);
+        }
+
+        public void ShowTrafficImage()
+        {
+            infoborder.Visibility = Visibility.Visible;
+            
+        }
+
+        public void CloseTrafficImage()
+        {
+            infoborder.Visibility = Visibility.Hidden;
         }
     }
 }

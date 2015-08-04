@@ -35,8 +35,42 @@ namespace MonitorPlatform.Pages
             chk_PSD.Click += new RoutedEventHandler(chk_AFC_Click);
             chk_PIS.Click += new RoutedEventHandler(chk_AFC_Click);
             chk_PA.Click += new RoutedEventHandler(chk_AFC_Click);
-           
+
+            chk_CC.Click += new RoutedEventHandler(chk_Type_Click);
+            chk_Train.Click += new RoutedEventHandler(chk_Type_Click);
+            chk_Station.Click += new RoutedEventHandler(chk_Type_Click);
+            chk_Other.Click += new RoutedEventHandler(chk_Type_Click);
+
         }
+
+        HashSet<int> GetCheckedType()
+        {
+            HashSet<int> container = new HashSet<int>();
+            if (chk_CC.IsChecked.Value)
+            {
+                container.Add(1);
+            }
+            if (chk_Train.IsChecked.Value)
+            {
+                container.Add(2);
+            }
+
+            if (chk_Station.IsChecked.Value)
+            {
+                container.Add(0);
+            }
+            if (chk_Other.IsChecked.Value)
+            {
+                container.Add(3);
+            }
+            return container;
+        }
+
+        void chk_Type_Click(object sender, RoutedEventArgs e)
+        {
+            SetGridSource();
+        }
+
 
         void chk_AFC_Click(object sender, RoutedEventArgs e)
         {
@@ -133,28 +167,32 @@ namespace MonitorPlatform.Pages
             return chkstatus;
         }
 
-     
-
-        private void chkLine_Click(object sender, RoutedEventArgs e)
+        public void SetGridSource()
         {
             if (gridStation == null)
             {
                 return;
             }
-            bool isfirstline = true;
+            var condition = GetCheckedType();
+
+            int line = 0;
             if (chkLine.IsChecked.HasValue)
             {
-                isfirstline = chkLine.IsChecked.Value;
+                line = chkLine.IsChecked.Value?0:1;
             }
+            var stations = MonitorDataModel.Instance().SubWayLines[line].Stations;
 
-            if (isfirstline)
-            {
-                gridStation.ItemsSource = MonitorDataModel.Instance().SubWayLines[0].Stations;
-            }
-            else
-            {
-                gridStation.ItemsSource = MonitorDataModel.Instance().SubWayLines[1].Stations;
-            }
+
+            this.gridStation.ItemsSource  = stations.Where(x => condition.Contains(x.SType));
+
+        }
+
+     
+
+        private void chkLine_Click(object sender, RoutedEventArgs e)
+        {
+           
+            SetGridSource();
         }
     }
 }

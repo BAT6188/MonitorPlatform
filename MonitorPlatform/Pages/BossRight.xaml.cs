@@ -26,24 +26,27 @@ namespace MonitorPlatform.Pages
             InitializeComponent();
          
             this.Loaded += new RoutedEventHandler(BossRight_Loaded);
+            this.SizeChanged += new SizeChangedEventHandler(BossRight_SizeChanged);
             
+        }
+
+        void BossRight_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            videoControl.SetOcxSize((int)xhost.ActualWidth-5, (int)xhost.ActualHeight-5);
         }
 
         void parentwin_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            SetPopUpSize();
+           // SetPopUpSize();
         }
         void parentwin_LocationChanged(object sender, EventArgs e)
         {
-            if (inforpic.IsOpen)
-            {
-                var mi = typeof(Popup).GetMethod("UpdatePosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-                mi.Invoke(inforpic, null);
-            }
+        
         }
         void BossRight_Loaded(object sender, RoutedEventArgs e)
         {
+
             videoControl.SetLayout(4);
             Window parentwin = Window.GetWindow(this);
             parentwin.LocationChanged += new EventHandler(parentwin_LocationChanged);
@@ -61,48 +64,18 @@ namespace MonitorPlatform.Pages
                 videoControl.SetLayout(int.Parse(radio.Tag.ToString()));
             }
         }
-
-
-        public void SetPopUpSize()
-        {
-            Window parentwin = Window.GetWindow(this);
-            inforpic.PlacementTarget = parentwin;
-            DependencyObject parent = inforpic.Child;
-
-            do
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-
-                if (parent != null && parent.ToString() == "System.Windows.Controls.Primitives.PopupRoot")
-                {
-                    var element = parent as FrameworkElement;
-
-
-                    element.Height = parentwin.ActualHeight;// parentwin.Height;
-                    element.Width = parentwin.ActualWidth;// parentwin.Width;
-
-                    break;
-                }
-            }
-            while (parent != null);
-
-
-        }
-
         public void ShowTrafficImage()
         {
-            inforpic.IsOpen = true;
-            SetPopUpSize();
+            this.xhost.Visibility = Visibility.Hidden;
         }
 
         public void CloseTrafficImage()
         {
-            inforpic.IsOpen = false;
+            this.xhost.Visibility = Visibility.Visible;
         }
 
-        private void btnClose_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            WindowManager.Instance.CloseTrafficImage();
-        }
+     
+
+     
     }
 }
